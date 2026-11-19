@@ -18,7 +18,18 @@
 SwiftUI · SwiftData · CloudKit · Swift Charts · WidgetKit · App Intents · VisionKit · Foundation Models · Shopify Admin GraphQL API
 
 ## Estado
-🚧 Em desenvolvimento: **Fase 0 (planeamento)**. Ver [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
+✅ **Fase 1 (MVP) concluída**: projeto multiplataforma, modelos SwiftData, navegação adaptativa (barra lateral no Mac/iPad, separadores no iPhone), Finanças (lista, adicionar e editar gastos/receitas) e tela Hoje (saldo do mês, últimos gastos, contas a vencer).
+
+🚧 Próxima: **Fase 2 (Finanças completas)**. Ver [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
+
+## Como correr
+Requer Xcode 27+. O projeto é gerado com [XcodeGen](https://github.com/yonaskolb/XcodeGen) a partir de `project.yml`:
+
+```bash
+brew install xcodegen
+xcodegen generate
+open Mynik.xcodeproj
+```
 
 ## Screenshots
 _Em breve._
