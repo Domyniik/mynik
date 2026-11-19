@@ -8,7 +8,9 @@ struct TransactionMonthGroup: Identifiable {
     var id: Date { month }
 
     var title: String {
-        month.formatted(.dateTime.month(.wide).year().locale(.app)).capitalized(with: .app)
+        // "novembro de 2026" → "Novembro de 2026" (só a primeira letra).
+        let text = month.formatted(.dateTime.month(.wide).year().locale(.app))
+        return text.prefix(1).uppercased(with: .app) + text.dropFirst()
     }
 
     static func group(

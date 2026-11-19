@@ -38,6 +38,7 @@ struct FinanceTests {
         #expect(groups.count == 2)
         #expect(groups.first?.transactions.map(\.title) == ["C", "B"])
         #expect(groups.last?.transactions.map(\.title) == ["A"])
+        #expect(groups.first?.title == "Novembro de 2026")
     }
 
     @Test func draftRequiresTitleAndPositiveAmount() {

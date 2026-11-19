@@ -8,3 +8,4 @@
 - feat(app): adiciona navegação com barra lateral no Mac/iPad e separadores no iPhone
 - feat(finance): adiciona lista, criação e edição de gastos e receitas
 - feat(today): adiciona tela Hoje com saldo do mês, últimos gastos e contas a vencer
+- fix(finance): título do mês sem maiúscula em "de"
