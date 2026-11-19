@@ -1,7 +1,7 @@
 # Roadmap — Mynik
 
 ## Fase 1 — MVP
-- [ ] Projeto Xcode multiplataforma (iOS 26 + macOS 26) e estrutura de pastas
+- [x] Projeto Xcode multiplataforma (iOS 26 + macOS 26) e estrutura de pastas
 - [ ] Modelos SwiftData: Transaction, Category, Account, Bill
 - [ ] Navegação (SplitView no Mac, TabView no iPhone)
 - [ ] Finanças: lista, adicionar e editar gastos/receitas
