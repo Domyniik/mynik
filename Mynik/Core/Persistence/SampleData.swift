@@ -1,0 +1,53 @@
+import SwiftData
+import SwiftUI
+
+/// Dados de exemplo para as previews do Xcode.
+struct SampleData: PreviewModifier {
+    static func makeSharedContext() throws -> ModelContainer {
+        let container = try ModelContainerFactory.make(inMemory: true)
+        let context = container.mainContext
+        try DefaultDataSeeder.seedIfNeeded(in: context)
+
+        let categories = try context.fetch(FetchDescriptor<Category>())
+        let account = try context.fetch(FetchDescriptor<Account>()).first
+        func category(_ name: String) -> Category? {
+            categories.first { $0.name == name }
+        }
+
+        let calendar = Calendar.current
+        func daysAgo(_ days: Int) -> Date {
+            calendar.date(byAdding: .day, value: -days, to: .now) ?? .now
+        }
+
+        let samples = [
+            FinanceTransaction(title: "Salário", amount: 1850, kind: .income, date: daysAgo(3), category: category("Salário"), account: account),
+            FinanceTransaction(title: "Mercadona", amount: 62.40, kind: .expense, date: daysAgo(0), category: category("Alimentação"), account: account),
+            FinanceTransaction(title: "Gasolina", amount: 55, kind: .expense, date: daysAgo(1), category: category("Carro"), account: account),
+            FinanceTransaction(title: "Spotify", amount: 10.99, kind: .expense, date: daysAgo(2), category: category("Assinaturas"), account: account),
+            FinanceTransaction(title: "Jantar", amount: 38.50, kind: .expense, date: daysAgo(5), category: category("Lazer"), account: account),
+        ]
+        samples.forEach(context.insert)
+
+        context.insert(
+            Bill(
+                title: "Renda",
+                amount: 750,
+                dueDate: calendar.date(byAdding: .day, value: 3, to: .now) ?? .now,
+                recurrence: .monthly,
+                category: category("Casa"),
+                account: account
+            )
+        )
+
+        try context.save()
+        return container
+    }
+
+    func body(content: Content, context: ModelContainer) -> some View {
+        content.modelContainer(context)
+    }
+}
+
+extension PreviewTrait where T == Preview.ViewTraits {
+    @MainActor static var sampleData: Self { .modifier(SampleData()) }
+}
