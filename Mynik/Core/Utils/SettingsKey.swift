@@ -4,4 +4,6 @@ import Foundation
 nonisolated enum SettingsKey {
     static let billRemindersEnabled = "billRemindersEnabled"
     static let billReminderDaysBefore = "billReminderDaysBefore"
+    static let brlPerEUR = "brlPerEUR"
+    static let exchangeRateDate = "exchangeRateDate"
 }

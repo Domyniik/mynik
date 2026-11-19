@@ -6,6 +6,7 @@ struct SettingsView: View {
     var body: some View {
         Form {
             NotificationSettingsSection()
+            CurrencySettingsSection()
         }
         .formStyle(.grouped)
         .navigationTitle("Definições")

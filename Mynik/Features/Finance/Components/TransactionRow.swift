@@ -4,6 +4,8 @@ import SwiftUI
 struct TransactionRow: View {
     let transaction: FinanceTransaction
 
+    @Environment(\.currencyConverter) private var converter
+
     private var formattedAmount: String {
         let value = Currency.format(transaction.amount, code: transaction.currencyCode)
         return transaction.kind == .income ? "+\(value)" : "−\(value)"
@@ -25,9 +27,18 @@ struct TransactionRow: View {
 
             Spacer(minLength: 8)
 
-            Text(formattedAmount)
-                .monospacedDigit()
-                .foregroundStyle(transaction.kind == .income ? .green : .primary)
+            VStack(alignment: .trailing, spacing: 2) {
+                Text(formattedAmount)
+                    .monospacedDigit()
+                    .foregroundStyle(transaction.kind == .income ? .green : .primary)
+
+                if transaction.currencyCode != Currency.defaultCode {
+                    Text("≈ \(Currency.format(converter.amountInDefaultCurrency(transaction)))")
+                        .font(.caption)
+                        .monospacedDigit()
+                        .foregroundStyle(.secondary)
+                }
+            }
         }
         .contentShape(.rect)
         .accessibilityElement(children: .combine)

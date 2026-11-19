@@ -11,3 +11,4 @@
 - fix(finance): título do mês sem maiúscula em "de"
 - feat(finance): adiciona contas a pagar com recorrência e botão "paguei"
 - feat(finance): adiciona notificações de vencimento das contas e ecrã de Definições
+- feat(finance): adiciona multi-moeda EUR/BRL com conversão e taxa do BCE

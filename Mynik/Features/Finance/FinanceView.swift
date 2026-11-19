@@ -4,6 +4,7 @@ import SwiftUI
 /// Lista de gastos e receitas, agrupada por mês.
 struct FinanceView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.currencyConverter) private var converter
     @Query(sort: \FinanceTransaction.date, order: .reverse) private var transactions: [FinanceTransaction]
 
     @State private var isAddingTransaction = false
@@ -13,7 +14,7 @@ struct FinanceView: View {
         List {
             if !transactions.isEmpty {
                 Section {
-                    MonthSummaryCard(summary: MonthSummary(month: .now, transactions: transactions))
+                    MonthSummaryCard(summary: MonthSummary(month: .now, transactions: transactions, converter: converter))
                 }
             }
 

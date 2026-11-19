@@ -3,6 +3,7 @@ import SwiftUI
 
 /// Resumo do dia: saldo do mês, últimos gastos e contas a vencer.
 struct TodayView: View {
+    @Environment(\.currencyConverter) private var converter
     @Query(sort: \FinanceTransaction.date, order: .reverse) private var transactions: [FinanceTransaction]
 
     @State private var isAddingTransaction = false
@@ -14,7 +15,7 @@ struct TodayView: View {
     var body: some View {
         List {
             Section {
-                MonthSummaryCard(summary: MonthSummary(month: .now, transactions: transactions))
+                MonthSummaryCard(summary: MonthSummary(month: .now, transactions: transactions, converter: converter))
             }
 
             UpcomingBillsSection(days: 7)

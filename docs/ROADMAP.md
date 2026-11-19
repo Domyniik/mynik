@@ -14,7 +14,7 @@
 - [ ] Gráficos (Swift Charts)
 - [ ] Assinaturas (total mensal/anual)
 - [ ] Importar CSV do banco
-- [ ] Multi-moeda EUR/BRL
+- [x] Multi-moeda EUR/BRL
 
 ## Fase 3 — Loja Shopify (Neloce)
 - [ ] Setup do token (Keychain) + cliente GraphQL

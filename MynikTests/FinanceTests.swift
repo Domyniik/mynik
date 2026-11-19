@@ -10,7 +10,7 @@ struct FinanceTests {
         calendar.date(from: DateComponents(year: year, month: month, day: day)) ?? .distantPast
     }
 
-    @Test func monthSummaryOnlyCountsSelectedMonthAndCurrency() {
+    @Test func monthSummaryCountsSelectedMonthConvertingBRL() {
         let transactions = [
             FinanceTransaction(title: "Salário", amount: 2000, kind: .income, date: date(2026, 11, 1)),
             FinanceTransaction(title: "Renda", amount: 750, kind: .expense, date: date(2026, 11, 5)),
@@ -19,11 +19,12 @@ struct FinanceTests {
             FinanceTransaction(title: "Em reais", amount: 50, kind: .expense, date: date(2026, 11, 6), currencyCode: "BRL"),
         ]
 
-        let summary = MonthSummary(month: date(2026, 11, 15), transactions: transactions, calendar: calendar)
+        let converter = CurrencyConverter(brlPerEUR: 5)
+        let summary = MonthSummary(month: date(2026, 11, 15), transactions: transactions, converter: converter, calendar: calendar)
 
         #expect(summary.income == 2000)
-        #expect(summary.expenses == 753)
-        #expect(summary.balance == 1247)
+        #expect(summary.expenses == 763) // 750 + 3 + 50 BRL (= 10 EUR)
+        #expect(summary.balance == 1237)
     }
 
     @Test func groupsTransactionsByMonthNewestFirst() {

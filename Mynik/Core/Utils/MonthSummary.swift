@@ -1,9 +1,8 @@
 import Foundation
 
-/// Receitas, gastos e saldo de um mês.
+/// Receitas, gastos e saldo de um mês, na moeda principal (EUR).
 ///
-/// Só soma movimentos na moeda principal (EUR); a conversão EUR/BRL
-/// chega com o multi-moeda na Fase 2.
+/// Movimentos noutras moedas (BRL) são convertidos com o `CurrencyConverter`.
 struct MonthSummary: Equatable {
     var income: Decimal = 0
     var expenses: Decimal = 0
@@ -18,15 +17,15 @@ struct MonthSummary: Equatable {
     init(
         month date: Date,
         transactions: [FinanceTransaction],
-        currencyCode: String = Currency.defaultCode,
+        converter: CurrencyConverter = CurrencyConverter(),
         calendar: Calendar = .current
     ) {
         for transaction in transactions
-        where transaction.currencyCode == currencyCode
-            && calendar.isDate(transaction.date, equalTo: date, toGranularity: .month) {
+        where calendar.isDate(transaction.date, equalTo: date, toGranularity: .month) {
+            let amount = converter.amountInDefaultCurrency(transaction)
             switch transaction.kind {
-            case .income: income += transaction.amount
-            case .expense: expenses += transaction.amount
+            case .income: income += amount
+            case .expense: expenses += amount
             }
         }
     }
