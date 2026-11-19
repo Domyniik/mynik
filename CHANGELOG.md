@@ -17,3 +17,4 @@
 - feat(finance): adiciona assinaturas com total mensal e anual
 - feat(finance): adiciona importação de extratos CSV do banco com deteção de duplicados
 - fix(settings): só pede permissão de notificações quando há contas ou ao ligar o lembrete
+- fix(finance): estado vazio de Finanças deixa de tapar os atalhos

@@ -26,6 +26,21 @@ struct FinanceView: View {
                 }
             }
 
+            if transactions.isEmpty {
+                Section {
+                    ContentUnavailableView {
+                        Label("Sem movimentos", systemImage: "eurosign.circle")
+                    } description: {
+                        Text("Regista o teu primeiro gasto ou receita, ou importa o extrato do banco.")
+                    } actions: {
+                        Button("Adicionar movimento") {
+                            isAddingTransaction = true
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                }
+            }
+
             ForEach(TransactionMonthGroup.group(transactions)) { group in
                 Section(group.title) {
                     ForEach(group.transactions) { transaction in
@@ -54,20 +69,6 @@ struct FinanceView: View {
         }
         .navigationDestination(for: FinanceRoute.self) { route in
             FinanceRouteDestination(route: route)
-        }
-        .overlay {
-            if transactions.isEmpty {
-                ContentUnavailableView {
-                    Label("Sem movimentos", systemImage: "eurosign.circle")
-                } description: {
-                    Text("Regista o teu primeiro gasto ou receita.")
-                } actions: {
-                    Button("Adicionar movimento") {
-                        isAddingTransaction = true
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
-            }
         }
         .navigationTitle("Finanças")
         .toolbar {
