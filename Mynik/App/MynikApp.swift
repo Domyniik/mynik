@@ -17,6 +17,7 @@ struct MynikApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environment(\.locale, .app)
         }
         .modelContainer(modelContainer)
     }

@@ -1,9 +1,82 @@
+import SwiftData
 import SwiftUI
 
+/// Lista de gastos e receitas, agrupada por mês.
 struct FinanceView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \FinanceTransaction.date, order: .reverse) private var transactions: [FinanceTransaction]
+
+    @State private var isAddingTransaction = false
+    @State private var editingTransaction: FinanceTransaction?
+
     var body: some View {
-        ContentUnavailableView("Finanças", systemImage: "eurosign.circle", description: Text("Em breve."))
-            .navigationTitle("Finanças")
+        List {
+            if !transactions.isEmpty {
+                Section {
+                    MonthSummaryCard(summary: MonthSummary(month: .now, transactions: transactions))
+                }
+            }
+
+            ForEach(TransactionMonthGroup.group(transactions)) { group in
+                Section(group.title) {
+                    ForEach(group.transactions) { transaction in
+                        Button {
+                            editingTransaction = transaction
+                        } label: {
+                            TransactionRow(transaction: transaction)
+                        }
+                        .buttonStyle(.plain)
+                        .swipeActions {
+                            Button("Apagar", systemImage: "trash", role: .destructive) {
+                                delete(transaction)
+                            }
+                        }
+                        .contextMenu {
+                            Button("Editar", systemImage: "pencil") {
+                                editingTransaction = transaction
+                            }
+                            Button("Apagar", systemImage: "trash", role: .destructive) {
+                                delete(transaction)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .overlay {
+            if transactions.isEmpty {
+                ContentUnavailableView {
+                    Label("Sem movimentos", systemImage: "eurosign.circle")
+                } description: {
+                    Text("Regista o teu primeiro gasto ou receita.")
+                } actions: {
+                    Button("Adicionar movimento") {
+                        isAddingTransaction = true
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+            }
+        }
+        .navigationTitle("Finanças")
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button("Adicionar", systemImage: "plus") {
+                    isAddingTransaction = true
+                }
+                .keyboardShortcut("n", modifiers: .command)
+            }
+        }
+        .sheet(isPresented: $isAddingTransaction) {
+            TransactionFormView()
+        }
+        .sheet(item: $editingTransaction) { transaction in
+            TransactionFormView(transaction: transaction)
+        }
+    }
+
+    private func delete(_ transaction: FinanceTransaction) {
+        modelContext.delete(transaction)
+        try? modelContext.save()
     }
 }
 

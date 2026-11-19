@@ -4,7 +4,7 @@
 - [x] Projeto Xcode multiplataforma (iOS 26 + macOS 26) e estrutura de pastas
 - [x] Modelos SwiftData: Transaction, Category, Account, Bill
 - [x] Navegação (SplitView no Mac, TabView no iPhone)
-- [ ] Finanças: lista, adicionar e editar gastos/receitas
+- [x] Finanças: lista, adicionar e editar gastos/receitas
 - [ ] Tela Hoje: saldo do mês, últimos gastos, contas a vencer
 
 ## Fase 2 — Finanças completas
