@@ -1,16 +1,25 @@
 import SwiftUI
 
-/// Vista raiz da app. A navegação completa chega na próxima feature.
+/// Escolhe a navegação certa para cada dispositivo:
+/// barra lateral no Mac/iPad, separadores no iPhone.
 struct RootView: View {
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    #endif
+
     var body: some View {
-        ContentUnavailableView(
-            "Mynik",
-            systemImage: "square.grid.2x2",
-            description: Text("A tua vida, num só lugar.")
-        )
+        #if os(iOS)
+        if horizontalSizeClass == .compact {
+            TabNavigationView()
+        } else {
+            SidebarNavigationView()
+        }
+        #else
+        SidebarNavigationView()
+        #endif
     }
 }
 
-#Preview {
+#Preview(traits: .sampleData) {
     RootView()
 }
