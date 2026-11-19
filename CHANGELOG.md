@@ -7,3 +7,4 @@
 - feat(core): adiciona modelos SwiftData Transaction, Category, Account e Bill
 - feat(app): adiciona navegação com barra lateral no Mac/iPad e separadores no iPhone
 - feat(finance): adiciona lista, criação e edição de gastos e receitas
+- feat(today): adiciona tela Hoje com saldo do mês, últimos gastos e contas a vencer

@@ -5,7 +5,7 @@
 - [x] Modelos SwiftData: Transaction, Category, Account, Bill
 - [x] Navegação (SplitView no Mac, TabView no iPhone)
 - [x] Finanças: lista, adicionar e editar gastos/receitas
-- [ ] Tela Hoje: saldo do mês, últimos gastos, contas a vencer
+- [x] Tela Hoje: saldo do mês, últimos gastos, contas a vencer
 
 ## Fase 2 — Finanças completas
 - [ ] Contas a pagar com recorrência + botão "paguei"
