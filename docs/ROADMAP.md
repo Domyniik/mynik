@@ -13,7 +13,7 @@
 - [x] Orçamento por categoria
 - [x] Gráficos (Swift Charts)
 - [x] Assinaturas (total mensal/anual)
-- [ ] Importar CSV do banco
+- [x] Importar CSV do banco
 - [x] Multi-moeda EUR/BRL
 
 ## Fase 3 — Loja Shopify (Neloce)

@@ -10,6 +10,7 @@ struct FinanceRouteDestination: View {
         case .budget: BudgetView()
         case .reports: ReportsView()
         case .subscriptions: SubscriptionsView()
+        case .importCSV: ImportCSVView()
         }
     }
 }

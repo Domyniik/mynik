@@ -40,6 +40,7 @@ targets:
         ENABLE_APP_SANDBOX: YES
         ENABLE_HARDENED_RUNTIME: YES
         ENABLE_OUTGOING_NETWORK_CONNECTIONS: YES
+        ENABLE_USER_SELECTED_FILES: readonly
         ENABLE_PREVIEWS: YES
         "CODE_SIGN_IDENTITY[sdk=macosx*]": "-"
   MynikTests:
