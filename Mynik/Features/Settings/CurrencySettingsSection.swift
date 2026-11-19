@@ -50,8 +50,14 @@ struct CurrencySettingsSection: View {
     }
 
     private var footerText: String {
-        let source = rateDate.isEmpty ? "Taxa manual." : "Taxa do BCE de \(rateDate)."
+        let source = rateDate.isEmpty ? "Taxa manual." : "Taxa do BCE de \(formattedRateDate)."
         return "Os totais, orçamentos e gráficos convertem os movimentos em reais para euros. \(source)"
+    }
+
+    /// "2026-11-19" → "19/11/2026".
+    private var formattedRateDate: String {
+        guard let date = try? Date(rateDate, strategy: .iso8601.year().month().day()) else { return rateDate }
+        return date.formatted(.dateTime.day(.twoDigits).month(.twoDigits).year().locale(.app))
     }
 
     private func updateRate() async {

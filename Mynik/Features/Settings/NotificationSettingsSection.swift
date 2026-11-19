@@ -33,11 +33,16 @@ struct NotificationSettingsSection: View {
         } footer: {
             Text("Recebes um aviso às 9:00 no dia do vencimento e, se quiseres, alguns dias antes.")
         }
-        .task(id: isEnabled) {
-            await reschedule()
+        .task {
+            // Só lê o estado: o pedido de permissão fica para quando há contas
+            // ou quando o utilizador liga o interruptor.
+            status = await NotificationService.shared.authorizationStatus()
+        }
+        .onChange(of: isEnabled) {
+            Task { await reschedule(askingPermission: isEnabled) }
         }
         .onChange(of: daysBefore) {
-            Task { await reschedule() }
+            Task { await reschedule(askingPermission: false) }
         }
     }
 
@@ -49,8 +54,8 @@ struct NotificationSettingsSection: View {
         }
     }
 
-    private func reschedule() async {
-        if isEnabled {
+    private func reschedule(askingPermission: Bool) async {
+        if askingPermission {
             await NotificationService.shared.requestAuthorizationIfNeeded()
         }
         status = await NotificationService.shared.authorizationStatus()
