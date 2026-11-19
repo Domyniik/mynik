@@ -4,6 +4,7 @@ import Foundation
 enum FinanceRoute: String, CaseIterable, Identifiable, Hashable {
     case bills
     case budget
+    case reports
 
     var id: Self { self }
 
@@ -11,6 +12,7 @@ enum FinanceRoute: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .bills: "Contas a pagar"
         case .budget: "Orçamento"
+        case .reports: "Relatórios"
         }
     }
 
@@ -18,6 +20,7 @@ enum FinanceRoute: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .bills: "calendar.badge.clock"
         case .budget: "chart.bar.doc.horizontal"
+        case .reports: "chart.pie"
         }
     }
 }

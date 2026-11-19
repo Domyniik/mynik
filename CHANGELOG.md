@@ -13,3 +13,4 @@
 - feat(finance): adiciona notificações de vencimento das contas e ecrã de Definições
 - feat(finance): adiciona multi-moeda EUR/BRL com conversão e taxa do BCE
 - feat(finance): adiciona orçamento mensal por categoria
+- feat(finance): adiciona relatórios com gráficos de gastos por categoria e evolução mensal

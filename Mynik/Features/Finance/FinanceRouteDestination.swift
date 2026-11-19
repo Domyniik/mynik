@@ -8,6 +8,7 @@ struct FinanceRouteDestination: View {
         switch route {
         case .bills: BillsView()
         case .budget: BudgetView()
+        case .reports: ReportsView()
         }
     }
 }

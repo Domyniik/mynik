@@ -11,7 +11,7 @@
 - [x] Contas a pagar com recorrência + botão "paguei"
 - [x] Notificações de vencimento
 - [x] Orçamento por categoria
-- [ ] Gráficos (Swift Charts)
+- [x] Gráficos (Swift Charts)
 - [ ] Assinaturas (total mensal/anual)
 - [ ] Importar CSV do banco
 - [x] Multi-moeda EUR/BRL
