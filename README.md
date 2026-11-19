@@ -22,6 +22,14 @@ SwiftUI · SwiftData · CloudKit · Swift Charts · WidgetKit · App Intents · 
 
 🚧 Próxima: **Fase 2 (Finanças completas)**. Ver [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
 
+## Instalar (Mac)
+```bash
+brew install --cask domyniik/tap/mynik
+```
+Requer macOS 26 (Tahoe). Para atualizar: `brew update && brew upgrade --cask mynik`.
+
+Para publicar uma versão nova: `scripts/release.sh <versão>` (compila, cria a release no GitHub e atualiza a [tap](https://github.com/Domyniik/homebrew-tap)).
+
 ## Como correr
 Requer Xcode 27+. O projeto é gerado com [XcodeGen](https://github.com/yonaskolb/XcodeGen) a partir de `project.yml`:
 
