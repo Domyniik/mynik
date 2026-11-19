@@ -4,6 +4,7 @@ import Foundation
 enum AppSection: String, CaseIterable, Identifiable, Hashable {
     case today
     case finance
+    case settings
 
     var id: Self { self }
 
@@ -11,6 +12,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .today: "Hoje"
         case .finance: "Finanças"
+        case .settings: "Definições"
         }
     }
 
@@ -18,6 +20,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .today: "sun.max"
         case .finance: "eurosign.circle"
+        case .settings: "gearshape"
         }
     }
 }

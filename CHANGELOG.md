@@ -10,3 +10,4 @@
 - feat(today): adiciona tela Hoje com saldo do mês, últimos gastos e contas a vencer
 - fix(finance): título do mês sem maiúscula em "de"
 - feat(finance): adiciona contas a pagar com recorrência e botão "paguei"
+- feat(finance): adiciona notificações de vencimento das contas e ecrã de Definições
