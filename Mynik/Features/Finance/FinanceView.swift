@@ -17,6 +17,14 @@ struct FinanceView: View {
                 }
             }
 
+            Section {
+                ForEach(FinanceRoute.allCases) { route in
+                    NavigationLink(value: route) {
+                        Label(route.title, systemImage: route.symbolName)
+                    }
+                }
+            }
+
             ForEach(TransactionMonthGroup.group(transactions)) { group in
                 Section(group.title) {
                     ForEach(group.transactions) { transaction in
@@ -42,6 +50,9 @@ struct FinanceView: View {
                     }
                 }
             }
+        }
+        .navigationDestination(for: FinanceRoute.self) { route in
+            FinanceRouteDestination(route: route)
         }
         .overlay {
             if transactions.isEmpty {

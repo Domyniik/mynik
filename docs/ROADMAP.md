@@ -8,7 +8,7 @@
 - [x] Tela Hoje: saldo do mês, últimos gastos, contas a vencer
 
 ## Fase 2 — Finanças completas
-- [ ] Contas a pagar com recorrência + botão "paguei"
+- [x] Contas a pagar com recorrência + botão "paguei"
 - [ ] Notificações de vencimento
 - [ ] Orçamento por categoria
 - [ ] Gráficos (Swift Charts)

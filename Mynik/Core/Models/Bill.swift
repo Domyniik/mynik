@@ -1,8 +1,8 @@
 import Foundation
 import SwiftData
 
-/// Conta a pagar (renda, luz, seguro...). A recorrência completa e o botão
-/// "paguei" chegam na Fase 2; o modelo já guarda o necessário.
+/// Conta a pagar (renda, luz, seguro...). Uma conta recorrente nunca fica
+/// "paga": ao pagar, o vencimento avança (ver `BillPaymentService`).
 @Model
 final class Bill {
     var title: String = ""
