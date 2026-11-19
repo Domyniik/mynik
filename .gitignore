@@ -25,3 +25,9 @@ Secrets.xcconfig
 *.p8
 *.p12
 *.mobileprovision
+
+# Ferramentas de agentes (skills instaladas localmente; ver skills-lock.json)
+.claude/skills/
+.claude/settings.local.json
+.claude-flow/
+.swarm/
