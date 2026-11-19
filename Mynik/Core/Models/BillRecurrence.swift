@@ -17,6 +17,17 @@ nonisolated enum BillRecurrence: String, Codable, CaseIterable, Identifiable, Se
         }
     }
 
+    /// Valor mensal equivalente de um pagamento de `amount` (`nil` se não se repete).
+    /// Multiplica antes de dividir para não perder precisão em `Decimal`.
+    func monthlyAmount(for amount: Decimal) -> Decimal? {
+        switch self {
+        case .none: nil
+        case .weekly: amount * 52 / 12
+        case .monthly: amount
+        case .yearly: amount / 12
+        }
+    }
+
     /// Próxima data de vencimento depois de `date`, ou `nil` se não se repete.
     func nextDate(after date: Date, calendar: Calendar = .current) -> Date? {
         switch self {

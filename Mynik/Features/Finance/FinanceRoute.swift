@@ -5,6 +5,7 @@ enum FinanceRoute: String, CaseIterable, Identifiable, Hashable {
     case bills
     case budget
     case reports
+    case subscriptions
 
     var id: Self { self }
 
@@ -13,6 +14,7 @@ enum FinanceRoute: String, CaseIterable, Identifiable, Hashable {
         case .bills: "Contas a pagar"
         case .budget: "Orçamento"
         case .reports: "Relatórios"
+        case .subscriptions: "Assinaturas"
         }
     }
 
@@ -21,6 +23,7 @@ enum FinanceRoute: String, CaseIterable, Identifiable, Hashable {
         case .bills: "calendar.badge.clock"
         case .budget: "chart.bar.doc.horizontal"
         case .reports: "chart.pie"
+        case .subscriptions: "repeat.circle"
         }
     }
 }

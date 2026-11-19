@@ -7,6 +7,7 @@ struct BillDraft {
     var currencyCode = Currency.defaultCode
     var dueDate = Date.now
     var recurrence: BillRecurrence = .monthly
+    var isSubscription = false
     var notes = ""
     var category: Category?
     var account: Account?
@@ -15,7 +16,9 @@ struct BillDraft {
         !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && amount > 0
     }
 
-    init() {}
+    init(isSubscription: Bool = false) {
+        self.isSubscription = isSubscription
+    }
 
     init(_ bill: Bill) {
         title = bill.title
@@ -23,6 +26,7 @@ struct BillDraft {
         currencyCode = bill.currencyCode
         dueDate = bill.dueDate
         recurrence = bill.recurrence
+        isSubscription = bill.isSubscription
         notes = bill.notes
         category = bill.category
         account = bill.account
@@ -34,6 +38,7 @@ struct BillDraft {
         bill.currencyCode = currencyCode
         bill.dueDate = dueDate
         bill.recurrence = recurrence
+        bill.isSubscription = isSubscription
         bill.notes = notes
         bill.category = category
         bill.account = account

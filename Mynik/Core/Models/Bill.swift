@@ -13,6 +13,8 @@ final class Bill {
     var paidAt: Date?
     var recurrenceRaw: String = BillRecurrence.none.rawValue
     var notes: String = ""
+    /// Assinatura (Spotify, ginásio...): entra no total mensal/anual de assinaturas.
+    var isSubscription: Bool = false
     var createdAt: Date = Date.now
 
     var category: Category?
@@ -28,6 +30,7 @@ final class Bill {
         amount: Decimal,
         dueDate: Date,
         recurrence: BillRecurrence = .none,
+        isSubscription: Bool = false,
         currencyCode: String = Currency.defaultCode,
         category: Category? = nil,
         account: Account? = nil
@@ -36,6 +39,7 @@ final class Bill {
         self.amount = amount
         self.dueDate = dueDate
         self.recurrenceRaw = recurrence.rawValue
+        self.isSubscription = isSubscription
         self.currencyCode = currencyCode
         self.category = category
         self.account = account

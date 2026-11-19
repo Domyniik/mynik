@@ -43,6 +43,30 @@ struct SampleData: PreviewModifier {
             )
         )
 
+        context.insert(
+            Bill(
+                title: "Spotify",
+                amount: 10.99,
+                dueDate: calendar.date(byAdding: .day, value: 12, to: .now) ?? .now,
+                recurrence: .monthly,
+                isSubscription: true,
+                category: category("Assinaturas"),
+                account: account
+            )
+        )
+        context.insert(
+            Bill(
+                title: "iCloud+",
+                amount: 35,
+                dueDate: calendar.date(byAdding: .month, value: 4, to: .now) ?? .now,
+                recurrence: .yearly,
+                isSubscription: true,
+                currencyCode: "BRL",
+                category: category("Assinaturas"),
+                account: account
+            )
+        )
+
         try context.save()
         return container
     }

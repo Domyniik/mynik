@@ -12,7 +12,7 @@
 - [x] Notificações de vencimento
 - [x] Orçamento por categoria
 - [x] Gráficos (Swift Charts)
-- [ ] Assinaturas (total mensal/anual)
+- [x] Assinaturas (total mensal/anual)
 - [ ] Importar CSV do banco
 - [x] Multi-moeda EUR/BRL
 

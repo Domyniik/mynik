@@ -13,9 +13,13 @@ struct BillFormView: View {
     @State private var draft: BillDraft
     @State private var isShowingSaveError = false
 
-    init(bill: Bill? = nil) {
+    init(bill: Bill? = nil, isSubscription: Bool = false) {
         self.bill = bill
-        _draft = State(initialValue: bill.map(BillDraft.init) ?? BillDraft())
+        _draft = State(initialValue: bill.map(BillDraft.init) ?? BillDraft(isSubscription: isSubscription))
+    }
+
+    private var recurrenceOptions: [BillRecurrence] {
+        draft.isSubscription ? BillRecurrence.allCases.filter { $0 != .none } : BillRecurrence.allCases
     }
 
     private var expenseCategories: [Category] {
@@ -44,10 +48,12 @@ struct BillFormView: View {
                     DatePicker("Vencimento", selection: $draft.dueDate, displayedComponents: .date)
 
                     Picker("Repete", selection: $draft.recurrence) {
-                        ForEach(BillRecurrence.allCases) { recurrence in
+                        ForEach(recurrenceOptions) { recurrence in
                             Text(recurrence.title).tag(recurrence)
                         }
                     }
+
+                    Toggle("É uma assinatura", isOn: $draft.isSubscription)
                 }
 
                 Section {
@@ -73,7 +79,7 @@ struct BillFormView: View {
                 }
             }
             .formStyle(.grouped)
-            .navigationTitle(bill == nil ? "Nova conta" : "Editar conta")
+            .navigationTitle(title)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar", role: .cancel) { dismiss() }
@@ -81,6 +87,11 @@ struct BillFormView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Guardar", action: save)
                         .disabled(!draft.isValid)
+                }
+            }
+            .onChange(of: draft.isSubscription) {
+                if draft.isSubscription, draft.recurrence == .none {
+                    draft.recurrence = .monthly
                 }
             }
             .onAppear {
@@ -93,6 +104,15 @@ struct BillFormView: View {
         #if os(macOS)
         .frame(minWidth: 420, minHeight: 460)
         #endif
+    }
+
+    private var title: String {
+        switch (bill == nil, draft.isSubscription) {
+        case (true, true): "Nova assinatura"
+        case (true, false): "Nova conta"
+        case (false, true): "Editar assinatura"
+        case (false, false): "Editar conta"
+        }
     }
 
     private func save() {

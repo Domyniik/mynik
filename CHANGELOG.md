@@ -14,3 +14,4 @@
 - feat(finance): adiciona multi-moeda EUR/BRL com conversão e taxa do BCE
 - feat(finance): adiciona orçamento mensal por categoria
 - feat(finance): adiciona relatórios com gráficos de gastos por categoria e evolução mensal
+- feat(finance): adiciona assinaturas com total mensal e anual
