@@ -7,6 +7,7 @@ struct FinanceRouteDestination: View {
     var body: some View {
         switch route {
         case .bills: BillsView()
+        case .budget: BudgetView()
         }
     }
 }

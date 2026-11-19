@@ -19,6 +19,10 @@ struct SampleData: PreviewModifier {
             calendar.date(byAdding: .day, value: -days, to: .now) ?? .now
         }
 
+        category("Alimentação")?.monthlyBudget = 300
+        category("Lazer")?.monthlyBudget = 30
+        category("Carro")?.monthlyBudget = 150
+
         let samples = [
             FinanceTransaction(title: "Salário", amount: 1850, kind: .income, date: daysAgo(3), category: category("Salário"), account: account),
             FinanceTransaction(title: "Mercadona", amount: 62.40, kind: .expense, date: daysAgo(0), category: category("Alimentação"), account: account),

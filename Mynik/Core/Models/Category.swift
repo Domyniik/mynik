@@ -11,6 +11,8 @@ final class Category {
     var colorName: String = CategoryColor.gray.rawValue
     var kindRaw: String = TransactionKind.expense.rawValue
     var sortOrder: Int = 0
+    /// Orçamento mensal em EUR. `0` significa sem orçamento.
+    var monthlyBudget: Decimal = 0
 
     @Relationship(deleteRule: .nullify, inverse: \FinanceTransaction.category)
     var transactions: [FinanceTransaction]? = []

@@ -10,7 +10,7 @@
 ## Fase 2 — Finanças completas
 - [x] Contas a pagar com recorrência + botão "paguei"
 - [x] Notificações de vencimento
-- [ ] Orçamento por categoria
+- [x] Orçamento por categoria
 - [ ] Gráficos (Swift Charts)
 - [ ] Assinaturas (total mensal/anual)
 - [ ] Importar CSV do banco
