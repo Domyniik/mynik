@@ -1,9 +1,9 @@
-# CLAUDE.md — Hub
+# CLAUDE.md — Mynik
 
 > Lê este ficheiro no início de TODAS as sessões. É a fonte de verdade do projeto.
 
 ## Visão
-**Hub** é uma dashboard pessoal nativa para **macOS e iOS** que junta toda a vida do Domynik num só app:
+**Mynik** (de Domynik — e "My" em inglês) é uma dashboard pessoal nativa para **macOS e iOS** que junta toda a vida do Domynik num só app:
 finanças, contas a pagar, loja Shopify (Neloce), projetos, notas estilo Notion, carro, documentos, carreira e investimentos.
 Também é a **peça principal do portfólio** — código limpo, commits claros e README apresentável importam.
 
@@ -20,15 +20,15 @@ Também é a **peça principal do portfólio** — código limpo, commits claros
 
 ## Estrutura
 ```
-Hub/
-  App/            HubApp.swift, navegação raiz
+Mynik/
+  App/            MynikApp.swift, navegação raiz
   Core/           Models/, Services/ (Keychain, Notifications, Shopify, Currency), Utils/
   Features/
     Today/  Finance/  Store/  Projects/  Notes/
     Car/  Documents/  Career/  Investments/  Settings/
   Widgets/        extensão WidgetKit
   Intents/        App Intents (Siri / Atalhos)
-HubTests/
+MynikTests/
 docs/ROADMAP.md
 ```
 Navegação: `NavigationSplitView` no Mac/iPad, `TabView` no iPhone.
@@ -48,7 +48,7 @@ Navegação: `NavigationSplitView` no Mac/iPad, `TabView` no iPhone.
 7. **Documentos** — documentos com data de validade e alerta antes de expirar; fotos protegidas por Face ID.
 8. **Carreira** — tracker de candidaturas (empresa, data, estado, follow-up), cursos/certificações.
 9. **Investimentos** — total investido, evolução do património, meta de poupança.
-10. **Extras** — hábitos, busca global ⌘K, Face ID, backup/export JSON, Live Activity para conta que vence hoje, "Pergunte ao Hub" (chat sobre os próprios dados), Apple Watch (final).
+10. **Extras** — hábitos, busca global ⌘K, Face ID, backup/export JSON, Live Activity para conta que vence hoje, "Pergunte ao Mynik" (chat sobre os próprios dados), Apple Watch (final).
 
 ## Fases (ver docs/ROADMAP.md para o checklist)
 1. MVP: estrutura, modelos base, Finanças básicas, tela Hoje
@@ -57,7 +57,7 @@ Navegação: `NavigationSplitView` no Mac/iPad, `TabView` no iPhone.
 4. Projetos, metas e notas
 5. Carro, documentos, carreira, investimentos
 6. Sync iCloud (CloudKit), widgets, Siri/Atalhos, Apple Pay, MenuBar
-7. IA (categorização, "Pergunte ao Hub"), scanner, Live Activities
+7. IA (categorização, "Pergunte ao Mynik"), scanner, Live Activities
 8. Polimento (Liquid Glass, acessibilidade), testes, TestFlight
 
 ## Regras de trabalho (OBRIGATÓRIO)

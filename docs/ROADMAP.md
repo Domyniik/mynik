@@ -1,4 +1,4 @@
-# Roadmap — Hub
+# Roadmap — Mynik
 
 ## Fase 1 — MVP
 - [ ] Projeto Xcode multiplataforma (iOS 26 + macOS 26) e estrutura de pastas
@@ -49,7 +49,7 @@
 
 ## Fase 7 — IA e extras
 - [ ] Categorização automática (Foundation Models)
-- [ ] "Pergunte ao Hub"
+- [ ] "Pergunte ao Mynik"
 - [ ] Scanner de faturas (VisionKit)
 - [ ] Live Activities / Dynamic Island
 - [ ] Revisão semanal, hábitos, busca ⌘K

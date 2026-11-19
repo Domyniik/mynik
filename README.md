@@ -1,4 +1,6 @@
-# Hub
+# Mynik
+
+> *A tua vida, num só lugar.*
 
 **Dashboard pessoal nativa para iOS e macOS:** finanças, contas a pagar, analytics da loja Shopify, projetos, notas, carro, documentos e carreira, tudo num só app sincronizado por iCloud.
 
