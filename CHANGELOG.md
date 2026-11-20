@@ -59,3 +59,4 @@
 - feat(privacy): adiciona bloqueio opcional da app com Face ID / Touch ID (ou código), ativado nas Definições, com 30 s de tolerância em segundo plano e conteúdo tapado no seletor de apps
 - feat(backup): a cópia de segurança JSON passa a incluir os hábitos e as marcações (v0.7) e continua a ler cópias antigas sem eles
 - test: reforça a cobertura com Swift Testing (ferramentas do chat sem o modelo, sincronização da loja de exemplo, Apple Pay por regras, invariantes de navegação e cores) — 223 testes
+- docs: TestFlight marcado como indisponível sem o plano pago, com a distribuição alternativa (brew no Mac, Xcode/Sideloadly no iPhone)
