@@ -22,11 +22,13 @@ struct RootView: View {
             // Lembretes de vencimento sempre alinhados com os dados.
             .onReceive(NotificationCenter.default.publisher(for: ModelContext.didSave)) { _ in
                 rescheduleReminders()
+                updateWidgets()
             }
             .task { await refreshStorePeriodically() }
             .onChange(of: scenePhase, initial: true) {
                 if scenePhase == .active {
                     rescheduleReminders()
+                    updateWidgets()
                     recordWealthSnapshot()
                     refreshExchangeRateIfStale()
                     Task { await storeSync.refreshIfStale(in: modelContext) }
@@ -81,6 +83,11 @@ struct RootView: View {
             converter: CurrencyConverter(storedRate: brlPerEUR)
         )
         try? modelContext.save()
+    }
+
+    /// Resumo para os widgets (saldo do mês e contas a vencer).
+    private func updateWidgets() {
+        WidgetSnapshotWriter.update(in: modelContext, converter: CurrencyConverter(storedRate: brlPerEUR))
     }
 
     private func rescheduleReminders() {

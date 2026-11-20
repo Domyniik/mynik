@@ -36,6 +36,9 @@ git -C "$ROOT" worktree add --detach -q "$SRC" "$COMMIT"
 cd "$SRC"
 xcodegen generate --quiet
 
+# Assinatura: certificado "Apple Development" (Personal Team, grátis), definido
+# no project.yml. É o que permite o App Group partilhado com os widgets; a app
+# continua sem notarização (a cask remove a quarentena).
 echo "▸ A compilar (Release, arm64 + x86_64)…"
 xcodebuild \
     -project Mynik.xcodeproj \
@@ -44,12 +47,11 @@ xcodebuild \
     -destination 'generic/platform=macOS' \
     -derivedDataPath "$WORK/build" \
     MARKETING_VERSION="$VERSION" \
-    CODE_SIGN_STYLE=Manual \
-    CODE_SIGN_IDENTITY=- \
-    DEVELOPMENT_TEAM= \
     build -quiet
 
 APP="$WORK/build/Build/Products/Release/Mynik.app"
+codesign --verify --deep --strict "$APP"
+test -d "$APP/Contents/PlugIns/MynikWidgets.appex"
 ZIP="$WORK/Mynik-$VERSION.zip"
 ditto -c -k --keepParent "$APP" "$ZIP"
 SHA256="$(shasum -a 256 "$ZIP" | awk '{print $1}')"
