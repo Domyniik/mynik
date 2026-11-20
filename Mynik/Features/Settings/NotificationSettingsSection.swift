@@ -11,6 +11,7 @@ struct NotificationSettingsSection: View {
     @AppStorage(SettingsKey.billReminderDaysBefore) private var daysBefore = 1
     @AppStorage(SettingsKey.agendaRemindersEnabled) private var isAgendaEnabled = true
     @AppStorage(SettingsKey.billLiveActivity) private var isLiveActivityEnabled = true
+    @AppStorage(SettingsKey.weeklyReviewReminder) private var isWeeklyReviewEnabled = true
 
     @State private var status: UNAuthorizationStatus = .notDetermined
 
@@ -25,6 +26,11 @@ struct NotificationSettingsSection: View {
             }
 
             Toggle("Lembrar prazos (carro, documentos, follow-ups)", isOn: $isAgendaEnabled)
+
+            Toggle("Revisão semanal ao domingo às 19h", isOn: $isWeeklyReviewEnabled)
+                .onChange(of: isWeeklyReviewEnabled) {
+                    Task { await NotificationService.shared.scheduleWeeklyReview() }
+                }
 
             #if os(iOS)
             Toggle("Conta de hoje no ecrã bloqueado e na Dynamic Island", isOn: $isLiveActivityEnabled)

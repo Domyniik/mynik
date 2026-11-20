@@ -44,4 +44,6 @@ nonisolated enum SettingsKey {
     static let autoCategorize = "autoCategorize"
     /// iPhone: Live Activity / Dynamic Island da conta que vence hoje.
     static let billLiveActivity = "billLiveActivity"
+    /// Notificação da revisão semanal (domingo às 19h).
+    static let weeklyReviewReminder = "weeklyReviewReminder"
 }

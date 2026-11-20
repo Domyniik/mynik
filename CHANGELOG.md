@@ -53,3 +53,4 @@
 - feat(finance): adiciona scanner de faturas (câmara de documentos do VisionKit, foto ou ficheiro) com OCR no dispositivo que extrai comerciante, total e data e abre o gasto pré-preenchido e já categorizado
 - feat(bills): adiciona Live Activity e Dynamic Island no iPhone com a conta que vence hoje (e atrasadas), atualizada localmente ao pagar ou editar e que se pode desligar nas Definições
 - feat(habits): adiciona hábitos com marcação diária, sequência, objetivo semanal e últimos 7 dias, também na tela Hoje (esquema V6, migração automática da v0.6)
+- feat(today): adiciona revisão semanal (gastos vs semana anterior, contas pagas e a vencer, tarefas, hábitos e loja) com cartão ao domingo na tela Hoje e notificação ao domingo às 19h

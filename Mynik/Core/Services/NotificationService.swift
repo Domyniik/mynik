@@ -50,6 +50,7 @@ final class NotificationService {
     /// Volta a agendar os lembretes das contas por pagar e dos prazos da agenda.
     func rescheduleReminders(in context: ModelContext) async {
         await removePendingReminders()
+        await scheduleWeeklyReview()
 
         var reminders = isEnabled ? billReminders(in: context) : []
         if isAgendaEnabled {
@@ -73,6 +74,22 @@ final class NotificationService {
             let request = UNNotificationRequest(identifier: reminder.identifier, content: content, trigger: trigger)
             try? await center.add(request)
         }
+    }
+
+    static let weeklyReviewIdentifier = "weekly-review"
+
+    /// Revisão semanal ao domingo às 19h (repetida). Só agenda se já houver
+    /// permissão: não pede notificações só por causa disto.
+    func scheduleWeeklyReview() async {
+        center.removePendingNotificationRequests(withIdentifiers: [Self.weeklyReviewIdentifier])
+        let enabled = UserDefaults.standard.object(forKey: SettingsKey.weeklyReviewReminder) as? Bool ?? true
+        guard enabled, await authorizationStatus() == .authorized else { return }
+        let content = UNMutableNotificationContent()
+        content.title = "Revisão da semana"
+        content.body = "Vê como correram os gastos, as contas, as tarefas e os hábitos desta semana."
+        content.sound = .default
+        let trigger = UNCalendarNotificationTrigger(dateMatching: DateComponents(hour: 19, minute: 0, weekday: 1), repeats: true)
+        try? await center.add(UNNotificationRequest(identifier: Self.weeklyReviewIdentifier, content: content, trigger: trigger))
     }
 
     private func billReminders(in context: ModelContext) -> [BillReminderPlanner.Reminder] {

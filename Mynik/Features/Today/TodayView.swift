@@ -8,6 +8,7 @@ struct TodayView: View {
 
     @State private var isAddingTransaction = false
     @State private var isAskingMynik = false
+    @State private var isShowingReview = false
 
     private var recentTransactions: ArraySlice<FinanceTransaction> {
         transactions.prefix(5)
@@ -15,6 +16,8 @@ struct TodayView: View {
 
     var body: some View {
         List {
+            WeeklyReviewCard()
+
             Section {
                 MonthSummaryCard(summary: MonthSummary(month: .now, transactions: transactions, converter: converter))
             }
@@ -51,11 +54,19 @@ struct TodayView: View {
                     isAskingMynik = true
                 }
             }
+            ToolbarItem(placement: .secondaryAction) {
+                Button("Revisão semanal", systemImage: "calendar.badge.checkmark") {
+                    isShowingReview = true
+                }
+            }
             ToolbarItem(placement: .primaryAction) {
                 Button("Adicionar movimento", systemImage: "plus") {
                     isAddingTransaction = true
                 }
             }
+        }
+        .navigationDestination(isPresented: $isShowingReview) {
+            WeeklyReviewView()
         }
         .sheet(isPresented: $isAddingTransaction) {
             TransactionFormView()
