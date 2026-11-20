@@ -2,20 +2,20 @@
 
 > *A tua vida, num só lugar.*
 
-**Dashboard pessoal nativa para iOS e macOS:** finanças, contas a pagar, analytics da loja Shopify, projetos, notas, carro, documentos e carreira, tudo num só app sincronizado por iCloud.
+**Dashboard pessoal nativa para iOS e macOS:** finanças, contas a pagar, analytics da loja Shopify, projetos, notas, carro, documentos e carreira, tudo num só app, com cópia de segurança JSON para passar os dados entre o Mac e o iPhone.
 
-![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026%20%7C%20macOS%2026-blue) ![SwiftData](https://img.shields.io/badge/SwiftData-CloudKit-green)
+![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026%20%7C%20macOS%2026-blue) ![SwiftData](https://img.shields.io/badge/SwiftData-local-green)
 
 ## Destaques
 - 📱💻 **Um só código** para iPhone e Mac (SwiftUI multiplataforma)
 - 💶 **Finanças**: orçamento, contas a pagar com alertas, assinaturas, gastos automáticos via Apple Pay
 - 🛍️ **Shopify Analytics**: lucro real e ranking de produtos (vencedores vs perdedores) com diagnóstico do funil
-- ☁️ **Sync iCloud** com SwiftData + CloudKit
+- 🔄 **Cópia de segurança JSON** com fusão sem duplicados (AirDrop, iCloud Drive ou Ficheiros) — sem CloudKit, que exige o plano pago da Apple
 - 🤖 **IA on-device** (Foundation Models) para categorizar gastos e responder perguntas sobre os dados
 - 🧩 Widgets, Siri/Atalhos, Live Activities, Menu Bar no Mac
 
 ## Stack
-SwiftUI · SwiftData · CloudKit · Swift Charts · WidgetKit · App Intents · VisionKit · Foundation Models · Shopify Admin GraphQL API
+SwiftUI · SwiftData · Swift Charts · WidgetKit · App Intents · EventKit · VisionKit · Foundation Models · Shopify Admin GraphQL API
 
 ## Estado
 ✅ **Fase 1 (MVP) concluída**: projeto multiplataforma, modelos SwiftData, navegação adaptativa (barra lateral no Mac/iPad, separadores no iPhone), Finanças (lista, adicionar e editar gastos/receitas) e tela Hoje (saldo do mês, últimos gastos, contas a vencer).
@@ -28,13 +28,19 @@ SwiftUI · SwiftData · CloudKit · Swift Charts · WidgetKit · App Intents · 
 
 ✅ **Fase 5 (Vida) concluída**: **carro** com abastecimentos e consumo (L/100 km), manutenções, prazos de ITV, seguro e imposto com avisos (gastos na categoria Carro) e **preços de combustível em Espanha** perto de ti (API do Ministerio, com cache offline); **documentos** com validade e avisos antes de expirar, números e fotos protegidos por **Face ID / Touch ID**; **carreira** com candidaturas por estado, taxa de resposta, follow-ups e cursos/certificações; **património** com total investido, cotações do dia (Yahoo Finance + câmbio do BCE), aportes, evolução diária e meta de poupança. Os prazos aparecem em "A vencer" na tela Hoje.
 
-🚧 Próxima: **Fase 6 (Ecossistema Apple: widgets, Siri/Atalhos, MenuBar)**. Ver [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
+✅ **Fase 6 (Ecossistema Apple) concluída**, adaptada a quem não paga o Apple Developer Program: em vez do sync por iCloud (CloudKit), **cópia de segurança JSON** completa com fusão sem duplicados, para levar os dados entre dispositivos por AirDrop, iCloud Drive ou Ficheiros; **widgets** de saldo do mês e contas a vencer (iPhone, ecrã bloqueado e Mac); **Siri e Atalhos** ("Gastei em Alimentação no Mynik", saldo do mês); **automação Apple Pay → gasto** (ver o guia abaixo); **barra de menus** no Mac com saldo, contas e gasto rápido; **Calendário e Lembretes** de hoje na tela Hoje.
+
+🚧 Próxima: **Fase 7 (IA e extras: categorização com Foundation Models, "Pergunte ao Mynik", scanner de faturas)**. Ver [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
 
 ## Instalar (Mac)
 ```bash
 brew install --cask domyniik/tap/mynik
 ```
 Requer macOS 26 (Tahoe). Para atualizar: `brew update && brew upgrade --cask mynik`.
+
+A partir da 0.6 a app é assinada com o certificado gratuito *Apple Development* (Personal Team) em vez de ad-hoc — é o que permite o App Group que os widgets usam. Continua sem notarização; a cask retira a quarentena. Na primeira abertura depois de atualizar, o macOS pode pedir uma vez para a app voltar a aceder aos seus dados ou ao Keychain (token da Shopify): escolhe **Permitir sempre**.
+
+**iPhone (Sideloadly):** os widgets leem o resumo do App Group `group.com.domynik.mynik`; se o Sideloadly mudar o identificador do grupo, os widgets ficam em "Abre o Mynik".
 
 Para publicar uma versão nova: `scripts/release.sh <versão>` (compila, cria a release no GitHub e atualiza a [tap](https://github.com/Domyniik/homebrew-tap)).
 
