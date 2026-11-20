@@ -4,55 +4,77 @@ import SwiftUI
 struct NoteBlockView: View {
     @Bindable var block: NoteBlock
     var focus: FocusState<String?>.Binding
-    /// Return num título ou item de checklist (cria o bloco seguinte).
+    /// Return num bloco de texto (cria o bloco seguinte, como no Notion).
     let onReturn: () -> Void
 
     var body: some View {
         content
             .onChange(of: block.text) {
-                applyShortcut()
+                handleTextChange()
                 if let note = block.note { NoteEditing.touch(note) }
             }
     }
 
-    /// `# `, `- [ ] ` ou `[] ` no início de um parágrafo mudam o tipo do bloco.
-    private func applyShortcut() {
-        guard block.kind == .text, let shortcut = NoteMarkdown.shortcut(for: block.text) else { return }
-        block.kind = shortcut.kind
-        block.isChecked = shortcut.isChecked
-        block.text = shortcut.text
+    /// Atalhos de Markdown e Return.
+    ///
+    /// Texto, título e checklist usam sempre o mesmo campo, para o foco não se
+    /// perder quando o bloco muda de tipo. Uma quebra de linha colada num título
+    /// ou item também conta como Return.
+    private func handleTextChange() {
+        switch block.kind {
+        case .text:
+            // `# `, `- [ ] ` ou `[] ` no início de um parágrafo mudam o tipo do bloco.
+            if let shortcut = NoteMarkdown.shortcut(for: block.text) {
+                block.kind = shortcut.kind
+                block.isChecked = shortcut.isChecked
+                block.text = shortcut.text
+            }
+        case .heading, .checklist:
+            if block.text.contains("\n") {
+                block.text = block.text.replacingOccurrences(of: "\n", with: "")
+                onReturn()
+            }
+        case .image:
+            break
+        }
+    }
+
+    private var placeholder: String {
+        switch block.kind {
+        case .heading: "Título"
+        case .checklist: "Item"
+        default: "Escreve algo… (Markdown, [[ligações]])"
+        }
     }
 
     @ViewBuilder
     private var content: some View {
-        switch block.kind {
-        case .text:
-            MarkdownTextField(placeholder: "Escreve algo… (Markdown, [[ligações]])", text: $block.text, axis: .vertical, focus: focus, id: block.uid)
-        case .heading:
-            MarkdownTextField(placeholder: "Título", text: $block.text, focus: focus, id: block.uid, onSubmit: onReturn)
-                .font(.title2.bold())
-        case .checklist:
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
-                Button {
-                    withAnimation { block.isChecked.toggle() }
-                } label: {
-                    Image(systemName: block.isChecked ? "checkmark.square.fill" : "square")
-                        .foregroundStyle(block.isChecked ? Color.accentColor : .secondary)
-                }
-                .buttonStyle(.borderless)
-                .accessibilityLabel(block.isChecked ? "Desmarcar" : "Marcar")
-
-                MarkdownTextField(placeholder: "Item", text: $block.text, focus: focus, id: block.uid, onSubmit: onReturn)
-                    .strikethrough(block.isChecked)
-                    .foregroundStyle(block.isChecked ? .secondary : .primary)
-            }
-        case .image:
+        if block.kind == .image {
             VStack(alignment: .leading, spacing: 6) {
                 NoteImageView(data: block.imageData)
                 TextField("Legenda", text: $block.text)
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .focused(focus, equals: block.uid)
+            }
+        } else {
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                if block.kind == .checklist {
+                    Button {
+                        withAnimation { block.isChecked.toggle() }
+                    } label: {
+                        Image(systemName: block.isChecked ? "checkmark.square.fill" : "square")
+                            .foregroundStyle(block.isChecked ? Color.accentColor : .secondary)
+                    }
+                    .buttonStyle(.borderless)
+                    .accessibilityLabel(block.isChecked ? "Desmarcar" : "Marcar")
+                }
+
+                let isDone = block.kind == .checklist && block.isChecked
+                MarkdownTextField(placeholder: placeholder, text: $block.text, axis: .vertical, focus: focus, id: block.uid, onSubmit: onReturn)
+                    .font(block.kind == .heading ? .title2.bold() : .body)
+                    .strikethrough(isDone)
+                    .foregroundStyle(isDone ? .secondary : .primary)
             }
         }
     }

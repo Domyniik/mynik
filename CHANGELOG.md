@@ -35,3 +35,4 @@
 - feat(notes): adiciona notas com páginas aninhadas e blocos de texto, título, checklist e imagem, com pesquisa
 - feat(notes): adiciona Markdown nas notas (formatação, atalhos ao escrever, exportar e colar) e ligações entre notas, projetos e movimentos, incluindo menções [[Título]]
 - fix(app): separador "Mais" próprio no iPhone (sem barra de navegação duplicada nas secções extra)
+- fix(notes): editar blocos já formatados, Return cria o bloco seguinte, botão Concluído e ligações sem repetidos

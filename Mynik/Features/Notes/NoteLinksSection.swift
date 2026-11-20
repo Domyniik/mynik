@@ -39,7 +39,7 @@ struct NoteLinksSection: View {
     @State private var pickingKind: NoteLinkKind?
 
     var body: some View {
-        let mentions = NoteLinks.mentions(in: note, notes: notes, projects: projects)
+        let mentions = NoteLinks.mentions(in: note, notes: notes, projects: projects, excludingLinked: true)
         Section {
             ForEach(mentions.notes) { other in
                 noteButton(other, caption: "Mencionada")

@@ -2,8 +2,8 @@ import SwiftUI
 
 /// Campo de texto que mostra o Markdown formatado quando não está a ser editado.
 ///
-/// O campo fica sempre por baixo (transparente), por isso tocar no texto
-/// formatado começa logo a editar.
+/// O campo fica sempre por baixo (transparente); tocar no texto formatado
+/// começa logo a editar.
 struct MarkdownTextField: View {
     let placeholder: String
     @Binding var text: String
@@ -24,9 +24,12 @@ struct MarkdownTextField: View {
                 .opacity(isEditing ? 1 : 0)
 
             if !isEditing {
+                // Um campo transparente não recebe toques: o texto formatado
+                // passa-lhe o foco (o campo continua na hierarquia, por isso é imediato).
                 Text(NoteMarkdown.attributed(text))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .allowsHitTesting(false)
+                    .contentShape(.rect)
+                    .onTapGesture { focus.wrappedValue = id }
             }
         }
     }

@@ -40,6 +40,7 @@ struct NoteEditorView: View {
 
                     TextField("Sem título", text: $note.title, axis: .vertical)
                         .font(.largeTitle.bold())
+                        .focused($focusedBlock, equals: "title")
                 }
             }
             .listRowSeparator(.hidden)
@@ -97,8 +98,19 @@ struct NoteEditorView: View {
         .navigationTitle(note.displayTitle)
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        .scrollDismissesKeyboard(.interactively)
         #endif
         .toolbar {
+            #if os(iOS)
+            ToolbarItem(placement: .keyboard) {
+                HStack {
+                    Spacer()
+                    // Sai da edição: o texto passa a aparecer formatado.
+                    Button("Concluído") { focusedBlock = nil }
+                        .fontWeight(.semibold)
+                }
+            }
+            #endif
             ToolbarItem(placement: .primaryAction) {
                 ShareLink(
                     item: NoteMarkdown.export(title: note.displayTitle, blocks: note.sortedBlocks),
@@ -171,11 +183,11 @@ struct NoteEditorView: View {
             return
         }
         let block = NoteEditing.insertBlock(kind, in: note, context: modelContext)
-        focusedBlock = block.uid
+        focus(block)
     }
 
-    /// Return num título cria um parágrafo; num item de checklist cria outro item
-    /// (ou, se estiver vazio, volta a ser texto, como no Notion).
+    /// Return cria o bloco seguinte: outro item numa checklist (ou, se o item
+    /// estiver vazio, volta a ser texto, como no Notion) e um parágrafo nos outros.
     private func handleReturn(in block: NoteBlock) {
         if block.kind == .checklist, block.text.trimmingCharacters(in: .whitespaces).isEmpty {
             NoteEditing.convert(block, to: .text)
@@ -184,7 +196,17 @@ struct NoteEditorView: View {
         }
         let next: NoteBlockKind = block.kind == .checklist ? .checklist : .text
         let created = NoteEditing.insertBlock(next, after: block, in: note, context: modelContext)
-        focusedBlock = created.uid
+        focus(created)
+    }
+
+    /// Dá o foco a um bloco acabado de criar, depois de ele aparecer na lista
+    /// (antes disso o foco falharia e o teclado fechava).
+    private func focus(_ block: NoteBlock) {
+        let id = block.uid
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(100))
+            focusedBlock = id
+        }
     }
 
     /// Acrescenta blocos lidos de Markdown no fim da página (substitui um único bloco vazio).

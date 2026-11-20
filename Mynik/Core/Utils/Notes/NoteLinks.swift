@@ -11,8 +11,18 @@ enum NoteLinks {
     }
 
     /// Resolve as menções `[[…]]` da nota pelo título (sem distinguir maiúsculas):
-    /// primeiro notas, depois projetos.
-    static func mentions(in note: Note, notes: [Note], projects: [Project]) -> Mentions {
+    /// primeiro notas, depois projetos. Com `excludingLinked`, omite itens já
+    /// ligados à nota (para não aparecerem duas vezes).
+    static func mentions(in note: Note, notes: [Note], projects: [Project], excludingLinked: Bool = false) -> Mentions {
+        var result = mentionsResolved(in: note, notes: notes, projects: projects)
+        if excludingLinked {
+            result.notes.removeAll { isLinked($0, to: note) }
+            result.projects.removeAll { isLinked($0, to: note) }
+        }
+        return result
+    }
+
+    private static func mentionsResolved(in note: Note, notes: [Note], projects: [Project]) -> Mentions {
         var result = Mentions()
         for title in NoteMarkdown.mentions(in: note.plainText) {
             if let match = notes.first(where: { $0 !== note && $0.title.trimmingCharacters(in: .whitespaces).caseInsensitiveCompare(title) == .orderedSame }) {
