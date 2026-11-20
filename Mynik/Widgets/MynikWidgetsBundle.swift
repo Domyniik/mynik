@@ -6,5 +6,8 @@ struct MynikWidgetsBundle: WidgetBundle {
     var body: some Widget {
         MonthBalanceWidget()
         UpcomingBillsWidget()
+        #if os(iOS)
+        BillDueLiveActivity()
+        #endif
     }
 }

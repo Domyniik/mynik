@@ -10,6 +10,7 @@ struct NotificationSettingsSection: View {
     @AppStorage(SettingsKey.billRemindersEnabled) private var isEnabled = true
     @AppStorage(SettingsKey.billReminderDaysBefore) private var daysBefore = 1
     @AppStorage(SettingsKey.agendaRemindersEnabled) private var isAgendaEnabled = true
+    @AppStorage(SettingsKey.billLiveActivity) private var isLiveActivityEnabled = true
 
     @State private var status: UNAuthorizationStatus = .notDetermined
 
@@ -24,6 +25,13 @@ struct NotificationSettingsSection: View {
             }
 
             Toggle("Lembrar prazos (carro, documentos, follow-ups)", isOn: $isAgendaEnabled)
+
+            #if os(iOS)
+            Toggle("Conta de hoje no ecrã bloqueado e na Dynamic Island", isOn: $isLiveActivityEnabled)
+                .onChange(of: isLiveActivityEnabled) {
+                    BillLiveActivityService.sync(in: modelContext, converter: CurrencyConverter())
+                }
+            #endif
 
             if isEnabled || isAgendaEnabled {
                 if status == .denied {

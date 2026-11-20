@@ -129,7 +129,7 @@ nonisolated enum ModelCategorizer {
             let response = try await session.respond(
                 to: "Descrição do \(kindText): \"\(title)\". Categorias possíveis: \(names.joined(separator: ", ")).",
                 schema: schema,
-                options: GenerationOptions(sampling: .greedy)
+                options: GenerationOptions(samplingMode: .greedy)
             )
             let value = try response.content.value(String.self)
             return names.first { $0 == value }

@@ -23,12 +23,14 @@ struct RootView: View {
             .onReceive(NotificationCenter.default.publisher(for: ModelContext.didSave)) { _ in
                 rescheduleReminders()
                 updateWidgets()
+                updateLiveActivity()
             }
             .task { await refreshStorePeriodically() }
             .onChange(of: scenePhase, initial: true) {
                 if scenePhase == .active {
                     rescheduleReminders()
                     updateWidgets()
+                    updateLiveActivity()
                     recordWealthSnapshot()
                     refreshExchangeRateIfStale()
                     Task { await storeSync.refreshIfStale(in: modelContext) }
@@ -88,6 +90,11 @@ struct RootView: View {
     /// Resumo para os widgets (saldo do mês e contas a vencer).
     private func updateWidgets() {
         WidgetSnapshotWriter.update(in: modelContext, converter: CurrencyConverter(storedRate: brlPerEUR))
+    }
+
+    /// Live Activity da conta que vence hoje (iPhone).
+    private func updateLiveActivity() {
+        BillLiveActivityService.sync(in: modelContext, converter: CurrencyConverter(storedRate: brlPerEUR))
     }
 
     private func rescheduleReminders() {

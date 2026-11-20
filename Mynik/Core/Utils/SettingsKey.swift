@@ -42,4 +42,6 @@ nonisolated enum SettingsKey {
     static let showCalendarOnToday = "showCalendarOnToday"
     /// Sugerir a categoria dos movimentos novos (IA no dispositivo ou regras).
     static let autoCategorize = "autoCategorize"
+    /// iPhone: Live Activity / Dynamic Island da conta que vence hoje.
+    static let billLiveActivity = "billLiveActivity"
 }

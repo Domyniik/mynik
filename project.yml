@@ -51,6 +51,8 @@ targets:
         # Atualização da loja em segundo plano (notificações de venda).
         BGTaskSchedulerPermittedIdentifiers: [com.domynik.mynik.store-refresh]
         UIBackgroundModes: [fetch]
+        # Live Activity da conta que vence hoje (atualizada localmente pela app).
+        NSSupportsLiveActivities: true
         # A versão vem das definições de compilação (o release.sh define MARKETING_VERSION).
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
