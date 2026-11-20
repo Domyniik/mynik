@@ -40,4 +40,6 @@ nonisolated enum SettingsKey {
     static let showMenuBarExtra = "showMenuBarExtra"
     /// Eventos do Calendário e lembretes na tela Hoje.
     static let showCalendarOnToday = "showCalendarOnToday"
+    /// Sugerir a categoria dos movimentos novos (IA no dispositivo ou regras).
+    static let autoCategorize = "autoCategorize"
 }

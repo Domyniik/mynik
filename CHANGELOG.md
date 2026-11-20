@@ -48,3 +48,4 @@
 - feat(mac): adiciona o Mynik à barra de menus com saldo do mês, contas a vencer (com "paguei") e gasto rápido, que se pode esconder nas Definições
 - feat(today): adiciona eventos do Calendário e lembretes de hoje (incluindo atrasados, com marcar como feito) na tela Hoje, com pedido de acesso só ao tocar em "Ligar"
 - fix(today): remove aviso do compilador ao observar mudanças no Calendário
+- feat(ai): adiciona categorização automática dos movimentos com a Apple Intelligence (Foundation Models, só categorias existentes) e, sem ela, pelo histórico e por comerciantes conhecidos; também na importação CSV e no Apple Pay

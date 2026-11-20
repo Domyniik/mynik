@@ -78,6 +78,7 @@ enum ApplePayEntry {
         }
 
         let category = QuickEntryService.lastCategory(forTitle: title, in: context)
+            ?? CategorizationService.suggestWithRules(title: title, kind: .expense, in: context)
             ?? QuickEntryService.category(matching: title, in: context)
             ?? QuickEntryService.category(matching: "Outros", in: context)
         let cardName = card?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""

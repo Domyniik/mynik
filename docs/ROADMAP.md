@@ -48,7 +48,7 @@
 - [x] EventKit (Calendário/Lembretes) na tela Hoje
 
 ## Fase 7 — IA e extras
-- [ ] Categorização automática (Foundation Models)
+- [x] Categorização automática (Foundation Models) — com fallback por regras (comerciante e histórico) quando não há Apple Intelligence
 - [ ] "Pergunte ao Mynik"
 - [ ] Scanner de faturas (VisionKit)
 - [ ] Live Activities / Dynamic Island

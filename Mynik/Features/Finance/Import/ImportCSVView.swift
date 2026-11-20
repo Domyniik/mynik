@@ -130,6 +130,7 @@ struct ImportCSVView: View {
 
     private func importRows(_ preview: CSVImportPreview) {
         let guesser = CategoryGuesser(history: transactions)
+        let rules = RuleCategorizer(in: modelContext)
         for item in preview.newItems {
             let row = item.row
             modelContext.insert(
@@ -140,7 +141,8 @@ struct ImportCSVView: View {
                     date: row.date,
                     currencyCode: currencyCode,
                     notes: "Importado de \(preview.fileName)",
-                    category: guesser.category(for: row),
+                    category: guesser.category(for: row)
+                        ?? rules.category(for: row.title, kind: row.kind),
                     account: account
                 )
             )

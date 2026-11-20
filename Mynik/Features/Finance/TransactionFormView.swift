@@ -12,6 +12,10 @@ struct TransactionFormView: View {
     private let transaction: FinanceTransaction?
     @State private var draft: TransactionDraft
     @State private var isShowingSaveError = false
+    /// De onde veio a categoria sugerida; `nil` se foi escolhida à mão.
+    @State private var suggestionSource: CategorySuggestionSource?
+    /// O utilizador escolheu a categoria: deixa de haver sugestões.
+    @State private var isCategoryChosenByUser = false
 
     init(transaction: FinanceTransaction? = nil) {
         self.transaction = transaction
@@ -50,7 +54,7 @@ struct TransactionFormView: View {
                 }
 
                 Section {
-                    Picker("Categoria", selection: $draft.category) {
+                    Picker("Categoria", selection: categorySelection) {
                         Text("Sem categoria").tag(Category?.none)
                         ForEach(categoriesForKind) { category in
                             Label(category.name, systemImage: category.symbolName)
@@ -63,6 +67,12 @@ struct TransactionFormView: View {
                         ForEach(accounts) { account in
                             Text(account.name).tag(Optional(account))
                         }
+                    }
+                } footer: {
+                    if let suggestionSource, draft.category != nil {
+                        Label(suggestionSource.label, systemImage: suggestionSource.symbolName)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
                     }
                 }
 
@@ -102,6 +112,9 @@ struct TransactionFormView: View {
                     draft.category = nil
                 }
             }
+            .task(id: SuggestionKey(title: draft.title, kind: draft.kind)) {
+                await suggestCategory()
+            }
             .onAppear {
                 if transaction == nil, draft.account == nil {
                     draft.account = accounts.first
@@ -112,6 +125,29 @@ struct TransactionFormView: View {
         #if os(macOS)
         .frame(minWidth: 420, minHeight: 460)
         #endif
+    }
+
+    /// Escolha manual da categoria (desliga as sugestões).
+    private var categorySelection: Binding<Category?> {
+        Binding {
+            draft.category
+        } set: { category in
+            draft.category = category
+            isCategoryChosenByUser = true
+            suggestionSource = nil
+        }
+    }
+
+    /// Sugere a categoria enquanto se escreve a descrição de um movimento novo.
+    private func suggestCategory() async {
+        guard transaction == nil, !isCategoryChosenByUser, CategorizationService.isEnabled else { return }
+        // Espera que o utilizador pare de escrever.
+        try? await Task.sleep(for: .milliseconds(600))
+        guard !Task.isCancelled else { return }
+        let result = await CategorizationService.suggest(title: draft.title, kind: draft.kind, in: modelContext)
+        guard !Task.isCancelled, !isCategoryChosenByUser, let result else { return }
+        draft.category = result.category
+        suggestionSource = result.source
     }
 
     private func save() {
@@ -128,6 +164,12 @@ struct TransactionFormView: View {
             isShowingSaveError = true
         }
     }
+}
+
+/// Muda quando a descrição ou o tipo mudam (recomeça a sugestão).
+private struct SuggestionKey: Equatable {
+    let title: String
+    let kind: TransactionKind
 }
 
 #Preview(traits: .sampleData) {
