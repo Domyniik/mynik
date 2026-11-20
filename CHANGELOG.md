@@ -38,3 +38,4 @@
 - fix(notes): editar blocos já formatados, Return cria o bloco seguinte, botão Concluído e ligações sem repetidos
 - fix(goals): etiquetas nos campos de valor do formulário de metas
 - feat(car): adiciona carro com abastecimentos e consumo (L/100 km), manutenções, prazos de ITV/seguro/imposto com avisos e na tela Hoje, gastos na categoria Carro e preços de combustível em Espanha perto de ti
+- feat(documents): adiciona documentos com validade, avisos antes de expirar (também na tela Hoje) e números e fotos protegidos por Face ID / Touch ID

@@ -1,12 +1,13 @@
 import SwiftData
 import SwiftUI
 
-/// Prazos a vencer (ITV, seguro, manutenções…), na tela Hoje.
+/// Prazos a vencer (ITV, seguro, manutenções, documentos…), na tela Hoje.
 struct TodayAgendaSection: View {
     @Query private var vehicles: [Vehicle]
+    @Query private var documents: [PersonalDocument]
 
     var body: some View {
-        let items = LifeAgenda.carItems(vehicles).upcoming()
+        let items = (LifeAgenda.carItems(vehicles) + LifeAgenda.documentItems(documents)).upcoming()
         if !items.isEmpty {
             Section("A vencer") {
                 ForEach(items) { item in

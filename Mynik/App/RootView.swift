@@ -31,6 +31,8 @@ struct RootView: View {
                     Task { await storeSync.refreshIfStale(in: modelContext) }
                 } else if scenePhase == .background {
                     StoreBackgroundRefresh.schedule()
+                    // Os documentos voltam a ficar escondidos.
+                    BiometricLock.shared.lock()
                 }
             }
     }

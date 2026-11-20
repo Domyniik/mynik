@@ -12,6 +12,7 @@ struct SectionDestination: View {
         case .projects: ProjectsView()
         case .goals: GoalsView()
         case .car: CarView()
+        case .documents: DocumentsView()
         case .notes: NotesView()
         case .settings: SettingsView()
         }

@@ -113,6 +113,10 @@ struct SampleData: PreviewModifier {
             deadline.vehicle = car
         }
 
+        // Documentos: um a expirar e outro válido.
+        context.insert(PersonalDocument(kind: .residence, title: "TIE", number: "Y1234567Z", expiryDate: calendar.date(byAdding: .day, value: 40, to: .now)))
+        context.insert(PersonalDocument(kind: .passport, number: "FX123456", expiryDate: calendar.date(byAdding: .year, value: 4, to: .now)))
+
         // Loja de exemplo, já em cache.
         let demo = DemoStoreDataSource()
         let since = calendar.date(byAdding: .day, value: -59, to: calendar.startOfDay(for: .now)) ?? .now

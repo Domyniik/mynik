@@ -35,7 +35,7 @@
 
 ## Fase 5 — Vida
 - [x] Carro (combustível, manutenção, seguro/ITV/IUC)
-- [ ] Documentos com validade e Face ID
+- [x] Documentos com validade e Face ID
 - [ ] Carreira (candidaturas, cursos)
 - [ ] Investimentos / património
 

@@ -6,7 +6,26 @@ enum LifeAgenda {
     /// Todos os itens com data, de todos os módulos.
     static func allItems(in context: ModelContext, now: Date = .now) -> [AgendaItem] {
         let vehicles = (try? context.fetch(FetchDescriptor<Vehicle>())) ?? []
-        return carItems(vehicles, now: now)
+        let documents = (try? context.fetch(FetchDescriptor<PersonalDocument>())) ?? []
+        return carItems(vehicles, now: now) + documentItems(documents)
+    }
+
+    /// Documentos com validade: aparecem na tela Hoje a partir do aviso escolhido.
+    static func documentItems(_ documents: [PersonalDocument]) -> [AgendaItem] {
+        documents.compactMap { document in
+            guard let expiry = document.expiryDate else { return nil }
+            return AgendaItem(
+                id: "document-\(document.uid)",
+                title: document.displayTitle,
+                detail: document.kind.title,
+                date: expiry,
+                symbolName: document.kind.symbolName,
+                source: .document,
+                dueWord: "Expira",
+                horizonDays: document.remindDaysBefore,
+                remindDaysBefore: [document.remindDaysBefore, 7, 0]
+            )
+        }
     }
 
     /// Prazos do carro (ITV, seguro, imposto) e próximas manutenções.

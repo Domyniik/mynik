@@ -37,6 +37,8 @@ targets:
           NSExceptionDomains:
             sedeaplicaciones.minetur.gob.es:
               NSExceptionRequiresForwardSecrecy: false
+        # Fotos e números dos documentos.
+        NSFaceIDUsageDescription: O Mynik usa o Face ID para proteger os números e as fotos dos teus documentos.
         # Preços de combustível perto do utilizador (a localização não sai do dispositivo).
         NSLocationWhenInUseUsageDescription: O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.
         NSLocationUsageDescription: O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.
