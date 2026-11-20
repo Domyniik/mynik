@@ -6,4 +6,6 @@ nonisolated enum SettingsKey {
     static let billReminderDaysBefore = "billReminderDaysBefore"
     static let brlPerEUR = "brlPerEUR"
     static let exchangeRateDate = "exchangeRateDate"
+    static let shopifyDomain = "shopifyDomain"
+    static let shopifyShopName = "shopifyShopName"
 }

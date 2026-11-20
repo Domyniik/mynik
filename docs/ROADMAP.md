@@ -17,7 +17,7 @@
 - [x] Multi-moeda EUR/BRL
 
 ## Fase 3 — Loja Shopify (Neloce)
-- [ ] Setup do token (Keychain) + cliente GraphQL
+- [x] Setup do token (Keychain) + cliente GraphQL
 - [ ] Cache local (StoreProduct, StoreOrder, DailyStat)
 - [ ] KPIs + lucro real + gráfico diário
 - [ ] Ranking de produtos (score 0–100 + classificação + ação)
