@@ -55,7 +55,7 @@ enum LinkedTransactionService {
         return try? context.fetch(descriptor).first
     }
 
-    private static func defaultAccount(in context: ModelContext) -> Account? {
+    static func defaultAccount(in context: ModelContext) -> Account? {
         let descriptor = FetchDescriptor<Account>(
             predicate: #Predicate { !$0.isArchived },
             sortBy: [SortDescriptor(\.createdAt)]

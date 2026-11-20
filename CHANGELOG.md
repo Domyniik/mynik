@@ -43,3 +43,4 @@
 - feat(investments): adiciona património com total investido, ganho, cotações do dia (Yahoo Finance, com câmbio do BCE), aportes que saem das contas, evolução diária e meta de poupança mensal
 - feat(sync): adiciona cópia de segurança JSON completa (exportar por AirDrop, iCloud Drive ou Ficheiros e importar com fusão sem duplicados) em vez do sync por iCloud, que exige o plano pago da Apple
 - feat(widgets): adiciona widgets de saldo do mês e contas a vencer (iOS, ecrã bloqueado e Mac) com resumo partilhado por App Group; a app do Mac passa a ser assinada com o certificado Apple Development da Personal Team
+- feat(intents): adiciona ações da Siri e dos Atalhos "Registar gasto" (gastei X em Y, com categoria reconhecida pelo nome ou por sinónimos) e "Saldo do mês"

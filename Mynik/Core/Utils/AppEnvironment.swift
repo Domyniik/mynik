@@ -9,4 +9,9 @@ nonisolated enum AppEnvironment {
     static var testDefaults: UserDefaults {
         UserDefaults(suiteName: "com.domynik.mynik.tests") ?? .standard
     }
+
+    /// Preferências da app (as de teste quando corre como anfitrião dos testes).
+    static var defaults: UserDefaults {
+        isRunningTests ? testDefaults : .standard
+    }
 }

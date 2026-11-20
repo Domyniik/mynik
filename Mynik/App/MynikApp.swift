@@ -3,24 +3,8 @@ import SwiftUI
 
 @main
 struct MynikApp: App {
-    private let modelContainer: ModelContainer
-    @State private var storeSync = StoreSyncCoordinator(
-        defaults: AppEnvironment.isRunningTests ? AppEnvironment.testDefaults : .standard
-    )
-
-    init() {
-        do {
-            // Os testes correm dentro da app: nunca podem tocar na base de dados real.
-            modelContainer = try ModelContainerFactory.make(inMemory: AppEnvironment.isRunningTests)
-            try DefaultDataSeeder.seedIfNeeded(in: modelContainer.mainContext)
-            try StableIDRepair.runIfNeeded(
-                in: modelContainer.mainContext,
-                defaults: AppEnvironment.isRunningTests ? AppEnvironment.testDefaults : .standard
-            )
-        } catch {
-            fatalError("Não foi possível abrir a base de dados: \(error)")
-        }
-    }
+    private let modelContainer = SharedModelContainer.shared
+    @State private var storeSync = StoreSyncCoordinator(defaults: AppEnvironment.defaults)
 
     var body: some Scene {
         WindowGroup {
