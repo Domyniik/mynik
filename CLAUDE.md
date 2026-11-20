@@ -66,7 +66,7 @@ Navegação: `NavigationSplitView` no Mac/iPad, `TabView` no iPhone.
   `feat(finance): adiciona contas a pagar com recorrência`, `fix(store): ...`, `docs: ...`, `refactor: ...`, `test: ...`
 - Depois de cada feature: o projeto **tem de compilar** em iOS e macOS (`xcodebuild`) antes do commit.
 - Ao fechar uma feature: marca `[x]` em `docs/ROADMAP.md` e acrescenta uma linha em `CHANGELOG.md`.
-- Ao fechar uma fase: atualiza a secção "Estado" do `README.md` e faz `git push`.
+- Ao fechar uma fase: atualiza a secção "Estado" do `README.md`, faz `git push` e publica a versão para o Mac com `scripts/release.sh 0.<n.º da fase>.0` (release no GitHub + cask em `Domyniik/homebrew-tap`; instala-se com `brew install --cask domyniik/tap/mynik`).
 - Nunca commitar segredos (tokens, `.env`, chaves). Usa Keychain.
 - Código pequeno e focado: views em subviews, lógica em services/models, sem APIs depreciadas.
 - Skills a usar quando disponíveis: `swiftui-pro`, `swiftdata-pro`, `swiftui-expert-skill`, `swift-ios-skills`.
