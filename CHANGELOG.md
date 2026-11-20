@@ -58,3 +58,4 @@
 - feat(ui): polimento Liquid Glass (botões de vidro, barra de separadores que encolhe), cor de destaque com variantes para modo escuro e alto contraste, Dynamic Type nos cartões e linhas (layout vertical nos tamanhos de acessibilidade), Reduzir movimento em toda a app e rótulos únicos e em português para VoiceOver e Controlo por Voz
 - feat(privacy): adiciona bloqueio opcional da app com Face ID / Touch ID (ou código), ativado nas Definições, com 30 s de tolerância em segundo plano e conteúdo tapado no seletor de apps
 - feat(backup): a cópia de segurança JSON passa a incluir os hábitos e as marcações (v0.7) e continua a ler cópias antigas sem eles
+- test: reforça a cobertura com Swift Testing (ferramentas do chat sem o modelo, sincronização da loja de exemplo, Apple Pay por regras, invariantes de navegação e cores) — 223 testes
