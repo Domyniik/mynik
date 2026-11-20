@@ -8,11 +8,17 @@ struct AISettingsSection: View {
     var body: some View {
         Section {
             Toggle("Sugerir categoria dos movimentos", isOn: $autoCategorize)
-            LabeledContent("Apple Intelligence") {
-                Label(status.isAvailable ? "Ativa" : "Indisponível",
-                      systemImage: status.isAvailable ? "checkmark.circle.fill" : "xmark.circle")
-                    .foregroundStyle(status.isAvailable ? .green : .secondary)
+            HStack {
+                Text("Apple Intelligence")
+                Spacer()
+                Group {
+                    Image(systemName: status.isAvailable ? "checkmark.circle.fill" : "xmark.circle")
+                        .accessibilityHidden(true)
+                    Text(status.isAvailable ? "Ativa" : "Indisponível")
+                }
+                .foregroundStyle(status.isAvailable ? .green : .secondary)
             }
+            .accessibilityElement(children: .combine)
         } header: {
             Text("Inteligência")
         } footer: {

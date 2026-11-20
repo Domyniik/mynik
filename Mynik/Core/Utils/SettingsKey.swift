@@ -46,4 +46,6 @@ nonisolated enum SettingsKey {
     static let billLiveActivity = "billLiveActivity"
     /// Notificação da revisão semanal (domingo às 19h).
     static let weeklyReviewReminder = "weeklyReviewReminder"
+    /// Pedir Face ID / Touch ID para abrir a app.
+    static let appLockEnabled = "appLockEnabled"
 }

@@ -65,7 +65,7 @@ targets:
         # Scanner de faturas (câmara de documentos do VisionKit; o OCR corre no dispositivo).
         NSCameraUsageDescription: O Mynik usa a câmara para digitalizar faturas e criar o gasto. As imagens são lidas no dispositivo e não são guardadas.
         # Fotos e números dos documentos.
-        NSFaceIDUsageDescription: O Mynik usa o Face ID para proteger os números e as fotos dos teus documentos.
+        NSFaceIDUsageDescription: O Mynik usa o Face ID para abrir a app (se ativares o bloqueio) e para proteger os números e as fotos dos teus documentos.
         # Preços de combustível perto do utilizador (a localização não sai do dispositivo).
         NSLocationWhenInUseUsageDescription: O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.
         # Eventos e lembretes de hoje na tela Hoje (lidos no dispositivo).

@@ -10,6 +10,7 @@ struct RootView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(StoreSyncCoordinator.self) private var storeSync
     @Environment(AppRouter.self) private var router
+    @State private var appLock = AppLock.shared
 
     @AppStorage(SettingsKey.brlPerEUR) private var brlPerEUR = CurrencyConverter.defaultBRLPerEUR
     @AppStorage(SettingsKey.exchangeRateDate) private var exchangeRateDate = ""
@@ -26,6 +27,14 @@ struct RootView: View {
             .transaction { transaction in
                 if reduceMotion { transaction.animation = nil }
             }
+            // Bloqueio com Face ID: tapa tudo enquanto bloqueada e no seletor de apps.
+            .overlay {
+                if appLock.isLocked {
+                    AppLockView(lock: appLock, asksForUnlock: scenePhase == .active)
+                } else if appLock.isEnabled, scenePhase != .active {
+                    AppLockView(lock: appLock, asksForUnlock: false)
+                }
+            }
             .sheet(isPresented: $router.isSearching) {
                 GlobalSearchView()
                     .environment(\.currencyConverter, CurrencyConverter(storedRate: brlPerEUR))
@@ -39,6 +48,7 @@ struct RootView: View {
             .task { await refreshStorePeriodically() }
             .onChange(of: scenePhase, initial: true) {
                 if scenePhase == .active {
+                    appLock.didBecomeActive()
                     rescheduleReminders()
                     updateWidgets()
                     updateLiveActivity()
@@ -49,6 +59,7 @@ struct RootView: View {
                     StoreBackgroundRefresh.schedule()
                     // Os documentos voltam a ficar escondidos.
                     BiometricLock.shared.lock()
+                    appLock.didEnterBackground()
                 }
             }
     }

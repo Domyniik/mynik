@@ -40,7 +40,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>O Mynik usa a câmara para digitalizar faturas e criar o gasto. As imagens são lidas no dispositivo e não são guardadas.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>O Mynik usa o Face ID para proteger os números e as fotos dos teus documentos.</string>
+	<string>O Mynik usa o Face ID para abrir a app (se ativares o bloqueio) e para proteger os números e as fotos dos teus documentos.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

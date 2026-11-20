@@ -36,6 +36,7 @@
 		184E2E46581B23EB96ECDFB9 /* StoreMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567558F86165939EDDFB7886 /* StoreMetricsTests.swift */; };
 		1896EA8C996F2243325839DD /* TodayGoalsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E520C6AC8E0D5A79FDC5440 /* TodayGoalsSection.swift */; };
 		1A56D813672A9F46932F95DF /* StoreCheckout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE7411356CDC3ADDD1E81C6 /* StoreCheckout.swift */; };
+		1A698BABA26961A1A0829BC1 /* AppLockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE23BFB4FB470490698B5831 /* AppLockTests.swift */; };
 		1AF57575DB784D2957032D27 /* TaskBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F39870D2589573CBB14F0C /* TaskBoard.swift */; };
 		1B1629964F2D70F88D04D75A /* NoteLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1312CBAAEE13E768F12E7C /* NoteLinkTests.swift */; };
 		1ECF5AE34BB67975DF94DA78 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F5B0A2E2A92D7F5376131B /* AppEnvironment.swift */; };
@@ -185,6 +186,7 @@
 		94568DF5BE2E767142D28A71 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A85FF5D1FBC1E23050A0A3F /* Note.swift */; };
 		95C250D94D30EFC7C0FCC3EE /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B904DEB519C1C7C27C534F /* Vehicle.swift */; };
 		96EBF0EC9FEEC78FA47B6641 /* BackupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C483ACAA674EC1D10D9BC575 /* BackupTests.swift */; };
+		99C7ADEFFF02CE655DCCE319 /* AppLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BB56D6E41C11CA4269EAA0 /* AppLock.swift */; };
 		9C0443D2E2632541319D9FAB /* StoreNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF0EBDBBB75275564E54C7 /* StoreNotifier.swift */; };
 		9C14878526B602FEEAF7B208 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ED9BE1283A3780FB192E37 /* CalendarService.swift */; };
 		9C9BFF541489960795E4E100 /* DocumentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108C7DA0BF349C15DF2A99C8 /* DocumentStatus.swift */; };
@@ -247,6 +249,7 @@
 		CEE66D0DC0063D816D1F07A8 /* BudgetEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACD4422DF06C1371C914BC6 /* BudgetEditorView.swift */; };
 		CF81CA3E5EFEFD5F5B164BBE /* PersonalDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAB2CCFE6FEF207A51EE002 /* PersonalDocument.swift */; };
 		D039121C38AEF4251FFD5328 /* CarDeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB99B112CAB70D6E233F2A /* CarDeadline.swift */; };
+		D17C60814D87371483B4CD1A /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96367C2B8A61652E6D40953 /* AppLockView.swift */; };
 		D2DE2D50782DBA332A2DC5B2 /* MynikSchemaV5.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB54D7802D3714C1413905 /* MynikSchemaV5.swift */; };
 		D4B7FF295ED5EFAF2ED47385 /* SpanishProvince.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF590AECAB1859C0B4C2A93 /* SpanishProvince.swift */; };
 		D8AE293CFEF7EBA7FC06C9B0 /* GoalContributionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E95B7A3B263F1726CECD12 /* GoalContributionSheet.swift */; };
@@ -513,6 +516,7 @@
 		8F1755715C0BF576087217FC /* ReceiptScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptScannerTests.swift; sourceTree = "<group>"; };
 		902C3FD50C75530458D73CDA /* CarDeadlinesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDeadlinesSection.swift; sourceTree = "<group>"; };
 		907836F85971A10360136BD4 /* DocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsView.swift; sourceTree = "<group>"; };
+		91BB56D6E41C11CA4269EAA0 /* AppLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLock.swift; sourceTree = "<group>"; };
 		923DCA81797457D9323357A5 /* WeeklyReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReview.swift; sourceTree = "<group>"; };
 		92F5B0A2E2A92D7F5376131B /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		9373A14B226F9C15DA3F8892 /* CarSummarySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSummarySection.swift; sourceTree = "<group>"; };
@@ -540,6 +544,7 @@
 		A8AF9221297960EAB7A50976 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		A8E41F743F352384EF450E1D /* AgendaReminderPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaReminderPlanner.swift; sourceTree = "<group>"; };
 		A94B2D694983D7BB872C245D /* StoreAlertSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAlertSettingsSection.swift; sourceTree = "<group>"; };
+		A96367C2B8A61652E6D40953 /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		AAB42B3FC01B0A3339315BDD /* FinanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceView.swift; sourceTree = "<group>"; };
 		ACB9AB8F369CF9C3D5C7CE63 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		ADFB8C060E3E0EC9F2C6ACBC /* StoreOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreOperations.swift; sourceTree = "<group>"; };
@@ -626,6 +631,7 @@
 		FBDB8B9821C82E4BF5D1737C /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		FC8073DE80648B57AC063286 /* BudgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTests.swift; sourceTree = "<group>"; };
 		FC8E4C19584D7D7B7ED888CC /* MynikTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MynikTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE23BFB4FB470490698B5831 /* AppLockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -651,6 +657,7 @@
 		148BEA50369958765FD47ADC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				91BB56D6E41C11CA4269EAA0 /* AppLock.swift */,
 				13AD61AB4158282E48BB6ED0 /* BillLiveActivityService.swift */,
 				88C04153D9EC7DA758C7ACC0 /* BillPaymentService.swift */,
 				21D924D841553C963A6567D4 /* BillReminderPlanner.swift */,
@@ -709,6 +716,7 @@
 			isa = PBXGroup;
 			children = (
 				AF8B374A902CF67A543A77EC /* ApplePayTests.swift */,
+				FE23BFB4FB470490698B5831 /* AppLockTests.swift */,
 				2B855CD85B1B6F5183C490CF /* AskMynikTests.swift */,
 				C483ACAA674EC1D10D9BC575 /* BackupTests.swift */,
 				448427F2B005C2B864EBFCEE /* BillLiveActivityTests.swift */,
@@ -1249,6 +1257,7 @@
 			isa = PBXGroup;
 			children = (
 				A1CA666DBA2C13C497684A85 /* AISettingsSection.swift */,
+				A96367C2B8A61652E6D40953 /* AppLockView.swift */,
 				AF18C32CBA456F25A62DDA06 /* BackupSettingsSection.swift */,
 				37599A6082F4973CE19E0BCB /* CalendarSettingsSection.swift */,
 				AF16733D8FDADE3D6B802CB8 /* CurrencySettingsSection.swift */,
@@ -1639,6 +1648,8 @@
 				404FD5C73FCB2CA2E4842982 /* AgendaReminderPlanner.swift in Sources */,
 				8D1E6D9CB70B7DB85262EEF3 /* AmountTextParser.swift in Sources */,
 				1ECF5AE34BB67975DF94DA78 /* AppEnvironment.swift in Sources */,
+				99C7ADEFFF02CE655DCCE319 /* AppLock.swift in Sources */,
+				D17C60814D87371483B4CD1A /* AppLockView.swift in Sources */,
 				ABA8C0A1A27A716464986846 /* AppRouter.swift in Sources */,
 				7D593524A70378A3EEA25296 /* AppSection.swift in Sources */,
 				7AD3398E35D58EC56AE6E121 /* AppleIntelligence.swift in Sources */,
@@ -1878,6 +1889,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A698BABA26961A1A0829BC1 /* AppLockTests.swift in Sources */,
 				2E22BD54E01C82ADA205EE35 /* ApplePayTests.swift in Sources */,
 				F1E06ABCB95D8E5CDB2AD217 /* AskMynikTests.swift in Sources */,
 				96EBF0EC9FEEC78FA47B6641 /* BackupTests.swift in Sources */,

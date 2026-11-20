@@ -56,7 +56,7 @@
 
 ## Fase 8 — Polimento e lançamento
 - [x] Liquid Glass, dark mode, acessibilidade
-- [ ] Face ID para abrir o app
+- [x] Face ID para abrir o app
 - [ ] Backup/export JSON
 - [ ] Testes (Swift Testing)
 - [ ] TestFlight
