@@ -64,3 +64,4 @@
 - chore(demo): abre uma secção inicial com -MynikSection (screenshots)
 - feat(design): sistema visual com cor da marca, cores por módulo, cartões, KPIs e componentes
 - style(today): tela Hoje em painel com cartão do saldo, ações rápidas em vidro e cartões
+- style(finance): cartão do saldo com gráfico e atalhos em mosaico

@@ -12,18 +12,18 @@ struct FinanceView: View {
 
     var body: some View {
         List {
-            if !transactions.isEmpty {
-                Section {
-                    MonthSummaryCard(summary: MonthSummary(month: .now, transactions: transactions, converter: converter))
-                }
-            }
-
             Section {
-                ForEach(FinanceRoute.allCases) { route in
-                    NavigationLink(value: route) {
-                        Label(route.title, systemImage: route.symbolName)
+                VStack(spacing: DS.Spacing.m) {
+                    if !transactions.isEmpty {
+                        BalanceHeroCard(
+                            summary: MonthSummary(month: .now, transactions: transactions, converter: converter),
+                            trend: SpendingTrend.cumulativeExpenses(month: .now, transactions: transactions, converter: converter)
+                        )
                     }
+                    FinanceShortcutGrid()
                 }
+                .padding(.vertical, DS.Spacing.xs)
+                .dsListCardRow()
             }
 
             if transactions.isEmpty {
@@ -42,7 +42,7 @@ struct FinanceView: View {
             }
 
             ForEach(TransactionMonthGroup.group(transactions)) { group in
-                Section(group.title) {
+                Section {
                     ForEach(group.transactions) { transaction in
                         Button {
                             editingTransaction = transaction
@@ -64,6 +64,10 @@ struct FinanceView: View {
                             }
                         }
                     }
+                } header: {
+                    SectionHeader(group.title, systemImage: "calendar")
+                        .textCase(nil)
+                        .foregroundStyle(.primary)
                 }
             }
         }
