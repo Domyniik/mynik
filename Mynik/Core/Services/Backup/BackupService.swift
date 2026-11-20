@@ -50,6 +50,8 @@ enum BackupService {
         archive.courses = try all(Course.self).map(CourseRecord.init).sorted { $0.uid < $1.uid }
         archive.investments = try all(Investment.self).map(InvestmentRecord.init).sorted { $0.uid < $1.uid }
         archive.wealthSnapshots = try all(WealthSnapshot.self).map(WealthSnapshotRecord.init).sorted { $0.day < $1.day }
+        archive.habits = try all(Habit.self).map(HabitRecord.init).sorted { $0.uid < $1.uid }
+        archive.habitChecks = try all(HabitCheck.self).map(HabitCheckRecord.init).sorted { $0.uid < $1.uid }
         return archive
     }
 
@@ -236,6 +238,20 @@ enum BackupService {
             make: { WealthSnapshot(day: .now) },
             snapshot: WealthSnapshotRecord.init, apply: { $0.apply(to: $1) }
         )
+
+        let habits = try merger.merge(
+            archive.habits, key: \.uid, modelKey: { $0.uid },
+            make: { Habit(name: "") },
+            snapshot: HabitRecord.init, apply: { $0.apply(to: $1) }
+        )
+        let checks = try merger.merge(
+            archive.habitChecks, key: \.uid, modelKey: { $0.uid },
+            make: { HabitCheck(day: .now) },
+            snapshot: HabitCheckRecord.init, apply: { $0.apply(to: $1) }
+        )
+        for record in archive.habitChecks {
+            checks[record.uid]?.habit = record.habitUID.flatMap { habits[$0] }
+        }
 
         try context.save()
         return merger.summary

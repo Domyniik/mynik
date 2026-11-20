@@ -43,7 +43,7 @@ final class HabitCheck {
 
     var habit: Habit?
 
-    init(day: Date, habit: Habit) {
+    init(day: Date, habit: Habit? = nil) {
         self.day = day
         self.habit = habit
     }

@@ -57,3 +57,4 @@
 - feat(search): adiciona busca global ⌘K (movimentos, contas, notas, projetos, tarefas, metas, hábitos, carro, documentos sem números, carreira, investimentos, produtos e secções) com navegação partilhada entre barra lateral e separadores
 - feat(ui): polimento Liquid Glass (botões de vidro, barra de separadores que encolhe), cor de destaque com variantes para modo escuro e alto contraste, Dynamic Type nos cartões e linhas (layout vertical nos tamanhos de acessibilidade), Reduzir movimento em toda a app e rótulos únicos e em português para VoiceOver e Controlo por Voz
 - feat(privacy): adiciona bloqueio opcional da app com Face ID / Touch ID (ou código), ativado nas Definições, com 30 s de tolerância em segundo plano e conteúdo tapado no seletor de apps
+- feat(backup): a cópia de segurança JSON passa a incluir os hábitos e as marcações (v0.7) e continua a ler cópias antigas sem eles

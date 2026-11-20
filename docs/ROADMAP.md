@@ -57,7 +57,7 @@
 ## Fase 8 — Polimento e lançamento
 - [x] Liquid Glass, dark mode, acessibilidade
 - [x] Face ID para abrir o app
-- [ ] Backup/export JSON
+- [x] Backup/export JSON — feito na Fase 6 (em vez do sync iCloud); revisto na Fase 8 para incluir os hábitos e marcações (v0.7), lendo também cópias antigas
 - [ ] Testes (Swift Testing)
 - [ ] TestFlight
 - [ ] Screenshots + README final para o portfólio

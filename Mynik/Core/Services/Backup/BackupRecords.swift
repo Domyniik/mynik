@@ -989,3 +989,63 @@ extension WealthSnapshotRecord {
         model.investmentsValue = investmentsValue
     }
 }
+
+/// Cópia de `Habit` (v0.7).
+nonisolated struct HabitRecord: Codable, Equatable, Sendable {
+    var uid: String
+    var name: String
+    var symbolName: String
+    var colorName: String
+    var targetPerWeek: Int
+    var sortOrder: Int
+    var isArchived: Bool
+    var createdAt: Date
+}
+
+extension HabitRecord {
+    @MainActor init(_ model: Habit) {
+        uid = model.uid
+        name = model.name
+        symbolName = model.symbolName
+        colorName = model.colorName
+        targetPerWeek = model.targetPerWeek
+        sortOrder = model.sortOrder
+        isArchived = model.isArchived
+        createdAt = model.createdAt
+    }
+
+    @MainActor func apply(to model: Habit) {
+        model.uid = uid
+        model.name = name
+        model.symbolName = symbolName
+        model.colorName = colorName
+        model.targetPerWeek = targetPerWeek
+        model.sortOrder = sortOrder
+        model.isArchived = isArchived
+        model.createdAt = createdAt
+    }
+}
+
+/// Cópia de `HabitCheck` (v0.7).
+nonisolated struct HabitCheckRecord: Codable, Equatable, Sendable {
+    var uid: String
+    var day: Date
+    var createdAt: Date
+    var habitUID: String?
+}
+
+extension HabitCheckRecord {
+    @MainActor init(_ model: HabitCheck) {
+        uid = model.uid
+        day = model.day
+        createdAt = model.createdAt
+        habitUID = model.habit?.uid
+    }
+
+    /// Copia os valores (sem a relação) para o modelo.
+    @MainActor func apply(to model: HabitCheck) {
+        model.uid = uid
+        model.day = day
+        model.createdAt = createdAt
+    }
+}

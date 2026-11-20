@@ -44,6 +44,10 @@ struct BackupTests {
 
         context.insert(StoreProduct(shopifyID: "gid://1", title: "Colar", price: 29.9))
         context.insert(Investment(name: "VWCE", kind: .etf, units: 1.5, investedAmount: 150))
+
+        let habit = Habit(name: "Ler", targetPerWeek: 5)
+        context.insert(habit)
+        context.insert(HabitCheck(day: Calendar.current.startOfDay(for: .now), habit: habit))
         try context.save()
         return container
     }
@@ -86,6 +90,20 @@ struct BackupTests {
         let coffee = try #require(try target.fetch(FetchDescriptor<FinanceTransaction>()).first { $0.title == "Café" })
         #expect(coffee.category?.name == "Alimentação")
         #expect(coffee.account != nil)
+
+        // Hábitos (v0.7) com as marcações ligadas.
+        #expect(copy.habits == archive.habits)
+        let habit = try #require(try target.fetch(FetchDescriptor<Habit>()).first)
+        #expect(habit.name == "Ler")
+        #expect(habit.targetPerWeek == 5)
+        #expect(habit.checks?.count == 1)
+    }
+
+    @Test func olderBackupsWithoutHabitsStillImport() throws {
+        let json = #"{"format":1,"transactions":[]}"#
+        let archive = try BackupArchive.decode(Data(json.utf8))
+        #expect(archive.habits.isEmpty)
+        #expect(archive.habitChecks.isEmpty)
     }
 
     @Test func importingTwiceCreatesNoDuplicates() throws {
