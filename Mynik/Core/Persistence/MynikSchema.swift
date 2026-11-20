@@ -11,7 +11,7 @@ nonisolated enum MynikSchemaV3: VersionedSchema {
         [
             FinanceTransaction.self, Category.self, Account.self, Bill.self,
             StoreProduct.self, StoreOrder.self, DailyStat.self, StoreCheckout.self,
-            Project.self, ProjectTask.self, Goal.self,
+            Project.self, ProjectTask.self, Goal.self, Note.self, NoteBlock.self,
         ]
     }
 }

@@ -83,6 +83,16 @@ struct SampleData: PreviewModifier {
         context.insert(trip)
         context.insert(Goal(title: "Jantares fora", targetAmount: 120, source: .category, symbolName: "fork.knife", color: .purple, startDate: daysAgo(30), category: category("Lazer")))
 
+        // Notas: uma página com blocos e uma subpágina.
+        let ideas = NoteEditing.makeNote(title: "Ideias para a Neloce", in: context)
+        ideas.icon = "💡"
+        ideas.blocks?.first?.text = "Coleção de inverno com fotos novas."
+        NoteEditing.insertBlock(.heading, text: "Próximos passos", in: ideas, context: context)
+        NoteEditing.insertBlock(.checklist, text: "Encomendar amostras", in: ideas, context: context)
+        NoteEditing.insertBlock(.checklist, text: "Sessão fotográfica", in: ideas, context: context).isChecked = true
+        let supplier = NoteEditing.makeNote(title: "Fornecedores", parent: ideas, in: context)
+        supplier.icon = "🗂️"
+
         // Loja de exemplo, já em cache.
         let demo = DemoStoreDataSource()
         let since = calendar.date(byAdding: .day, value: -59, to: calendar.startOfDay(for: .now)) ?? .now

@@ -32,3 +32,4 @@
 - fix(store): ícone do alerta de stock e produtos parados nos dados de exemplo
 - feat(projects): adiciona projetos com tarefas em Kanban (arrastar entre colunas) ou lista, tarefas avulsas e tarefas do dia na tela Hoje
 - feat(goals): adiciona metas com valor-alvo e prazo, ligadas a uma conta ou categoria das Finanças, com ritmo mensal e metas na tela Hoje
+- feat(notes): adiciona notas com páginas aninhadas e blocos de texto, título, checklist e imagem, com pesquisa
