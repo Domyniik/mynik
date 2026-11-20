@@ -97,6 +97,10 @@ struct StoreCacheTests {
         #expect(first.products.count == 8)
         #expect(first.orders.allSatisfy { $0.createdAt >= since && $0.createdAt <= now })
         #expect(first.orders.contains { calendar.isDate($0.createdAt, inSameDayAs: now) })
+        // Produtos "parados" não vendem durante o período parado (nem como artigo extra).
+        let quietStart = calendar.date(byAdding: .day, value: -44, to: calendar.startOfDay(for: now)) ?? now
+        let stale = DemoStoreDataSource.productID(6)
+        #expect(!first.orders.contains { $0.createdAt >= quietStart && $0.lines.contains { $0.productID == stale } })
         // Totais em cêntimos exatos e IVA incluído coerente.
         #expect(first.orders.allSatisfy { $0.total == $0.subtotal + $0.shipping })
     }

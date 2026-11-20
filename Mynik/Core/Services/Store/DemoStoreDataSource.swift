@@ -108,7 +108,7 @@ nonisolated struct DemoStoreDataSource: StoreDataSource {
             if offset < 14 {
                 let abandoned = min(4, max(0, checkout - dayOrders.count))
                 for index in 0..<abandoned {
-                    let candidates = Self.profiles.filter { $0.status == "ACTIVE" && $0.ageDays >= offset }
+                    let candidates = Self.profiles.filter { $0.status == "ACTIVE" && $0.ageDays >= offset && offset >= $0.quietDays }
                     let weighted = candidates.flatMap { Array(repeating: $0, count: $0.id == 4 ? 6 : max(1, Int($0.rate * 3))) }
                     guard let profile = weighted.randomElement(using: &random) else { continue }
                     let hour = Int.random(in: 9...21, using: &random)
@@ -160,7 +160,7 @@ nonisolated struct DemoStoreDataSource: StoreDataSource {
 
         var picked = [(main, 1)]
         if Double.random(in: 0...1, using: &random) < 0.18,
-           let extra = Self.profiles.filter({ $0.status == "ACTIVE" && $0.id != main.id && $0.ageDays >= ageDays }).randomElement(using: &random) {
+           let extra = Self.profiles.filter({ $0.status == "ACTIVE" && $0.id != main.id && $0.ageDays >= ageDays && ageDays >= $0.quietDays }).randomElement(using: &random) {
             picked.append((extra, 1))
         }
 

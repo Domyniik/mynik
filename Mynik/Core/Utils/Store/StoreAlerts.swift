@@ -20,7 +20,7 @@ struct StoreAlert: Identifiable, Equatable {
         case .noSales: "moon.zzz"
         case .productStale: "hourglass.bottomhalf.filled"
         case .lateOrders: "shippingbox.and.arrow.backward"
-        case .lowStock: "exclamationmark.arrow.trianglehead.counterclockwise"
+        case .lowStock: "exclamationmark.triangle"
         }
     }
 }

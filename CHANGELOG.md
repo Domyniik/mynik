@@ -29,3 +29,4 @@
 - feat(store): adiciona alertas da loja (dias sem venda, atrasos, stock) e notificações locais de venda com atualização em segundo plano
 - feat(store): adiciona ciclo de vida do produto (teste → decisão → escalar/manter/descontinuar) com sugestão do ranking
 - feat(store): lança o lucro real mensal da loja nas Finanças (categoria Loja), atualizado a cada sincronização
+- fix(store): ícone do alerta de stock e produtos parados nos dados de exemplo
