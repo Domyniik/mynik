@@ -23,10 +23,9 @@ struct GoalFormView: View {
             Form {
                 Section {
                     TextField("Nome da meta", text: $draft.title)
-                    TextField("Valor-alvo", value: $draft.targetAmount, format: .currency(code: draft.currencyCode))
-                        #if os(iOS)
-                        .keyboardType(.decimalPad)
-                        #endif
+                    LabeledContent("Valor-alvo") {
+                        amountField("Valor-alvo", value: $draft.targetAmount)
+                    }
                     Picker("Moeda", selection: $draft.currencyCode) {
                         ForEach(Currency.supportedCodes, id: \.self) { code in
                             Text(code).tag(code)
@@ -81,10 +80,9 @@ struct GoalFormView: View {
     private var sourceFields: some View {
         switch draft.source {
         case .manual:
-            TextField("Já juntei", value: $draft.manualAmount, format: .currency(code: draft.currencyCode))
-                #if os(iOS)
-                .keyboardType(.decimalPad)
-                #endif
+            LabeledContent("Já juntei") {
+                amountField("Já juntei", value: $draft.manualAmount)
+            }
         case .account:
             Picker("Conta", selection: $draft.account) {
                 Text("Escolher…").tag(Account?.none)
@@ -101,6 +99,14 @@ struct GoalFormView: View {
             }
             DatePicker("Conta a partir de", selection: $draft.startDate, displayedComponents: .date)
         }
+    }
+
+    private func amountField(_ title: String, value: Binding<Decimal>) -> some View {
+        TextField(title, value: value, format: .currency(code: draft.currencyCode))
+            .multilineTextAlignment(.trailing)
+            #if os(iOS)
+            .keyboardType(.decimalPad)
+            #endif
     }
 
     private func save() {

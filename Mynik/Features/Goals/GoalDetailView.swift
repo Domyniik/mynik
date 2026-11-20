@@ -33,7 +33,7 @@ struct GoalDetailView: View {
                         .foregroundStyle(.secondary)
 
                     if GoalContributionService.acceptsContributions(goal), !progress.isReached {
-                        Button("Juntar dinheiro", systemImage: "plus.circle.fill") { isContributing = true }
+                        Button("Juntar dinheiro", systemImage: "plus") { isContributing = true }
                             .buttonStyle(.borderedProminent)
                             .tint(goal.color.color)
                     }
