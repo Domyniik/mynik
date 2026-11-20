@@ -57,6 +57,7 @@
 		2CFDB70BEC8CD78EF8CC184F /* UpcomingBillsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF52C3462D677001739EEB /* UpcomingBillsWidget.swift */; };
 		2D7CD57F69486A738EB2C8BF /* MonthStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151E4B9CC3233580F30AA441 /* MonthStepper.swift */; };
 		2D8A834138B7D7ACC5031CA5 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C84016160C2D3E996E14B /* ReportsView.swift */; };
+		2E22BD54E01C82ADA205EE35 /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8B374A902CF67A543A77EC /* ApplePayTests.swift */; };
 		2E4B93457BAAB8ADBE178502 /* ShopifyClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AD0F0FC25045569073F143 /* ShopifyClientTests.swift */; };
 		338A72F592CC1B5B567D4F8E /* FuelEconomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46069615B7A5E9DFAB3485B0 /* FuelEconomy.swift */; };
 		341215EB1060B4F43C6B4A9E /* Locale+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3BE24BA192DEE39D53829 /* Locale+App.swift */; };
@@ -153,6 +154,7 @@
 		8C4641DB1D434DFC41DD5975 /* FuelEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC125B67C15F7F982A6C5FC /* FuelEntry.swift */; };
 		8C46CABAF878CF29CD1ACC5C /* NoteBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D5981852412E05E80782 /* NoteBlockView.swift */; };
 		8D1D3EEA9848E18B40402FCF /* StoreMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380236C932101A6D8EACE4B3 /* StoreMetrics.swift */; };
+		8D1E6D9CB70B7DB85262EEF3 /* AmountTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D242982E2EBA20B2AC17D7 /* AmountTextParser.swift */; };
 		8D40C3AA1803D8A2D9D22875 /* NoteMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE226DC18FE1A8C2A2F6D24 /* NoteMarkdown.swift */; };
 		9017CC372968AAF312D08CC3 /* MonthSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB994064E469F0BE5ED5BA4 /* MonthSummaryCard.swift */; };
 		929F11851535DFBA592E77E2 /* TodayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF6F1A1954CEC44AC23347 /* TodayTests.swift */; };
@@ -203,6 +205,7 @@
 		C2BD8998263036E64D40333D /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACE3C1E62CECCC47D0B2C1 /* ModelTests.swift */; };
 		C371814E4B498D53E0DE526C /* ProjectDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C2EC8DB2CC4FCDF5155A3 /* ProjectDraft.swift */; };
 		C396DE2724706C5683B249C8 /* ProjectTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ACC0A1E0B2677F211BCB0 /* ProjectTask.swift */; };
+		C70BA31FFA700B3EDFBBC2D5 /* ApplePayTransactionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9E3953366AF16F8C683080 /* ApplePayTransactionIntent.swift */; };
 		C8CE32E113F00F515C96755A /* CategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94784D1C520D2ABFE81B5EFC /* CategoryIcon.swift */; };
 		C9DA5EA41913039144D07CB7 /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E3B12C6504328EDA133F /* SidebarNavigationView.swift */; };
 		CE2C99033249EC1A76B4847B /* ProductScorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */; };
@@ -412,6 +415,7 @@
 		6A77D6889883009872F7993D /* StoreCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCacheTests.swift; sourceTree = "<group>"; };
 		6B12E039EB445C9232ED8909 /* ImportCSVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCSVView.swift; sourceTree = "<group>"; };
 		6B95DFB416E5A7F4F2A04C2F /* MynikSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MynikSchema.swift; sourceTree = "<group>"; };
+		6B9E3953366AF16F8C683080 /* ApplePayTransactionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayTransactionIntent.swift; sourceTree = "<group>"; };
 		6C15FAC38A512FB729AA7494 /* ProductLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLifecycle.swift; sourceTree = "<group>"; };
 		6D0EED38E1B2D86F20334F68 /* TransactionDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDraft.swift; sourceTree = "<group>"; };
 		6D4CCD9A6EA1266F2EBBB0CA /* BudgetOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetOverview.swift; sourceTree = "<group>"; };
@@ -474,6 +478,7 @@
 		ADFB8C060E3E0EC9F2C6ACBC /* StoreOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreOperations.swift; sourceTree = "<group>"; };
 		AF16733D8FDADE3D6B802CB8 /* CurrencySettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySettingsSection.swift; sourceTree = "<group>"; };
 		AF18C32CBA456F25A62DDA06 /* BackupSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupSettingsSection.swift; sourceTree = "<group>"; };
+		AF8B374A902CF67A543A77EC /* ApplePayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		B1A654DDAF589860DA4B8E63 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		B42C84016160C2D3E996E14B /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		B49D21D97BEC77F19EB705AD /* NotificationSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsSection.swift; sourceTree = "<group>"; };
@@ -495,6 +500,7 @@
 		C77A77B607D3C3FD0D57FADB /* LifeAgenda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeAgenda.swift; sourceTree = "<group>"; };
 		C8177B8DCEB1DB4729312A4B /* GoalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTests.swift; sourceTree = "<group>"; };
 		C8A4903591E79E467BB2F988 /* CategoryGuesser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGuesser.swift; sourceTree = "<group>"; };
+		C9D242982E2EBA20B2AC17D7 /* AmountTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountTextParser.swift; sourceTree = "<group>"; };
 		CA0C11423811DB36622E8DA7 /* StoreCostSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCostSettings.swift; sourceTree = "<group>"; };
 		CC78CE5DC93F1B6CED42C6CC /* StoreProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProduct.swift; sourceTree = "<group>"; };
 		CE1F77D890E14C02529CF778 /* StoreSyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSyncCoordinator.swift; sourceTree = "<group>"; };
@@ -619,6 +625,7 @@
 		251848C6E6CC16202E74AD78 /* MynikTests */ = {
 			isa = PBXGroup;
 			children = (
+				AF8B374A902CF67A543A77EC /* ApplePayTests.swift */,
 				C483ACAA674EC1D10D9BC575 /* BackupTests.swift */,
 				096F65ECD4DAF0211F0C0983 /* BillReminderPlannerTests.swift */,
 				716E94ACE3A7A9E667EBC395 /* BillTests.swift */,
@@ -1142,6 +1149,7 @@
 			isa = PBXGroup;
 			children = (
 				962D2212DDC7B55CDAFA0213 /* AddExpenseIntent.swift */,
+				6B9E3953366AF16F8C683080 /* ApplePayTransactionIntent.swift */,
 				153AD0AA655634063DCD1EF8 /* CategoryEntity.swift */,
 				58A442846FAE0997B3BE4121 /* MynikShortcuts.swift */,
 			);
@@ -1171,6 +1179,7 @@
 		DE4E51C9F1DE0BE95FEC0441 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C9D242982E2EBA20B2AC17D7 /* AmountTextParser.swift */,
 				92F5B0A2E2A92D7F5376131B /* AppEnvironment.swift */,
 				6D4CCD9A6EA1266F2EBBB0CA /* BudgetOverview.swift */,
 				530B784EC4F316E46A60AFDF /* Currency.swift */,
@@ -1421,8 +1430,10 @@
 				A9380F2DFC02E3533A2A9FAD /* AddExpenseIntent.swift in Sources */,
 				54B81FBBB4E47F764D36B613 /* AgendaItem.swift in Sources */,
 				404FD5C73FCB2CA2E4842982 /* AgendaReminderPlanner.swift in Sources */,
+				8D1E6D9CB70B7DB85262EEF3 /* AmountTextParser.swift in Sources */,
 				1ECF5AE34BB67975DF94DA78 /* AppEnvironment.swift in Sources */,
 				7D593524A70378A3EEA25296 /* AppSection.swift in Sources */,
+				C70BA31FFA700B3EDFBBC2D5 /* ApplePayTransactionIntent.swift in Sources */,
 				3F5C41F5AA0CAF371BC77672 /* BackupArchive.swift in Sources */,
 				BC156528B9493BE9DA09988B /* BackupRecords.swift in Sources */,
 				E8AA4838E53535444984D5B7 /* BackupService.swift in Sources */,
@@ -1631,6 +1642,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E22BD54E01C82ADA205EE35 /* ApplePayTests.swift in Sources */,
 				96EBF0EC9FEEC78FA47B6641 /* BackupTests.swift in Sources */,
 				39CF0F8005C0FE4E469B3232 /* BillReminderPlannerTests.swift in Sources */,
 				EA19CCA0F5D765DFF5C8AF7E /* BillTests.swift in Sources */,

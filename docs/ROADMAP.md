@@ -43,7 +43,7 @@
 - [x] Sync iCloud (CloudKit) → **trocado por export/import JSON**: o CloudKit exige o Apple Developer Program (pago). Cópia completa de todos os dados, partilhável por AirDrop, iCloud Drive ou Ficheiros, com fusão sem duplicados (por `uid`). Não há sync automático.
 - [x] Widgets (iOS + Mac) — saldo do mês e contas a vencer; resumo partilhado por App Group (no Mac, assinado com o certificado grátis da Personal Team)
 - [x] App Intents: Siri / Atalhos ("gastei X em Y")
-- [ ] Automação Apple Pay → transação
+- [x] Automação Apple Pay → transação (ação para a automação "Transação" dos Atalhos; guia no README)
 - [ ] MenuBarExtra no Mac
 - [ ] EventKit (Calendário/Lembretes) na tela Hoje
 

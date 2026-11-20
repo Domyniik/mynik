@@ -47,6 +47,16 @@ xcodegen generate
 open Mynik.xcodeproj
 ```
 
+## Apple Pay → Mynik (automação dos Atalhos)
+Cada pagamento com o Apple Pay pode entrar sozinho nas Finanças:
+
+1. Abre **Atalhos → Automação → Nova automação → Transação**.
+2. Escolhe os cartões, deixa todas as categorias e marca **Executar imediatamente**.
+3. Em **Nova automação em branco**, adiciona a ação **Registar compra do Apple Pay** (Mynik).
+4. Toca em **Comerciante** e escolhe a variável *Comerciante*; em **Valor**, a variável *Montante* (opcional: **Cartão** → *Cartão ou passe*).
+
+A categoria é a do último gasto no mesmo comerciante (ou adivinhada pelo nome; senão "Outros") e um pagamento repetido no mesmo minuto não é registado duas vezes. Também há "Registar gasto" (*"Gastei em Alimentação no Mynik"*) e "Saldo do mês" na Siri e nos Atalhos.
+
 ## Screenshots
 _Em breve._
 

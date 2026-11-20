@@ -15,6 +15,12 @@ struct MynikShortcuts: AppShortcutsProvider {
             systemImageName: "eurosign.circle"
         )
         AppShortcut(
+            intent: ApplePayTransactionIntent(),
+            phrases: ["Registar compra do Apple Pay no \(.applicationName)"],
+            shortTitle: "Compra do Apple Pay",
+            systemImageName: "wallet.pass"
+        )
+        AppShortcut(
             intent: MonthBalanceIntent(),
             phrases: [
                 "Saldo do mês no \(.applicationName)",
