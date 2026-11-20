@@ -13,6 +13,7 @@
 		08C092C5517656C74E514777 /* BillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA02C15A95151DFB6279136 /* BillsView.swift */; };
 		0B9A5249DE8DA508AF924E81 /* StoreCacheWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F53A41C72876231F2702D4 /* StoreCacheWriter.swift */; };
 		0DDE545F04CF9098624633FB /* StoreBackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4216E39DE8E25A9F9BB83277 /* StoreBackgroundRefresh.swift */; };
+		1119186FCE71347903F105FA /* StoreProfitPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F4348705602EA74CC1754C /* StoreProfitPoster.swift */; };
 		14222423EDD6120A8793E423 /* UpcomingBillsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF02EBCD0E286CADFE3421 /* UpcomingBillsSection.swift */; };
 		1448D92A737F17065D34A64C /* ShopifyStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24FFC8D3851B38F2A751A94 /* ShopifyStoreDataSource.swift */; };
 		14A4BE192BB89C25AEDFBEB7 /* StoreOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191F3D76677BAD86DDA325A /* StoreOrder.swift */; };
@@ -45,6 +46,7 @@
 		422A769102E4756EA46EA7DF /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A004CA9CA521C904C4FD23 /* RootView.swift */; };
 		4494BADBD05696F7E9C74355 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002B6686D4276EF694176E7 /* BudgetView.swift */; };
 		455E6917AD9E9D7BD049D897 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530B784EC4F316E46A60AFDF /* Currency.swift */; };
+		457CA065CACFF83A593C6227 /* StoreProfitPosterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032EE9B93320C0E94733B7AE /* StoreProfitPosterTests.swift */; };
 		469251F1B4F4407DC022F0FB /* TransactionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6122F7B68016BFF0781E64 /* TransactionKind.swift */; };
 		469378BD9DFA0CFD3F22B023 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DC3659D41A22FC9375C56 /* TodayView.swift */; };
 		46E5A3A5A17462AAA5072FBF /* MonthSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434906A77DFC31594DC25FF9 /* MonthSummary.swift */; };
@@ -155,6 +157,7 @@
 		01226C15381A8C5B564F1F41 /* ShopifyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyJSON.swift; sourceTree = "<group>"; };
 		01E0B4984905797F86A63E2F /* ProductLifecycleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLifecycleSection.swift; sourceTree = "<group>"; };
 		0303C54ECE85444CF1CDE26F /* StoreSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSnapshot.swift; sourceTree = "<group>"; };
+		032EE9B93320C0E94733B7AE /* StoreProfitPosterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProfitPosterTests.swift; sourceTree = "<group>"; };
 		05AD378957A6455F639319BD /* FunnelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnelView.swift; sourceTree = "<group>"; };
 		062E2C446710EA99AF5B8F4E /* FunnelDiagnosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnelDiagnosis.swift; sourceTree = "<group>"; };
 		0637D778B32D89917A2B0EB2 /* ProfitBreakdownSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitBreakdownSection.swift; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 		54D663C6B5485140E95E19D5 /* CurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTests.swift; sourceTree = "<group>"; };
 		54ECA72E07A88F503F4EBA6B /* SubscriptionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSummary.swift; sourceTree = "<group>"; };
 		567558F86165939EDDFB7886 /* StoreMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMetricsTests.swift; sourceTree = "<group>"; };
+		59F4348705602EA74CC1754C /* StoreProfitPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProfitPoster.swift; sourceTree = "<group>"; };
 		5C3C28DFA1A60FC6FDB451AE /* BillFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillFormView.swift; sourceTree = "<group>"; };
 		61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductScorerTests.swift; sourceTree = "<group>"; };
 		62955238A85D2D99F9CAEDEA /* BankCSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCSVImporter.swift; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 				6A77D6889883009872F7993D /* StoreCacheTests.swift */,
 				567558F86165939EDDFB7886 /* StoreMetricsTests.swift */,
 				6421E0B266CD86A8D82EC269 /* StoreOperationsTests.swift */,
+				032EE9B93320C0E94733B7AE /* StoreProfitPosterTests.swift */,
 				7AB9F7C0AFDB7558831F050F /* SubscriptionTests.swift */,
 				1ADF6F1A1954CEC44AC23347 /* TodayTests.swift */,
 			);
@@ -421,6 +426,7 @@
 				4216E39DE8E25A9F9BB83277 /* StoreBackgroundRefresh.swift */,
 				87F53A41C72876231F2702D4 /* StoreCacheWriter.swift */,
 				4EDF0EBDBBB75275564E54C7 /* StoreNotifier.swift */,
+				59F4348705602EA74CC1754C /* StoreProfitPoster.swift */,
 				0303C54ECE85444CF1CDE26F /* StoreSnapshot.swift */,
 				CE1F77D890E14C02529CF778 /* StoreSyncCoordinator.swift */,
 			);
@@ -871,6 +877,7 @@
 				14A4BE192BB89C25AEDFBEB7 /* StoreOrder.swift in Sources */,
 				A6C057A812B3445AC7574A98 /* StoreOrderRow.swift in Sources */,
 				3CD58603F067EC66492906DB /* StoreProduct.swift in Sources */,
+				1119186FCE71347903F105FA /* StoreProfitPoster.swift in Sources */,
 				20DF03D3DBD27497514537BF /* StoreRankingSummary.swift in Sources */,
 				F05E798BB7436E5C6623FF21 /* StoreSettingsSection.swift in Sources */,
 				FEDF79D4C6B51C8C63AA07F8 /* StoreSnapshot.swift in Sources */,
@@ -911,6 +918,7 @@
 				556279608F9CFF783538CFCF /* StoreCacheTests.swift in Sources */,
 				184E2E46581B23EB96ECDFB9 /* StoreMetricsTests.swift in Sources */,
 				EBCCA8148C30A07525764729 /* StoreOperationsTests.swift in Sources */,
+				457CA065CACFF83A593C6227 /* StoreProfitPosterTests.swift in Sources */,
 				6A304D591DD789967EDB89CF /* SubscriptionTests.swift in Sources */,
 				929F11851535DFBA592E77E2 /* TodayTests.swift in Sources */,
 			);

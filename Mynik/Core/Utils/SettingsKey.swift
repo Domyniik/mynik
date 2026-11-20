@@ -21,4 +21,5 @@ nonisolated enum SettingsKey {
     static let storeLastNoSaleAlert = "storeLastNoSaleAlert"
     /// IDs dos últimos pedidos já notificados.
     static let storeNotifiedOrders = "storeNotifiedOrders"
+    static let storeProfitToFinance = "storeProfitToFinance"
 }

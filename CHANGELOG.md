@@ -28,3 +28,4 @@
 - feat(store): adiciona carrinhos abandonados (com link de recuperação) e pedidos por enviar com aviso de atraso
 - feat(store): adiciona alertas da loja (dias sem venda, atrasos, stock) e notificações locais de venda com atualização em segundo plano
 - feat(store): adiciona ciclo de vida do produto (teste → decisão → escalar/manter/descontinuar) com sugestão do ranking
+- feat(store): lança o lucro real mensal da loja nas Finanças (categoria Loja), atualizado a cada sincronização

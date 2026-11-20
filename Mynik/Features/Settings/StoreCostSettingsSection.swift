@@ -6,6 +6,7 @@ struct StoreCostSettingsSection: View {
     @AppStorage(SettingsKey.storeFeeFixed) private var feeFixed = StoreCostSettings.defaultFeeFixed
     @AppStorage(SettingsKey.storeShippingCost) private var shippingCost = StoreCostSettings.defaultShippingCost
     @AppStorage(SettingsKey.storeMonthlyAds) private var monthlyAds = 0.0
+    @AppStorage(SettingsKey.storeProfitToFinance) private var profitToFinance = true
 
     var body: some View {
         Section {
@@ -13,10 +14,11 @@ struct StoreCostSettingsSection: View {
             amountField("Taxa fixa por pedido", value: $feeFixed, format: .currency(code: Currency.defaultCode).locale(.app))
             amountField("Envio por pedido", value: $shippingCost, format: .currency(code: Currency.defaultCode).locale(.app))
             amountField("Anúncios gerais / mês", value: $monthlyAds, format: .currency(code: Currency.defaultCode).locale(.app))
+            Toggle("Lançar o lucro mensal nas Finanças", isOn: $profitToFinance)
         } header: {
             Text("Custos da loja")
         } footer: {
-            Text("Entram no lucro real junto com o custo de cada produto. O gasto em anúncios de um produto define-se na ficha do produto.")
+            Text("Entram no lucro real junto com o custo de cada produto. O gasto em anúncios de um produto define-se na ficha do produto. O lucro de cada mês entra nas Finanças como receita da categoria Loja (só com a loja real ligada).")
         }
     }
 

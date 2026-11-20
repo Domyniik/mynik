@@ -17,6 +17,8 @@ final class FinanceTransaction {
     var date: Date = Date.now
     var notes: String = ""
     var createdAt: Date = Date.now
+    /// Origem automática do movimento (ex.: "store-profit-2026-11"); vazio se foi criado à mão.
+    var externalID: String = ""
 
     var category: Category?
     var account: Account?
@@ -25,6 +27,9 @@ final class FinanceTransaction {
         get { TransactionKind(rawValue: kindRaw) ?? .expense }
         set { kindRaw = newValue.rawValue }
     }
+
+    /// `true` quando o movimento é mantido automaticamente pela app.
+    var isAutomatic: Bool { !externalID.isEmpty }
 
     /// Valor com sinal: negativo para gastos, positivo para receitas.
     var signedAmount: Decimal {

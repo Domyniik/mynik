@@ -85,8 +85,11 @@ final class StoreSyncCoordinator {
             trafficWarning = snapshot.trafficUnavailableReason
             lastError = nil
 
-            // Notificações só para a loja real (os dados de exemplo não vendem).
+            // Notificações e lucro nas Finanças só para a loja real.
             if credentials != nil {
+                if StoreProfitPoster.isEnabled {
+                    try StoreProfitPoster.post(in: context, costs: StoreCostSettings(defaults: defaults), since: since, now: now, calendar: calendar)
+                }
                 await notify(result, in: context, now: now)
             }
             return result

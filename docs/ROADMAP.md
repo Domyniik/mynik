@@ -25,7 +25,7 @@
 - [x] Carrinhos abandonados e pedidos por enviar
 - [x] Alertas (dias sem venda) e notificação de venda
 - [x] Ciclo de vida do produto
-- [ ] Lucro da loja → Finanças
+- [x] Lucro da loja → Finanças
 
 ## Fase 4 — Projetos, metas e notas
 - [ ] Projetos (Kanban + lista) e tarefas

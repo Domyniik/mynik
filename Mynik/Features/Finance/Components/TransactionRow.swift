@@ -16,8 +16,16 @@ struct TransactionRow: View {
             CategoryIcon(category: transaction.category)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(transaction.title)
-                    .lineLimit(1)
+                HStack(spacing: 4) {
+                    Text(transaction.title)
+                        .lineLimit(1)
+                    if transaction.isAutomatic {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .accessibilityLabel("Atualizado automaticamente")
+                    }
+                }
 
                 Text("\(transaction.category?.name ?? "Sem categoria") · \(transaction.date.formatted(.dateTime.day().month(.abbreviated)))")
                     .font(.caption)
