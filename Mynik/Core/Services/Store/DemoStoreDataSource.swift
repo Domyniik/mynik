@@ -99,9 +99,10 @@ nonisolated struct DemoStoreDataSource: StoreDataSource {
             }
             orders += dayOrders.sorted { $0.createdAt < $1.createdAt }
 
-            let sessions = Int.random(in: 55...90, using: &random) + (isWeekend ? 25 : 0)
+            let sessions = Int.random(in: 180...260, using: &random) + (isWeekend ? 50 : 0)
             let cart = max(dayOrders.count + 2, Int(Double(sessions) * Double.random(in: 0.07...0.10, using: &random)))
-            let checkout = max(dayOrders.count, Int(Double(cart) * Double.random(in: 0.50...0.62, using: &random)))
+            // Muitos desistem entre o carrinho e o checkout (portes): o diagnóstico aponta para aí.
+            let checkout = max(dayOrders.count, Int(Double(cart) * Double.random(in: 0.26...0.36, using: &random)))
             traffic.append(.init(
                 day: day,
                 sessions: sessions,

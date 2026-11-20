@@ -21,7 +21,7 @@
 - [x] Cache local (StoreProduct, StoreOrder, DailyStat)
 - [x] KPIs + lucro real + gráfico diário
 - [x] Ranking de produtos (score 0–100 + classificação + ação)
-- [ ] Diagnóstico do funil
+- [x] Diagnóstico do funil
 - [ ] Carrinhos abandonados e pedidos por enviar
 - [ ] Alertas (dias sem venda) e notificação de venda
 - [ ] Ciclo de vida do produto

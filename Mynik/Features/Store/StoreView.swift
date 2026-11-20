@@ -55,6 +55,23 @@ struct StoreView: View {
 
             StoreRankingSummary(products: products, orders: orders)
 
+            Section("Funil") {
+                let funnel = FunnelDiagnosis.diagnose(stats: stats, days: 30)
+                NavigationLink {
+                    FunnelView()
+                } label: {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Label(funnel.problem.title, systemImage: funnel.problem.symbolName)
+                            .font(.headline)
+                        if let conversion = funnel.conversionRate {
+                            Text("Conversão de \(conversion.formatted(.percent.precision(.fractionLength(1)).locale(.app))) nos últimos 30 dias")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+            }
+
             Section("Últimos 30 dias") {
                 StoreDailyChart(points: metrics.dailyPoints(days: 30))
                     .padding(.vertical, 6)

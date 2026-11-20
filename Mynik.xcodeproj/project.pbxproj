@@ -20,6 +20,7 @@
 		201587147B0BDBDCCBC4D374 /* ModelContainerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F66C2DB870302CFE7B8D4AD /* ModelContainerFactory.swift */; };
 		20DF03D3DBD27497514537BF /* StoreRankingSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BFA3764DB7C8216F08D45D /* StoreRankingSummary.swift */; };
 		21F18679EAE23F55DBDD0661 /* BillFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C28DFA1A60FC6FDB451AE /* BillFormView.swift */; };
+		24CE472973D288AE82749791 /* FunnelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AD378957A6455F639319BD /* FunnelView.swift */; };
 		24DCBF859560D77E04FFC4C6 /* DailyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87E60C0CEF6DB783E698ED7 /* DailyStat.swift */; };
 		29011A216993DAF39AE05F1D /* CSVImportPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427961AA580333A55407714 /* CSVImportPreview.swift */; };
 		2C6DEC6216965DB83A144059 /* DuplicateDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B8D8FE44E760DDE0B21E5A /* DuplicateDetector.swift */; };
@@ -94,6 +95,7 @@
 		C8CE32E113F00F515C96755A /* CategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94784D1C520D2ABFE81B5EFC /* CategoryIcon.swift */; };
 		C9DA5EA41913039144D07CB7 /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E3B12C6504328EDA133F /* SidebarNavigationView.swift */; };
 		CE2C99033249EC1A76B4847B /* ProductScorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */; };
+		CE74B088ED2E864A90779C83 /* FunnelDiagnosisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7102CEE8E4BF5902B1990F56 /* FunnelDiagnosisTests.swift */; };
 		CEE66D0DC0063D816D1F07A8 /* BudgetEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACD4422DF06C1371C914BC6 /* BudgetEditorView.swift */; };
 		D8F7E20C19753DCB195A30C5 /* MynikSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B95DFB416E5A7F4F2A04C2F /* MynikSchema.swift */; };
 		DCA76909B10D560A7D001B00 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D76D85611F13CD67C2103F /* Account.swift */; };
@@ -103,6 +105,7 @@
 		E32DE44FA2A4F8EB3EBBCAD2 /* FinanceRouteDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA74B7B61B30CF0BB5745E6 /* FinanceRouteDestination.swift */; };
 		E57BC8840162A38DEE08ACEF /* FinanceTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5264BDBDDB1C76C574CBA458 /* FinanceTransaction.swift */; };
 		E62CC7F2293C1B4C0555CA31 /* SettingsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012CB9D4CE4C32AE00F1F6B /* SettingsKey.swift */; };
+		E68EC0CDDD390BBF64E36AC3 /* FunnelDiagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E2C446710EA99AF5B8F4E /* FunnelDiagnosis.swift */; };
 		E7BD007425D41BD67CB053F9 /* StoreCostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0C11423811DB36622E8DA7 /* StoreCostSettings.swift */; };
 		E8E81B538051CF2E9EBCC65D /* BudgetLineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EC8727CFAF7E71C44D3CC6 /* BudgetLineRow.swift */; };
 		EA19CCA0F5D765DFF5C8AF7E /* BillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716E94ACE3A7A9E667EBC395 /* BillTests.swift */; };
@@ -133,6 +136,8 @@
 		00314ABB51A45C66D1DFE09E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		01226C15381A8C5B564F1F41 /* ShopifyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyJSON.swift; sourceTree = "<group>"; };
 		0303C54ECE85444CF1CDE26F /* StoreSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSnapshot.swift; sourceTree = "<group>"; };
+		05AD378957A6455F639319BD /* FunnelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnelView.swift; sourceTree = "<group>"; };
+		062E2C446710EA99AF5B8F4E /* FunnelDiagnosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnelDiagnosis.swift; sourceTree = "<group>"; };
 		0637D778B32D89917A2B0EB2 /* ProfitBreakdownSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitBreakdownSection.swift; sourceTree = "<group>"; };
 		06B52D2EB4E4076D41C0AA2A /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		0939F2752F7BF369E875DF6C /* DemoStoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoStoreDataSource.swift; sourceTree = "<group>"; };
@@ -184,6 +189,7 @@
 		6E0A98893E61637B50D72F20 /* ProductRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRankingView.swift; sourceTree = "<group>"; };
 		6E4B19E6E8B72F772151E381 /* StoreKPIGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKPIGrid.swift; sourceTree = "<group>"; };
 		6E8BB64F6F457E04E9C10207 /* CategoryDonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDonutChart.swift; sourceTree = "<group>"; };
+		7102CEE8E4BF5902B1990F56 /* FunnelDiagnosisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnelDiagnosisTests.swift; sourceTree = "<group>"; };
 		716E94ACE3A7A9E667EBC395 /* BillTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillTests.swift; sourceTree = "<group>"; };
 		750CE827279C8168354A426A /* TransactionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFormView.swift; sourceTree = "<group>"; };
 		75B8D8FE44E760DDE0B21E5A /* DuplicateDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateDetector.swift; sourceTree = "<group>"; };
@@ -280,6 +286,7 @@
 				D33615F19C6B446E527826D0 /* CSVImportTests.swift */,
 				54D663C6B5485140E95E19D5 /* CurrencyTests.swift */,
 				12A6ACD2EA7B6310B5B2ADB1 /* FinanceTests.swift */,
+				7102CEE8E4BF5902B1990F56 /* FunnelDiagnosisTests.swift */,
 				1EACE3C1E62CECCC47D0B2C1 /* ModelTests.swift */,
 				61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */,
 				1AA298141F281075E5144703 /* ReportTests.swift */,
@@ -325,6 +332,7 @@
 				F60BADB4B789DA1B9240CB2C /* StoreView.swift */,
 				E40C2F8C4E8824F286C0D162 /* Components */,
 				FF0A812017474C50B4024914 /* Dashboard */,
+				D465751C38BC0502E4EF9228 /* Funnel */,
 				E4519EB577C3C66CB25C3548 /* Products */,
 			);
 			path = Store;
@@ -398,6 +406,7 @@
 		84C23DCED1C08471FDD0F675 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				062E2C446710EA99AF5B8F4E /* FunnelDiagnosis.swift */,
 				1DC8BE9B95E85F43C5CF82EC /* ProductPerformance.swift */,
 				0B7B60C27D86E2A32468E590 /* ProductScorer.swift */,
 				CA0C11423811DB36622E8DA7 /* StoreCostSettings.swift */,
@@ -499,6 +508,14 @@
 				29F45A649ED418ECA9A905D5 /* Subscriptions */,
 			);
 			path = Finance;
+			sourceTree = "<group>";
+		};
+		D465751C38BC0502E4EF9228 /* Funnel */ = {
+			isa = PBXGroup;
+			children = (
+				05AD378957A6455F639319BD /* FunnelView.swift */,
+			);
+			path = Funnel;
 			sourceTree = "<group>";
 		};
 		D52D867280A05C0819894EA2 /* Import */ = {
@@ -732,6 +749,8 @@
 				E32DE44FA2A4F8EB3EBBCAD2 /* FinanceRouteDestination.swift in Sources */,
 				E57BC8840162A38DEE08ACEF /* FinanceTransaction.swift in Sources */,
 				BE70A45AF2D71AD55BE1AF6F /* FinanceView.swift in Sources */,
+				E68EC0CDDD390BBF64E36AC3 /* FunnelDiagnosis.swift in Sources */,
+				24CE472973D288AE82749791 /* FunnelView.swift in Sources */,
 				BEEE86816AF7622B734B13CA /* ImportCSVView.swift in Sources */,
 				B6B70213872ED072964FB6EC /* KPITile.swift in Sources */,
 				5852D68AFE6487DA9A890BA2 /* KeychainService.swift in Sources */,
@@ -803,6 +822,7 @@
 				B0523AE07EC74A37E253FD36 /* CSVImportTests.swift in Sources */,
 				F2FD38CC32277522D7AFAB8E /* CurrencyTests.swift in Sources */,
 				7FD970434BFC946EDEC5469B /* FinanceTests.swift in Sources */,
+				CE74B088ED2E864A90779C83 /* FunnelDiagnosisTests.swift in Sources */,
 				C2BD8998263036E64D40333D /* ModelTests.swift in Sources */,
 				CE2C99033249EC1A76B4847B /* ProductScorerTests.swift in Sources */,
 				A3C6FA62B866EE4FD183633B /* ReportTests.swift in Sources */,
