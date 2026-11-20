@@ -1,12 +1,13 @@
 import Foundation
 
-/// Secções de topo da app. Novos módulos (Loja, Projetos, Notas...) entram aqui.
+/// Secções de topo da app. Novos módulos entram aqui.
 enum AppSection: String, CaseIterable, Identifiable, Hashable {
     case today
     case finance
     case store
     case projects
     case goals
+    case car
     case notes
     case settings
 
@@ -26,6 +27,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         case .store: "Loja"
         case .projects: "Projetos"
         case .goals: "Metas"
+        case .car: "Carro"
         case .notes: "Notas"
         case .settings: "Definições"
         }
@@ -38,6 +40,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         case .store: "storefront"
         case .projects: "checklist"
         case .goals: "target"
+        case .car: "car"
         case .notes: "note.text"
         case .settings: "gearshape"
         }

@@ -94,6 +94,25 @@ struct SampleData: PreviewModifier {
         supplier.icon = "🗂️"
         NoteLinks.toggle(app, in: ideas)
 
+        // Carro com abastecimentos (para o consumo), uma manutenção e prazos.
+        let car = Vehicle(name: "Golf", plate: "1234 LMN", fuelType: .gasoline95, initialOdometer: 84_200)
+        context.insert(car)
+        for (days, km, liters, cost, full) in [(40, 84_200, 42.0, 66.10, true), (26, 84_830, 40.5, 64.20, true), (12, 85_420, 20.0, 31.80, false), (2, 85_990, 19.8, 31.10, true)] {
+            let entry = FuelEntry(date: daysAgo(days), odometer: km, quantity: liters, totalCost: Decimal(cost), isFullTank: full, station: "Repsol")
+            context.insert(entry)
+            entry.vehicle = car
+        }
+        let service = MaintenanceRecord(kind: .oil, date: daysAgo(90), odometer: 83_100, cost: 89)
+        service.nextDueOdometer = 86_100
+        context.insert(service)
+        service.vehicle = car
+        let inspection = CarDeadline(kind: .inspection, dueDate: calendar.date(byAdding: .day, value: 18, to: .now) ?? .now, amount: 42.50, renewalMonths: 24)
+        let insurance = CarDeadline(kind: .insurance, dueDate: calendar.date(byAdding: .month, value: 5, to: .now) ?? .now, amount: 380)
+        [inspection, insurance].forEach { deadline in
+            context.insert(deadline)
+            deadline.vehicle = car
+        }
+
         // Loja de exemplo, já em cache.
         let demo = DemoStoreDataSource()
         let since = calendar.date(byAdding: .day, value: -59, to: calendar.startOfDay(for: .now)) ?? .now

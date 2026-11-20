@@ -24,4 +24,12 @@ nonisolated enum SettingsKey {
     static let storeProfitToFinance = "storeProfitToFinance"
     /// Vista das tarefas: "board" (Kanban) ou "list".
     static let taskLayout = "taskLayout"
+    /// Lembretes dos prazos da agenda (carro, documentos, follow-ups).
+    static let agendaRemindersEnabled = "agendaRemindersEnabled"
+    /// Província dos preços de combustível (código de 2 dígitos).
+    static let fuelProvinceID = "fuelProvinceID"
+    /// Ordenar os postos pela distância (pede a localização).
+    static let fuelUsesLocation = "fuelUsesLocation"
+    /// Veículo escolhido no ecrã Carro.
+    static let selectedVehicleUID = "selectedVehicleUID"
 }

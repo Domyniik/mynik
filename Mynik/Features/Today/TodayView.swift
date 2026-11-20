@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-/// Resumo do dia: saldo do mês, contas a vencer, tarefas, metas, loja e últimos gastos.
+/// Resumo do dia: saldo do mês, contas e prazos a vencer, tarefas, metas, loja e últimos gastos.
 struct TodayView: View {
     @Environment(\.currencyConverter) private var converter
     @Query(sort: \FinanceTransaction.date, order: .reverse) private var transactions: [FinanceTransaction]
@@ -19,6 +19,8 @@ struct TodayView: View {
             }
 
             UpcomingBillsSection(days: 7)
+
+            TodayAgendaSection()
 
             TodayTasksSection()
 

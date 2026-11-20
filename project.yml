@@ -32,6 +32,14 @@ targets:
         # A versão vem das definições de compilação (o release.sh define MARKETING_VERSION).
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        # A API de preços de combustível do Ministerio só aceita TLS 1.2 sem forward secrecy.
+        NSAppTransportSecurity:
+          NSExceptionDomains:
+            sedeaplicaciones.minetur.gob.es:
+              NSExceptionRequiresForwardSecrecy: false
+        # Preços de combustível perto do utilizador (a localização não sai do dispositivo).
+        NSLocationWhenInUseUsageDescription: O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.
+        NSLocationUsageDescription: O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.domynik.mynik
@@ -49,6 +57,7 @@ targets:
         ENABLE_APP_SANDBOX: YES
         ENABLE_HARDENED_RUNTIME: YES
         ENABLE_OUTGOING_NETWORK_CONNECTIONS: YES
+        ENABLE_RESOURCE_ACCESS_LOCATION: YES
         ENABLE_USER_SELECTED_FILES: readonly
         ENABLE_PREVIEWS: YES
         "CODE_SIGN_IDENTITY[sdk=macosx*]": "-"

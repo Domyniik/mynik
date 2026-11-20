@@ -1,7 +1,7 @@
 import Foundation
 
 /// Texto curto para datas de vencimento ("Vence hoje", "Vence em 3 dias"...).
-enum DueDateText {
+nonisolated enum DueDateText {
     static func daysUntil(_ date: Date, from now: Date = .now, calendar: Calendar = .current) -> Int {
         let start = calendar.startOfDay(for: now)
         let end = calendar.startOfDay(for: date)

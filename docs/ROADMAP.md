@@ -34,7 +34,7 @@
 - [x] Markdown e links entre itens
 
 ## Fase 5 — Vida
-- [ ] Carro (combustível, manutenção, seguro/ITV/IUC)
+- [x] Carro (combustível, manutenção, seguro/ITV/IUC)
 - [ ] Documentos com validade e Face ID
 - [ ] Carreira (candidaturas, cursos)
 - [ ] Investimentos / património

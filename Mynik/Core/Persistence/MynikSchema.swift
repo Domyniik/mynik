@@ -1,27 +1,28 @@
 import SwiftData
 
-/// Versão 3 do esquema (v0.4): acrescenta projetos, tarefas, metas e notas.
+/// Versão 4 do esquema (v0.5): acrescenta carro, documentos, carreira e investimentos.
 ///
 /// Usa os modelos atuais da app. Ao publicar uma versão, congela-se uma cópia
-/// (como `MynikSchemaV2`) antes de mudar os modelos de novo.
-nonisolated enum MynikSchemaV3: VersionedSchema {
-    static let versionIdentifier = Schema.Version(3, 0, 0)
+/// (como `MynikSchemaV3`) antes de mudar os modelos de novo.
+nonisolated enum MynikSchemaV4: VersionedSchema {
+    static let versionIdentifier = Schema.Version(4, 0, 0)
 
     static var models: [any PersistentModel.Type] {
         [
             FinanceTransaction.self, Category.self, Account.self, Bill.self,
             StoreProduct.self, StoreOrder.self, DailyStat.self, StoreCheckout.self,
             Project.self, ProjectTask.self, Goal.self, Note.self, NoteBlock.self,
+            Vehicle.self, FuelEntry.self, MaintenanceRecord.self, CarDeadline.self,
         ]
     }
 }
 
 /// Esquema em uso pela app.
-typealias MynikSchemaCurrent = MynikSchemaV3
+typealias MynikSchemaCurrent = MynikSchemaV4
 
 nonisolated enum MynikMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [MynikSchemaV1.self, MynikSchemaV2.self, MynikSchemaV3.self]
+        [MynikSchemaV1.self, MynikSchemaV2.self, MynikSchemaV3.self, MynikSchemaV4.self]
     }
 
     static var stages: [MigrationStage] {
@@ -30,6 +31,7 @@ nonisolated enum MynikMigrationPlan: SchemaMigrationPlan {
             // relações opcionais: migração automática.
             .lightweight(fromVersion: MynikSchemaV1.self, toVersion: MynikSchemaV2.self),
             .lightweight(fromVersion: MynikSchemaV2.self, toVersion: MynikSchemaV3.self),
+            .lightweight(fromVersion: MynikSchemaV3.self, toVersion: MynikSchemaV4.self),
         ]
     }
 }

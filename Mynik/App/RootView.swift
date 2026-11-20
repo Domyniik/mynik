@@ -73,7 +73,7 @@ struct RootView: View {
 
     private func rescheduleReminders() {
         Task {
-            await NotificationService.shared.rescheduleBillReminders(in: modelContext)
+            await NotificationService.shared.rescheduleReminders(in: modelContext)
         }
     }
 }

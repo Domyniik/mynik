@@ -22,6 +22,21 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>sedeaplicaciones.minetur.gob.es</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSLocationUsageDescription</key>
+	<string>O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

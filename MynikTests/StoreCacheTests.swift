@@ -172,6 +172,36 @@ struct SchemaMigrationTests {
         #expect(try current.mainContext.fetch(FetchDescriptor<StoreProduct>()).map(\.title) == ["Colar"])
         #expect(try current.mainContext.fetchCount(FetchDescriptor<Project>()) == 0)
     }
+
+    @Test func migratesVersionThreeStoreOnDisk() throws {
+        let folder = FileManager.default.temporaryDirectory.appending(path: "mynik-migration-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let url = folder.appending(path: "default.store")
+
+        do {
+            let schema = Schema(versionedSchema: MynikSchemaV3.self)
+            let old = try ModelContainer(for: schema, configurations: ModelConfiguration(schema: schema, url: url))
+            let project = MynikSchemaV3.Project()
+            project.name = "Mynik"
+            let task = MynikSchemaV3.ProjectTask()
+            task.title = "Fase 5"
+            task.project = project
+            let note = MynikSchemaV3.Note()
+            note.title = "Ideias"
+            note.linkedProjects = [project]
+            old.mainContext.insert(task)
+            old.mainContext.insert(note)
+            try old.mainContext.save()
+        }
+
+        let current = try ModelContainerFactory.make(url: url)
+        let projects = try current.mainContext.fetch(FetchDescriptor<Project>())
+        #expect(projects.map(\.name) == ["Mynik"])
+        #expect(projects.first?.tasks?.map(\.title) == ["Fase 5"])
+        #expect(projects.first?.linkedNotes?.map(\.title) == ["Ideias"])
+        #expect(try current.mainContext.fetchCount(FetchDescriptor<Vehicle>()) == 0)
+    }
 }
 
 struct ShopifyStoreDataSourceTests {

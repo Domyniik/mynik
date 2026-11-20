@@ -2,13 +2,14 @@ import SwiftData
 import SwiftUI
 import UserNotifications
 
-/// Lembretes de vencimento das contas a pagar.
+/// Lembretes de vencimento das contas a pagar e dos prazos (carro, documentos, follow-ups).
 struct NotificationSettingsSection: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.openURL) private var openURL
 
     @AppStorage(SettingsKey.billRemindersEnabled) private var isEnabled = true
     @AppStorage(SettingsKey.billReminderDaysBefore) private var daysBefore = 1
+    @AppStorage(SettingsKey.agendaRemindersEnabled) private var isAgendaEnabled = true
 
     @State private var status: UNAuthorizationStatus = .notDetermined
 
@@ -20,7 +21,11 @@ struct NotificationSettingsSection: View {
                 Stepper(value: $daysBefore, in: 0...7) {
                     LabeledContent("Avisar antes", value: daysBeforeText)
                 }
+            }
 
+            Toggle("Lembrar prazos (carro, documentos, follow-ups)", isOn: $isAgendaEnabled)
+
+            if isEnabled || isAgendaEnabled {
                 if status == .denied {
                     Button("Permitir notificações nos Ajustes", systemImage: "bell.slash") {
                         openSystemSettings()
@@ -31,7 +36,7 @@ struct NotificationSettingsSection: View {
         } header: {
             Text("Notificações")
         } footer: {
-            Text("Recebes um aviso às 9:00 no dia do vencimento e, se quiseres, alguns dias antes.")
+            Text("Recebes um aviso às 9:00 no dia do vencimento e, se quiseres, alguns dias antes. Os prazos do carro avisam 30 e 7 dias antes.")
         }
         .task {
             // Só lê o estado: o pedido de permissão fica para quando há contas
@@ -40,6 +45,9 @@ struct NotificationSettingsSection: View {
         }
         .onChange(of: isEnabled) {
             Task { await reschedule(askingPermission: isEnabled) }
+        }
+        .onChange(of: isAgendaEnabled) {
+            Task { await reschedule(askingPermission: isAgendaEnabled) }
         }
         .onChange(of: daysBefore) {
             Task { await reschedule(askingPermission: false) }
@@ -59,7 +67,7 @@ struct NotificationSettingsSection: View {
             await NotificationService.shared.requestAuthorizationIfNeeded()
         }
         status = await NotificationService.shared.authorizationStatus()
-        await NotificationService.shared.rescheduleBillReminders(in: modelContext)
+        await NotificationService.shared.rescheduleReminders(in: modelContext)
     }
 
     private func openSystemSettings() {

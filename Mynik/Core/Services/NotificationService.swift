@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 import UserNotifications
 
-/// Agenda as notificações locais de vencimento das contas a pagar.
+/// Agenda as notificações locais: contas a pagar e prazos da agenda (carro, documentos...).
 ///
 /// Em vez de seguir cada conta individualmente, apaga e volta a criar todos
 /// os lembretes sempre que os dados mudam: é simples e nunca fica dessincronizado.
@@ -42,30 +42,24 @@ final class NotificationService {
         }
     }
 
-    /// Volta a agendar os lembretes de todas as contas por pagar.
-    func rescheduleBillReminders(in context: ModelContext) async {
-        await removeBillReminders()
-        guard isEnabled else { return }
+    /// Lembretes dos prazos do carro, documentos e follow-ups.
+    var isAgendaEnabled: Bool {
+        UserDefaults.standard.object(forKey: SettingsKey.agendaRemindersEnabled) as? Bool ?? true
+    }
 
-        let descriptor = FetchDescriptor<Bill>(
-            predicate: #Predicate { !$0.isPaid },
-            sortBy: [SortDescriptor(\.dueDate)]
-        )
-        guard let bills = try? context.fetch(descriptor), !bills.isEmpty else { return }
-        guard await requestAuthorizationIfNeeded() else { return }
+    /// Volta a agendar os lembretes das contas por pagar e dos prazos da agenda.
+    func rescheduleReminders(in context: ModelContext) async {
+        await removePendingReminders()
 
-        let planner = BillReminderPlanner(daysBefore: daysBefore)
-        let reminders = planner.reminders(
-            for: bills.map {
-                .init(
-                    title: $0.title,
-                    formattedAmount: Currency.format($0.amount, code: $0.currencyCode),
-                    dueDate: $0.dueDate
-                )
-            }
-        )
+        var reminders = isEnabled ? billReminders(in: context) : []
+        if isAgendaEnabled {
+            reminders += AgendaReminderPlanner().reminders(for: LifeAgenda.allItems(in: context))
+        }
+        guard !reminders.isEmpty, await requestAuthorizationIfNeeded() else { return }
 
-        for reminder in reminders {
+        // O sistema só guarda 64 notificações pendentes: ficam as mais próximas.
+        let nearest = reminders.sorted { $0.fireDate < $1.fireDate }.prefix(BillReminderPlanner.maximumReminders)
+        for reminder in nearest {
             let content = UNMutableNotificationContent()
             content.title = reminder.title
             content.body = reminder.body
@@ -81,10 +75,28 @@ final class NotificationService {
         }
     }
 
-    private func removeBillReminders() async {
+    private func billReminders(in context: ModelContext) -> [BillReminderPlanner.Reminder] {
+        let descriptor = FetchDescriptor<Bill>(
+            predicate: #Predicate { !$0.isPaid },
+            sortBy: [SortDescriptor(\.dueDate)]
+        )
+        guard let bills = try? context.fetch(descriptor) else { return [] }
+        return BillReminderPlanner(daysBefore: daysBefore).reminders(
+            for: bills.map {
+                .init(
+                    title: $0.title,
+                    formattedAmount: Currency.format($0.amount, code: $0.currencyCode),
+                    dueDate: $0.dueDate
+                )
+            }
+        )
+    }
+
+    private func removePendingReminders() async {
+        let prefixes = [BillReminderPlanner.identifierPrefix, AgendaReminderPlanner.identifierPrefix]
         let identifiers = await center.pendingNotificationRequests()
             .map(\.identifier)
-            .filter { $0.hasPrefix(BillReminderPlanner.identifierPrefix) }
+            .filter { identifier in prefixes.contains { identifier.hasPrefix($0) } }
         center.removePendingNotificationRequests(withIdentifiers: identifiers)
     }
 }
