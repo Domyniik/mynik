@@ -73,6 +73,9 @@ struct FinanceView: View {
         .navigationTitle("Finanças")
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
+                ReceiptScanButton()
+            }
+            ToolbarItem(placement: .primaryAction) {
                 Button("Adicionar", systemImage: "plus") {
                     isAddingTransaction = true
                 }

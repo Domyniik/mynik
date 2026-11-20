@@ -50,7 +50,7 @@
 ## Fase 7 — IA e extras
 - [x] Categorização automática (Foundation Models) — com fallback por regras (comerciante e histórico) quando não há Apple Intelligence
 - [x] "Pergunte ao Mynik" — chat com Foundation Models e ferramentas que leem o SwiftData; sem Apple Intelligence responde com resumos por tema
-- [ ] Scanner de faturas (VisionKit)
+- [x] Scanner de faturas (VisionKit) — câmara de documentos no iPhone, foto ou ficheiro no Mac; OCR do Vision no dispositivo extrai comerciante, total e data
 - [ ] Live Activities / Dynamic Island
 - [ ] Revisão semanal, hábitos, busca ⌘K
 

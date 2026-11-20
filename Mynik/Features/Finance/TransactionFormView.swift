@@ -22,6 +22,12 @@ struct TransactionFormView: View {
         _draft = State(initialValue: transaction.map(TransactionDraft.init) ?? TransactionDraft())
     }
 
+    /// Movimento novo já preenchido (ex.: vindo do scanner de faturas).
+    init(prefill: TransactionDraft) {
+        self.transaction = nil
+        _draft = State(initialValue: prefill)
+    }
+
     private var categoriesForKind: [Category] {
         categories.filter { $0.kind == draft.kind }
     }

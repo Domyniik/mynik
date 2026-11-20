@@ -60,6 +60,8 @@ targets:
           NSExceptionDomains:
             sedeaplicaciones.minetur.gob.es:
               NSExceptionRequiresForwardSecrecy: false
+        # Scanner de faturas (câmara de documentos do VisionKit; o OCR corre no dispositivo).
+        NSCameraUsageDescription: O Mynik usa a câmara para digitalizar faturas e criar o gasto. As imagens são lidas no dispositivo e não são guardadas.
         # Fotos e números dos documentos.
         NSFaceIDUsageDescription: O Mynik usa o Face ID para proteger os números e as fotos dos teus documentos.
         # Preços de combustível perto do utilizador (a localização não sai do dispositivo).
