@@ -45,3 +45,4 @@
 - feat(widgets): adiciona widgets de saldo do mês e contas a vencer (iOS, ecrã bloqueado e Mac) com resumo partilhado por App Group; a app do Mac passa a ser assinada com o certificado Apple Development da Personal Team
 - feat(intents): adiciona ações da Siri e dos Atalhos "Registar gasto" (gastei X em Y, com categoria reconhecida pelo nome ou por sinónimos) e "Saldo do mês"
 - feat(intents): adiciona a ação "Registar compra do Apple Pay" para a automação "Transação" dos Atalhos (valor em texto, categoria do comerciante, sem duplicados) com guia no README
+- feat(mac): adiciona o Mynik à barra de menus com saldo do mês, contas a vencer (com "paguei") e gasto rápido, que se pode esconder nas Definições

@@ -11,6 +11,9 @@ struct SettingsView: View {
             NotificationSettingsSection()
             CurrencySettingsSection()
             BackupSettingsSection()
+            #if os(macOS)
+            MenuBarSettingsSection()
+            #endif
         }
         .formStyle(.grouped)
         .navigationTitle("Definições")

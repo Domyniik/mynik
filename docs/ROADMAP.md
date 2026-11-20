@@ -44,7 +44,7 @@
 - [x] Widgets (iOS + Mac) — saldo do mês e contas a vencer; resumo partilhado por App Group (no Mac, assinado com o certificado grátis da Personal Team)
 - [x] App Intents: Siri / Atalhos ("gastei X em Y")
 - [x] Automação Apple Pay → transação (ação para a automação "Transação" dos Atalhos; guia no README)
-- [ ] MenuBarExtra no Mac
+- [x] MenuBarExtra no Mac
 - [ ] EventKit (Calendário/Lembretes) na tela Hoje
 
 ## Fase 7 — IA e extras
