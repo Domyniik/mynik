@@ -32,4 +32,6 @@ nonisolated enum SettingsKey {
     static let fuelUsesLocation = "fuelUsesLocation"
     /// Veículo escolhido no ecrã Carro.
     static let selectedVehicleUID = "selectedVehicleUID"
+    /// Meta de poupança mensal (EUR); `0` = sem meta.
+    static let savingsMonthlyTarget = "savingsMonthlyTarget"
 }

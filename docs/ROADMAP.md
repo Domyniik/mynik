@@ -37,7 +37,7 @@
 - [x] Carro (combustível, manutenção, seguro/ITV/IUC)
 - [x] Documentos com validade e Face ID
 - [x] Carreira (candidaturas, cursos)
-- [ ] Investimentos / património
+- [x] Investimentos / património
 
 ## Fase 6 — Ecossistema Apple
 - [ ] Sync iCloud (CloudKit)

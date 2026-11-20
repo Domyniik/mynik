@@ -27,6 +27,7 @@ struct RootView: View {
             .onChange(of: scenePhase, initial: true) {
                 if scenePhase == .active {
                     rescheduleReminders()
+                    recordWealthSnapshot()
                     refreshExchangeRateIfStale()
                     Task { await storeSync.refreshIfStale(in: modelContext) }
                 } else if scenePhase == .background {
@@ -71,6 +72,15 @@ struct RootView: View {
             brlPerEUR = rate.brlPerEUR
             exchangeRateDate = rate.date
         }
+    }
+
+    /// Uma fotografia do património por dia, para o gráfico da evolução.
+    private func recordWealthSnapshot() {
+        InvestmentService.recordSnapshot(
+            in: modelContext,
+            converter: CurrencyConverter(storedRate: brlPerEUR)
+        )
+        try? modelContext.save()
     }
 
     private func rescheduleReminders() {

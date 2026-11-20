@@ -127,6 +127,21 @@ struct SampleData: PreviewModifier {
         course.progress = 0.6
         context.insert(course)
 
+        // Investimentos: um ETF com cotação, cripto e um depósito, e 60 dias de património.
+        let etf = Investment(name: "Vanguard FTSE All-World", kind: .etf, ticker: "VWCE.DE", units: 25, investedAmount: 3_600)
+        etf.unitPrice = 161.08
+        etf.priceUpdatedAt = .now
+        let bitcoin = Investment(name: "Bitcoin", kind: .crypto, ticker: "BTC-EUR", units: 0.012, investedAmount: 600)
+        bitcoin.unitPrice = 56_160
+        bitcoin.priceUpdatedAt = .now
+        let deposit = Investment(name: "Depósito a prazo", kind: .deposit, investedAmount: 2_000)
+        deposit.manualValue = 2_045
+        [etf, bitcoin, deposit].forEach(context.insert)
+        for day in stride(from: 60, through: 1, by: -3) {
+            let wave = Decimal(Int(sin(Double(day) / 6) * 120))
+            context.insert(WealthSnapshot(day: calendar.startOfDay(for: daysAgo(day)), cash: 2_900 + Decimal(60 - day) * 4, invested: 6_200 - Decimal(day) * 5, investmentsValue: 6_400 - Decimal(day) * 3 + wave))
+        }
+
         // Loja de exemplo, já em cache.
         let demo = DemoStoreDataSource()
         let since = calendar.date(byAdding: .day, value: -59, to: calendar.startOfDay(for: .now)) ?? .now

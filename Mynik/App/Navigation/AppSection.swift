@@ -7,6 +7,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
     case store
     case projects
     case goals
+    case investments
     case car
     case documents
     case career
@@ -29,6 +30,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         case .store: "Loja"
         case .projects: "Projetos"
         case .goals: "Metas"
+        case .investments: "Património"
         case .car: "Carro"
         case .documents: "Documentos"
         case .career: "Carreira"
@@ -44,6 +46,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         case .store: "storefront"
         case .projects: "checklist"
         case .goals: "target"
+        case .investments: "chart.line.uptrend.xyaxis"
         case .car: "car"
         case .documents: "person.text.rectangle"
         case .career: "briefcase"
