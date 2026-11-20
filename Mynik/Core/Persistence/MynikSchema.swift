@@ -1,13 +1,11 @@
 import SwiftData
 
-/// Versão 5 do esquema (v0.6): identificador estável (`uid`) em movimentos,
-/// categorias, contas, contas a pagar, projetos e metas, para exportar e
-/// importar cópias de segurança sem duplicados.
+/// Versão 6 do esquema (v0.7): hábitos (`Habit` e `HabitCheck`).
 ///
 /// Usa os modelos atuais da app. Ao publicar uma versão, congela-se uma cópia
-/// (como `MynikSchemaV4`) antes de mudar os modelos de novo.
-nonisolated enum MynikSchemaV5: VersionedSchema {
-    static let versionIdentifier = Schema.Version(5, 0, 0)
+/// (como `MynikSchemaV5`) antes de mudar os modelos de novo.
+nonisolated enum MynikSchemaV6: VersionedSchema {
+    static let versionIdentifier = Schema.Version(6, 0, 0)
 
     static var models: [any PersistentModel.Type] {
         [
@@ -16,17 +14,17 @@ nonisolated enum MynikSchemaV5: VersionedSchema {
             Project.self, ProjectTask.self, Goal.self, Note.self, NoteBlock.self,
             Vehicle.self, FuelEntry.self, MaintenanceRecord.self, CarDeadline.self,
             PersonalDocument.self, DocumentPhoto.self, JobApplication.self, Course.self,
-            Investment.self, WealthSnapshot.self,
+            Investment.self, WealthSnapshot.self, Habit.self, HabitCheck.self,
         ]
     }
 }
 
 /// Esquema em uso pela app.
-typealias MynikSchemaCurrent = MynikSchemaV5
+typealias MynikSchemaCurrent = MynikSchemaV6
 
 nonisolated enum MynikMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [MynikSchemaV1.self, MynikSchemaV2.self, MynikSchemaV3.self, MynikSchemaV4.self, MynikSchemaV5.self]
+        [MynikSchemaV1.self, MynikSchemaV2.self, MynikSchemaV3.self, MynikSchemaV4.self, MynikSchemaV5.self, MynikSchemaV6.self]
     }
 
     static var stages: [MigrationStage] {
@@ -37,6 +35,7 @@ nonisolated enum MynikMigrationPlan: SchemaMigrationPlan {
             .lightweight(fromVersion: MynikSchemaV2.self, toVersion: MynikSchemaV3.self),
             .lightweight(fromVersion: MynikSchemaV3.self, toVersion: MynikSchemaV4.self),
             .lightweight(fromVersion: MynikSchemaV4.self, toVersion: MynikSchemaV5.self),
+            .lightweight(fromVersion: MynikSchemaV5.self, toVersion: MynikSchemaV6.self),
         ]
     }
 }

@@ -27,6 +27,8 @@ struct TodayView: View {
 
             TodayTasksSection()
 
+            TodayHabitsSection()
+
             TodayGoalsSection()
 
             TodayStoreSection()
