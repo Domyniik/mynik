@@ -12,6 +12,13 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
 
     var id: Self { self }
 
+    /// Secções com separador próprio no iPhone; as outras ficam em "Mais".
+    static let primaryTabs: [AppSection] = [.today, .finance, .store, .projects]
+
+    static var moreTabs: [AppSection] {
+        allCases.filter { !primaryTabs.contains($0) }
+    }
+
     var title: String {
         switch self {
         case .today: "Hoje"

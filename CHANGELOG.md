@@ -34,3 +34,4 @@
 - feat(goals): adiciona metas com valor-alvo e prazo, ligadas a uma conta ou categoria das Finanças, com ritmo mensal e metas na tela Hoje
 - feat(notes): adiciona notas com páginas aninhadas e blocos de texto, título, checklist e imagem, com pesquisa
 - feat(notes): adiciona Markdown nas notas (formatação, atalhos ao escrever, exportar e colar) e ligações entre notas, projetos e movimentos, incluindo menções [[Título]]
+- fix(app): separador "Mais" próprio no iPhone (sem barra de navegação duplicada nas secções extra)
