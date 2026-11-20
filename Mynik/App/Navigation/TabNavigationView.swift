@@ -28,7 +28,7 @@ struct TabNavigationView: View {
         #if os(iOS)
         .tabBarMinimizeBehavior(.onScrollDown)
         #endif
-        .onAppear { router.usesTabs = true }
+        .onAppear { router.navigationDidAppear(usingTabs: true) }
     }
 }
 

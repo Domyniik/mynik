@@ -21,7 +21,7 @@ struct SidebarNavigationView: View {
                 }
             }
         }
-        .onAppear { router.usesTabs = false }
+        .onAppear { router.navigationDidAppear(usingTabs: false) }
     }
 }
 

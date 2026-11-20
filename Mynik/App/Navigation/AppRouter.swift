@@ -14,6 +14,20 @@ final class AppRouter {
     /// A navegação atual é por separadores (iPhone).
     var usesTabs = false
 
+    /// Secção inicial pedida com `-MynikSection <secção>` (modo de demonstração, screenshots).
+    private var pendingLaunchSection: AppSection? = AppEnvironment.isDemo
+        ? UserDefaults.standard.string(forKey: "MynikSection").flatMap(AppSection.init(rawValue:))
+        : nil
+
+    /// Chamado quando a navegação aparece: aplica a secção inicial, se houver.
+    func navigationDidAppear(usingTabs: Bool) {
+        usesTabs = usingTabs
+        if let section = pendingLaunchSection {
+            pendingLaunchSection = nil
+            open(section)
+        }
+    }
+
     func open(_ section: AppSection) {
         if usesTabs, !AppSection.primaryTabs.contains(section) {
             selection = nil
