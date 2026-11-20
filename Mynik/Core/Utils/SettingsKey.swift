@@ -15,4 +15,10 @@ nonisolated enum SettingsKey {
     static let storeFeeFixed = "storeFeeFixed"
     static let storeShippingCost = "storeShippingCost"
     static let storeMonthlyAds = "storeMonthlyAds"
+    static let storeSaleNotifications = "storeSaleNotifications"
+    static let storeNoSaleDays = "storeNoSaleDays"
+    /// Dia (yyyy-MM-dd) do último aviso de "dias sem venda".
+    static let storeLastNoSaleAlert = "storeLastNoSaleAlert"
+    /// IDs dos últimos pedidos já notificados.
+    static let storeNotifiedOrders = "storeNotifiedOrders"
 }

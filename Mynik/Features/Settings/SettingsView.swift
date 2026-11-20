@@ -7,6 +7,7 @@ struct SettingsView: View {
         Form {
             StoreSettingsSection()
             StoreCostSettingsSection()
+            StoreAlertSettingsSection()
             NotificationSettingsSection()
             CurrencySettingsSection()
         }

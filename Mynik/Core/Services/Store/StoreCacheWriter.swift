@@ -18,6 +18,7 @@ enum StoreCacheWriter {
     }
 
     struct NewOrder: Sendable, Equatable {
+        var id: String
         var name: String
         var total: Decimal
         var createdAt: Date
@@ -113,6 +114,7 @@ enum StoreCacheWriter {
                 context.insert(order)
                 if !isFirstSync, record.cancelledAt == nil {
                     newOrders.append(NewOrder(
+                        id: record.id,
                         name: record.name,
                         total: record.total,
                         createdAt: record.createdAt,

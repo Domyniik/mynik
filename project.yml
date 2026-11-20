@@ -23,6 +23,15 @@ targets:
     supportedDestinations: [iOS, macOS]
     sources:
       - path: Mynik
+    info:
+      path: Mynik/Resources/Info.plist
+      properties:
+        # Atualização da loja em segundo plano (notificações de venda).
+        BGTaskSchedulerPermittedIdentifiers: [com.domynik.mynik.store-refresh]
+        UIBackgroundModes: [fetch]
+        # A versão vem das definições de compilação (o release.sh define MARKETING_VERSION).
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.domynik.mynik

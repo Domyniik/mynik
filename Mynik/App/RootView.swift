@@ -23,13 +23,28 @@ struct RootView: View {
             .onReceive(NotificationCenter.default.publisher(for: ModelContext.didSave)) { _ in
                 rescheduleReminders()
             }
+            .task { await refreshStorePeriodically() }
             .onChange(of: scenePhase, initial: true) {
                 if scenePhase == .active {
                     rescheduleReminders()
                     refreshExchangeRateIfStale()
                     Task { await storeSync.refreshIfStale(in: modelContext) }
+                } else if scenePhase == .background {
+                    StoreBackgroundRefresh.schedule()
                 }
             }
+    }
+
+    /// No Mac não há atualização em segundo plano: enquanto a app está aberta,
+    /// a loja atualiza de 15 em 15 minutos (para as notificações de venda).
+    private func refreshStorePeriodically() async {
+        #if os(macOS)
+        while !Task.isCancelled {
+            try? await Task.sleep(for: .seconds(StoreSyncCoordinator.minimumInterval))
+            guard !Task.isCancelled else { return }
+            await storeSync.refreshIfStale(in: modelContext)
+        }
+        #endif
     }
 
     @ViewBuilder

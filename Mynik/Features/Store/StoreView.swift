@@ -39,6 +39,8 @@ struct StoreView: View {
         List {
             StoreSyncBanner()
 
+            StoreAlertsSection(products: products, orders: orders)
+
             Section {
                 Picker("Período", selection: $period) {
                     ForEach(StorePeriod.allCases) { Text($0.title).tag($0) }

@@ -20,6 +20,8 @@ struct TodayView: View {
 
             UpcomingBillsSection(days: 7)
 
+            TodayStoreSection()
+
             Section("Últimos movimentos") {
                 if recentTransactions.isEmpty {
                     Text("Ainda não há movimentos.")

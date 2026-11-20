@@ -84,6 +84,11 @@ final class StoreSyncCoordinator {
             shopName = snapshot.shopName
             trafficWarning = snapshot.trafficUnavailableReason
             lastError = nil
+
+            // Notificações só para a loja real (os dados de exemplo não vendem).
+            if credentials != nil {
+                await notify(result, in: context, now: now)
+            }
             return result
         } catch is CancellationError {
             return nil
@@ -91,5 +96,16 @@ final class StoreSyncCoordinator {
             lastError = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
             return nil
         }
+    }
+
+    private func notify(_ result: StoreCacheWriter.Result, in context: ModelContext, now: Date) async {
+        await StoreNotifier.notifySales(result.newOrders.map {
+            StoreNotifier.Sale(orderID: $0.id, name: $0.name, total: $0.total, itemTitles: $0.itemTitles)
+        })
+        let orders = (try? context.fetch(FetchDescriptor<StoreOrder>())) ?? []
+        await StoreNotifier.notifyNoSalesIfNeeded(
+            daysWithoutSales: StoreAlerts.daysWithoutSales(orders: orders, now: now, calendar: calendar),
+            now: now
+        )
     }
 }

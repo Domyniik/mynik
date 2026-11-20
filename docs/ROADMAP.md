@@ -23,7 +23,7 @@
 - [x] Ranking de produtos (score 0–100 + classificação + ação)
 - [x] Diagnóstico do funil
 - [x] Carrinhos abandonados e pedidos por enviar
-- [ ] Alertas (dias sem venda) e notificação de venda
+- [x] Alertas (dias sem venda) e notificação de venda
 - [ ] Ciclo de vida do produto
 - [ ] Lucro da loja → Finanças
 

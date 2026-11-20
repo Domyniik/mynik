@@ -25,5 +25,10 @@ struct MynikApp: App {
                 .environment(storeSync)
         }
         .modelContainer(modelContainer)
+        #if os(iOS)
+        .backgroundTask(.appRefresh(StoreBackgroundRefresh.taskIdentifier)) { [modelContainer, storeSync] in
+            await StoreBackgroundRefresh.run(container: modelContainer, coordinator: storeSync)
+        }
+        #endif
     }
 }
