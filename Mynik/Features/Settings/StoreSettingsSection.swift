@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 /// Ligação à loja Shopify. Os segredos vão diretamente para o Keychain.
