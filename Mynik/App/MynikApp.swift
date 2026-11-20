@@ -4,6 +4,7 @@ import SwiftUI
 @main
 struct MynikApp: App {
     private let modelContainer: ModelContainer
+    @State private var storeSync = StoreSyncCoordinator()
 
     init() {
         do {
@@ -18,6 +19,7 @@ struct MynikApp: App {
         WindowGroup {
             RootView()
                 .environment(\.locale, .app)
+                .environment(storeSync)
         }
         .modelContainer(modelContainer)
     }

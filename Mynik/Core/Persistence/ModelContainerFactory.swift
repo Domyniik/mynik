@@ -1,3 +1,4 @@
+import Foundation
 import SwiftData
 
 enum ModelContainerFactory {
@@ -5,13 +6,15 @@ enum ModelContainerFactory {
     ///
     /// O sync por iCloud (CloudKit) só é ligado na Fase 6; até lá os modelos
     /// já seguem as regras do CloudKit para que a migração seja trivial.
-    static func make(inMemory: Bool = false) throws -> ModelContainer {
-        let schema = Schema(versionedSchema: MynikSchemaV1.self)
-        let configuration = ModelConfiguration(
-            schema: schema,
-            isStoredInMemoryOnly: inMemory,
-            cloudKitDatabase: .none
-        )
+    ///
+    /// - Parameter url: ficheiro da base de dados (por omissão, o da app).
+    static func make(inMemory: Bool = false, url: URL? = nil) throws -> ModelContainer {
+        let schema = Schema(versionedSchema: MynikSchemaCurrent.self)
+        let configuration = if let url {
+            ModelConfiguration(schema: schema, url: url, cloudKitDatabase: .none)
+        } else {
+            ModelConfiguration(schema: schema, isStoredInMemoryOnly: inMemory, cloudKitDatabase: .none)
+        }
         return try ModelContainer(
             for: schema,
             migrationPlan: MynikMigrationPlan.self,

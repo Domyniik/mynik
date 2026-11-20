@@ -8,6 +8,7 @@ struct SectionDestination: View {
         switch section {
         case .today: TodayView()
         case .finance: FinanceView()
+        case .store: StoreView()
         case .settings: SettingsView()
         }
     }

@@ -19,3 +19,4 @@
 - fix(settings): só pede permissão de notificações quando há contas ou ao ligar o lembrete
 - fix(finance): estado vazio de Finanças deixa de tapar os atalhos
 - feat(store): adiciona ligação à Shopify (credenciais no Keychain) e cliente GraphQL com limite por custo
+- feat(store): adiciona cache SwiftData da loja (produtos, pedidos, estatísticas diárias) com loja de exemplo e migração do esquema

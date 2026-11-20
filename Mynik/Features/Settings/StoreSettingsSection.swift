@@ -2,6 +2,9 @@ import SwiftUI
 
 /// Ligação à loja Shopify. Os segredos vão diretamente para o Keychain.
 struct StoreSettingsSection: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(StoreSyncCoordinator.self) private var storeSync
+
     @AppStorage(SettingsKey.shopifyDomain) private var savedDomain = ""
     @AppStorage(SettingsKey.shopifyShopName) private var shopName = ""
 
@@ -156,6 +159,8 @@ struct StoreSettingsSection: View {
             try credentials.save()
             clientSecret = ""
             accessToken = ""
+            // Troca os dados de exemplo pelos da loja real.
+            await storeSync.refresh(in: modelContext)
         } catch {
             status = .failed("Não foi possível guardar no Keychain.")
         }
@@ -192,6 +197,7 @@ struct StoreSettingsSection: View {
         shopName = ""
         status = .idle
         missingScopes = []
+        Task { await storeSync.refresh(in: modelContext) }
     }
 
     private func trimmed(_ text: String) -> String {
@@ -226,7 +232,7 @@ private struct StoreConnectionGuide: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sampleData) {
     Form {
         StoreSettingsSection()
     }

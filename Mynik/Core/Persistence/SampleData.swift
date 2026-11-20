@@ -67,12 +67,19 @@ struct SampleData: PreviewModifier {
             )
         )
 
+        // Loja de exemplo, já em cache.
+        let demo = DemoStoreDataSource()
+        let since = calendar.date(byAdding: .day, value: -59, to: calendar.startOfDay(for: .now)) ?? .now
+        try StoreCacheWriter.apply(demo.snapshot(since: since), since: since, to: context)
+
         try context.save()
         return container
     }
 
     func body(content: Content, context: ModelContainer) -> some View {
-        content.modelContainer(context)
+        content
+            .modelContainer(context)
+            .environment(StoreSyncCoordinator(defaults: UserDefaults(suiteName: "preview") ?? .standard))
     }
 }
 

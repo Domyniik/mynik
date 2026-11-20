@@ -7,6 +7,7 @@ import SwiftUI
 struct RootView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(StoreSyncCoordinator.self) private var storeSync
 
     @AppStorage(SettingsKey.brlPerEUR) private var brlPerEUR = CurrencyConverter.defaultBRLPerEUR
     @AppStorage(SettingsKey.exchangeRateDate) private var exchangeRateDate = ""
@@ -26,6 +27,7 @@ struct RootView: View {
                 if scenePhase == .active {
                     rescheduleReminders()
                     refreshExchangeRateIfStale()
+                    Task { await storeSync.refreshIfStale(in: modelContext) }
                 }
             }
     }
