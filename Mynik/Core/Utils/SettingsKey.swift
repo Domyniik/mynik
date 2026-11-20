@@ -11,4 +11,8 @@ nonisolated enum SettingsKey {
     static let storeLastSync = "storeLastSync"
     /// Origem dos dados em cache da loja: "demo" ou "shopify:<domínio>".
     static let storeCacheSource = "storeCacheSource"
+    static let storeFeePercent = "storeFeePercent"
+    static let storeFeeFixed = "storeFeeFixed"
+    static let storeShippingCost = "storeShippingCost"
+    static let storeMonthlyAds = "storeMonthlyAds"
 }

@@ -19,7 +19,7 @@
 ## Fase 3 — Loja Shopify (Neloce)
 - [x] Setup do token (Keychain) + cliente GraphQL
 - [x] Cache local (StoreProduct, StoreOrder, DailyStat)
-- [ ] KPIs + lucro real + gráfico diário
+- [x] KPIs + lucro real + gráfico diário
 - [ ] Ranking de produtos (score 0–100 + classificação + ação)
 - [ ] Diagnóstico do funil
 - [ ] Carrinhos abandonados e pedidos por enviar
