@@ -49,7 +49,7 @@
 
 ## Fase 7 — IA e extras
 - [x] Categorização automática (Foundation Models) — com fallback por regras (comerciante e histórico) quando não há Apple Intelligence
-- [ ] "Pergunte ao Mynik"
+- [x] "Pergunte ao Mynik" — chat com Foundation Models e ferramentas que leem o SwiftData; sem Apple Intelligence responde com resumos por tema
 - [ ] Scanner de faturas (VisionKit)
 - [ ] Live Activities / Dynamic Island
 - [ ] Revisão semanal, hábitos, busca ⌘K

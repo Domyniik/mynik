@@ -7,6 +7,7 @@ struct SectionDestination: View {
     var body: some View {
         switch section {
         case .today: TodayView()
+        case .assistant: AskMynikView()
         case .finance: FinanceView()
         case .store: StoreView()
         case .projects: ProjectsView()

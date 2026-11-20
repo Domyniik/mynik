@@ -3,6 +3,7 @@ import Foundation
 /// Secções de topo da app. Novos módulos entram aqui.
 enum AppSection: String, CaseIterable, Identifiable, Hashable {
     case today
+    case assistant
     case finance
     case store
     case projects
@@ -26,6 +27,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
     var title: String {
         switch self {
         case .today: "Hoje"
+        case .assistant: "Pergunte ao Mynik"
         case .finance: "Finanças"
         case .store: "Loja"
         case .projects: "Projetos"
@@ -42,6 +44,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
     var symbolName: String {
         switch self {
         case .today: "sun.max"
+        case .assistant: "sparkles"
         case .finance: "eurosign.circle"
         case .store: "storefront"
         case .projects: "checklist"

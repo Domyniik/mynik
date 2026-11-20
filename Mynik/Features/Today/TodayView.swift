@@ -7,6 +7,7 @@ struct TodayView: View {
     @Query(sort: \FinanceTransaction.date, order: .reverse) private var transactions: [FinanceTransaction]
 
     @State private var isAddingTransaction = false
+    @State private var isAskingMynik = false
 
     private var recentTransactions: ArraySlice<FinanceTransaction> {
         transactions.prefix(5)
@@ -43,6 +44,11 @@ struct TodayView: View {
         }
         .navigationTitle("Hoje")
         .toolbar {
+            ToolbarItem(placement: .secondaryAction) {
+                Button("Pergunte ao Mynik", systemImage: "sparkles") {
+                    isAskingMynik = true
+                }
+            }
             ToolbarItem(placement: .primaryAction) {
                 Button("Adicionar movimento", systemImage: "plus") {
                     isAddingTransaction = true
@@ -51,6 +57,19 @@ struct TodayView: View {
         }
         .sheet(isPresented: $isAddingTransaction) {
             TransactionFormView()
+        }
+        .sheet(isPresented: $isAskingMynik) {
+            NavigationStack {
+                AskMynikView()
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Fechar", systemImage: "xmark") { isAskingMynik = false }
+                        }
+                    }
+            }
+            #if os(macOS)
+            .frame(minWidth: 480, minHeight: 560)
+            #endif
         }
     }
 }

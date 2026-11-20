@@ -49,3 +49,4 @@
 - feat(today): adiciona eventos do Calendário e lembretes de hoje (incluindo atrasados, com marcar como feito) na tela Hoje, com pedido de acesso só ao tocar em "Ligar"
 - fix(today): remove aviso do compilador ao observar mudanças no Calendário
 - feat(ai): adiciona categorização automática dos movimentos com a Apple Intelligence (Foundation Models, só categorias existentes) e, sem ela, pelo histórico e por comerciantes conhecidos; também na importação CSV e no Apple Pay
+- feat(ai): adiciona "Pergunte ao Mynik", chat sobre finanças, contas, loja, carro, documentos, carreira, metas e património com a Apple Intelligence (ferramentas que leem o SwiftData) e modo sem IA com resumos por tema
