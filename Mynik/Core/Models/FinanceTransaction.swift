@@ -8,6 +8,8 @@ import SwiftData
 /// valor por omissão e as relações são opcionais.
 @Model
 final class FinanceTransaction {
+    /// Identificador estável entre dispositivos (cópias de segurança e importação).
+    var uid: String = UUID().uuidString
     var title: String = ""
     /// Valor sempre positivo; o sinal vem de `kind`.
     var amount: Decimal = 0

@@ -1,11 +1,13 @@
 import SwiftData
 
-/// Versão 4 do esquema (v0.5): acrescenta carro, documentos, carreira e investimentos.
+/// Versão 5 do esquema (v0.6): identificador estável (`uid`) em movimentos,
+/// categorias, contas, contas a pagar, projetos e metas, para exportar e
+/// importar cópias de segurança sem duplicados.
 ///
 /// Usa os modelos atuais da app. Ao publicar uma versão, congela-se uma cópia
-/// (como `MynikSchemaV3`) antes de mudar os modelos de novo.
-nonisolated enum MynikSchemaV4: VersionedSchema {
-    static let versionIdentifier = Schema.Version(4, 0, 0)
+/// (como `MynikSchemaV4`) antes de mudar os modelos de novo.
+nonisolated enum MynikSchemaV5: VersionedSchema {
+    static let versionIdentifier = Schema.Version(5, 0, 0)
 
     static var models: [any PersistentModel.Type] {
         [
@@ -20,11 +22,11 @@ nonisolated enum MynikSchemaV4: VersionedSchema {
 }
 
 /// Esquema em uso pela app.
-typealias MynikSchemaCurrent = MynikSchemaV4
+typealias MynikSchemaCurrent = MynikSchemaV5
 
 nonisolated enum MynikMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [MynikSchemaV1.self, MynikSchemaV2.self, MynikSchemaV3.self, MynikSchemaV4.self]
+        [MynikSchemaV1.self, MynikSchemaV2.self, MynikSchemaV3.self, MynikSchemaV4.self, MynikSchemaV5.self]
     }
 
     static var stages: [MigrationStage] {
@@ -34,6 +36,7 @@ nonisolated enum MynikMigrationPlan: SchemaMigrationPlan {
             .lightweight(fromVersion: MynikSchemaV1.self, toVersion: MynikSchemaV2.self),
             .lightweight(fromVersion: MynikSchemaV2.self, toVersion: MynikSchemaV3.self),
             .lightweight(fromVersion: MynikSchemaV3.self, toVersion: MynikSchemaV4.self),
+            .lightweight(fromVersion: MynikSchemaV4.self, toVersion: MynikSchemaV5.self),
         ]
     }
 }

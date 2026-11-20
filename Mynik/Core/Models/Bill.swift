@@ -5,6 +5,8 @@ import SwiftData
 /// "paga": ao pagar, o vencimento avança (ver `BillPaymentService`).
 @Model
 final class Bill {
+    /// Identificador estável entre dispositivos (cópias de segurança e importação).
+    var uid: String = UUID().uuidString
     var title: String = ""
     var amount: Decimal = 0
     var currencyCode: String = Currency.defaultCode

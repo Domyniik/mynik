@@ -32,6 +32,8 @@ nonisolated enum GoalSource: String, Codable, CaseIterable, Identifiable, Sendab
 /// Meta de poupança com valor-alvo (viagem, carro, fundo de emergência...).
 @Model
 final class Goal {
+    /// Identificador estável entre dispositivos (cópias de segurança e importação).
+    var uid: String = UUID().uuidString
     var title: String = ""
     var targetAmount: Decimal = 0
     var currencyCode: String = Currency.defaultCode

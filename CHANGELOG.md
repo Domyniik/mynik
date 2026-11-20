@@ -41,3 +41,4 @@
 - feat(documents): adiciona documentos com validade, avisos antes de expirar (também na tela Hoje) e números e fotos protegidos por Face ID / Touch ID
 - feat(career): adiciona carreira com candidaturas por estado, taxa de resposta e follow-ups (avisos e tela Hoje) e cursos/certificações com progresso e validade
 - feat(investments): adiciona património com total investido, ganho, cotações do dia (Yahoo Finance, com câmbio do BCE), aportes que saem das contas, evolução diária e meta de poupança mensal
+- feat(sync): adiciona cópia de segurança JSON completa (exportar por AirDrop, iCloud Drive ou Ficheiros e importar com fusão sem duplicados) em vez do sync por iCloud, que exige o plano pago da Apple

@@ -4,6 +4,8 @@ import SwiftData
 /// Conta onde o dinheiro está (banco, poupança, cartão, dinheiro vivo).
 @Model
 final class Account {
+    /// Identificador estável entre dispositivos (cópias de segurança e importação).
+    var uid: String = UUID().uuidString
     var name: String = ""
     var typeRaw: String = AccountType.checking.rawValue
     var currencyCode: String = Currency.defaultCode

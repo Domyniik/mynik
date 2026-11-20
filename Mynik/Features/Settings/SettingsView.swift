@@ -10,6 +10,7 @@ struct SettingsView: View {
             StoreAlertSettingsSection()
             NotificationSettingsSection()
             CurrencySettingsSection()
+            BackupSettingsSection()
         }
         .formStyle(.grouped)
         .navigationTitle("Definições")

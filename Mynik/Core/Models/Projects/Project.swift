@@ -4,6 +4,8 @@ import SwiftData
 /// Projeto com tarefas (vista em Kanban ou em lista).
 @Model
 final class Project {
+    /// Identificador estável entre dispositivos (cópias de segurança e importação).
+    var uid: String = UUID().uuidString
     var name: String = ""
     var details: String = ""
     /// Nome de um SF Symbol.

@@ -34,4 +34,6 @@ nonisolated enum SettingsKey {
     static let selectedVehicleUID = "selectedVehicleUID"
     /// Meta de poupança mensal (EUR); `0` = sem meta.
     static let savingsMonthlyTarget = "savingsMonthlyTarget"
+    /// Os `uid` dos registos anteriores à v0.6 já foram tornados únicos.
+    static let stableIDsRepaired = "stableIDsRepaired"
 }

@@ -28,7 +28,7 @@ final class BiometricLock {
         methodName == "Touch ID" ? "touchid" : methodName == "código" ? "lock" : "faceid"
     }
 
-    func unlock() async {
+    func unlock(reason: String = "Mostrar os números e as fotos dos teus documentos") async {
         guard !isUnlocked else { return }
         let context = LAContext()
         context.localizedCancelTitle = "Cancelar"
@@ -46,7 +46,7 @@ final class BiometricLock {
         do {
             isUnlocked = try await context.evaluatePolicy(
                 .deviceOwnerAuthentication,
-                localizedReason: "Mostrar os números e as fotos dos teus documentos"
+                localizedReason: reason
             )
             message = nil
         } catch {
