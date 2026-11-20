@@ -5,6 +5,7 @@ import SwiftUI
 struct UpcomingBillsSection: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var bills: [Bill]
+    @State private var paidCount = 0
 
     init(days: Int, now: Date = .now, calendar: Calendar = .current) {
         let startOfToday = calendar.startOfDay(for: now)
@@ -16,26 +17,29 @@ struct UpcomingBillsSection: View {
     }
 
     var body: some View {
-        Section("Contas a vencer") {
-            if bills.isEmpty {
-                Label("Nada a pagar nos próximos 7 dias", systemImage: "checkmark.circle")
+        DashboardCard("Contas a vencer", systemImage: "calendar.badge.clock") {
+            if bills.count > 1 {
+                Text(Currency.format(bills.reduce(Decimal.zero) { $0 + $1.amount }))
+                    .monospacedDigit()
                     .foregroundStyle(.secondary)
+            }
+        } content: {
+            if bills.isEmpty {
+                EmptyStateView("Tudo pago", message: "Nada a pagar nos próximos 7 dias.", systemImage: "checkmark.seal")
             } else {
-                ForEach(bills) { bill in
+                CardRows(bills) { bill in
                     BillRow(bill: bill, onPay: { pay(bill) })
-                        .swipeActions(edge: .leading) {
-                            Button("Paguei", systemImage: "checkmark") { pay(bill) }
-                                .tint(.green)
-                        }
                 }
             }
         }
+        .sensoryFeedback(.success, trigger: paidCount)
     }
 
     private func pay(_ bill: Bill) {
-        withAnimation {
+        withAnimation(.snappy) {
             BillPaymentService.markPaid(bill, in: modelContext)
             try? modelContext.save()
         }
+        paidCount += 1
     }
 }

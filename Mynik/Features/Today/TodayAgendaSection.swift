@@ -15,8 +15,8 @@ struct TodayAgendaSection: View {
                 + LifeAgenda.careerItems(applications, courses: courses)
         ).upcoming()
         if !items.isEmpty {
-            Section("A vencer") {
-                ForEach(items) { item in
+            DashboardCard("Prazos", systemImage: "hourglass") {
+                CardRows(items) { item in
                     AgendaItemRow(item: item)
                 }
             }
@@ -31,7 +31,7 @@ struct AgendaItemRow: View {
     var body: some View {
         let days = item.daysUntil()
         HStack(spacing: 12) {
-            SymbolBadge(symbolName: item.symbolName, color: days < 0 ? .red : days <= 7 ? .orange : .indigo, size: 30)
+            IconBadge(symbolName: item.symbolName, color: days < 0 ? .red : days <= 7 ? .orange : .indigo)
             VStack(alignment: .leading, spacing: 2) {
                 Text(item.title).lineLimit(1)
                 if !item.detail.isEmpty {

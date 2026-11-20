@@ -67,8 +67,7 @@ struct WeeklyReviewView: View {
 struct WeeklyReviewCard: View {
     var body: some View {
         if WeeklyReview.isReviewDay() {
-            Section {
-                NavigationLink {
+            NavigationLink {
                     WeeklyReviewView()
                 } label: {
                     Label {
@@ -79,11 +78,11 @@ struct WeeklyReviewCard: View {
                                 .foregroundStyle(.secondary)
                         }
                     } icon: {
-                        Image(systemName: "calendar.badge.checkmark")
-                            .foregroundStyle(.tint)
+                        IconBadge(symbolName: "calendar.badge.checkmark", color: .brand)
                     }
                 }
-            }
+                .buttonStyle(.plain)
+                .dsCard()
         }
     }
 }

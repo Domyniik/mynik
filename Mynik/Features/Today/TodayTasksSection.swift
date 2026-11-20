@@ -13,12 +13,17 @@ struct TodayTasksSection: View {
 
     var body: some View {
         let tasks = TaskBoard.forToday(openTasks)
-        Section("Tarefas") {
-            if tasks.isEmpty {
-                Label("Nada pendente para hoje", systemImage: "checkmark.circle")
+        DashboardCard("Tarefas", systemImage: "checklist") {
+            if !tasks.isEmpty {
+                Text("\(tasks.count)")
+                    .monospacedDigit()
                     .foregroundStyle(.secondary)
+            }
+        } content: {
+            if tasks.isEmpty {
+                EmptyStateView("Dia livre", message: "Nada pendente para hoje.", systemImage: "checkmark.circle")
             } else {
-                ForEach(tasks.prefix(6)) { task in
+                CardRows(Array(tasks.prefix(6)), dividerInset: 36) { task in
                     Button { editingTask = task } label: {
                         TaskRow(task: task)
                     }

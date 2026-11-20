@@ -8,7 +8,7 @@ struct TodayCalendarSection: View {
 
     var body: some View {
         if isEnabled {
-            Section("Calendário e lembretes") {
+            DashboardCard("Agenda de hoje", systemImage: "calendar") {
                 content
             }
             .task(id: scenePhase) {
@@ -38,10 +38,9 @@ struct TodayCalendarSection: View {
                 .font(.callout)
                 .foregroundStyle(.secondary)
         } else if service.items.isEmpty {
-            Label("Nada no calendário hoje", systemImage: "checkmark.circle")
-                .foregroundStyle(.secondary)
+            EmptyStateView("Agenda livre", message: "Nada no calendário hoje.", systemImage: "calendar.badge.checkmark")
         } else {
-            ForEach(service.items.prefix(8)) { item in
+            CardRows(Array(service.items.prefix(8)), dividerInset: 16) { item in
                 CalendarDayRow(item: item) {
                     Task { await service.complete(item) }
                 }

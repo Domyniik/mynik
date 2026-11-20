@@ -182,11 +182,18 @@ struct TodayHabitsSection: View {
 
     var body: some View {
         if !habits.isEmpty {
-            Section("Hábitos") {
-                ForEach(habits) { habit in
+            let done = habits.filter { HabitService.progress(of: $0).isDoneToday }.count
+            DashboardCard("Hábitos", systemImage: "flame") {
+                Text("\(done) de \(habits.count)")
+                    .monospacedDigit()
+                    .contentTransition(.numericText())
+                    .foregroundStyle(.secondary)
+            } content: {
+                CardRows(habits) { habit in
                     HabitRow(habit: habit)
                 }
             }
+            .sensoryFeedback(.success, trigger: done) { old, new in new > old }
         }
     }
 }

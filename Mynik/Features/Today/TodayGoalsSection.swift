@@ -11,8 +11,8 @@ struct TodayGoalsSection: View {
             .filter { !GoalProgress(goal: $0, converter: converter).isReached }
             .sorted { ($0.deadline ?? .distantFuture) < ($1.deadline ?? .distantFuture) }
         if !pending.isEmpty {
-            Section("Metas") {
-                ForEach(pending.prefix(3)) { goal in
+            DashboardCard("Metas", systemImage: "target") {
+                CardRows(Array(pending.prefix(3))) { goal in
                     GoalRow(goal: goal)
                 }
             }
