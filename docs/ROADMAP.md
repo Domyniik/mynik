@@ -45,7 +45,7 @@
 - [x] App Intents: Siri / Atalhos ("gastei X em Y")
 - [x] Automação Apple Pay → transação (ação para a automação "Transação" dos Atalhos; guia no README)
 - [x] MenuBarExtra no Mac
-- [ ] EventKit (Calendário/Lembretes) na tela Hoje
+- [x] EventKit (Calendário/Lembretes) na tela Hoje
 
 ## Fase 7 — IA e extras
 - [ ] Categorização automática (Foundation Models)

@@ -35,12 +35,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>O Mynik mostra os eventos de hoje na tela Hoje. Os dados do calendário não saem do dispositivo.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>O Mynik usa o Face ID para proteger os números e as fotos dos teus documentos.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.</string>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>O Mynik mostra os lembretes de hoje na tela Hoje e deixa marcá-los como feitos. Os dados não saem do dispositivo.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

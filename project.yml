@@ -64,6 +64,9 @@ targets:
         NSFaceIDUsageDescription: O Mynik usa o Face ID para proteger os números e as fotos dos teus documentos.
         # Preços de combustível perto do utilizador (a localização não sai do dispositivo).
         NSLocationWhenInUseUsageDescription: O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.
+        # Eventos e lembretes de hoje na tela Hoje (lidos no dispositivo).
+        NSCalendarsFullAccessUsageDescription: O Mynik mostra os eventos de hoje na tela Hoje. Os dados do calendário não saem do dispositivo.
+        NSRemindersFullAccessUsageDescription: O Mynik mostra os lembretes de hoje na tela Hoje e deixa marcá-los como feitos. Os dados não saem do dispositivo.
         NSLocationUsageDescription: O Mynik usa a tua localização para mostrar os postos de combustível mais baratos perto de ti. A localização não sai do dispositivo.
     settings:
       base:
@@ -83,6 +86,7 @@ targets:
         ENABLE_HARDENED_RUNTIME: YES
         ENABLE_OUTGOING_NETWORK_CONNECTIONS: YES
         ENABLE_RESOURCE_ACCESS_LOCATION: YES
+        ENABLE_RESOURCE_ACCESS_CALENDARS: YES
         ENABLE_USER_SELECTED_FILES: readwrite
         ENABLE_PREVIEWS: YES
   MynikWidgets:

@@ -9,6 +9,7 @@ struct SettingsView: View {
             StoreCostSettingsSection()
             StoreAlertSettingsSection()
             NotificationSettingsSection()
+            CalendarSettingsSection()
             CurrencySettingsSection()
             BackupSettingsSection()
             #if os(macOS)

@@ -20,6 +20,8 @@ struct TodayView: View {
 
             UpcomingBillsSection(days: 7)
 
+            TodayCalendarSection()
+
             TodayAgendaSection()
 
             TodayTasksSection()

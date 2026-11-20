@@ -38,4 +38,6 @@ nonisolated enum SettingsKey {
     static let stableIDsRepaired = "stableIDsRepaired"
     /// Mac: ícone do Mynik na barra de menus.
     static let showMenuBarExtra = "showMenuBarExtra"
+    /// Eventos do Calendário e lembretes na tela Hoje.
+    static let showCalendarOnToday = "showCalendarOnToday"
 }
