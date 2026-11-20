@@ -5,6 +5,13 @@ import SwiftUI
 struct StoreDailyChart: View {
     let points: [StoreDailyPoint]
 
+    /// Do lucro mais baixo (ou zero) às vendas mais altas, com folga.
+    private var yDomain: ClosedRange<Double> {
+        let low = min(0, points.map(\.profit.doubleValue).min() ?? 0)
+        let high = max(1, points.map { max($0.sales, $0.profit).doubleValue }.max() ?? 1)
+        return (low * 1.15)...(high * 1.1)
+    }
+
     var body: some View {
         Chart {
             ForEach(points) { point in
@@ -27,6 +34,7 @@ struct StoreDailyChart: View {
                 .foregroundStyle(.secondary.opacity(0.4))
         }
         .chartForegroundStyleScale(["Vendas": Color.accentColor.opacity(0.7), "Lucro": Color.green])
+        .chartYScale(domain: yDomain)
         .chartXAxis {
             AxisMarks(values: .stride(by: .day, count: 7)) { _ in
                 AxisGridLine()
