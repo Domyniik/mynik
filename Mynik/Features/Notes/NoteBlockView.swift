@@ -10,21 +10,27 @@ struct NoteBlockView: View {
     var body: some View {
         content
             .onChange(of: block.text) {
+                applyShortcut()
                 if let note = block.note { NoteEditing.touch(note) }
             }
+    }
+
+    /// `# `, `- [ ] ` ou `[] ` no início de um parágrafo mudam o tipo do bloco.
+    private func applyShortcut() {
+        guard block.kind == .text, let shortcut = NoteMarkdown.shortcut(for: block.text) else { return }
+        block.kind = shortcut.kind
+        block.isChecked = shortcut.isChecked
+        block.text = shortcut.text
     }
 
     @ViewBuilder
     private var content: some View {
         switch block.kind {
         case .text:
-            TextField("Escreve algo…", text: $block.text, axis: .vertical)
-                .focused(focus, equals: block.uid)
+            MarkdownTextField(placeholder: "Escreve algo… (Markdown, [[ligações]])", text: $block.text, axis: .vertical, focus: focus, id: block.uid)
         case .heading:
-            TextField("Título", text: $block.text)
+            MarkdownTextField(placeholder: "Título", text: $block.text, focus: focus, id: block.uid, onSubmit: onReturn)
                 .font(.title2.bold())
-                .focused(focus, equals: block.uid)
-                .onSubmit(onReturn)
         case .checklist:
             HStack(alignment: .firstTextBaseline, spacing: 8) {
                 Button {
@@ -36,11 +42,9 @@ struct NoteBlockView: View {
                 .buttonStyle(.borderless)
                 .accessibilityLabel(block.isChecked ? "Desmarcar" : "Marcar")
 
-                TextField("Item", text: $block.text)
+                MarkdownTextField(placeholder: "Item", text: $block.text, focus: focus, id: block.uid, onSubmit: onReturn)
                     .strikethrough(block.isChecked)
                     .foregroundStyle(block.isChecked ? .secondary : .primary)
-                    .focused(focus, equals: block.uid)
-                    .onSubmit(onReturn)
             }
         case .image:
             VStack(alignment: .leading, spacing: 6) {

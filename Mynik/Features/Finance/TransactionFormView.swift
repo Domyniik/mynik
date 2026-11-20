@@ -70,6 +70,18 @@ struct TransactionFormView: View {
                     TextField("Notas", text: $draft.notes, axis: .vertical)
                         .lineLimit(3...6)
                 }
+
+                if let linked = transaction?.linkedNotes, !linked.isEmpty {
+                    Section {
+                        ForEach(linked) { note in
+                            Label { Text(note.displayTitle) } icon: { Text(note.icon) }
+                        }
+                    } header: {
+                        Text("Páginas ligadas")
+                    } footer: {
+                        Text("As ligações gerem-se no editor de notas.")
+                    }
+                }
             }
             .formStyle(.grouped)
             .navigationTitle(transaction == nil ? "Novo movimento" : "Editar movimento")

@@ -126,8 +126,7 @@ enum NoteSearch {
         let query = query.trimmingCharacters(in: .whitespaces)
         guard !query.isEmpty else { return notes }
         return notes.filter { note in
-            note.title.localizedStandardContains(query)
-                || (note.blocks ?? []).contains { $0.text.localizedStandardContains(query) }
+            note.title.localizedStandardContains(query) || note.plainText.localizedStandardContains(query)
         }
     }
 }

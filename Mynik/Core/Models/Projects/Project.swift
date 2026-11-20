@@ -17,6 +17,10 @@ final class Project {
     @Relationship(deleteRule: .cascade, inverse: \ProjectTask.project)
     var tasks: [ProjectTask]? = []
 
+    /// Notas ligadas ao projeto (o inverso está em `Note.linkedProjects`).
+    @Relationship(deleteRule: .nullify)
+    var linkedNotes: [Note]? = []
+
     var status: ProjectStatus {
         get { ProjectStatus(rawValue: statusRaw) ?? .active }
         set { statusRaw = newValue.rawValue }

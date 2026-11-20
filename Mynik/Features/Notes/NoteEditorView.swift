@@ -8,7 +8,9 @@ struct NoteEditorView: View {
     @Bindable var note: Note
 
     @FocusState private var focusedBlock: String?
-    @State private var newChild: Note?
+    @State private var openedNote: Note?
+    @State private var openedProject: Project?
+    @State private var editingTransaction: FinanceTransaction?
     @State private var photoItem: PhotosPickerItem?
     @State private var isImportingImage = false
     @State private var isShowingImageError = false
@@ -58,27 +60,64 @@ struct NoteEditorView: View {
                     for index in offsets { NoteEditing.deleteBlock(blocks[index], from: note, context: modelContext) }
                 }
 
-                addBlockMenu
-                    .listRowSeparator(.hidden)
+                HStack {
+                    addBlockMenu
+                    Spacer()
+                    PasteButton(payloadType: String.self) { strings in
+                        importMarkdown(strings.joined(separator: "\n\n"))
+                    }
+                    .labelStyle(.titleAndIcon)
+                    .buttonBorderShape(.capsule)
+                    .help("Colar Markdown como blocos")
+                }
+                .listRowSeparator(.hidden)
             }
 
             Section("Subpáginas") {
                 ForEach(note.sortedChildren) { child in
-                    NavigationLink(value: child) {
+                    Button { openedNote = child } label: {
                         Label { Text(child.displayTitle) } icon: { Text(child.icon) }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .contentShape(.rect)
                     }
+                    .buttonStyle(.plain)
                 }
                 Button("Nova subpágina", systemImage: "plus") {
-                    newChild = NoteEditing.makeNote(parent: note, in: modelContext)
+                    openedNote = NoteEditing.makeNote(parent: note, in: modelContext)
                 }
             }
+
+            NoteLinksSection(
+                note: note,
+                onOpenNote: { openedNote = $0 },
+                onOpenProject: { openedProject = $0 },
+                onOpenTransaction: { editingTransaction = $0 }
+            )
         }
         .navigationTitle(note.displayTitle)
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
-        .navigationDestination(item: $newChild) { child in
-            NoteEditorView(note: child)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                ShareLink(
+                    item: NoteMarkdown.export(title: note.displayTitle, blocks: note.sortedBlocks),
+                    subject: Text(note.displayTitle),
+                    preview: SharePreview(note.displayTitle)
+                ) {
+                    Label("Exportar Markdown", systemImage: "square.and.arrow.up")
+                }
+            }
+        }
+        // Destinos locais: o editor também abre dentro de Projetos.
+        .navigationDestination(item: $openedNote) { other in
+            NoteEditorView(note: other)
+        }
+        .navigationDestination(item: $openedProject) { project in
+            ProjectDetailView(project: project)
+        }
+        .sheet(item: $editingTransaction) { transaction in
+            TransactionFormView(transaction: transaction)
         }
         .photosPicker(isPresented: $isImportingImage, selection: $photoItem, matching: .images)
         .onChange(of: photoItem) {
@@ -146,6 +185,20 @@ struct NoteEditorView: View {
         let next: NoteBlockKind = block.kind == .checklist ? .checklist : .text
         let created = NoteEditing.insertBlock(next, after: block, in: note, context: modelContext)
         focusedBlock = created.uid
+    }
+
+    /// Acrescenta blocos lidos de Markdown no fim da página (substitui um único bloco vazio).
+    private func importMarkdown(_ markdown: String) {
+        let parsed = NoteMarkdown.parse(markdown)
+        guard !parsed.isEmpty else { return }
+        let existing = note.sortedBlocks
+        if existing.count == 1, let only = existing.first, only.kind == .text, only.text.isEmpty {
+            NoteEditing.deleteBlock(only, from: note, context: modelContext)
+        }
+        for item in parsed {
+            NoteEditing.insertBlock(item.kind, text: item.text, in: note, context: modelContext).isChecked = item.isChecked
+        }
+        try? modelContext.save()
     }
 
     private func insertImage(from item: PhotosPickerItem) async {

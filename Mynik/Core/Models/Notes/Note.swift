@@ -21,6 +21,27 @@ final class Note {
     @Relationship(deleteRule: .cascade, inverse: \NoteBlock.note)
     var blocks: [NoteBlock]? = []
 
+    // Ligações a outros itens (apagar um lado só desfaz a ligação).
+
+    @Relationship(deleteRule: .nullify, inverse: \Project.linkedNotes)
+    var linkedProjects: [Project]? = []
+
+    @Relationship(deleteRule: .nullify, inverse: \FinanceTransaction.linkedNotes)
+    var linkedTransactions: [FinanceTransaction]? = []
+
+    /// Notas para onde esta aponta.
+    @Relationship(deleteRule: .nullify, inverse: \Note.backlinks)
+    var linkedNotes: [Note]? = []
+
+    /// Notas que apontam para esta.
+    @Relationship(deleteRule: .nullify)
+    var backlinks: [Note]? = []
+
+    /// Texto de todos os blocos (pesquisa e menções).
+    var plainText: String {
+        sortedBlocks.map(\.text).joined(separator: "\n")
+    }
+
     var displayTitle: String {
         let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmed.isEmpty ? "Sem título" : trimmed

@@ -31,7 +31,7 @@
 - [x] Projetos (Kanban + lista) e tarefas
 - [x] Metas com valor-alvo ligadas às Finanças
 - [x] Notas: páginas aninhadas e blocos
-- [ ] Markdown e links entre itens
+- [x] Markdown e links entre itens
 
 ## Fase 5 — Vida
 - [ ] Carro (combustível, manutenção, seguro/ITV/IUC)

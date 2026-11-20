@@ -86,12 +86,13 @@ struct SampleData: PreviewModifier {
         // Notas: uma página com blocos e uma subpágina.
         let ideas = NoteEditing.makeNote(title: "Ideias para a Neloce", in: context)
         ideas.icon = "💡"
-        ideas.blocks?.first?.text = "Coleção de inverno com fotos novas."
+        ideas.blocks?.first?.text = "Coleção de **inverno** com fotos novas. Ver [[Fornecedores]]."
         NoteEditing.insertBlock(.heading, text: "Próximos passos", in: ideas, context: context)
         NoteEditing.insertBlock(.checklist, text: "Encomendar amostras", in: ideas, context: context)
         NoteEditing.insertBlock(.checklist, text: "Sessão fotográfica", in: ideas, context: context).isChecked = true
         let supplier = NoteEditing.makeNote(title: "Fornecedores", parent: ideas, in: context)
         supplier.icon = "🗂️"
+        NoteLinks.toggle(app, in: ideas)
 
         // Loja de exemplo, já em cache.
         let demo = DemoStoreDataSource()

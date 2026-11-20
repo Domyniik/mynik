@@ -23,6 +23,10 @@ final class FinanceTransaction {
     var category: Category?
     var account: Account?
 
+    /// Notas ligadas a este movimento (o inverso está em `Note.linkedTransactions`).
+    @Relationship(deleteRule: .nullify)
+    var linkedNotes: [Note]? = []
+
     var kind: TransactionKind {
         get { TransactionKind(rawValue: kindRaw) ?? .expense }
         set { kindRaw = newValue.rawValue }
