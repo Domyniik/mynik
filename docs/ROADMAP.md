@@ -60,4 +60,4 @@
 - [x] Backup/export JSON — feito na Fase 6 (em vez do sync iCloud); revisto na Fase 8 para incluir os hábitos e marcações (v0.7), lendo também cópias antigas
 - [x] Testes (Swift Testing) — 223 testes no Mac (222 no iOS): serviços, IA com e sem modelo, OCR real, migrações do esquema, backup, navegação
 - [x] TestFlight → **não disponível**: exige o Apple Developer Program (pago), que este projeto não usa. Distribuição alternativa: no Mac, `brew install --cask domyniik/tap/mynik` (assinado com o certificado grátis da Personal Team, sem notarização); no iPhone, instalar a partir do Xcode ou do Sideloadly com um Apple ID grátis (a assinatura expira ao fim de 7 dias e tem de ser renovada).
-- [ ] Screenshots + README final para o portfólio
+- [x] Screenshots + README final para o portfólio — ecrãs reais do iPhone 17 e do Mac em modo de demonstração (`-MynikDemo`) em docs/screenshots

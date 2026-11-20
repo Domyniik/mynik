@@ -50,11 +50,13 @@ struct MynikDataDigest {
                 && (transaction.category?.name.searchKey == key || transaction.title.searchKey.contains(key))
         }
         guard !matches.isEmpty else {
-            return "Não há gastos com \"\(query)\" em \(monthName(month))."
+            return "Não há gastos com \(query) em \(monthName(month))."
         }
         let total = matches.reduce(Decimal(0)) { $0 + converter.amountInDefaultCurrency($1) }
         let biggest = matches.max { converter.amountInDefaultCurrency($0) < converter.amountInDefaultCurrency($1) }
-        var text = "Gastos com \"\(query)\" em \(monthName(month)): \(money(total)) em \(matches.count) movimento(s)."
+        // Mostra o nome da categoria como está escrito ("Alimentação", não "alimentacao").
+        let label = matches.lazy.compactMap(\.category).first { $0.name.searchKey == key }?.name ?? query
+        var text = "Gastos com \(label) em \(monthName(month)): \(money(total)) em \(matches.count) movimento(s)."
         if let biggest {
             text += " O maior: \(biggest.title), \(money(converter.amountInDefaultCurrency(biggest))) a \(day(biggest.date))."
         }

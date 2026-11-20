@@ -1,7 +1,8 @@
 import SwiftData
 import SwiftUI
 
-/// Dados de exemplo para as previews do Xcode.
+/// Dados de exemplo para as previews do Xcode e para o modo de demonstração
+/// (`-MynikDemo`, usado nas screenshots sem tocar nos dados reais).
 struct SampleData: PreviewModifier {
     static func makeSharedContext() throws -> ModelContainer {
         let container = try ModelContainerFactory.make(inMemory: true)
@@ -140,6 +141,19 @@ struct SampleData: PreviewModifier {
         for day in stride(from: 60, through: 1, by: -3) {
             let wave = Decimal(Int(sin(Double(day) / 6) * 120))
             context.insert(WealthSnapshot(day: calendar.startOfDay(for: daysAgo(day)), cash: 2_900 + Decimal(60 - day) * 4, invested: 6_200 - Decimal(day) * 5, investmentsValue: 6_400 - Decimal(day) * 3 + wave))
+        }
+
+        // Hábitos com sequências diferentes.
+        for (name, symbol, color, target, done) in [
+            ("Ginásio", "dumbbell", CategoryColor.orange, 4, [0, 1, 3, 5, 6, 8]),
+            ("Ler 20 minutos", "book", CategoryColor.blue, 7, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]),
+            ("Sem gastos supérfluos", "eurosign.circle", CategoryColor.green, 5, [1, 2, 4]),
+        ] {
+            let habit = Habit(name: name, symbolName: symbol, color: color, targetPerWeek: target)
+            context.insert(habit)
+            for day in done {
+                context.insert(HabitCheck(day: calendar.startOfDay(for: daysAgo(day)), habit: habit))
+            }
         }
 
         // Loja de exemplo, já em cache.

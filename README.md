@@ -2,22 +2,72 @@
 
 > *A tua vida, num só lugar.*
 
-**Dashboard pessoal nativa para iOS e macOS:** finanças, contas a pagar, analytics da loja Shopify, projetos, notas, carro, documentos e carreira, tudo num só app, com cópia de segurança JSON para passar os dados entre o Mac e o iPhone.
+**Dashboard pessoal nativa para iPhone e Mac**: finanças, contas a pagar, analytics da loja Shopify, projetos, notas, hábitos, carro, documentos, carreira e património numa só app SwiftUI, com IA no dispositivo e sem servidores.
 
-![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026%20%7C%20macOS%2026-blue) ![SwiftData](https://img.shields.io/badge/SwiftData-local-green)
+![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026%20%7C%20macOS%2026-blue) ![SwiftData](https://img.shields.io/badge/SwiftData-local-green) ![Foundation Models](https://img.shields.io/badge/IA-on--device-purple) ![Tests](https://img.shields.io/badge/testes-223-brightgreen)
+
+<p align="center">
+  <img src="docs/screenshots/iphone-hoje.png" width="200" alt="Tela Hoje no iPhone">
+  <img src="docs/screenshots/iphone-pergunte-ia.png" width="200" alt="Pergunte ao Mynik com Apple Intelligence">
+  <img src="docs/screenshots/iphone-loja.png" width="200" alt="Loja Shopify com ranking e gráfico">
+  <img src="docs/screenshots/iphone-habitos.png" width="200" alt="Hábitos com sequência">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/mac-hoje.png" width="820" alt="Mynik no Mac">
+</p>
 
 ## Destaques
-- 📱💻 **Um só código** para iPhone e Mac (SwiftUI multiplataforma)
-- 💶 **Finanças**: orçamento, contas a pagar com alertas, assinaturas, gastos automáticos via Apple Pay
-- 🛍️ **Shopify Analytics**: lucro real e ranking de produtos (vencedores vs perdedores) com diagnóstico do funil
-- 🔄 **Cópia de segurança JSON** com fusão sem duplicados (AirDrop, iCloud Drive ou Ficheiros) — sem CloudKit, que exige o plano pago da Apple
-- 🤖 **IA on-device** (Foundation Models) para categorizar gastos e responder perguntas sobre os dados
-- 🧩 Widgets, Siri/Atalhos, Live Activities, Menu Bar no Mac
+- 📱💻 **Um só código** para iPhone e Mac (SwiftUI multiplataforma): barra lateral no Mac/iPad, separadores no iPhone, ⌘K para pesquisar tudo.
+- 🤖 **IA no dispositivo** (Foundation Models): categoriza os gastos sozinha e responde a perguntas sobre os teus dados ("Pergunte ao Mynik") com *tool calling* que lê o SwiftData. Sem Apple Intelligence, tudo continua a funcionar com regras e resumos.
+- 🧾 **Scanner de faturas**: câmara de documentos do VisionKit e OCR do Vision extraem comerciante, total e data, e o gasto aparece já categorizado.
+- 💶 **Finanças completas**: orçamento, contas a pagar com alertas e **Live Activity / Dynamic Island**, assinaturas, multi-moeda EUR/BRL, importação de CSV e gastos automáticos via **Apple Pay**.
+- 🛍️ **Shopify Analytics**: lucro real (sem IVA, custos, envios, taxas e anúncios), ranking de produtos 0–100 com ação sugerida e diagnóstico do funil.
+- 🔥 **Hábitos, revisão semanal ao domingo**, projetos em Kanban, notas estilo Notion com Markdown, carro, documentos com Face ID, carreira e património.
+- 🧩 Widgets, Siri/Atalhos, barra de menus no Mac, Calendário e Lembretes na tela Hoje.
+- ♿️ Liquid Glass, modo escuro, Dynamic Type, VoiceOver e Reduzir movimento.
 
-## Stack
-SwiftUI · SwiftData · Swift Charts · WidgetKit · App Intents · EventKit · VisionKit · Foundation Models · Shopify Admin GraphQL API
+<details>
+<summary><b>Mais screenshots</b></summary>
 
-## Estado
+| | | |
+|:-:|:-:|:-:|
+| <img src="docs/screenshots/iphone-scanner.png" width="220" alt="Scanner de faturas"> | <img src="docs/screenshots/iphone-dynamic-island.png" width="220" alt="Conta a vencer na Dynamic Island"> | <img src="docs/screenshots/iphone-hoje-escuro.png" width="220" alt="Tela Hoje em modo escuro"> |
+| Fatura digitalizada → gasto | Conta de hoje na Dynamic Island | Modo escuro |
+| <img src="docs/screenshots/iphone-financas.png" width="220" alt="Finanças"> | <img src="docs/screenshots/iphone-pergunte-sem-ia.png" width="220" alt="Pergunte ao Mynik sem IA"> | <img src="docs/screenshots/mac-pergunte.png" width="220" alt="Pergunte ao Mynik no Mac"> |
+| Finanças | Modo sem IA (resumos) | Chat no Mac |
+
+<img src="docs/screenshots/mac-loja.png" width="820" alt="Loja no Mac">
+</details>
+
+## Arquitetura
+```
+Mynik/
+  App/            MynikApp, RootView, navegação (AppRouter partilhado, barra lateral / separadores)
+  Core/
+    Models/       modelos SwiftData (compatíveis com CloudKit: defaults, relações opcionais, sem @Attribute(.unique))
+    Persistence/  esquema versionado V1→V6 com migrações lightweight testadas, dados de exemplo
+    Services/     IA (Foundation Models), backup JSON, Shopify, notificações, Live Activity, Keychain, câmbio...
+    Utils/        lógica pura e testável: métricas da loja, scorer de produtos, regras de categorias, parser de faturas
+    Shared/       código partilhado com a extensão de widgets (resumo por App Group, Live Activity)
+  Features/       um módulo por secção (Today, Finance, Store, Assistant, Habits, Search, ...) com views pequenas
+  Widgets/        WidgetKit + Live Activity / Dynamic Island
+  Intents/        App Intents (Siri, Atalhos, Apple Pay)
+MynikTests/       Swift Testing, com a app como anfitrião e base de dados em memória
+```
+- **Swift 6 com isolamento `MainActor` por omissão** e concorrência estrita; o que corre fora (ferramentas do modelo, OCR) é `nonisolated`/`@concurrent` e só leva tipos `Sendable`.
+- **Lógica fora das views**: serviços e utilitários puros (`ProductScorer`, `MerchantCategoryRules`, `ReceiptParser`, `WeeklyReview`...) com testes; as views só desenham.
+- **Esquema versionado**: cada versão publicada é congelada (`MynikSchemaV1`…`V5`) e há um teste de migração a partir de uma base antiga gravada em disco.
+- **Modo de demonstração** (`-MynikDemo`): dados de exemplo em memória, sem tocar nos dados reais nem nos widgets — é o que gera as screenshots.
+
+## Decisões técnicas
+- **SwiftData local + cópia de segurança JSON em vez de CloudKit.** O sync por iCloud exige o Apple Developer Program. Os modelos continuam compatíveis com CloudKit, mas os dados passam entre dispositivos por um ficheiro JSON completo (AirDrop, iCloud Drive ou Ficheiros) com fusão por `uid`, sem duplicados.
+- **Sem plano pago da Apple.** Nada de notarização, TestFlight nem push remoto: a app do Mac é distribuída por uma cask do Homebrew e assinada com o certificado grátis da Personal Team (o que permite o App Group dos widgets). As Live Activities são atualizadas localmente pela app e as notificações são todas locais.
+- **IA só no dispositivo.** Foundation Models com verificação de disponibilidade em runtime; a categorização limita a resposta às categorias existentes (`DynamicGenerationSchema`) e o chat junta os dados do tema à pergunta, porque o modelo pequeno nem sempre chama as ferramentas. Sem Apple Intelligence há sempre um caminho com regras.
+- **APIs grátis e sem chaves**: câmbio do BCE ([Frankfurter](https://frankfurter.dev)), preços de combustível do Ministerio para la Transición Ecológica, cotações do Yahoo Finance. A Shopify usa só *scopes* de leitura e o token fica no **Keychain**, nunca no código.
+- **Privacidade**: Face ID opcional para abrir a app, números e fotos dos documentos atrás de autenticação própria (e fora da busca global), nenhum dado sai do dispositivo.
+
+## Estado — v1.0
 ✅ **Fase 1 (MVP) concluída**: projeto multiplataforma, modelos SwiftData, navegação adaptativa (barra lateral no Mac/iPad, separadores no iPhone), Finanças (lista, adicionar e editar gastos/receitas) e tela Hoje (saldo do mês, últimos gastos, contas a vencer).
 
 ✅ **Fase 2 (Finanças completas) concluída**: contas a pagar com recorrência e botão "paguei", notificações de vencimento, orçamento mensal por categoria, relatórios com Swift Charts, assinaturas (total mensal/anual), importação de extratos CSV (com deteção de duplicados; exemplo em [docs/exemplo-extrato.csv](docs/exemplo-extrato.csv)) e multi-moeda EUR/BRL com taxa do BCE.
@@ -32,19 +82,20 @@ SwiftUI · SwiftData · Swift Charts · WidgetKit · App Intents · EventKit · 
 
 ✅ **Fase 7 (IA e extras) concluída**: **categorização automática** dos movimentos com a Apple Intelligence (Foundation Models no dispositivo, só entre as categorias existentes) e, sem ela, pelo histórico e por comerciantes conhecidos; **"Pergunte ao Mynik"**, um chat sobre finanças, contas, loja, carro, documentos, carreira, metas e património com *tool calling* que lê o SwiftData (e modo sem IA com resumos por tema); **scanner de faturas** (câmara de documentos do VisionKit ou foto/ficheiro, OCR do Vision que extrai comerciante, total e data); **Live Activity e Dynamic Island** da conta que vence hoje (atualizações locais); **revisão semanal** ao domingo, **hábitos** com sequência e objetivo semanal e **busca global ⌘K**.
 
-🚧 Próxima: **Fase 8 (polimento e lançamento: Liquid Glass, acessibilidade, Face ID, testes, screenshots)**. Ver [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
+✅ **Fase 8 (Polimento e lançamento) concluída — v1.0**: Liquid Glass (botões de vidro, barra de separadores que encolhe), cor de destaque com variantes para modo escuro e alto contraste, Dynamic Type com layouts verticais nos tamanhos de acessibilidade, Reduzir movimento, rótulos únicos para VoiceOver e Controlo por Voz; **Face ID opcional** para abrir a app; cópia de segurança completa com os hábitos; **223 testes** com Swift Testing; screenshots reais e este README. O TestFlight ficou de fora por exigir o plano pago (ver [Instalar](#instalar)).
 
-## Instalar (Mac)
+Detalhe de cada fase em [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
+
+## Instalar
+**Mac**
 ```bash
 brew install --cask domyniik/tap/mynik
 ```
-Requer macOS 26 (Tahoe). Para atualizar: `brew update && brew upgrade --cask mynik`.
+Requer macOS 26 (Tahoe). Para atualizar: `brew update && brew upgrade --cask mynik`. A app é assinada com o certificado gratuito *Apple Development* (Personal Team) e não é notarizada; a cask retira a quarentena. Na primeira abertura depois de atualizar, o macOS pode pedir uma vez acesso aos dados ou ao Keychain (token da Shopify): escolhe **Permitir sempre**.
 
-A partir da 0.6 a app é assinada com o certificado gratuito *Apple Development* (Personal Team) em vez de ad-hoc — é o que permite o App Group que os widgets usam. Continua sem notarização; a cask retira a quarentena. Na primeira abertura depois de atualizar, o macOS pode pedir uma vez para a app voltar a aceder aos seus dados ou ao Keychain (token da Shopify): escolhe **Permitir sempre**.
+**iPhone** — sem TestFlight (exige o plano pago): compila e instala a partir do Xcode com o teu Apple ID, ou instala o `.ipa` com o [Sideloadly](https://sideloadly.io). Com um Apple ID grátis a assinatura dura 7 dias e tem de ser renovada. Os widgets leem o App Group `group.com.domynik.mynik`; se o Sideloadly mudar o identificador do grupo, ficam em "Abre o Mynik".
 
-**iPhone (Sideloadly):** os widgets leem o resumo do App Group `group.com.domynik.mynik`; se o Sideloadly mudar o identificador do grupo, os widgets ficam em "Abre o Mynik".
-
-Para publicar uma versão nova: `scripts/release.sh <versão>` (compila, cria a release no GitHub e atualiza a [tap](https://github.com/Domyniik/homebrew-tap)).
+Para publicar uma versão: `scripts/release.sh <versão>` (compila, cria a release no GitHub e atualiza a [tap](https://github.com/Domyniik/homebrew-tap)).
 
 ## Como correr
 Requer Xcode 27+. O projeto é gerado com [XcodeGen](https://github.com/yonaskolb/XcodeGen) a partir de `project.yml`:
@@ -55,6 +106,13 @@ xcodegen generate
 open Mynik.xcodeproj
 ```
 
+Testes (Swift Testing):
+```bash
+xcodebuild -project Mynik.xcodeproj -scheme Mynik -destination 'platform=macOS' test
+```
+
+Modo de demonstração com dados de exemplo: no esquema do Xcode, acrescenta o argumento `-MynikDemo` (ou `xcrun simctl launch booted com.domynik.mynik -MynikDemo`).
+
 ## Apple Pay → Mynik (automação dos Atalhos)
 Cada pagamento com o Apple Pay pode entrar sozinho nas Finanças:
 
@@ -64,9 +122,6 @@ Cada pagamento com o Apple Pay pode entrar sozinho nas Finanças:
 4. Toca em **Comerciante** e escolhe a variável *Comerciante*; em **Valor**, a variável *Montante* (opcional: **Cartão** → *Cartão ou passe*).
 
 A categoria é a do último gasto no mesmo comerciante (ou adivinhada pelo nome; senão "Outros") e um pagamento repetido no mesmo minuto não é registado duas vezes. Também há "Registar gasto" (*"Gastei em Alimentação no Mynik"*) e "Saldo do mês" na Siri e nos Atalhos.
-
-## Screenshots
-_Em breve._
 
 ---
 Desenvolvido por **Domynik**, com Claude Code como par de programação.

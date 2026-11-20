@@ -7,6 +7,9 @@ import SwiftData
 enum SharedModelContainer {
     static let shared: ModelContainer = {
         do {
+            if AppEnvironment.isDemo, !AppEnvironment.isRunningTests {
+                return try SampleData.makeSharedContext()
+            }
             // Os testes correm dentro da app: nunca podem tocar na base de dados real.
             let container = try ModelContainerFactory.make(inMemory: AppEnvironment.isRunningTests)
             try DefaultDataSeeder.seedIfNeeded(in: container.mainContext)

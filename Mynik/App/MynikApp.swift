@@ -20,6 +20,9 @@ struct MynikApp: App {
                 .environment(router)
         }
         .modelContainer(modelContainer)
+        #if os(macOS)
+        .defaultSize(width: 1280, height: 820)
+        #endif
         .commands {
             CommandGroup(after: .textEditing) {
                 Button("Pesquisar no Mynik…", systemImage: "magnifyingglass") {

@@ -51,12 +51,14 @@ final class AskMynikModel {
         // nem sempre chama as ferramentas, e assim nunca responde sem números.
         let context = Self.relevantData(for: trimmed, digest: digest)
         if status.isAvailable,
-           let answer = await askModel(Self.prompt(trimmed, data: context), container: container, converter: converter),
-           Self.isUsable(answer) {
-            messages.append(ChatMessage(role: .assistant, text: answer))
-        } else {
-            messages.append(ChatMessage(role: .assistant, text: Self.offlineAnswer(trimmed, digest: digest), isOffline: true))
+           let answer = await askModel(Self.prompt(trimmed, data: context), container: container, converter: converter) {
+            if Self.isUsable(answer) {
+                messages.append(ChatMessage(role: .assistant, text: answer))
+                return
+            }
+            Self.logger.notice("Pergunte ao Mynik: resposta do modelo sem conteúdo útil; uso o resumo.")
         }
+        messages.append(ChatMessage(role: .assistant, text: Self.offlineAnswer(trimmed, digest: digest), isOffline: true))
     }
 
     func reset() {

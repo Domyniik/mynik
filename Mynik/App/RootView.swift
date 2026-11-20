@@ -102,6 +102,8 @@ struct RootView: View {
 
     /// Uma fotografia do património por dia, para o gráfico da evolução.
     private func recordWealthSnapshot() {
+        // No modo de demonstração nada sai da app (widgets, avisos, Live Activity).
+        guard !AppEnvironment.isDemo else { return }
         InvestmentService.recordSnapshot(
             in: modelContext,
             converter: CurrencyConverter(storedRate: brlPerEUR)
@@ -111,15 +113,21 @@ struct RootView: View {
 
     /// Resumo para os widgets (saldo do mês e contas a vencer).
     private func updateWidgets() {
+        // No modo de demonstração nada sai da app (widgets, avisos, Live Activity).
+        guard !AppEnvironment.isDemo else { return }
         WidgetSnapshotWriter.update(in: modelContext, converter: CurrencyConverter(storedRate: brlPerEUR))
     }
 
     /// Live Activity da conta que vence hoje (iPhone).
     private func updateLiveActivity() {
+        // No modo de demonstração nada sai da app (widgets, avisos, Live Activity).
+        guard !AppEnvironment.isDemo else { return }
         BillLiveActivityService.sync(in: modelContext, converter: CurrencyConverter(storedRate: brlPerEUR))
     }
 
     private func rescheduleReminders() {
+        // No modo de demonstração nada sai da app (widgets, avisos, Live Activity).
+        guard !AppEnvironment.isDemo else { return }
         Task {
             await NotificationService.shared.rescheduleReminders(in: modelContext)
         }
