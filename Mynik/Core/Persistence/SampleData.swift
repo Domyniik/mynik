@@ -77,6 +77,12 @@ struct SampleData: PreviewModifier {
             ProjectTask(title: "Renovar o seguro do carro", dueDate: daysAgo(1)),
         ].forEach(context.insert)
 
+        // Metas: uma manual com prazo e uma ligada à categoria Lazer.
+        let trip = Goal(title: "Viagem ao Brasil", targetAmount: 2500, deadline: calendar.date(byAdding: .month, value: 8, to: .now), symbolName: "airplane", color: .teal)
+        trip.manualAmount = 900
+        context.insert(trip)
+        context.insert(Goal(title: "Jantares fora", targetAmount: 120, source: .category, symbolName: "fork.knife", color: .purple, startDate: daysAgo(30), category: category("Lazer")))
+
         // Loja de exemplo, já em cache.
         let demo = DemoStoreDataSource()
         let since = calendar.date(byAdding: .day, value: -59, to: calendar.startOfDay(for: .now)) ?? .now

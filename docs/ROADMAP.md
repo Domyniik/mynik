@@ -29,7 +29,7 @@
 
 ## Fase 4 — Projetos, metas e notas
 - [x] Projetos (Kanban + lista) e tarefas
-- [ ] Metas com valor-alvo ligadas às Finanças
+- [x] Metas com valor-alvo ligadas às Finanças
 - [ ] Notas: páginas aninhadas e blocos
 - [ ] Markdown e links entre itens
 

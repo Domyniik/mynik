@@ -20,6 +20,10 @@ final class Category {
     @Relationship(deleteRule: .nullify, inverse: \Bill.category)
     var bills: [Bill]? = []
 
+    /// Metas cujo progresso soma os movimentos desta categoria.
+    @Relationship(deleteRule: .nullify, inverse: \Goal.category)
+    var goals: [Goal]? = []
+
     var kind: TransactionKind {
         get { TransactionKind(rawValue: kindRaw) ?? .expense }
         set { kindRaw = newValue.rawValue }

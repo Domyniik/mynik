@@ -17,6 +17,10 @@ final class Account {
     @Relationship(deleteRule: .nullify, inverse: \Bill.account)
     var bills: [Bill]? = []
 
+    /// Metas cujo progresso segue o saldo desta conta.
+    @Relationship(deleteRule: .nullify, inverse: \Goal.account)
+    var goals: [Goal]? = []
+
     var type: AccountType {
         get { AccountType(rawValue: typeRaw) ?? .checking }
         set { typeRaw = newValue.rawValue }

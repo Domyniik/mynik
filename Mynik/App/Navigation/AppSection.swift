@@ -6,6 +6,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
     case finance
     case store
     case projects
+    case goals
     case settings
 
     var id: Self { self }
@@ -16,6 +17,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         case .finance: "Finanças"
         case .store: "Loja"
         case .projects: "Projetos"
+        case .goals: "Metas"
         case .settings: "Definições"
         }
     }
@@ -26,6 +28,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         case .finance: "eurosign.circle"
         case .store: "storefront"
         case .projects: "checklist"
+        case .goals: "target"
         case .settings: "gearshape"
         }
     }
