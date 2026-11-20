@@ -34,7 +34,7 @@ struct GoalDetailView: View {
 
                     if GoalContributionService.acceptsContributions(goal), !progress.isReached {
                         Button("Juntar dinheiro", systemImage: "plus") { isContributing = true }
-                            .buttonStyle(.borderedProminent)
+                            .buttonStyle(.glassProminent)
                             .tint(goal.color.color)
                     }
                 }

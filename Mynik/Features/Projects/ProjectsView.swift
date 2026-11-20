@@ -31,7 +31,7 @@ struct ProjectsView: View {
                     Text("Organiza o trabalho em projetos com tarefas em Kanban ou em lista.")
                 } actions: {
                     Button("Novo projeto") { isAddingProject = true }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.glassProminent)
                 }
             }
 

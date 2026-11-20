@@ -3,8 +3,13 @@ import SwiftUI
 /// Saldo do mês com receitas e gastos. Usado em Finanças e em Hoje.
 struct MonthSummaryCard: View {
     let summary: MonthSummary
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
+        // Nos tamanhos de acessibilidade, receitas e gastos ficam um por linha.
+        let figures = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
+            : AnyLayout(HStackLayout(spacing: 24))
         VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Saldo do mês")
@@ -16,9 +21,11 @@ struct MonthSummaryCard: View {
                     .monospacedDigit()
                     .foregroundStyle(summary.balance < 0 ? .red : .primary)
                     .contentTransition(.numericText())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
             }
 
-            HStack(spacing: 24) {
+            figures {
                 SummaryFigure(title: "Receitas", amount: summary.income, symbolName: "arrow.down.left", tint: .green)
                 SummaryFigure(title: "Gastos", amount: summary.expenses, symbolName: "arrow.up.right", tint: .red)
             }
@@ -43,10 +50,13 @@ private struct SummaryFigure: View {
                 Text(Currency.format(amount))
                     .font(.headline)
                     .monospacedDigit()
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
             }
         } icon: {
             Image(systemName: symbolName)
                 .foregroundStyle(tint)
+                .accessibilityHidden(true)
         }
     }
 }

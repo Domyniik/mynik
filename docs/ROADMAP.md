@@ -55,7 +55,7 @@
 - [x] Revisão semanal, hábitos, busca ⌘K
 
 ## Fase 8 — Polimento e lançamento
-- [ ] Liquid Glass, dark mode, acessibilidade
+- [x] Liquid Glass, dark mode, acessibilidade
 - [ ] Face ID para abrir o app
 - [ ] Backup/export JSON
 - [ ] Testes (Swift Testing)

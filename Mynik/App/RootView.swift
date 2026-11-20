@@ -7,6 +7,7 @@ import SwiftUI
 struct RootView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(StoreSyncCoordinator.self) private var storeSync
     @Environment(AppRouter.self) private var router
 
@@ -21,6 +22,10 @@ struct RootView: View {
         @Bindable var router = router
         navigation
             .environment(\.currencyConverter, CurrencyConverter(storedRate: brlPerEUR))
+            // Reduzir movimento: sem animações de deslocação em toda a app.
+            .transaction { transaction in
+                if reduceMotion { transaction.animation = nil }
+            }
             .sheet(isPresented: $router.isSearching) {
                 GlobalSearchView()
                     .environment(\.currencyConverter, CurrencyConverter(storedRate: brlPerEUR))

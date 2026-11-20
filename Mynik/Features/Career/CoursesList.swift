@@ -17,7 +17,7 @@ struct CoursesList: View {
                 Text("Guarda os cursos e certificações, o progresso e a validade dos certificados.")
             } actions: {
                 Button("Novo curso") { isAdding = true }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.glassProminent)
             }
         }
         ForEach(CourseStatus.allCases) { status in

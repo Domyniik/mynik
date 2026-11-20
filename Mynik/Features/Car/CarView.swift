@@ -52,7 +52,7 @@ struct CarView: View {
                     Text("Regista o carro para seguir o consumo, as manutenções e os prazos da ITV, do seguro e do imposto.")
                 } actions: {
                     Button("Adicionar carro") { sheet = .vehicle(nil) }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.glassProminent)
                 }
             }
         }

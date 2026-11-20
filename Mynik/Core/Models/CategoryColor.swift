@@ -20,4 +20,22 @@ nonisolated enum CategoryColor: String, Codable, CaseIterable, Sendable {
         case .gray: .gray
         }
     }
+
+    /// Nome dito pelo VoiceOver e pelo Controlo por Voz.
+    var name: String {
+        switch self {
+        case .red: "Vermelho"
+        case .orange: "Laranja"
+        case .yellow: "Amarelo"
+        case .green: "Verde"
+        case .mint: "Menta"
+        case .teal: "Azul-petróleo"
+        case .blue: "Azul"
+        case .indigo: "Índigo"
+        case .purple: "Roxo"
+        case .pink: "Rosa"
+        case .brown: "Castanho"
+        case .gray: "Cinzento"
+        }
+    }
 }

@@ -24,6 +24,10 @@ struct TabNavigationView: View {
                 }
             }
         }
+        // Liquid Glass: a barra de separadores encolhe ao percorrer o conteúdo.
+        #if os(iOS)
+        .tabBarMinimizeBehavior(.onScrollDown)
+        #endif
         .onAppear { router.usesTabs = true }
     }
 }

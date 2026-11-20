@@ -5,6 +5,7 @@ import SwiftUI
 struct AskMynikView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.currencyConverter) private var converter
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var model = AskMynikModel()
     @State private var draft = ""
@@ -32,7 +33,7 @@ struct AskMynikView: View {
             }
             .scrollDismissesKeyboard(.interactively)
             .onChange(of: model.messages.count) {
-                withAnimation { proxy.scrollTo(model.messages.last?.id, anchor: .bottom) }
+                withAnimation(reduceMotion ? nil : .default) { proxy.scrollTo(model.messages.last?.id, anchor: .bottom) }
             }
         }
         .safeAreaInset(edge: .bottom) { inputBar }
@@ -76,7 +77,7 @@ struct AskMynikView: View {
                 .font(.headline)
             ForEach(AskMynikModel.suggestions, id: \.self) { suggestion in
                 Button(suggestion) { ask(suggestion) }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(.glass)
             }
         }
     }

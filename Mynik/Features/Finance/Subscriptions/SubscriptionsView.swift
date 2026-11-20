@@ -48,7 +48,7 @@ struct SubscriptionsView: View {
                     Text("Regista Spotify, ginásio, iCloud... e vê quanto gastas por ano.")
                 } actions: {
                     Button("Adicionar assinatura") { isAdding = true }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.glassProminent)
                 }
             }
         }

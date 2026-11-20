@@ -105,7 +105,7 @@ struct MenuBarQuickExpenseView: View {
                 TextField("Descrição (opcional)", text: $note)
                     .onSubmit(add)
                 Button("Registar", action: add)
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.glassProminent)
                     .disabled((amount ?? 0) <= 0)
                     .keyboardShortcut(.defaultAction)
             }

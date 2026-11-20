@@ -30,7 +30,7 @@ struct NotesView: View {
                     Text("Cria páginas com texto, títulos, listas de tarefas e imagens, e organiza-as em subpáginas.")
                 } actions: {
                     Button("Nova página") { createNote() }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.glassProminent)
                 }
             } else {
                 Section("Páginas") {

@@ -26,7 +26,7 @@ struct DocumentsView: View {
                     Text("Guarda o cartão de cidadão, o passaporte, a residência ou a carta de condução com a validade. Avisamos antes de expirarem e as fotos ficam protegidas por \(lock.methodName).")
                 } actions: {
                     Button("Adicionar documento") { isAdding = true }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.glassProminent)
                 }
             } else {
                 LockSection(lock: lock)

@@ -18,7 +18,7 @@ struct HabitsView: View {
                     Text("Cria um hábito e marca-o todos os dias para construir uma sequência.")
                 } actions: {
                     Button("Novo hábito") { isAdding = true }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.glassProminent)
                 }
             } else {
                 Section {
@@ -58,13 +58,14 @@ struct HabitsView: View {
 /// Linha de um hábito: botão do dia, sequência e últimos 7 dias.
 struct HabitRow: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let habit: Habit
 
     var body: some View {
         let progress = HabitService.progress(of: habit)
         HStack(spacing: 12) {
             Button {
-                withAnimation(.snappy) { HabitService.toggle(habit, in: modelContext) }
+                withAnimation(reduceMotion ? nil : .snappy) { HabitService.toggle(habit, in: modelContext) }
             } label: {
                 Image(systemName: progress.isDoneToday ? "checkmark.circle.fill" : "circle")
                     .font(.title)
@@ -126,18 +127,11 @@ struct HabitFormView: View {
                 Stepper(value: $targetPerWeek, in: 1...7) {
                     LabeledContent("Objetivo", value: targetPerWeek == 7 ? "todos os dias" : "\(targetPerWeek) dias por semana")
                 }
-                Picker("Ícone", selection: $symbolName) {
-                    ForEach(Self.symbols, id: \.self) { symbol in
-                        Image(systemName: symbol).tag(symbol)
-                    }
+                Section("Cor") {
+                    ColorChoicePicker(selection: $color)
                 }
-                Picker("Cor", selection: $color) {
-                    ForEach(CategoryColor.allCases, id: \.self) { color in
-                        Image(systemName: "circle.fill")
-                            .foregroundStyle(color.color)
-                            .accessibilityLabel(color.rawValue)
-                            .tag(color)
-                    }
+                Section("Ícone") {
+                    SymbolChoicePicker(symbols: Self.symbols, tint: color.color, selection: $symbolName)
                 }
             }
             .formStyle(.grouped)

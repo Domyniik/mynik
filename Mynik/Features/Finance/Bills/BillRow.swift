@@ -5,23 +5,31 @@ struct BillRow: View {
     let bill: Bill
     var onPay: (() -> Void)?
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     var body: some View {
-        HStack(spacing: 12) {
-            CategoryIcon(category: bill.category)
+        // Nos tamanhos de acessibilidade o valor e o botão passam para baixo do título.
+        let isLarge = dynamicTypeSize.isAccessibilitySize
+        let layout = isLarge ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout(spacing: 12))
+        layout {
+            HStack(spacing: 12) {
+                CategoryIcon(category: bill.category)
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text(bill.title)
-                    .lineLimit(1)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(bill.title)
+                        .lineLimit(isLarge ? nil : 1)
 
-                Text(subtitle)
-                    .font(.caption)
-                    .foregroundStyle(isOverdue ? .red : .secondary)
-                    .lineLimit(1)
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundStyle(isOverdue ? .red : .secondary)
+                        .lineLimit(isLarge ? nil : 1)
+                }
             }
+            .accessibilityElement(children: .combine)
 
-            Spacer(minLength: 8)
+            if !isLarge { Spacer(minLength: 8) }
 
-            VStack(alignment: .trailing, spacing: 4) {
+            VStack(alignment: isLarge ? .leading : .trailing, spacing: 4) {
                 Text(Currency.format(bill.amount, code: bill.currencyCode))
                     .monospacedDigit()
 
@@ -32,6 +40,9 @@ struct BillRow: View {
                         .buttonStyle(.bordered)
                         .controlSize(.small)
                         .tint(.green)
+                        // Único por linha para o VoiceOver e o Controlo por Voz.
+                        .accessibilityLabel("Paguei \(bill.title)")
+                        .accessibilityInputLabels(["Paguei \(bill.title)", "Pagar \(bill.title)"])
                 }
             }
         }

@@ -64,7 +64,7 @@ struct ApplicationsList: View {
                 Text("Regista cada candidatura com a empresa e a data. Lembramos-te do follow-up uma semana depois.")
             } actions: {
                 Button("Nova candidatura") { isAdding = true }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.glassProminent)
             }
         } else {
             CareerSummarySection(stats: CareerStats(statuses: applications.map(\.status)))

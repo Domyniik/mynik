@@ -21,7 +21,7 @@ struct GoalsView: View {
                     Text("Define um valor-alvo e liga-o a uma conta ou categoria das Finanças para seguir o progresso.")
                 } actions: {
                     Button("Nova meta") { isAddingGoal = true }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.glassProminent)
                 }
             }
 

@@ -27,7 +27,7 @@ struct TodayCalendarSection: View {
                     Button("Ligar Calendário e Lembretes", systemImage: "calendar.badge.plus") {
                         Task { await service.requestAccess() }
                     }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.glassProminent)
                     Button("Agora não") { isEnabled = false }
                         .buttonStyle(.borderless)
                 }

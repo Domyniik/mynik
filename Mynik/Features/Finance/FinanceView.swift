@@ -36,7 +36,7 @@ struct FinanceView: View {
                         Button("Adicionar movimento") {
                             isAddingTransaction = true
                         }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.glassProminent)
                     }
                 }
             }
