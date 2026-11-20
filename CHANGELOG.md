@@ -47,3 +47,4 @@
 - feat(intents): adiciona a ação "Registar compra do Apple Pay" para a automação "Transação" dos Atalhos (valor em texto, categoria do comerciante, sem duplicados) com guia no README
 - feat(mac): adiciona o Mynik à barra de menus com saldo do mês, contas a vencer (com "paguei") e gasto rápido, que se pode esconder nas Definições
 - feat(today): adiciona eventos do Calendário e lembretes de hoje (incluindo atrasados, com marcar como feito) na tela Hoje, com pedido de acesso só ao tocar em "Ligar"
+- fix(today): remove aviso do compilador ao observar mudanças no Calendário

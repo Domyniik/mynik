@@ -28,9 +28,7 @@ final class CalendarService {
     private init() {
         refreshAccess()
         observer = NotificationCenter.default.addObserver(forName: .EKEventStoreChanged, object: store, queue: .main) { [weak self] _ in
-            MainActor.assumeIsolated {
-                Task { await self?.reload() }
-            }
+            Task { @MainActor in await self?.reload() }
         }
     }
 
