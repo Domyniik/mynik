@@ -13,7 +13,7 @@ nonisolated enum MynikSchemaV4: VersionedSchema {
             StoreProduct.self, StoreOrder.self, DailyStat.self, StoreCheckout.self,
             Project.self, ProjectTask.self, Goal.self, Note.self, NoteBlock.self,
             Vehicle.self, FuelEntry.self, MaintenanceRecord.self, CarDeadline.self,
-            PersonalDocument.self, DocumentPhoto.self,
+            PersonalDocument.self, DocumentPhoto.self, JobApplication.self, Course.self,
         ]
     }
 }

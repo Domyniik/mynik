@@ -36,7 +36,7 @@ struct NotificationSettingsSection: View {
         } header: {
             Text("Notificações")
         } footer: {
-            Text("Recebes um aviso às 9:00 no dia do vencimento e, se quiseres, alguns dias antes. Os prazos do carro avisam 30 e 7 dias antes; os documentos, no aviso que escolheres.")
+            Text("Recebes um aviso às 9:00 no dia do vencimento e, se quiseres, alguns dias antes. Os prazos do carro avisam 30 e 7 dias antes; os documentos, no aviso que escolheres; os follow-ups, no próprio dia.")
         }
         .task {
             // Só lê o estado: o pedido de permissão fica para quando há contas

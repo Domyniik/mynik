@@ -36,7 +36,7 @@
 ## Fase 5 — Vida
 - [x] Carro (combustível, manutenção, seguro/ITV/IUC)
 - [x] Documentos com validade e Face ID
-- [ ] Carreira (candidaturas, cursos)
+- [x] Carreira (candidaturas, cursos)
 - [ ] Investimentos / património
 
 ## Fase 6 — Ecossistema Apple

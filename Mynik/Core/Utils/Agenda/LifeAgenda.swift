@@ -7,7 +7,42 @@ enum LifeAgenda {
     static func allItems(in context: ModelContext, now: Date = .now) -> [AgendaItem] {
         let vehicles = (try? context.fetch(FetchDescriptor<Vehicle>())) ?? []
         let documents = (try? context.fetch(FetchDescriptor<PersonalDocument>())) ?? []
-        return carItems(vehicles, now: now) + documentItems(documents)
+        let applications = (try? context.fetch(FetchDescriptor<JobApplication>())) ?? []
+        let courses = (try? context.fetch(FetchDescriptor<Course>())) ?? []
+        return carItems(vehicles, now: now) + documentItems(documents) + careerItems(applications, courses: courses)
+    }
+
+    /// Follow-ups das candidaturas ativas e certificados a expirar.
+    static func careerItems(_ applications: [JobApplication], courses: [Course]) -> [AgendaItem] {
+        let followUps = applications.compactMap { application -> AgendaItem? in
+            guard application.status.isActive, let date = application.followUpDate else { return nil }
+            return AgendaItem(
+                id: "career-followup-\(application.uid)",
+                title: "Follow-up: \(application.company)",
+                detail: application.role,
+                date: date,
+                symbolName: "briefcase",
+                source: .career,
+                dueWord: "Contactar",
+                horizonDays: 2,
+                remindDaysBefore: [0]
+            )
+        }
+        let certificates = courses.compactMap { course -> AgendaItem? in
+            guard let expiry = course.expiresAt else { return nil }
+            return AgendaItem(
+                id: "career-certificate-\(course.uid)",
+                title: course.title,
+                detail: course.provider.isEmpty ? "Certificado" : "Certificado · \(course.provider)",
+                date: expiry,
+                symbolName: "graduationcap",
+                source: .career,
+                dueWord: "Expira",
+                horizonDays: 60,
+                remindDaysBefore: [60, 7, 0]
+            )
+        }
+        return followUps + certificates
     }
 
     /// Documentos com validade: aparecem na tela Hoje a partir do aviso escolhido.

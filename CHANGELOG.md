@@ -39,3 +39,4 @@
 - fix(goals): etiquetas nos campos de valor do formulário de metas
 - feat(car): adiciona carro com abastecimentos e consumo (L/100 km), manutenções, prazos de ITV/seguro/imposto com avisos e na tela Hoje, gastos na categoria Carro e preços de combustível em Espanha perto de ti
 - feat(documents): adiciona documentos com validade, avisos antes de expirar (também na tela Hoje) e números e fotos protegidos por Face ID / Touch ID
+- feat(career): adiciona carreira com candidaturas por estado, taxa de resposta e follow-ups (avisos e tela Hoje) e cursos/certificações com progresso e validade

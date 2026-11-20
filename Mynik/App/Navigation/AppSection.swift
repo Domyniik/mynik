@@ -9,6 +9,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
     case goals
     case car
     case documents
+    case career
     case notes
     case settings
 
@@ -30,6 +31,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         case .goals: "Metas"
         case .car: "Carro"
         case .documents: "Documentos"
+        case .career: "Carreira"
         case .notes: "Notas"
         case .settings: "Definições"
         }
@@ -44,6 +46,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         case .goals: "target"
         case .car: "car"
         case .documents: "person.text.rectangle"
+        case .career: "briefcase"
         case .notes: "note.text"
         case .settings: "gearshape"
         }

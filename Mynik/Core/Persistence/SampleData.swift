@@ -117,6 +117,16 @@ struct SampleData: PreviewModifier {
         context.insert(PersonalDocument(kind: .residence, title: "TIE", number: "Y1234567Z", expiryDate: calendar.date(byAdding: .day, value: 40, to: .now)))
         context.insert(PersonalDocument(kind: .passport, number: "FX123456", expiryDate: calendar.date(byAdding: .year, value: 4, to: .now)))
 
+        // Carreira: candidaturas em vários estados e um curso.
+        [
+            JobApplication(company: "Glovo", role: "iOS Developer", appliedAt: daysAgo(8), followUpDate: .now),
+            JobApplication(company: "Cabify", role: "Mobile Engineer", appliedAt: daysAgo(20), status: .interviewing, followUpDate: calendar.date(byAdding: .day, value: 3, to: .now)),
+            JobApplication(company: "Idealista", role: "Swift Developer", appliedAt: daysAgo(35), status: .rejected),
+        ].forEach(context.insert)
+        let course = Course(title: "Swift Concurrency", provider: "Apple Developer", status: .inProgress)
+        course.progress = 0.6
+        context.insert(course)
+
         // Loja de exemplo, já em cache.
         let demo = DemoStoreDataSource()
         let since = calendar.date(byAdding: .day, value: -59, to: calendar.startOfDay(for: .now)) ?? .now
