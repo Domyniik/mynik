@@ -9,6 +9,7 @@ struct StoreView: View {
     @Query(sort: \StoreOrder.createdAt, order: .reverse) private var orders: [StoreOrder]
     @Query(sort: \StoreProduct.title) private var products: [StoreProduct]
     @Query(sort: \DailyStat.date) private var stats: [DailyStat]
+    @Query private var checkouts: [StoreCheckout]
 
     @AppStorage(SettingsKey.storeFeePercent) private var feePercent = StoreCostSettings.defaultFeePercent
     @AppStorage(SettingsKey.storeFeeFixed) private var feeFixed = StoreCostSettings.defaultFeeFixed
@@ -53,7 +54,9 @@ struct StoreView: View {
                 Text("Variação \(period.comparisonTitle).")
             }
 
-            StoreRankingSummary(products: products, orders: orders)
+            StoreOperationsSection(orders: orders, checkouts: checkouts)
+
+            StoreRankingSummary(products: products, orders: orders, checkouts: checkouts)
 
             Section("Funil") {
                 let funnel = FunnelDiagnosis.diagnose(stats: stats, days: 30)

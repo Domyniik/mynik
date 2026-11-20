@@ -25,3 +25,4 @@
 - feat(store): adiciona diagnóstico do funil (página/preço, checkout/frete ou tráfego) com sugestões
 - fix(store): eixo do gráfico diário ajustado aos valores
 - fix(app): os testes deixam de abrir a base de dados e as preferências reais da app
+- feat(store): adiciona carrinhos abandonados (com link de recuperação) e pedidos por enviar com aviso de atraso

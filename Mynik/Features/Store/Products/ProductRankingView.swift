@@ -5,11 +5,16 @@ import SwiftUI
 struct ProductRankingView: View {
     @Query private var products: [StoreProduct]
     @Query private var orders: [StoreOrder]
+    @Query private var checkouts: [StoreCheckout]
 
     @State private var filter: ProductClass?
 
     private var ranking: [(performance: ProductPerformance, score: ProductScore)] {
-        ProductScorer.rank(ProductPerformance.build(products: products, orders: orders))
+        ProductScorer.rank(ProductPerformance.build(
+            products: products,
+            orders: orders,
+            abandonedUnitsByProduct: StoreOperations.abandonedUnitsByProduct(checkouts)
+        ))
     }
 
     var body: some View {

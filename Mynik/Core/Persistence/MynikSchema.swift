@@ -10,7 +10,7 @@ nonisolated enum MynikSchemaV2: VersionedSchema {
     static var models: [any PersistentModel.Type] {
         [
             FinanceTransaction.self, Category.self, Account.self, Bill.self,
-            StoreProduct.self, StoreOrder.self, DailyStat.self,
+            StoreProduct.self, StoreOrder.self, DailyStat.self, StoreCheckout.self,
         ]
     }
 }

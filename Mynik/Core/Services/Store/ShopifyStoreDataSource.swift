@@ -26,12 +26,16 @@ nonisolated struct ShopifyStoreDataSource: StoreDataSource {
             trafficReason = error.localizedDescription
         }
 
+        // Sem permissão para checkouts abandonados, o resto continua a funcionar.
+        let checkouts = (try? await fetchAbandonedCheckouts(since: since)) ?? []
+
         return StoreSnapshot(
             shopName: shop.name,
             products: products,
             orders: orders,
             traffic: traffic,
-            trafficUnavailableReason: trafficReason
+            trafficUnavailableReason: trafficReason,
+            checkouts: checkouts
         )
     }
 
@@ -114,6 +118,40 @@ nonisolated struct ShopifyStoreDataSource: StoreDataSource {
                 as: OrdersResponse.self
             ).orders
             records += page.nodes.filter { !$0.test }.map(\.record)
+            guard page.pageInfo.hasNextPage, let next = page.pageInfo.endCursor else { break }
+            cursor = next
+        }
+        return records
+    }
+
+    // MARK: - Checkouts abandonados
+
+    static let checkoutsQuery = """
+    query Checkouts($cursor: String, $search: String!) {
+      abandonedCheckouts(first: 25, after: $cursor, query: $search, sortKey: CREATED_AT, reverse: true) {
+        pageInfo { hasNextPage endCursor }
+        nodes {
+          id name createdAt abandonedCheckoutUrl
+          totalPriceSet { shopMoney { amount } }
+          lineItems(first: 10) { nodes { title quantity product { id } } }
+        }
+      }
+    }
+    """
+
+    func fetchAbandonedCheckouts(since: Date) async throws -> [StoreSnapshot.CheckoutRecord] {
+        var records: [StoreSnapshot.CheckoutRecord] = []
+        var cursor: String?
+        for _ in 0..<10 {
+            var variables = ["search": Self.orderSearch(since: since, calendar: calendar) + " recovery_state:not_recovered"]
+            variables["cursor"] = cursor
+            let page = try await client.query(
+                Self.checkoutsQuery,
+                variables: variables,
+                estimatedCost: 600,
+                as: CheckoutsResponse.self
+            ).abandonedCheckouts
+            records += page.nodes.map(\.record)
             guard page.pageInfo.hasNextPage, let next = page.pageInfo.endCursor else { break }
             cursor = next
         }
@@ -321,6 +359,40 @@ private nonisolated struct OrderNode: Decodable, Sendable {
                     currentQuantity: $0.currentQuantity,
                     unitPrice: $0.originalUnitPriceSet.shopMoney.amount
                 )
+            }
+        )
+    }
+}
+
+private nonisolated struct CheckoutsResponse: Decodable, Sendable {
+    let abandonedCheckouts: Connection<CheckoutNode>
+}
+
+private nonisolated struct CheckoutNode: Decodable, Sendable {
+    let id: String
+    let name: String
+    let createdAt: Date
+    let abandonedCheckoutUrl: String
+    let totalPriceSet: ShopifyMoneyBag
+    let lineItems: Nodes<LineItem>
+
+    struct LineItem: Decodable, Sendable {
+        let title: String?
+        let quantity: Int
+        let product: ProductReference?
+    }
+
+    struct ProductReference: Decodable, Sendable { let id: String }
+
+    var record: StoreSnapshot.CheckoutRecord {
+        StoreSnapshot.CheckoutRecord(
+            id: id,
+            name: name,
+            createdAt: createdAt,
+            total: totalPriceSet.shopMoney.amount,
+            recoveryURL: abandonedCheckoutUrl,
+            lines: lineItems.nodes.map {
+                StoreCheckoutLine(productID: $0.product?.id ?? "", title: $0.title ?? "Artigo", quantity: $0.quantity)
             }
         )
     }

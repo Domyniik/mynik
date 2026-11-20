@@ -4,9 +4,14 @@ import SwiftUI
 struct StoreRankingSummary: View {
     let products: [StoreProduct]
     let orders: [StoreOrder]
+    let checkouts: [StoreCheckout]
 
     var body: some View {
-        let ranking = ProductScorer.rank(ProductPerformance.build(products: products, orders: orders))
+        let ranking = ProductScorer.rank(ProductPerformance.build(
+            products: products,
+            orders: orders,
+            abandonedUnitsByProduct: StoreOperations.abandonedUnitsByProduct(checkouts)
+        ))
 
         Section("Produtos") {
             NavigationLink {

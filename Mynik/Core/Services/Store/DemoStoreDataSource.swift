@@ -70,6 +70,7 @@ nonisolated struct DemoStoreDataSource: StoreDataSource {
 
         var orders: [StoreSnapshot.OrderRecord] = []
         var traffic: [StoreSnapshot.TrafficRecord] = []
+        var checkouts: [StoreSnapshot.CheckoutRecord] = []
         var number = 1001
 
         // Do dia mais antigo para hoje, para os números dos pedidos subirem.
@@ -103,6 +104,28 @@ nonisolated struct DemoStoreDataSource: StoreDataSource {
             let cart = max(dayOrders.count + 2, Int(Double(sessions) * Double.random(in: 0.07...0.10, using: &random)))
             // Muitos desistem entre o carrinho e o checkout (portes): o diagnóstico aponta para aí.
             let checkout = max(dayOrders.count, Int(Double(cart) * Double.random(in: 0.26...0.36, using: &random)))
+            // Checkouts abandonados das últimas duas semanas (o Anel Onda é o que mais fica para trás).
+            if offset < 14 {
+                let abandoned = min(4, max(0, checkout - dayOrders.count))
+                for index in 0..<abandoned {
+                    let candidates = Self.profiles.filter { $0.status == "ACTIVE" && $0.ageDays >= offset }
+                    let weighted = candidates.flatMap { Array(repeating: $0, count: $0.id == 4 ? 6 : max(1, Int($0.rate * 3))) }
+                    guard let profile = weighted.randomElement(using: &random) else { continue }
+                    let hour = Int.random(in: 9...21, using: &random)
+                    let createdAt = calendar.date(bySettingHour: offset == 0 ? min(hour, max(0, calendar.component(.hour, from: now) - 1)) : hour,
+                                                  minute: index * 7, second: 0, of: day) ?? day
+                    let shipping = profile.price >= 3500 ? 0 : 390
+                    checkouts.append(.init(
+                        id: "gid://shopify/AbandonedCheckout/\(offset)-\(index)",
+                        name: "#C\(offset)\(index)",
+                        createdAt: createdAt,
+                        total: Self.euros(profile.price + shipping),
+                        recoveryURL: "",
+                        lines: [StoreCheckoutLine(productID: Self.productID(profile.id), title: profile.title, quantity: 1)]
+                    ))
+                }
+            }
+
             traffic.append(.init(
                 day: day,
                 sessions: sessions,
@@ -117,7 +140,8 @@ nonisolated struct DemoStoreDataSource: StoreDataSource {
             products: products,
             orders: orders,
             traffic: traffic,
-            trafficUnavailableReason: nil
+            trafficUnavailableReason: nil,
+            checkouts: checkouts.sorted { $0.createdAt > $1.createdAt }
         )
     }
 

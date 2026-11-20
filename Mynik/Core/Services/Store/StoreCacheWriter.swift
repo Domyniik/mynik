@@ -34,6 +34,7 @@ enum StoreCacheWriter {
     ) throws -> Result {
         let productCount = try applyProducts(snapshot.products, to: context, now: now)
         let newOrders = try applyOrders(snapshot.orders, since: since, to: context, now: now, calendar: calendar)
+        try applyCheckouts(snapshot.checkouts, to: context, now: now)
         try rebuildDailyStats(snapshot, since: since, in: context, now: now, calendar: calendar)
         try context.save()
         return Result(productCount: productCount, orderCount: snapshot.orders.count, newOrders: newOrders)
@@ -44,6 +45,7 @@ enum StoreCacheWriter {
         try context.delete(model: StoreOrder.self)
         try context.delete(model: StoreProduct.self)
         try context.delete(model: DailyStat.self)
+        try context.delete(model: StoreCheckout.self)
         try context.save()
     }
 
@@ -142,6 +144,37 @@ enum StoreCacheWriter {
             }
         }
         return newOrders.sorted { $0.createdAt < $1.createdAt }
+    }
+
+    // MARK: - Checkouts abandonados
+
+    /// A lista da Shopify substitui a cache: os recuperados ou antigos saem.
+    private static func applyCheckouts(
+        _ records: [StoreSnapshot.CheckoutRecord],
+        to context: ModelContext,
+        now: Date
+    ) throws {
+        let existing = try context.fetch(FetchDescriptor<StoreCheckout>())
+        let byID = Dictionary(existing.map { ($0.shopifyID, $0) }, uniquingKeysWith: { first, _ in first })
+
+        for record in records {
+            let checkout = byID[record.id] ?? {
+                let checkout = StoreCheckout(shopifyID: record.id, name: record.name, createdAt: record.createdAt)
+                context.insert(checkout)
+                return checkout
+            }()
+            checkout.name = record.name
+            checkout.createdAt = record.createdAt
+            checkout.total = record.total
+            checkout.recoveryURLString = record.recoveryURL
+            checkout.lines = record.lines
+            checkout.syncedAt = now
+        }
+
+        let incoming = Set(records.map(\.id))
+        for checkout in existing where !incoming.contains(checkout.shopifyID) {
+            context.delete(checkout)
+        }
     }
 
     // MARK: - Estatísticas diárias

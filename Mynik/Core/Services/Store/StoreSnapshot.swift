@@ -10,6 +10,8 @@ nonisolated struct StoreSnapshot: Sendable {
     var traffic: [TrafficRecord]
     /// Motivo para não haver tráfego, para mostrar ao utilizador.
     var trafficUnavailableReason: String?
+    /// Checkouts abandonados e não recuperados.
+    var checkouts: [CheckoutRecord] = []
 
     struct ProductRecord: Sendable, Equatable {
         var id: String
@@ -41,6 +43,15 @@ nonisolated struct StoreSnapshot: Sendable {
         var financialStatus: String
         var fulfillmentStatus: String
         var lines: [StoreOrderLine]
+    }
+
+    struct CheckoutRecord: Sendable, Equatable {
+        var id: String
+        var name: String
+        var createdAt: Date
+        var total: Decimal
+        var recoveryURL: String
+        var lines: [StoreCheckoutLine]
     }
 
     struct TrafficRecord: Sendable, Equatable {
