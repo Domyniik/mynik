@@ -5,6 +5,12 @@ struct SectionDestination: View {
     let section: AppSection
 
     var body: some View {
+        content
+            .environment(\.moduleTint, section.tint)
+    }
+
+    @ViewBuilder
+    private var content: some View {
         switch section {
         case .today: TodayView()
         case .assistant: AskMynikView()

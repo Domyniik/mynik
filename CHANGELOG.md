@@ -62,3 +62,4 @@
 - docs: TestFlight marcado como indisponível sem o plano pago, com a distribuição alternativa (brew no Mac, Xcode/Sideloadly no iPhone)
 - docs: README final para o portfólio com screenshots reais (iPhone 17 e Mac), arquitetura, decisões técnicas e instalação; modo de demonstração `-MynikDemo` com dados de exemplo em memória e janela do Mac maior por omissão
 - chore(demo): abre uma secção inicial com -MynikSection (screenshots)
+- feat(design): sistema visual com cor da marca, cores por módulo, cartões, KPIs e componentes
