@@ -20,7 +20,7 @@
 - [x] Setup do token (Keychain) + cliente GraphQL
 - [x] Cache local (StoreProduct, StoreOrder, DailyStat)
 - [x] KPIs + lucro real + gráfico diário
-- [ ] Ranking de produtos (score 0–100 + classificação + ação)
+- [x] Ranking de produtos (score 0–100 + classificação + ação)
 - [ ] Diagnóstico do funil
 - [ ] Carrinhos abandonados e pedidos por enviar
 - [ ] Alertas (dias sem venda) e notificação de venda

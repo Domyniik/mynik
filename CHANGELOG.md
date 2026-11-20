@@ -21,3 +21,4 @@
 - feat(store): adiciona ligação à Shopify (credenciais no Keychain) e cliente GraphQL com limite por custo
 - feat(store): adiciona cache SwiftData da loja (produtos, pedidos, estatísticas diárias) com loja de exemplo e migração do esquema
 - feat(store): adiciona KPIs (vendas, pedidos, ticket médio, conversão, margem) com comparação, lucro real e gráfico diário
+- feat(store): adiciona ranking de produtos com score 0–100, classificação 🟢🟡🟠🔴 e ação sugerida

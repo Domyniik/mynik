@@ -53,6 +53,8 @@ struct StoreView: View {
                 Text("Variação \(period.comparisonTitle).")
             }
 
+            StoreRankingSummary(products: products, orders: orders)
+
             Section("Últimos 30 dias") {
                 StoreDailyChart(points: metrics.dailyPoints(days: 30))
                     .padding(.vertical, 6)
