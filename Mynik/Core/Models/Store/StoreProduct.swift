@@ -26,9 +26,21 @@ final class StoreProduct {
     var createdAt: Date = Date.now
     /// Gasto em anúncios nos últimos 30 dias (manual), para o ROAS.
     var adSpend30d: Decimal = 0
+    /// Decisão no fim do teste (`ProductDecision`); vazio enquanto não há decisão.
+    var decisionRaw: String = ""
+    var decidedAt: Date?
+    var decisionNote: String = ""
     var syncedAt: Date = Date.now
 
     var isActive: Bool { statusRaw == "ACTIVE" }
+
+    var decision: ProductDecision? {
+        get { ProductDecision(rawValue: decisionRaw) }
+        set {
+            decisionRaw = newValue?.rawValue ?? ""
+            decidedAt = newValue == nil ? nil : .now
+        }
+    }
 
     var imageURL: URL? { URL(string: imageURLString) }
 

@@ -22,6 +22,7 @@ struct ProductDetailView: View {
         Form {
             if let entry {
                 summarySection(entry.performance, entry.score)
+                ProductLifecycleSection(product: product, performance: entry.performance, score: entry.score)
                 factorsSection(entry.score)
                 numbersSection(entry.performance)
             } else {

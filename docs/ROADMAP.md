@@ -24,7 +24,7 @@
 - [x] Diagnóstico do funil
 - [x] Carrinhos abandonados e pedidos por enviar
 - [x] Alertas (dias sem venda) e notificação de venda
-- [ ] Ciclo de vida do produto
+- [x] Ciclo de vida do produto
 - [ ] Lucro da loja → Finanças
 
 ## Fase 4 — Projetos, metas e notas

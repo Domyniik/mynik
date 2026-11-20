@@ -13,6 +13,16 @@ struct StoreRankingSummary: View {
             abandonedUnitsByProduct: StoreOperations.abandonedUnitsByProduct(checkouts)
         ))
 
+        let decisions = Dictionary(products.map { ($0.shopifyID, $0.decision) }, uniquingKeysWith: { first, _ in first })
+        let pendingDecisions = ranking.count { entry in
+            if case .awaitingDecision = ProductLifecycle.phase(
+                ageDays: entry.performance.ageDays,
+                decision: decisions[entry.performance.productID] ?? nil,
+                classification: entry.score.classification
+            ) { return true }
+            return false
+        }
+
         Section("Produtos") {
             NavigationLink {
                 ProductRankingView()
@@ -32,6 +42,29 @@ struct StoreRankingSummary: View {
                         Text("Melhor: \(top.performance.title) (\(top.score.score))")
                             .font(.caption)
                             .foregroundStyle(.secondary)
+                    }
+                }
+            }
+
+            NavigationLink {
+                ProductLifecycleView()
+            } label: {
+                LabeledContent {
+                    if pendingDecisions > 0 {
+                        Text(pendingDecisions.formatted())
+                            .monospacedDigit()
+                            .foregroundStyle(.orange)
+                    }
+                } label: {
+                    Label {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Ciclo de vida")
+                            Text(pendingDecisions == 0 ? "Sem decisões pendentes" : "\(pendingDecisions) decisão(ões) pendente(s)")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    } icon: {
+                        Image(systemName: "arrow.triangle.2.circlepath")
                     }
                 }
             }
