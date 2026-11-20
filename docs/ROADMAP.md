@@ -52,7 +52,7 @@
 - [x] "Pergunte ao Mynik" — chat com Foundation Models e ferramentas que leem o SwiftData; sem Apple Intelligence responde com resumos por tema
 - [x] Scanner de faturas (VisionKit) — câmara de documentos no iPhone, foto ou ficheiro no Mac; OCR do Vision no dispositivo extrai comerciante, total e data
 - [x] Live Activities / Dynamic Island — conta(s) que vencem hoje, atualizadas localmente pela app (sem push remoto, que exige o plano pago)
-- [ ] Revisão semanal, hábitos, busca ⌘K
+- [x] Revisão semanal, hábitos, busca ⌘K
 
 ## Fase 8 — Polimento e lançamento
 - [ ] Liquid Glass, dark mode, acessibilidade

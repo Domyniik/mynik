@@ -7,6 +7,7 @@ struct MynikApp: App {
 
     private let modelContainer = SharedModelContainer.shared
     @State private var storeSync = StoreSyncCoordinator(defaults: AppEnvironment.defaults)
+    @State private var router = AppRouter()
     #if os(macOS)
     @AppStorage(SettingsKey.showMenuBarExtra) private var showMenuBarExtra = true
     #endif
@@ -16,8 +17,17 @@ struct MynikApp: App {
             RootView()
                 .environment(\.locale, .app)
                 .environment(storeSync)
+                .environment(router)
         }
         .modelContainer(modelContainer)
+        .commands {
+            CommandGroup(after: .textEditing) {
+                Button("Pesquisar no Mynik…", systemImage: "magnifyingglass") {
+                    router.isSearching = true
+                }
+                .keyboardShortcut("k", modifiers: .command)
+            }
+        }
         #if os(iOS)
         .backgroundTask(.appRefresh(StoreBackgroundRefresh.taskIdentifier)) { [modelContainer, storeSync] in
             await StoreBackgroundRefresh.run(container: modelContainer, coordinator: storeSync)

@@ -8,6 +8,7 @@ struct RootView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scenePhase
     @Environment(StoreSyncCoordinator.self) private var storeSync
+    @Environment(AppRouter.self) private var router
 
     @AppStorage(SettingsKey.brlPerEUR) private var brlPerEUR = CurrencyConverter.defaultBRLPerEUR
     @AppStorage(SettingsKey.exchangeRateDate) private var exchangeRateDate = ""
@@ -17,8 +18,13 @@ struct RootView: View {
     #endif
 
     var body: some View {
+        @Bindable var router = router
         navigation
             .environment(\.currencyConverter, CurrencyConverter(storedRate: brlPerEUR))
+            .sheet(isPresented: $router.isSearching) {
+                GlobalSearchView()
+                    .environment(\.currencyConverter, CurrencyConverter(storedRate: brlPerEUR))
+            }
             // Lembretes de vencimento sempre alinhados com os dados.
             .onReceive(NotificationCenter.default.publisher(for: ModelContext.didSave)) { _ in
                 rescheduleReminders()
@@ -106,4 +112,5 @@ struct RootView: View {
 
 #Preview(traits: .sampleData) {
     RootView()
+        .environment(AppRouter())
 }

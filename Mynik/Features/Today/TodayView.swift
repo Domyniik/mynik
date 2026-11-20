@@ -9,6 +9,7 @@ struct TodayView: View {
     @State private var isAddingTransaction = false
     @State private var isAskingMynik = false
     @State private var isShowingReview = false
+    @Environment(AppRouter.self) private var router
 
     private var recentTransactions: ArraySlice<FinanceTransaction> {
         transactions.prefix(5)
@@ -60,6 +61,11 @@ struct TodayView: View {
                 }
             }
             ToolbarItem(placement: .primaryAction) {
+                Button("Pesquisar", systemImage: "magnifyingglass") {
+                    router.isSearching = true
+                }
+            }
+            ToolbarItem(placement: .primaryAction) {
                 Button("Adicionar movimento", systemImage: "plus") {
                     isAddingTransaction = true
                 }
@@ -91,4 +97,5 @@ struct TodayView: View {
     NavigationStack {
         TodayView()
     }
+    .environment(AppRouter())
 }

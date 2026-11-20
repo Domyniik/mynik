@@ -6,11 +6,11 @@ import SwiftUI
 /// empilha a sua própria barra de navegação sobre a de cada secção. Por isso o
 /// "Mais" é feito aqui, numa só `NavigationStack`.
 struct TabNavigationView: View {
-    /// `nil` é o separador "Mais".
-    @State private var selection: AppSection? = .today
+    @Environment(AppRouter.self) private var router
 
     var body: some View {
-        TabView(selection: $selection) {
+        @Bindable var router = router
+        TabView(selection: $router.selection) {
             ForEach(AppSection.primaryTabs) { section in
                 Tab(section.title, systemImage: section.symbolName, value: Optional(section)) {
                     NavigationStack {
@@ -19,11 +19,12 @@ struct TabNavigationView: View {
                 }
             }
             Tab("Mais", systemImage: "ellipsis", value: AppSection?.none) {
-                NavigationStack {
+                NavigationStack(path: $router.morePath) {
                     MoreSectionsView()
                 }
             }
         }
+        .onAppear { router.usesTabs = true }
     }
 }
 
@@ -44,4 +45,5 @@ struct MoreSectionsView: View {
 
 #Preview(traits: .sampleData) {
     TabNavigationView()
+        .environment(AppRouter())
 }

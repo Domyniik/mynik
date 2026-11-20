@@ -54,3 +54,4 @@
 - feat(bills): adiciona Live Activity e Dynamic Island no iPhone com a conta que vence hoje (e atrasadas), atualizada localmente ao pagar ou editar e que se pode desligar nas Definições
 - feat(habits): adiciona hábitos com marcação diária, sequência, objetivo semanal e últimos 7 dias, também na tela Hoje (esquema V6, migração automática da v0.6)
 - feat(today): adiciona revisão semanal (gastos vs semana anterior, contas pagas e a vencer, tarefas, hábitos e loja) com cartão ao domingo na tela Hoje e notificação ao domingo às 19h
+- feat(search): adiciona busca global ⌘K (movimentos, contas, notas, projetos, tarefas, metas, hábitos, carro, documentos sem números, carreira, investimentos, produtos e secções) com navegação partilhada entre barra lateral e separadores
