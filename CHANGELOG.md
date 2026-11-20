@@ -24,3 +24,4 @@
 - feat(store): adiciona ranking de produtos com score 0–100, classificação 🟢🟡🟠🔴 e ação sugerida
 - feat(store): adiciona diagnóstico do funil (página/preço, checkout/frete ou tráfego) com sugestões
 - fix(store): eixo do gráfico diário ajustado aos valores
+- fix(app): os testes deixam de abrir a base de dados e as preferências reais da app

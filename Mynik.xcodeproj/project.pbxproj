@@ -15,6 +15,7 @@
 		14A4BE192BB89C25AEDFBEB7 /* StoreOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191F3D76677BAD86DDA325A /* StoreOrder.swift */; };
 		1629716356EEF076308331CB /* ProductRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A98893E61637B50D72F20 /* ProductRankingView.swift */; };
 		184E2E46581B23EB96ECDFB9 /* StoreMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567558F86165939EDDFB7886 /* StoreMetricsTests.swift */; };
+		1ECF5AE34BB67975DF94DA78 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F5B0A2E2A92D7F5376131B /* AppEnvironment.swift */; };
 		1F0C8BE72C9A9AA06793AD44 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60BADB4B789DA1B9240CB2C /* StoreView.swift */; };
 		1F0DF375DF717B9536667699 /* BillDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23131C2B98D904CEE7B61397 /* BillDraft.swift */; };
 		201587147B0BDBDCCBC4D374 /* ModelContainerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F66C2DB870302CFE7B8D4AD /* ModelContainerFactory.swift */; };
@@ -204,6 +205,7 @@
 		87F53A41C72876231F2702D4 /* StoreCacheWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCacheWriter.swift; sourceTree = "<group>"; };
 		88C04153D9EC7DA758C7ACC0 /* BillPaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPaymentService.swift; sourceTree = "<group>"; };
 		893FE029CEDB379283062350 /* ShopifyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyError.swift; sourceTree = "<group>"; };
+		92F5B0A2E2A92D7F5376131B /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		94784D1C520D2ABFE81B5EFC /* CategoryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIcon.swift; sourceTree = "<group>"; };
 		959D7A2EC2BA1F03493411F5 /* StoreSyncBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSyncBanner.swift; sourceTree = "<group>"; };
 		95A6CFCF109F352C782522CF /* ProductRankRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRankRow.swift; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 		DE4E51C9F1DE0BE95FEC0441 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				92F5B0A2E2A92D7F5376131B /* AppEnvironment.swift */,
 				6D4CCD9A6EA1266F2EBBB0CA /* BudgetOverview.swift */,
 				530B784EC4F316E46A60AFDF /* Currency.swift */,
 				64A940C7EB880C8D41BB48D4 /* CurrencyConverter.swift */,
@@ -714,6 +717,7 @@
 			files = (
 				DCA76909B10D560A7D001B00 /* Account.swift in Sources */,
 				48FF7A460878957CD3BA418A /* AccountType.swift in Sources */,
+				1ECF5AE34BB67975DF94DA78 /* AppEnvironment.swift in Sources */,
 				7D593524A70378A3EEA25296 /* AppSection.swift in Sources */,
 				F7D111308DDB1FC249697E56 /* BankCSVImporter.swift in Sources */,
 				B3896CA93C8637C77212037F /* Bill.swift in Sources */,

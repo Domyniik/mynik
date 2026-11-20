@@ -48,7 +48,8 @@ final class StoreSyncCoordinator {
     func refreshIfStale(in context: ModelContext, now: Date = .now) async {
         let sourceChanged = defaults.string(forKey: SettingsKey.storeCacheSource) != desiredSource
         let isStale = lastSyncedAt.map { now.timeIntervalSince($0) >= Self.minimumInterval } ?? true
-        guard sourceChanged || isStale else { return }
+        let isEmpty = ((try? context.fetchCount(FetchDescriptor<DailyStat>())) ?? 0) == 0
+        guard sourceChanged || isStale || isEmpty else { return }
         await refresh(in: context, now: now)
     }
 
