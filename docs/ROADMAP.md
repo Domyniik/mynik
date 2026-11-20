@@ -28,7 +28,7 @@
 - [x] Lucro da loja → Finanças
 
 ## Fase 4 — Projetos, metas e notas
-- [ ] Projetos (Kanban + lista) e tarefas
+- [x] Projetos (Kanban + lista) e tarefas
 - [ ] Metas com valor-alvo ligadas às Finanças
 - [ ] Notas: páginas aninhadas e blocos
 - [ ] Markdown e links entre itens

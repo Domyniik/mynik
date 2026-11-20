@@ -139,6 +139,39 @@ struct SchemaMigrationTests {
         #expect(transactions.first?.amount == 750)
         #expect(try current.mainContext.fetchCount(FetchDescriptor<StoreProduct>()) == 0)
     }
+
+    /// Uma base de dados da v0.3 (esquema V2) abre na versão atual sem perder dados.
+    @Test func migratesVersionTwoStoreOnDisk() throws {
+        let folder = FileManager.default.temporaryDirectory.appending(path: "mynik-migration-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let url = folder.appending(path: "default.store")
+
+        do {
+            let schema = Schema(versionedSchema: MynikSchemaV2.self)
+            let old = try ModelContainer(for: schema, configurations: ModelConfiguration(schema: schema, url: url))
+            let category = MynikSchemaV2.Category()
+            category.name = "Casa"
+            let transaction = MynikSchemaV2.FinanceTransaction()
+            transaction.title = "Renda"
+            transaction.amount = 750
+            transaction.externalID = "manual"
+            transaction.category = category
+            let product = MynikSchemaV2.StoreProduct()
+            product.title = "Colar"
+            old.mainContext.insert(transaction)
+            old.mainContext.insert(product)
+            try old.mainContext.save()
+        }
+
+        let current = try ModelContainerFactory.make(url: url)
+        let transactions = try current.mainContext.fetch(FetchDescriptor<FinanceTransaction>())
+        #expect(transactions.map(\.title) == ["Renda"])
+        #expect(transactions.first?.category?.name == "Casa")
+        #expect(transactions.first?.externalID == "manual")
+        #expect(try current.mainContext.fetch(FetchDescriptor<StoreProduct>()).map(\.title) == ["Colar"])
+        #expect(try current.mainContext.fetchCount(FetchDescriptor<Project>()) == 0)
+    }
 }
 
 struct ShopifyStoreDataSourceTests {

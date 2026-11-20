@@ -9,6 +9,7 @@ struct SectionDestination: View {
         case .today: TodayView()
         case .finance: FinanceView()
         case .store: StoreView()
+        case .projects: ProjectsView()
         case .settings: SettingsView()
         }
     }

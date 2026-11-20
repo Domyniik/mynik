@@ -22,4 +22,6 @@ nonisolated enum SettingsKey {
     /// IDs dos últimos pedidos já notificados.
     static let storeNotifiedOrders = "storeNotifiedOrders"
     static let storeProfitToFinance = "storeProfitToFinance"
+    /// Vista das tarefas: "board" (Kanban) ou "list".
+    static let taskLayout = "taskLayout"
 }

@@ -67,6 +67,16 @@ struct SampleData: PreviewModifier {
             )
         )
 
+        // Projeto com tarefas em todas as colunas, e uma tarefa avulsa.
+        let app = Project(name: "Mynik", details: "Dashboard pessoal para iOS e macOS.", symbolName: "laptopcomputer", color: .indigo)
+        context.insert(app)
+        [
+            ProjectTask(title: "Notas com blocos", status: .doing, priority: .high, dueDate: .now, project: app),
+            ProjectTask(title: "Metas ligadas às Finanças", status: .todo, project: app),
+            ProjectTask(title: "Kanban de projetos", status: .done, project: app),
+            ProjectTask(title: "Renovar o seguro do carro", dueDate: daysAgo(1)),
+        ].forEach(context.insert)
+
         // Loja de exemplo, já em cache.
         let demo = DemoStoreDataSource()
         let since = calendar.date(byAdding: .day, value: -59, to: calendar.startOfDay(for: .now)) ?? .now

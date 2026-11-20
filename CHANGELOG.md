@@ -30,3 +30,4 @@
 - feat(store): adiciona ciclo de vida do produto (teste → decisão → escalar/manter/descontinuar) com sugestão do ranking
 - feat(store): lança o lucro real mensal da loja nas Finanças (categoria Loja), atualizado a cada sincronização
 - fix(store): ícone do alerta de stock e produtos parados nos dados de exemplo
+- feat(projects): adiciona projetos com tarefas em Kanban (arrastar entre colunas) ou lista, tarefas avulsas e tarefas do dia na tela Hoje
