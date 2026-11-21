@@ -1,7 +1,7 @@
 import CryptoKit
 import Foundation
 
-/// Uma linha da tabela `records` do Supabase.
+/// Um registo como viaja de e para o Supabase (`sync_push` / `sync_pull`).
 nonisolated struct SyncRow: Equatable, Sendable {
     var entity: String
     var key: String

@@ -2,9 +2,10 @@ import Auth
 import Foundation
 import PostgREST
 
-/// Tabela `records` do Supabase como `SyncRemote` (ver supabase/migrations).
+/// Tabelas tipadas do Supabase como `SyncRemote`, pelas funções `sync_pull` e
+/// `sync_push` (ver supabase/migrations). O servidor converte os registos da
+/// cópia de segurança nas colunas de cada tabela, que a app web usa diretamente.
 nonisolated struct SupabaseSyncRemote: SyncRemote {
-    static let table = "records"
     /// Linhas por pedido no pull (o PostgREST devolve no máximo 1000).
     static let pageSize = 1000
     /// Limite aproximado de cada pedido de push (as notas podem levar imagens).
@@ -13,24 +14,27 @@ nonisolated struct SupabaseSyncRemote: SyncRemote {
     let config: SupabaseConfig
     let auth: AuthClient
 
+    private struct PullParams: Encodable {
+        var p_since: String?
+        var p_limit: Int
+        var p_offset: Int
+    }
+
+    private struct PushParams: Encodable {
+        var p_rows: [RemoteRow]
+    }
+
     func pull(since: Date?) async throws -> [SyncRow] {
         let client = try await makeClient()
-        let userID = try await auth.session.user.id.uuidString.lowercased()
         var rows: [SyncRow] = []
         var offset = 0
         while true {
-            var query = client.from(Self.table)
-                .select("entity,key,payload,deleted,modified_at,updated_at")
-                .eq("user_id", value: userID)
-            if let since {
-                query = query.gte("updated_at", value: PostgresTimestamp.string(from: since))
-            }
-            let response = try await query
-                .order("updated_at")
-                .order("entity")
-                .order("key")
-                .range(from: offset, to: offset + Self.pageSize - 1)
-                .execute()
+            let params = PullParams(
+                p_since: since.map(PostgresTimestamp.string(from:)),
+                p_limit: Self.pageSize,
+                p_offset: offset
+            )
+            let response = try await client.rpc("sync_pull", params: params).execute()
             let page = try JSONDecoder().decode([RemoteRow].self, from: response.data)
             rows += try page.map { try $0.syncRow() }
             guard page.count == Self.pageSize else { return rows }
@@ -40,27 +44,24 @@ nonisolated struct SupabaseSyncRemote: SyncRemote {
 
     func push(_ rows: [SyncRow]) async throws {
         let client = try await makeClient()
-        let userID = try await auth.session.user.id.uuidString.lowercased()
         var batch: [RemoteRow] = []
         var batchBytes = 0
         for row in rows {
-            let remote = try RemoteRow(row, userID: userID)
+            let remote = try RemoteRow(row)
             let size = row.payload?.count ?? 0
             if !batch.isEmpty, batchBytes + size > Self.maxPushBytes || batch.count >= 500 {
-                try await upsert(batch, with: client)
+                try await send(batch, with: client)
                 batch.removeAll()
                 batchBytes = 0
             }
             batch.append(remote)
             batchBytes += size
         }
-        if !batch.isEmpty { try await upsert(batch, with: client) }
+        if !batch.isEmpty { try await send(batch, with: client) }
     }
 
-    private func upsert(_ batch: [RemoteRow], with client: PostgrestClient) async throws {
-        try await client.from(Self.table)
-            .upsert(batch, onConflict: "user_id,entity,key", returning: .minimal)
-            .execute()
+    private func send(_ batch: [RemoteRow], with client: PostgrestClient) async throws {
+        try await client.rpc("sync_push", params: PushParams(p_rows: batch)).execute()
     }
 
     private func makeClient() async throws -> PostgrestClient {
@@ -73,9 +74,8 @@ nonisolated struct SupabaseSyncRemote: SyncRemote {
     }
 }
 
-/// Linha como o PostgREST a lê e escreve.
+/// Linha no formato de `sync_pull` / `sync_push`.
 private nonisolated struct RemoteRow: Codable, Sendable {
-    var user_id: String?
     var entity: String
     var key: String
     var payload: RawJSON?
@@ -83,8 +83,7 @@ private nonisolated struct RemoteRow: Codable, Sendable {
     var modified_at: String
     var updated_at: String?
 
-    init(_ row: SyncRow, userID: String) throws {
-        user_id = userID
+    init(_ row: SyncRow) throws {
         entity = row.entity
         key = row.key
         payload = try row.payload.map(RawJSON.init(data:))
@@ -107,14 +106,13 @@ private nonisolated struct RemoteRow: Codable, Sendable {
         )
     }
 
-    // Só se envia o que a tabela aceita: o `updated_at` é sempre do servidor.
+    // O `updated_at` é sempre do servidor: não se envia.
     enum CodingKeys: String, CodingKey {
-        case user_id, entity, key, payload, deleted, modified_at, updated_at
+        case entity, key, payload, deleted, modified_at, updated_at
     }
 
     func encode(to encoder: any Encoder) throws {
         var c = encoder.container(keyedBy: CodingKeys.self)
-        try c.encodeIfPresent(user_id, forKey: .user_id)
         try c.encode(entity, forKey: .entity)
         try c.encode(key, forKey: .key)
         try c.encode(payload ?? .null, forKey: .payload)
