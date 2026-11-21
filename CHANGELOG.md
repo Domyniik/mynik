@@ -67,3 +67,4 @@
 - style(finance): cartão do saldo com gráfico e atalhos em mosaico
 - style(store): KPIs com tendência, seletor de período em vidro e gráfico mais limpo
 - style(life): cartões de KPIs no Carro e na Carreira, destaque do Património e ícones coloridos na navegação
+- style(app): resumo em KPIs nos Projetos, cofre dos Documentos e cabeçalhos com ícones nas Definições

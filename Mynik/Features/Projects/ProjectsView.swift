@@ -12,15 +12,39 @@ struct ProjectsView: View {
     @Query(sort: \Project.createdAt, order: .reverse) private var projects: [Project]
     @Query(filter: #Predicate<ProjectTask> { $0.project == nil }) private var looseTasks: [ProjectTask]
 
+    @Query private var allTasks: [ProjectTask]
+    @ScaledMetric(relativeTo: .body) private var tileWidth: CGFloat = 105
+
     @State private var isAddingProject = false
     @State private var editingProject: Project?
 
     var body: some View {
         List {
+            if !projects.isEmpty {
+                Section {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: tileWidth), spacing: DS.Spacing.s)], spacing: DS.Spacing.s) {
+                        KPICard("Em curso", value: "\(projects.count { $0.status == .active })", systemImage: "play.circle", comparesPeriods: false)
+                        KPICard("Por fazer", value: "\(allTasks.count { !$0.isDone })", systemImage: "circle.dashed", comparesPeriods: false)
+                        KPICard("Feitas", value: "\(allTasks.count(where: \.isDone))", systemImage: "checkmark.circle", comparesPeriods: false)
+                    }
+                    .padding(.vertical, DS.Spacing.xs)
+                    .dsListCardRow()
+                }
+            }
+
             Section {
                 NavigationLink(value: ProjectsRoute.looseTasks) {
-                    Label("Tarefas avulsas", systemImage: "tray")
-                        .badge(looseTasks.count { !$0.isDone })
+                    DSRow("Tarefas avulsas", subtitle: "Sem projeto", systemImage: "tray.full", color: .gray) {
+                        let open = looseTasks.count { !$0.isDone }
+                        if open > 0 {
+                            Text("\(open)")
+                                .font(.subheadline.weight(.semibold))
+                                .monospacedDigit()
+                                .padding(.horizontal, DS.Spacing.s)
+                                .padding(.vertical, DS.Spacing.xxs)
+                                .background(.fill.tertiary, in: .capsule)
+                        }
+                    }
                 }
             }
 

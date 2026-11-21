@@ -64,7 +64,7 @@ struct AppLockSettingsSection: View {
                     }
                 }
         } header: {
-            Text("Privacidade")
+            ListSectionHeader("Privacidade", systemImage: "faceid", color: .blue)
         } footer: {
             Text("A app volta a bloquear depois de 30 segundos em segundo plano e fica tapada no seletor de apps. Os números e as fotos dos documentos continuam a pedir autenticação à parte.")
         }

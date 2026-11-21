@@ -48,7 +48,7 @@ struct NotificationSettingsSection: View {
                 }
             }
         } header: {
-            Text("Notificações")
+            ListSectionHeader("Notificações", systemImage: "bell.badge", color: .red)
         } footer: {
             Text("Recebes um aviso às 9:00 no dia do vencimento e, se quiseres, alguns dias antes. Os prazos do carro avisam 30 e 7 dias antes; os documentos, no aviso que escolheres; os follow-ups, no próprio dia.")
         }

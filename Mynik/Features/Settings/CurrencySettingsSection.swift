@@ -38,7 +38,7 @@ struct CurrencySettingsSection: View {
                     .foregroundStyle(.red)
             }
         } header: {
-            Text("Moedas")
+            ListSectionHeader("Moedas", systemImage: "arrow.left.arrow.right.circle", color: .green)
         } footer: {
             Text(footerText)
         }

@@ -9,7 +9,7 @@ struct MenuBarSettingsSection: View {
         Section {
             Toggle("Mostrar na barra de menus", isOn: $showMenuBarExtra)
         } header: {
-            Text("Barra de menus")
+            ListSectionHeader("Barra de menus", systemImage: "menubar.rectangle", color: .gray)
         } footer: {
             Text("Saldo do mês, contas a vencer e um gasto rápido sem abrir a janela.")
         }

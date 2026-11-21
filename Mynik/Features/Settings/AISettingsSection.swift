@@ -20,7 +20,7 @@ struct AISettingsSection: View {
             }
             .accessibilityElement(children: .combine)
         } header: {
-            Text("Inteligência")
+            ListSectionHeader("Inteligência", systemImage: "sparkles", color: .purple)
         } footer: {
             Text(status.message)
         }

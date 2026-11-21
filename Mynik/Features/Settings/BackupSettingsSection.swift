@@ -59,7 +59,7 @@ struct BackupSettingsSection: View {
                     .foregroundStyle(.red)
             }
         } header: {
-            Text("Cópia de segurança e sincronização")
+            ListSectionHeader("Cópia de segurança e sincronização", systemImage: "externaldrive.badge.icloud", color: .cyan)
         } footer: {
             Text("Sem iCloud: cria uma cópia num dispositivo e importa-a no outro. A importação junta os dados sem duplicar — o que é novo é acrescentado, o que já existe fica com a versão do ficheiro e nada é apagado. A cópia inclui os documentos: guarda-a num sítio seguro.")
         }

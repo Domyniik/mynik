@@ -8,7 +8,7 @@ struct CalendarSettingsSection: View {
         Section {
             Toggle("Mostrar eventos e lembretes em Hoje", isOn: $isEnabled)
         } header: {
-            Text("Calendário e Lembretes")
+            ListSectionHeader("Calendário e Lembretes", systemImage: "calendar", color: .red)
         } footer: {
             Text("Os eventos e os lembretes são lidos no dispositivo e nunca saem dele.")
         }

@@ -75,11 +75,15 @@ struct LockSection: View {
     var body: some View {
         Section {
             if lock.isUnlocked {
-                Button("Esconder números e fotos", systemImage: "lock") { lock.lock() }
-            } else {
-                Button("Mostrar com \(lock.methodName)", systemImage: lock.symbolName) {
-                    Task { await lock.unlock() }
+                Button { lock.lock() } label: {
+                    DSRow("Esconder números e fotos", subtitle: "Os dados estão visíveis", systemImage: "lock.open.fill", color: .orange)
                 }
+                .buttonStyle(.plain)
+            } else {
+                Button { Task { await lock.unlock() } } label: {
+                    DSRow("Mostrar com \(lock.methodName)", subtitle: "Números e fotos protegidos", systemImage: lock.symbolName, color: .green)
+                }
+                .buttonStyle(.plain)
             }
         } footer: {
             if let message = lock.message {

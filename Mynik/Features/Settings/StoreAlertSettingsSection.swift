@@ -17,7 +17,7 @@ struct StoreAlertSettingsSection: View {
                 LabeledContent("Alerta sem vendas", value: noSaleDays == 1 ? "1 dia" : "\(noSaleDays) dias")
             }
         } header: {
-            Text("Alertas da loja")
+            ListSectionHeader("Alertas da loja", systemImage: "exclamationmark.triangle", color: .orange)
         } footer: {
             Text("As vendas são verificadas ao abrir a app e em segundo plano no iPhone (quando o sistema deixa), ou de 15 em 15 minutos com a app aberta no Mac.")
         }

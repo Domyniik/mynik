@@ -47,7 +47,7 @@ struct StoreSettingsSection: View {
             }
             statusRow
         } header: {
-            Text("Loja Shopify")
+            ListSectionHeader("Loja Shopify", systemImage: "storefront", color: .pink)
         } footer: {
             Text("Os segredos ficam só no Keychain deste dispositivo. O Mynik só lê dados: produtos, pedidos, inventário e relatórios.")
         }

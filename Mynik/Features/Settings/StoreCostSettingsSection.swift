@@ -16,7 +16,7 @@ struct StoreCostSettingsSection: View {
             amountField("Anúncios gerais / mês", value: $monthlyAds, format: .currency(code: Currency.defaultCode).locale(.app))
             Toggle("Lançar o lucro mensal nas Finanças", isOn: $profitToFinance)
         } header: {
-            Text("Custos da loja")
+            ListSectionHeader("Custos da loja", systemImage: "creditcard", color: .pink)
         } footer: {
             Text("Entram no lucro real junto com o custo de cada produto. O gasto em anúncios de um produto define-se na ficha do produto. O lucro de cada mês entra nas Finanças como receita da categoria Loja (só com a loja real ligada).")
         }

@@ -30,3 +30,29 @@ struct SectionHeader<Accessory: View>: View {
         }
     }
 }
+
+/// Cabeçalho de secção de uma `List` (Definições, formulários): ícone em quadrado colorido e título.
+struct ListSectionHeader: View {
+    let title: String
+    let symbolName: String
+    let color: Color
+
+    init(_ title: String, systemImage symbolName: String, color: Color) {
+        self.title = title
+        self.symbolName = symbolName
+        self.color = color
+    }
+
+    var body: some View {
+        Label {
+            Text(title)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(.primary)
+        } icon: {
+            IconBadge(symbolName: symbolName, color: color)
+                .scaleEffect(0.8)
+        }
+        .textCase(nil)
+        .accessibilityAddTraits(.isHeader)
+    }
+}
