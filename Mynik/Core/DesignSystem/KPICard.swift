@@ -60,6 +60,8 @@ struct KPICard<Chart: View>: View {
                 }
             }
         }
+        // Na grelha, os cartões da mesma linha ficam com a mesma altura.
+        .frame(maxHeight: .infinity, alignment: .topLeading)
         .dsCard(padding: DS.Spacing.m + 2)
         .accessibilityElement(children: .combine)
     }

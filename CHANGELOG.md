@@ -70,3 +70,4 @@
 - style(app): resumo em KPIs nos Projetos, cofre dos Documentos e cabeçalhos com ícones nas Definições
 - feat(design): ícone da app gerado com CoreGraphics (scripts/make-icon.swift)
 - fix(a11y): contraste dos cartões de destaque e ações rápidas em grelha com texto grande
+- fix(design): KPIs com a mesma altura na grelha e seletor de período com largura máxima no Mac

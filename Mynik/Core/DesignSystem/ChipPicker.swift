@@ -40,6 +40,7 @@ struct ChipPicker<Value: Hashable & Identifiable>: View {
             .padding(DS.Spacing.xs)
             .glassEffect(.regular.interactive(), in: .capsule)
         }
+        .frame(maxWidth: 480)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(title)
         .sensoryFeedback(.selection, trigger: selection)
