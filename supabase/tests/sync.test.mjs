@@ -154,3 +154,27 @@ test("dados da loja e linhas em JSON mantêm os decimais", async () => {
     assert.deepEqual(pulled.payload, order);
   });
 });
+
+test("migração: os dados de records passam para as tabelas, com tombstones", async () => {
+  const { readFileSync } = await import("node:fs");
+  const db = await freshDatabase();
+  await db.query(
+    `insert into public.records (user_id, entity, key, payload, deleted, modified_at) values
+       ($1, 'transaction', 'TX-1', $2, false, '2026-11-20T10:31:00Z'),
+       ($1, 'category', 'CAT-OLD', null, true, '2026-11-19T10:00:00Z'),
+       ($3, 'transaction', 'TX-B', $4, false, '2026-11-20T10:00:00Z')`,
+    [USER_A, JSON.stringify(transaction), USER_B, JSON.stringify({ ...transaction, uid: "TX-B", title: "Do B" })],
+  );
+  const migration = new URL("../migrations/20261122000200_migrate_records.sql", import.meta.url);
+  await db.exec(readFileSync(migration, "utf8"));
+  await db.exec(readFileSync(migration, "utf8")); // correr duas vezes não duplica
+  await asUser(db, USER_A, async (tx) => {
+    const rows = await pull(tx);
+    assert.deepEqual(rows.map((r) => [r.entity, r.key, r.deleted]), [["category", "CAT-OLD", true], ["transaction", "TX-1", false]]);
+    assert.deepEqual(rows[1].payload, transaction);
+    assert.equal(rows[1].modified_at.toISOString(), "2026-11-20T10:31:00.000Z");
+  });
+  await asUser(db, USER_B, async (tx) => {
+    assert.deepEqual((await pull(tx)).map((r) => r.payload.title), ["Do B"]);
+  });
+});

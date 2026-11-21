@@ -116,8 +116,9 @@ const sql = `-- Mynik — tabelas tipadas (Fase 11)
 -- de segurança); a app web lê e escreve as tabelas diretamente.
 -- A tabela antiga \`records\` fica intacta até a migração estar confirmada.
 
--- Last-write-wins: uma escrita mais antiga do que a guardada é ignorada; uma
--- escrita sem modified_at novo (app web) conta como feita agora.
+-- Last-write-wins: uma escrita mais antiga do que a guardada é ignorada.
+-- Escritas diretas (app web) sem modified_at novo contam como feitas agora; as
+-- do sync (sync_apply, que marca mynik.sync) mantêm a hora do dispositivo.
 create or replace function public.sync_last_write_wins()
 returns trigger
 language plpgsql
@@ -128,7 +129,8 @@ begin
         if new.modified_at < old.modified_at then
             return null;
         end if;
-        if new.modified_at = old.modified_at and not new.deleted then
+        if new.modified_at = old.modified_at
+           and coalesce(current_setting('mynik.sync', true), '') <> 'on' then
             new.modified_at := clock_timestamp();
         end if;
     end if;
@@ -177,17 +179,19 @@ as $$
         + (round((seconds + 978307200) * 1000000))::bigint * interval '1 microsecond'
 $$;
 
--- Envia linhas no formato do iPhone: [{entity, key, payload, deleted, modified_at}].
--- O payload é o registo da cópia de segurança; cada campo vai para a sua coluna.
--- Campos em falta (versões antigas) ficam com o valor por omissão da coluna.
-create or replace function public.sync_push(p_rows jsonb)
+-- Grava linhas no formato do iPhone: [{entity, key, payload, deleted, modified_at}]
+-- como sendo de p_user. O payload é o registo da cópia de segurança; cada campo
+-- vai para a sua coluna. Campos em falta (versões antigas) ficam com o valor por
+-- omissão da coluna. Corre com os direitos de quem chama: pela API, a RLS só
+-- deixa escrever as linhas do próprio utilizador.
+create or replace function public.sync_apply(p_user uuid, p_rows jsonb)
 returns void
 language plpgsql
 security invoker
 set search_path = ''
 as $$
 declare
-    v_user uuid := auth.uid();
+    v_user uuid := p_user;
     r jsonb;
     ent public.sync_entities%rowtype;
     f public.sync_fields%rowtype;
@@ -200,8 +204,9 @@ declare
     set_list text;
 begin
     if v_user is null then
-        raise exception 'sync_push: sem sessão';
+        raise exception 'sync_apply: sem utilizador';
     end if;
+    perform set_config('mynik.sync', 'on', true);
     for r in select value from jsonb_array_elements(p_rows) loop
         select * into ent from public.sync_entities e where e.entity = r ->> 'entity';
         if not found then
@@ -236,6 +241,22 @@ begin
             ent.table_name, col_list, col_list, ent.table_name, set_list
         ) using data;
     end loop;
+    perform set_config('mynik.sync', '', true);
+end;
+$$;
+
+-- Envia linhas do iPhone para a conta com sessão iniciada.
+create or replace function public.sync_push(p_rows jsonb)
+returns void
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+begin
+    if auth.uid() is null then
+        raise exception 'sync_push: sem sessão';
+    end if;
+    perform public.sync_apply(auth.uid(), p_rows);
 end;
 $$;
 
@@ -275,8 +296,10 @@ begin
 end;
 $$;
 
+revoke all on function public.sync_apply(uuid, jsonb) from public, anon;
 revoke all on function public.sync_push(jsonb) from public, anon;
 revoke all on function public.sync_pull(timestamptz, integer, integer) from public, anon;
+grant execute on function public.sync_apply(uuid, jsonb) to authenticated;
 grant execute on function public.sync_push(jsonb) to authenticated;
 grant execute on function public.sync_pull(timestamptz, integer, integer) to authenticated;
 `;
