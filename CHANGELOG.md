@@ -1,6 +1,12 @@
 # Changelog
 
 ## [Não lançado]
+- chore: segredos fora do git (.env.*) e modelo supabase/.env.example para os segredos do servidor
+- feat(sync): definições partilhadas entre iPhone e desktop (custos da loja, taxa BRL, meta de poupança, lembretes)
+- feat(sync): o iPhone sincroniza com as tabelas tipadas através de sync_pull / sync_push
+- feat(supabase): migração dos dados de records para as tabelas tipadas (idempotente, mantém as datas)
+- feat(supabase): funções SQL do score dos produtos, lucro real, KPIs, orçamento e resumo do mês, com testes de paridade iPhone ↔ SQL
+- feat(supabase): 25 tabelas tipadas com RLS, last-write-wins e funções de sync, geradas de supabase/schema/entities.mjs
 - refactor: remove versão macOS em Swift (o Mac passa para a app desktop em Tauri); o app Swift fica só para iPhone e iPad
 - docs: checklist de paridade iOS ↔ desktop (docs/FEATURES.md)
 - docs: README e estado da Fase 10 — notas ao estilo wiki (v1.4)
