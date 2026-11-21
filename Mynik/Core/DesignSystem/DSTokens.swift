@@ -50,7 +50,7 @@ extension Color {
     }
 
     /// Cores fixas do gradiente da marca (o cartão principal usa texto branco por cima).
-    static let brandGradientTop = Color(red: 0.45, green: 0.36, blue: 1.0)
+    static let brandGradientTop = Color(red: 0.40, green: 0.30, blue: 0.95)
     static let brandGradientBottom = Color(red: 0.25, green: 0.16, blue: 0.80)
 }
 

@@ -132,10 +132,13 @@ private struct TodayQuickActions: View {
     let ask: () -> Void
     let review: () -> Void
     let search: () -> Void
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
+        // Nos tamanhos de acessibilidade os botões passam a uma grelha 2 × 2, sem cortar o texto.
+        let columns = Array(repeating: GridItem(.flexible(), spacing: DS.Spacing.s), count: dynamicTypeSize.isAccessibilitySize ? 2 : 4)
         GlassEffectContainer(spacing: DS.Spacing.s) {
-            HStack(spacing: DS.Spacing.s) {
+            LazyVGrid(columns: columns, spacing: DS.Spacing.s) {
                 action("Gasto", label: "Adicionar movimento", systemImage: "plus.circle.fill", tint: .brand, perform: addTransaction)
                 action("Perguntar", label: "Pergunte ao Mynik", systemImage: "sparkles", tint: .purple, perform: ask)
                 action("Revisão", label: "Revisão semanal", systemImage: "calendar.badge.checkmark", tint: .orange, perform: review)

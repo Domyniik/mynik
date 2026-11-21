@@ -130,7 +130,7 @@ struct WealthHeaderSection: View {
                 title: "Património líquido",
                 value: Currency.format(summary.netWorth),
                 figures: figures,
-                colors: [Color(red: 0.08, green: 0.58, blue: 0.62), Color(red: 0.02, green: 0.30, blue: 0.42)]
+                colors: [Color(red: 0.03, green: 0.45, blue: 0.50), Color(red: 0.02, green: 0.30, blue: 0.42)]
             )
             .padding(.vertical, DS.Spacing.xs)
             .dsListCardRow()

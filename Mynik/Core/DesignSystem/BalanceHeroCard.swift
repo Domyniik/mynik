@@ -27,7 +27,7 @@ struct HeroCard: View {
                 VStack(alignment: .leading, spacing: DS.Spacing.xs) {
                     Text(title)
                         .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.white.opacity(0.85))
+                        .foregroundStyle(.white.opacity(0.92))
                     Text(value)
                         .numberStyle(.display)
                         .foregroundStyle(.white)
@@ -79,7 +79,7 @@ private struct HeroFigure: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text(item.title)
                     .font(.caption)
-                    .foregroundStyle(.white.opacity(0.8))
+                    .foregroundStyle(.white.opacity(0.9))
                 Text(item.value)
                     .numberStyle(.figure)
             }
