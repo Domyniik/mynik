@@ -84,3 +84,32 @@ struct NoteDatabaseTests {
         #expect(rowCopy.propertyValues == row.propertyValues)
     }
 }
+
+@MainActor
+struct NoteSyncPayloadTests {
+    @Test func syncPayloadCarriesNotesV7Fields() throws {
+        let source = try ModelContainerFactory.make(inMemory: true)
+        let database = NoteDatabase.makeDatabase(title: "Filmes", in: source.mainContext)
+        database.isFavorite = true
+        database.cover = .forest
+        let row = NoteDatabase.addRow(to: database, title: "Dune", in: source.mainContext)
+        row.setValue("Feito", for: try #require(NoteDatabase.boardProperty(of: database)))
+        let callout = NoteEditing.insertBlock(.callout, text: "Ver", in: row, context: source.mainContext)
+        callout.emoji = "🎬"
+        try source.mainContext.save()
+
+        let archive = try BackupService.makeArchive(from: source.mainContext)
+        let notePayload = try #require(try SyncEntity.note.payloads(in: archive)[database.uid])
+        let json = try #require(String(data: notePayload, encoding: .utf8))
+        #expect(json.contains("\"isDatabase\":true") && json.contains("\"coverRaw\":\"forest\""))
+        let blockPayload = try #require(try SyncEntity.noteBlock.payloads(in: archive)[callout.uid])
+        #expect(String(data: blockPayload, encoding: .utf8)?.contains("🎬") == true)
+
+        // Outro dispositivo recebe tudo pelo mesmo caminho do sync (registos da cópia).
+        let target = try ModelContainerFactory.make(inMemory: true)
+        try BackupService.importArchive(archive, into: target.mainContext)
+        let imported = try target.mainContext.fetch(FetchDescriptor<Note>()).first { $0.uid == database.uid }
+        #expect(imported?.isDatabase == true && imported?.cover == .forest && imported?.isFavorite == true)
+        #expect(imported?.sortedChildren.first?.propertyValues == row.propertyValues)
+    }
+}

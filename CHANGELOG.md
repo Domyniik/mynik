@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- test(notes): o payload do sync leva os campos novos das notas (base de dados, capa, favoritos, blocos) e outro dispositivo recebe-os
 - feat(notes): importa um export do Notion (ZIP com Markdown e CSV) com páginas, subpáginas, imagens e bases de dados
 - feat(notes): templates de página (Reunião, Diário, Projeto, Leituras, Semana) e templates próprios com "Guardar como template"
 - feat(notes): menções @ a páginas, projetos, movimentos e datas, com ligação automática, backlinks "Menciona esta" e links que abrem o destino
