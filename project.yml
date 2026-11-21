@@ -69,6 +69,10 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         MynikAppGroup: $(MYNIK_APP_GROUP)
+        # Regresso do link de entrada do email (Definições → Conta).
+        CFBundleURLTypes:
+          - CFBundleURLName: com.domynik.mynik.login
+            CFBundleURLSchemes: [mynik]
         # Supabase (Config/Supabase.xcconfig, fora do git). Vazio = sem login nem sync.
         SupabaseProjectRef: $(SUPABASE_PROJECT_REF)
         SupabaseAnonKey: $(SUPABASE_ANON_KEY)

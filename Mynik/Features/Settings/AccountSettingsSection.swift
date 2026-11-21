@@ -81,16 +81,17 @@ struct AccountSettingsSection: View {
 
     @ViewBuilder
     private func codeEntry(for address: String) -> some View {
-        Text("Enviámos um código de 6 dígitos para \(address).")
+        Text("Enviámos um email para \(address). Abre o link neste dispositivo, ou cola aqui o código de 6 dígitos ou o link.")
             .foregroundStyle(.secondary)
-        TextField("Código", text: $code, prompt: Text("123456"))
+        TextField("Código ou link", text: $code, prompt: Text("123456"))
             .textContentType(.oneTimeCode)
+            .autocorrectionDisabled()
             #if os(iOS)
-            .keyboardType(.numberPad)
+            .textInputAutocapitalization(.never)
             #endif
             .onSubmit(verify)
         Button("Entrar", systemImage: "checkmark.circle", action: verify)
-            .disabled(code.filter(\.isNumber).count < 6 || isWorking)
+            .disabled(!canVerify || isWorking)
         Button("Usar outro email", systemImage: "arrow.uturn.backward") {
             codeSentTo = nil
             code = ""
@@ -99,6 +100,10 @@ struct AccountSettingsSection: View {
     }
 
     // MARK: - Ações
+
+    private var canVerify: Bool {
+        code.contains("://") || code.filter(\.isNumber).count >= 6
+    }
 
     private var isValidEmail: Bool {
         let trimmed = email.trimmingCharacters(in: .whitespaces)
@@ -114,7 +119,7 @@ struct AccountSettingsSection: View {
     }
 
     private func verify() {
-        guard let codeSentTo, !isWorking else { return }
+        guard let codeSentTo, canVerify, !isWorking else { return }
         run {
             try await account.verify(email: codeSentTo, code: code)
             self.codeSentTo = nil

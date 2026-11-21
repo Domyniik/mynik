@@ -65,20 +65,55 @@ final class AccountSync {
         apply(session.user)
     }
 
-    /// Envia o código de 6 dígitos para o email (cria a conta se não existir).
+    /// Para onde o link do email volta: abre a app (esquema `mynik`, no Info.plist).
+    static let redirectURL = URL(string: "mynik://login")!
+
+    /// Envia o email de entrada (cria a conta se não existir). Traz um link e,
+    /// se o modelo do email o incluir, um código de 6 dígitos.
     func sendCode(to email: String) async throws {
         guard let auth else { return }
-        try await auth.signInWithOTP(email: email.trimmingCharacters(in: .whitespaces).lowercased())
+        try await auth.signInWithOTP(
+            email: email.trimmingCharacters(in: .whitespaces).lowercased(),
+            redirectTo: Self.redirectURL
+        )
     }
 
+    /// Entra com o código de 6 dígitos ou com o link do email colado.
     func verify(email: String, code: String) async throws {
         guard let auth else { return }
+        let input = code.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let url = URL(string: input), url.scheme != nil {
+            try await signIn(withLink: url)
+            return
+        }
         let response = try await auth.verifyOTP(
             email: email.trimmingCharacters(in: .whitespaces).lowercased(),
-            token: code.filter(\.isNumber),
+            token: input.filter(\.isNumber),
             type: .email
         )
         apply(response.user)
+    }
+
+    /// `true` se o URL é o regresso do link do email (`mynik://login…`).
+    static func isLoginURL(_ url: URL) -> Bool {
+        url.scheme == redirectURL.scheme && url.host() == redirectURL.host()
+    }
+
+    /// Entra a partir do link do email: o regresso à app (`mynik://login#access_token=…`)
+    /// ou o próprio link (`https://….supabase.co/auth/v1/verify?token=…&type=…`).
+    func signIn(withLink url: URL) async throws {
+        guard let auth else { return }
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        let query = Dictionary(
+            (components?.queryItems ?? []).map { ($0.name, $0.value ?? "") },
+            uniquingKeysWith: { first, _ in first }
+        )
+        if let tokenHash = query["token"] ?? query["token_hash"] {
+            let type = query["type"].flatMap(EmailOTPType.init(rawValue:)) ?? .magiclink
+            apply(try await auth.verifyOTP(tokenHash: tokenHash, type: type).user)
+        } else {
+            apply(try await auth.session(from: url).user)
+        }
     }
 
     /// Termina a sessão. Os dados ficam no dispositivo; o próximo login volta a juntá-los.

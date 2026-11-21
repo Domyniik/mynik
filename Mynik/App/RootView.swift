@@ -48,6 +48,14 @@ struct RootView: View {
                 updateLiveActivity()
             }
             .task { await refreshStorePeriodically() }
+            // Link de entrada do email (mynik://login…).
+            .onOpenURL { url in
+                guard AccountSync.isLoginURL(url) else { return }
+                Task {
+                    try? await accountSync.signIn(withLink: url)
+                    await accountSync.sync(context: modelContext)
+                }
+            }
             .onChange(of: scenePhase, initial: true) {
                 if scenePhase == .active {
                     appLock.didBecomeActive()
