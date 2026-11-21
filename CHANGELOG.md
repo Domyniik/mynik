@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- fix(sync): cliente PostgREST sem inicializador obsoleto
 - fix(settings): Conta fala de link de entrada em vez de código
 - docs: README e estado da Fase 9 (v1.3)
 - feat(settings): entrada pelo link do email (mynik://login) ou colando o link, além do código

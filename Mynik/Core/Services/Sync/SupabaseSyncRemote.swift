@@ -67,7 +67,8 @@ nonisolated struct SupabaseSyncRemote: SyncRemote {
         let token = try await auth.session.accessToken
         return PostgrestClient(
             url: config.restURL,
-            headers: ["apikey": config.anonKey, "Authorization": "Bearer \(token)"]
+            headers: ["apikey": config.anonKey, "Authorization": "Bearer \(token)"],
+            logger: nil
         )
     }
 }
