@@ -61,3 +61,12 @@
 - [x] Testes (Swift Testing) — 223 testes no Mac (222 no iOS): serviços, IA com e sem modelo, OCR real, migrações do esquema, backup, navegação
 - [x] TestFlight → **não disponível**: exige o Apple Developer Program (pago), que este projeto não usa. Distribuição alternativa: no Mac, `brew install --cask domyniik/tap/mynik` (assinado com o certificado grátis da Personal Team, sem notarização); no iPhone, instalar a partir do Xcode ou do Sideloadly com um Apple ID grátis (a assinatura expira ao fim de 7 dias e tem de ser renovada).
 - [x] Screenshots + README final para o portfólio — ecrãs reais do iPhone 17 e do Mac em modo de demonstração (`-MynikDemo`) em docs/screenshots
+
+## Fase 9 — Login e sync (Supabase)
+Substitui o sync por CloudKit (que exige o plano pago). **Local-first:** o SwiftData continua a ser a fonte da app e o Supabase guarda só uma cópia. Sem conta e sem rede, a app funciona igual.
+- [ ] Motor de sync: registos do backup como payload, deteção de alterações por hash, last-write-wins e tombstones (testes Swift Testing)
+- [ ] Base de dados Supabase: tabela `records` com RLS (`user_id = auth.uid()`) e gatilho last-write-wins (`supabase/migrations`)
+- [ ] Cliente Supabase (SPM `supabase-swift`): configuração fora do git, sessão no Keychain, push/pull incremental
+- [ ] Login por email com código de 6 dígitos em Definições → Conta
+- [ ] Sync automático: ao abrir, ao voltar ao primeiro plano e depois de gravar (com debounce)
+- [ ] Fora do sync: fotos dos documentos e segredos (token da Shopify, etc.)
