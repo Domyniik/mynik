@@ -1,0 +1,2123 @@
+{
+  "now": 816973200,
+  "timeZone": "Europe/Madrid",
+  "settings": {
+    "storeFeePercent": 2.9,
+    "storeFeeFixed": 0.3,
+    "storeShippingCost": 4.5,
+    "storeMonthlyAds": 60,
+    "googleAdsUnattributed30d": 15.5,
+    "brlPerEUR": 6.2
+  },
+  "archive": {
+    "format": 1,
+    "exportedAt": 816973200,
+    "appVersion": "parity",
+    "device": "fixture",
+    "categories": [
+      {
+        "uid": "CAT-FOOD",
+        "name": "Alimentação",
+        "symbolName": "tag",
+        "colorName": "gray",
+        "kindRaw": "expense",
+        "sortOrder": 0,
+        "monthlyBudget": 250
+      },
+      {
+        "uid": "CAT-HOME",
+        "name": "Casa",
+        "symbolName": "tag",
+        "colorName": "gray",
+        "kindRaw": "expense",
+        "sortOrder": 1,
+        "monthlyBudget": 0
+      },
+      {
+        "uid": "CAT-FUN",
+        "name": "Lazer",
+        "symbolName": "tag",
+        "colorName": "gray",
+        "kindRaw": "expense",
+        "sortOrder": 2,
+        "monthlyBudget": 80
+      },
+      {
+        "uid": "CAT-CAR",
+        "name": "Carro",
+        "symbolName": "tag",
+        "colorName": "gray",
+        "kindRaw": "expense",
+        "sortOrder": 3,
+        "monthlyBudget": 150
+      },
+      {
+        "uid": "CAT-SALARY",
+        "name": "Salário",
+        "symbolName": "tag",
+        "colorName": "gray",
+        "kindRaw": "income",
+        "sortOrder": 10,
+        "monthlyBudget": 0
+      }
+    ],
+    "accounts": [],
+    "transactions": [
+      {
+        "uid": "TX-001",
+        "title": "Mercadona",
+        "amount": 54.37,
+        "kindRaw": "expense",
+        "currencyCode": "EUR",
+        "date": 815302800,
+        "notes": "",
+        "createdAt": 815302800,
+        "externalID": "",
+        "categoryUID": "CAT-FOOD"
+      },
+      {
+        "uid": "TX-002",
+        "title": "Lidl",
+        "amount": 41.2,
+        "kindRaw": "expense",
+        "currencyCode": "EUR",
+        "date": 815941800,
+        "notes": "",
+        "createdAt": 815941800,
+        "externalID": "",
+        "categoryUID": "CAT-FOOD"
+      },
+      {
+        "uid": "TX-003",
+        "title": "Restaurante",
+        "amount": 38.5,
+        "kindRaw": "expense",
+        "currencyCode": "EUR",
+        "date": 816436800,
+        "notes": "",
+        "createdAt": 816436800,
+        "externalID": "",
+        "categoryUID": "CAT-FUN"
+      },
+      {
+        "uid": "TX-004",
+        "title": "Cinema",
+        "amount": 45.9,
+        "kindRaw": "expense",
+        "currencyCode": "EUR",
+        "date": 816552000,
+        "notes": "",
+        "createdAt": 816552000,
+        "externalID": "",
+        "categoryUID": "CAT-FUN"
+      },
+      {
+        "uid": "TX-005",
+        "title": "Renda",
+        "amount": 750,
+        "kindRaw": "expense",
+        "currencyCode": "EUR",
+        "date": 815558400,
+        "notes": "",
+        "createdAt": 815558400,
+        "externalID": "",
+        "categoryUID": "CAT-HOME"
+      },
+      {
+        "uid": "TX-006",
+        "title": "Presente (Brasil)",
+        "amount": 310,
+        "kindRaw": "expense",
+        "currencyCode": "BRL",
+        "date": 816170400,
+        "notes": "",
+        "createdAt": 816170400,
+        "externalID": "",
+        "categoryUID": "CAT-FUN"
+      },
+      {
+        "uid": "TX-007",
+        "title": "Farmácia",
+        "amount": 12.8,
+        "kindRaw": "expense",
+        "currencyCode": "EUR",
+        "date": 816688800,
+        "notes": "",
+        "createdAt": 816688800,
+        "externalID": ""
+      },
+      {
+        "uid": "TX-008",
+        "title": "Padaria (1 nov em Madrid)",
+        "amount": 6.45,
+        "kindRaw": "expense",
+        "currencyCode": "EUR",
+        "date": 815182200,
+        "notes": "",
+        "createdAt": 815182200,
+        "externalID": "",
+        "categoryUID": "CAT-FOOD"
+      },
+      {
+        "uid": "TX-009",
+        "title": "Já é dezembro em Madrid",
+        "amount": 99,
+        "kindRaw": "expense",
+        "currencyCode": "EUR",
+        "date": 817774200,
+        "notes": "",
+        "createdAt": 817774200,
+        "externalID": "",
+        "categoryUID": "CAT-FOOD"
+      },
+      {
+        "uid": "TX-010",
+        "title": "Mercado de outubro",
+        "amount": 120,
+        "kindRaw": "expense",
+        "currencyCode": "EUR",
+        "date": 814183200,
+        "notes": "",
+        "createdAt": 814183200,
+        "externalID": "",
+        "categoryUID": "CAT-FOOD"
+      },
+      {
+        "uid": "TX-011",
+        "title": "Salário",
+        "amount": 1850,
+        "kindRaw": "income",
+        "currencyCode": "EUR",
+        "date": 815216400,
+        "notes": "",
+        "createdAt": 815216400,
+        "externalID": "",
+        "categoryUID": "CAT-SALARY"
+      },
+      {
+        "uid": "TX-012",
+        "title": "Salário",
+        "amount": 1850,
+        "kindRaw": "income",
+        "currencyCode": "EUR",
+        "date": 812538000,
+        "notes": "",
+        "createdAt": 812538000,
+        "externalID": "",
+        "categoryUID": "CAT-SALARY"
+      },
+      {
+        "uid": "TX-013",
+        "title": "Venda no Brasil",
+        "amount": 620,
+        "kindRaw": "income",
+        "currencyCode": "BRL",
+        "date": 815994000,
+        "notes": "",
+        "createdAt": 815994000,
+        "externalID": ""
+      }
+    ],
+    "bills": [],
+    "storeProducts": [
+      {
+        "shopifyID": "gid://shopify/Product/1",
+        "title": "Anel dourado",
+        "handle": "anel-dourado",
+        "statusRaw": "ACTIVE",
+        "imageURLString": "",
+        "price": 24.9,
+        "unitCost": 6.2,
+        "unitCostIsManual": false,
+        "inventory": 40,
+        "tracksInventory": true,
+        "createdAt": 806583600,
+        "adSpend30d": 30,
+        "decisionRaw": "",
+        "decisionNote": "",
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Product/2",
+        "title": "Brincos pérola",
+        "handle": "brincos-pérola",
+        "statusRaw": "ACTIVE",
+        "imageURLString": "",
+        "price": 19.9,
+        "unitCost": 9.5,
+        "unitCostIsManual": false,
+        "inventory": 25,
+        "tracksInventory": true,
+        "createdAt": 809175600,
+        "adSpend30d": 0,
+        "decisionRaw": "",
+        "decisionNote": "",
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Product/3",
+        "title": "Colar novo",
+        "handle": "colar-novo",
+        "statusRaw": "ACTIVE",
+        "imageURLString": "",
+        "price": 34.9,
+        "unitCost": 11,
+        "unitCostIsManual": false,
+        "inventory": 15,
+        "tracksInventory": true,
+        "createdAt": 816433200,
+        "adSpend30d": 0,
+        "decisionRaw": "",
+        "decisionNote": "",
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Product/4",
+        "title": "Pulseira prata",
+        "handle": "pulseira-prata",
+        "statusRaw": "ACTIVE",
+        "imageURLString": "",
+        "price": 29.9,
+        "unitCost": 0,
+        "unitCostIsManual": false,
+        "inventory": 30,
+        "tracksInventory": true,
+        "createdAt": 810039600,
+        "adSpend30d": 40,
+        "decisionRaw": "",
+        "decisionNote": "",
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Product/5",
+        "title": "Gargantilha",
+        "handle": "gargantilha",
+        "statusRaw": "ACTIVE",
+        "imageURLString": "",
+        "price": 15.9,
+        "unitCost": 4,
+        "unitCostIsManual": false,
+        "inventory": 12,
+        "tracksInventory": true,
+        "createdAt": 799671600,
+        "adSpend30d": 0,
+        "decisionRaw": "",
+        "decisionNote": "",
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Product/6",
+        "title": "Tiara",
+        "handle": "tiara",
+        "statusRaw": "DRAFT",
+        "imageURLString": "",
+        "price": 39.9,
+        "unitCost": 12,
+        "unitCostIsManual": false,
+        "inventory": 5,
+        "tracksInventory": true,
+        "createdAt": 803991600,
+        "adSpend30d": 0,
+        "decisionRaw": "",
+        "decisionNote": "",
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Product/7",
+        "title": "Pin esmaltado",
+        "handle": "pin-esmaltado",
+        "statusRaw": "ACTIVE",
+        "imageURLString": "",
+        "price": 9.9,
+        "unitCost": 2.1,
+        "unitCostIsManual": false,
+        "inventory": 3,
+        "tracksInventory": true,
+        "createdAt": 811767600,
+        "adSpend30d": 0,
+        "decisionRaw": "",
+        "decisionNote": "",
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Product/8",
+        "title": "Ear cuff",
+        "handle": "ear-cuff",
+        "statusRaw": "ACTIVE",
+        "imageURLString": "",
+        "price": 12.5,
+        "unitCost": 3.75,
+        "unitCostIsManual": false,
+        "inventory": 0,
+        "tracksInventory": false,
+        "createdAt": 814791600,
+        "adSpend30d": 0,
+        "decisionRaw": "",
+        "decisionNote": "",
+        "syncedAt": 816973200
+      }
+    ],
+    "storeOrders": [
+      {
+        "shopifyID": "gid://shopify/Order/5000",
+        "name": "#1001",
+        "createdAt": 816951600,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "UNFULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5001",
+        "name": "#1002",
+        "createdAt": 816870600,
+        "subtotal": 19.9,
+        "shipping": 3.9,
+        "tax": 4.13,
+        "total": 23.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "UNFULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 19.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5002",
+        "name": "#1003",
+        "createdAt": 816778800,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "UNFULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5003",
+        "name": "#1004",
+        "createdAt": 816606000,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5004",
+        "name": "#1005",
+        "createdAt": 816433200,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5005",
+        "name": "#1006",
+        "createdAt": 816438600,
+        "subtotal": 0,
+        "shipping": 3.9,
+        "tax": 0.68,
+        "total": 3.9,
+        "refunded": 19.9,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PARTIALLY_REFUNDED",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 1,
+            "currentQuantity": 0,
+            "unitPrice": 19.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5006",
+        "name": "#1007",
+        "createdAt": 816260400,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5007",
+        "name": "#1008",
+        "createdAt": 816087600,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5008",
+        "name": "#1009",
+        "createdAt": 816006600,
+        "subtotal": 19.9,
+        "shipping": 3.9,
+        "tax": 4.13,
+        "total": 23.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 19.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5009",
+        "name": "#1010",
+        "createdAt": 815914800,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5010",
+        "name": "#1011",
+        "createdAt": 815742000,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5011",
+        "name": "#1012",
+        "createdAt": 815569200,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5012",
+        "name": "#1013",
+        "createdAt": 815574600,
+        "subtotal": 19.9,
+        "shipping": 3.9,
+        "tax": 4.13,
+        "total": 23.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 19.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5013",
+        "name": "#1014",
+        "createdAt": 815396400,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5014",
+        "name": "#1015",
+        "createdAt": 815223600,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5015",
+        "name": "#1016",
+        "createdAt": 815142600,
+        "subtotal": 19.9,
+        "shipping": 3.9,
+        "tax": 4.13,
+        "total": 23.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 19.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5016",
+        "name": "#1017",
+        "createdAt": 815050800,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5017",
+        "name": "#1018",
+        "createdAt": 814878000,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5018",
+        "name": "#1019",
+        "createdAt": 814705200,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5019",
+        "name": "#1020",
+        "createdAt": 814710600,
+        "subtotal": 19.9,
+        "shipping": 3.9,
+        "tax": 4.13,
+        "total": 23.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 19.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5020",
+        "name": "#1021",
+        "createdAt": 814532400,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5021",
+        "name": "#1022",
+        "createdAt": 814359600,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5022",
+        "name": "#1023",
+        "createdAt": 814278600,
+        "subtotal": 19.9,
+        "shipping": 3.9,
+        "tax": 4.13,
+        "total": 23.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 19.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5023",
+        "name": "#1024",
+        "createdAt": 814186800,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5024",
+        "name": "#1025",
+        "createdAt": 814014000,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5025",
+        "name": "#1026",
+        "createdAt": 813841200,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5026",
+        "name": "#1027",
+        "createdAt": 813846600,
+        "subtotal": 19.9,
+        "shipping": 3.9,
+        "tax": 4.13,
+        "total": 23.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 19.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5027",
+        "name": "#1028",
+        "createdAt": 813668400,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5028",
+        "name": "#1029",
+        "createdAt": 813495600,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5029",
+        "name": "#1030",
+        "createdAt": 813322800,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5030",
+        "name": "#1031",
+        "createdAt": 813150000,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5031",
+        "name": "#1032",
+        "createdAt": 812977200,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5032",
+        "name": "#1033",
+        "createdAt": 812804400,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5033",
+        "name": "#1034",
+        "createdAt": 812631600,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5034",
+        "name": "#1035",
+        "createdAt": 812458800,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5035",
+        "name": "#1036",
+        "createdAt": 812286000,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5036",
+        "name": "#1037",
+        "createdAt": 816910800,
+        "subtotal": 24.9,
+        "shipping": 3.9,
+        "tax": 5,
+        "total": 28.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "UNFULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5037",
+        "name": "#1038",
+        "createdAt": 816907200,
+        "subtotal": 19.9,
+        "shipping": 3.9,
+        "tax": 4.13,
+        "total": 23.8,
+        "refunded": 19.9,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PARTIALLY_REFUNDED",
+        "fulfillmentStatusRaw": "UNFULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 2,
+            "currentQuantity": 1,
+            "unitPrice": 19.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5038",
+        "name": "#1039",
+        "createdAt": 816780600,
+        "subtotal": 34.9,
+        "shipping": 3.9,
+        "tax": 6.73,
+        "total": 38.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "UNFULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/3",
+            "title": "Colar novo",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 34.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5039",
+        "name": "#1040",
+        "createdAt": 816607800,
+        "subtotal": 59.8,
+        "shipping": 0,
+        "tax": 10.38,
+        "total": 59.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/3",
+            "title": "Colar novo",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 34.9
+          },
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5040",
+        "name": "#1041",
+        "createdAt": 815226300,
+        "subtotal": 29.9,
+        "shipping": 3.9,
+        "tax": 5.87,
+        "total": 33.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/4",
+            "title": "Pulseira prata",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 29.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5041",
+        "name": "#1042",
+        "createdAt": 813064200,
+        "subtotal": 31.8,
+        "shipping": 3.9,
+        "tax": 6.2,
+        "total": 35.7,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/5",
+            "title": "Gargantilha",
+            "quantity": 2,
+            "currentQuantity": 2,
+            "unitPrice": 15.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5042",
+        "name": "#1043",
+        "createdAt": 816693300,
+        "subtotal": 39.9,
+        "shipping": 3.9,
+        "tax": 7.6,
+        "total": 43.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/6",
+            "title": "Tiara",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 39.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5043",
+        "name": "#1044",
+        "createdAt": 816261600,
+        "subtotal": 29.7,
+        "shipping": 3.9,
+        "tax": 5.83,
+        "total": 33.6,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/7",
+            "title": "Pin esmaltado",
+            "quantity": 3,
+            "currentQuantity": 3,
+            "unitPrice": 9.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5044",
+        "name": "#1045",
+        "createdAt": 815916000,
+        "subtotal": 19.8,
+        "shipping": 3.9,
+        "tax": 4.11,
+        "total": 23.7,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/7",
+            "title": "Pin esmaltado",
+            "quantity": 2,
+            "currentQuantity": 2,
+            "unitPrice": 9.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5045",
+        "name": "#1046",
+        "createdAt": 815655600,
+        "subtotal": 12.5,
+        "shipping": 3.9,
+        "tax": 2.85,
+        "total": 16.4,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/8",
+            "title": "Ear cuff",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 12.5
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5046",
+        "name": "#1047",
+        "createdAt": 816522600,
+        "cancelledAt": 816526200,
+        "subtotal": 49.8,
+        "shipping": 0,
+        "tax": 8.64,
+        "total": 49.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "Anel dourado",
+            "quantity": 2,
+            "currentQuantity": 2,
+            "unitPrice": 24.9
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/Order/5047",
+        "name": "#1048",
+        "createdAt": 816178200,
+        "subtotal": 29.9,
+        "shipping": 3.9,
+        "tax": 5.87,
+        "total": 33.8,
+        "refunded": 0,
+        "currencyCode": "EUR",
+        "financialStatusRaw": "PAID",
+        "fulfillmentStatusRaw": "FULFILLED",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "Brincos pérola",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 19.9
+          },
+          {
+            "productID": "gid://shopify/Product/9",
+            "title": "Produto antigo",
+            "quantity": 1,
+            "currentQuantity": 1,
+            "unitPrice": 10
+          }
+        ],
+        "syncedAt": 816973200
+      }
+    ],
+    "storeCheckouts": [
+      {
+        "shopifyID": "gid://shopify/AbandonedCheckout/700",
+        "name": "#C700",
+        "createdAt": 816877200,
+        "total": 30,
+        "recoveryURLString": "",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "",
+            "quantity": 1
+          },
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "",
+            "quantity": 2
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/AbandonedCheckout/701",
+        "name": "#C701",
+        "createdAt": 816704400,
+        "total": 30,
+        "recoveryURLString": "",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "",
+            "quantity": 1
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/AbandonedCheckout/702",
+        "name": "#C702",
+        "createdAt": 816358800,
+        "total": 30,
+        "recoveryURLString": "",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "",
+            "quantity": 3
+          },
+          {
+            "productID": "gid://shopify/Product/4",
+            "title": "",
+            "quantity": 2
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/AbandonedCheckout/703",
+        "name": "#C703",
+        "createdAt": 815926800,
+        "total": 30,
+        "recoveryURLString": "",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/1",
+            "title": "",
+            "quantity": 2
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/AbandonedCheckout/704",
+        "name": "#C704",
+        "createdAt": 813507600,
+        "total": 30,
+        "recoveryURLString": "",
+        "lines": [
+          {
+            "productID": "gid://shopify/Product/2",
+            "title": "",
+            "quantity": 5
+          }
+        ],
+        "syncedAt": 816973200
+      },
+      {
+        "shopifyID": "gid://shopify/AbandonedCheckout/799",
+        "name": "#C799",
+        "createdAt": 816877200,
+        "total": 30,
+        "recoveryURLString": "",
+        "lines": [
+          {
+            "productID": "",
+            "title": "Sem produto",
+            "quantity": 4
+          }
+        ],
+        "syncedAt": 816973200
+      }
+    ],
+    "dailyStats": [
+      {
+        "date": 816908400,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 60,
+        "cartSessions": 3,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816822000,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 97,
+        "cartSessions": 5,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816735600,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 84,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816649200,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 71,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816562800,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 108,
+        "cartSessions": 5,
+        "checkoutSessions": 3,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816476400,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 95,
+        "cartSessions": 5,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816390000,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 82,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816303600,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 69,
+        "cartSessions": 3,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816217200,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 106,
+        "cartSessions": 5,
+        "checkoutSessions": 3,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816130800,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 93,
+        "cartSessions": 5,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 816044400,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 80,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815958000,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 67,
+        "cartSessions": 3,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815871600,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 104,
+        "cartSessions": 5,
+        "checkoutSessions": 3,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815785200,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 91,
+        "cartSessions": 5,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815698800,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 78,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815612400,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 65,
+        "cartSessions": 3,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815526000,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 102,
+        "cartSessions": 5,
+        "checkoutSessions": 3,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815439600,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 89,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815353200,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 76,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815266800,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 63,
+        "cartSessions": 3,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815180400,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 100,
+        "cartSessions": 5,
+        "checkoutSessions": 3,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815094000,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 87,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 815007600,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 74,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814921200,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 61,
+        "cartSessions": 3,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814834800,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 98,
+        "cartSessions": 5,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814748400,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 85,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814662000,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 72,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814575600,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 109,
+        "cartSessions": 5,
+        "checkoutSessions": 3,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814489200,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 96,
+        "cartSessions": 5,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814402800,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 83,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814316400,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 70,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814230000,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 107,
+        "cartSessions": 5,
+        "checkoutSessions": 3,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814143600,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 94,
+        "cartSessions": 5,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 814057200,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 81,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 813970800,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 68,
+        "cartSessions": 3,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": true
+      },
+      {
+        "date": 813884400,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 105,
+        "cartSessions": 5,
+        "checkoutSessions": 3,
+        "completedSessions": 1,
+        "hasTraffic": false
+      },
+      {
+        "date": 813798000,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 92,
+        "cartSessions": 5,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": false
+      },
+      {
+        "date": 813711600,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 79,
+        "cartSessions": 4,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": false
+      },
+      {
+        "date": 813625200,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 66,
+        "cartSessions": 3,
+        "checkoutSessions": 2,
+        "completedSessions": 1,
+        "hasTraffic": false
+      },
+      {
+        "date": 813538800,
+        "sales": 0,
+        "netRevenue": 0,
+        "orders": 0,
+        "units": 0,
+        "refunds": 0,
+        "sessions": 103,
+        "cartSessions": 5,
+        "checkoutSessions": 3,
+        "completedSessions": 1,
+        "hasTraffic": false
+      }
+    ],
+    "projects": [],
+    "tasks": [],
+    "goals": [],
+    "notes": [],
+    "noteBlocks": [],
+    "vehicles": [],
+    "fuelEntries": [],
+    "maintenanceRecords": [],
+    "carDeadlines": [],
+    "documents": [],
+    "documentPhotos": [],
+    "jobApplications": [],
+    "courses": [],
+    "investments": [],
+    "wealthSnapshots": [],
+    "habits": [],
+    "habitChecks": []
+  }
+}

@@ -54,6 +54,7 @@
 		2103BD616235476A6B820D1B /* GoalContributionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5694D5C38AD02139B2DD3E6A /* GoalContributionService.swift */; };
 		2138E9B9BF9AB64A96211BF8 /* GlobalSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B084DC5CAC2A423CCC6BF40 /* GlobalSearchTests.swift */; };
 		21F18679EAE23F55DBDD0661 /* BillFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C28DFA1A60FC6FDB451AE /* BillFormView.swift */; };
+		2265D9969809D92ABADA68D7 /* ParityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2213E72554F1E8481F20C5 /* ParityTests.swift */; };
 		234C53ACB8C997EADA9E9351 /* CardRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98E0FA5AC0B6BB7B9CB7D0C /* CardRows.swift */; };
 		24CE472973D288AE82749791 /* FunnelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AD378957A6455F639319BD /* FunnelView.swift */; };
 		24DCBF859560D77E04FFC4C6 /* DailyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87E60C0CEF6DB783E698ED7 /* DailyStat.swift */; };
@@ -121,7 +122,9 @@
 		48FF7A460878957CD3BA418A /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B52D2EB4E4076D41C0AA2A /* AccountType.swift */; };
 		49728ECD18174F2079E0A04D /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDFA1BE6DA08AA7D88EB7 /* ProjectDetailView.swift */; };
 		4AEED6E12D3EC8EBAE789AB4 /* MynikSchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B727C9A220FFAE5E5A6A98F /* MynikSchemaV2.swift */; };
+		4BBEE20E8F3F1675CA4F2E6D /* parity-fixture.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EBA398725FCEDCCA4BB7EA0 /* parity-fixture.json */; };
 		4CB8FA8FDCDAD04078A31E4F /* GoalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DD7E06FECCEEBC402F00E /* GoalFormView.swift */; };
+		4D1CB15FAECE074BFF5A542C /* parity-expected.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A6F9D812AD7138ABBD2FD4E /* parity-expected.json */; };
 		4E75700114951882DF8C2C37 /* MynikTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D713EBE869BBA52A3D3D6 /* MynikTools.swift */; };
 		4EB949753D8470821D135908 /* CarDeadlineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628DCF77B22432AE158BAC6C /* CarDeadlineFormView.swift */; };
 		4EC8AFFCD2FFB3EE25F9D746 /* InvestmentForms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A159F88C3745C0DBA48951 /* InvestmentForms.swift */; };
@@ -456,6 +459,7 @@
 		2BF590AECAB1859C0B4C2A93 /* SpanishProvince.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanishProvince.swift; sourceTree = "<group>"; };
 		2D0EB7C634753C96341862A4 /* FuelPricesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelPricesSection.swift; sourceTree = "<group>"; };
 		2D16B174B6DBAB96394D1605 /* ProjectFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFormView.swift; sourceTree = "<group>"; };
+		2EBA398725FCEDCCA4BB7EA0 /* parity-fixture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "parity-fixture.json"; sourceTree = "<group>"; };
 		2EE30570481C4278DE5ABCE5 /* Sparkline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sparkline.swift; sourceTree = "<group>"; };
 		2FD3AE6D8DE50719999B322F /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		30BD8AC079224CB74798C1B8 /* CoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesList.swift; sourceTree = "<group>"; };
@@ -525,6 +529,7 @@
 		5D75F69E140FD44A49BE21F6 /* WeeklyReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReviewView.swift; sourceTree = "<group>"; };
 		5E46BB3848FB038847ABF77D /* MaintenanceRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceRecord.swift; sourceTree = "<group>"; };
 		5E8D713EBE869BBA52A3D3D6 /* MynikTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MynikTools.swift; sourceTree = "<group>"; };
+		5F2213E72554F1E8481F20C5 /* ParityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParityTests.swift; sourceTree = "<group>"; };
 		61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductScorerTests.swift; sourceTree = "<group>"; };
 		61DD828F85617ABB06637420 /* SyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
 		620525AAE73EBD99337D7AA2 /* KanbanColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumnView.swift; sourceTree = "<group>"; };
@@ -568,6 +573,7 @@
 		7751CD4B80BF9C2695EDAF41 /* Mynik.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mynik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		775AFDC1C14C65FC021054CC /* StoreSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSettingsSection.swift; sourceTree = "<group>"; };
 		78D2BB3AAEE884DB63325984 /* NoteMentionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteMentionTests.swift; sourceTree = "<group>"; };
+		7A6F9D812AD7138ABBD2FD4E /* parity-expected.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "parity-expected.json"; sourceTree = "<group>"; };
 		7AB9F7C0AFDB7558831F050F /* SubscriptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTests.swift; sourceTree = "<group>"; };
 		7AD68662C393205C62F44627 /* DocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTests.swift; sourceTree = "<group>"; };
 		7B43A795AEC4736DF1BB655C /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -856,6 +862,7 @@
 				A15F4BD217F8028298D36B3F /* NoteTemplateTests.swift */,
 				3F72A031D4270F21FDBF146A /* NoteTests.swift */,
 				BBEDA3126FD8A8A5E63D9213 /* NotionImportTests.swift */,
+				5F2213E72554F1E8481F20C5 /* ParityTests.swift */,
 				25E88AC39536468607949428 /* ProductLifecycleTests.swift */,
 				61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */,
 				BEEA5DCE0626F37FD4E8BCCA /* ProjectTests.swift */,
@@ -875,6 +882,7 @@
 				1ADF6F1A1954CEC44AC23347 /* TodayTests.swift */,
 				0B410096C790D8917106C654 /* WeeklyReviewTests.swift */,
 				17665B36EC9A6CA9A36AC2CA /* WidgetSnapshotTests.swift */,
+				982907F5662465F4BEEF83A2 /* Fixtures */,
 			);
 			path = MynikTests;
 			sourceTree = "<group>";
@@ -1319,6 +1327,15 @@
 			path = Budget;
 			sourceTree = "<group>";
 		};
+		982907F5662465F4BEEF83A2 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				7A6F9D812AD7138ABBD2FD4E /* parity-expected.json */,
+				2EBA398725FCEDCCA4BB7EA0 /* parity-fixture.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
 		99568DCF575AF2423CFC3951 /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -1718,6 +1735,7 @@
 			buildConfigurationList = EC7D1A04BF1E00E9938D8ABC /* Build configuration list for PBXNativeTarget "MynikTests" */;
 			buildPhases = (
 				37D9D7805B31D1241A2D81BE /* Sources */,
+				F4ECA7F1AECCD7378440FAA3 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1824,6 +1842,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5AC9696DB5110E76BAB9779 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4ECA7F1AECCD7378440FAA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D1CB15FAECE074BFF5A542C /* parity-expected.json in Resources */,
+				4BBEE20E8F3F1675CA4F2E6D /* parity-fixture.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2152,6 +2179,7 @@
 				642668EC49B0A4B1D46F8A31 /* NoteTemplateTests.swift in Sources */,
 				00D3DF4C37594119ACC978FA /* NoteTests.swift in Sources */,
 				7DF8DC654ED69DEA5E28D9B6 /* NotionImportTests.swift in Sources */,
+				2265D9969809D92ABADA68D7 /* ParityTests.swift in Sources */,
 				FE62F256C8AA4E24D982B264 /* ProductLifecycleTests.swift in Sources */,
 				CE2C99033249EC1A76B4847B /* ProductScorerTests.swift in Sources */,
 				FD6234AD3A4912622011BBA8 /* ProjectTests.swift in Sources */,
