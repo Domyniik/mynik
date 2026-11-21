@@ -7,8 +7,9 @@ import SwiftUI
 final class AppRouter {
     /// Secção escolhida. Nos separadores do iPhone, `nil` é o separador "Mais".
     var selection: AppSection? = .today
-    /// Pilha do separador "Mais" (iPhone).
-    var morePath: [AppSection] = []
+    /// Pilha do separador "Mais" (iPhone). Sem tipo fixo: as secções empurram
+    /// também os seus próprios destinos (notas, projetos…).
+    var morePath = NavigationPath()
     /// A busca global está aberta.
     var isSearching = false
     /// A navegação atual é por separadores (iPhone).
@@ -31,7 +32,7 @@ final class AppRouter {
     func open(_ section: AppSection) {
         if usesTabs, !AppSection.primaryTabs.contains(section) {
             selection = nil
-            morePath = [section]
+            morePath = NavigationPath([section])
         } else {
             selection = section
         }

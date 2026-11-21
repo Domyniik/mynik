@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import SwiftUI
 import Testing
 @testable import Mynik
 
@@ -72,7 +73,7 @@ struct AppRouterTests {
         router.usesTabs = true
         router.open(.habits)
         #expect(router.selection == nil)
-        #expect(router.morePath == [.habits])
+        #expect(router.morePath == NavigationPath([AppSection.habits]))
         router.open(.finance)
         #expect(router.selection == .finance)
     }
