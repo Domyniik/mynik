@@ -66,3 +66,4 @@
 - style(today): tela Hoje em painel com cartão do saldo, ações rápidas em vidro e cartões
 - style(finance): cartão do saldo com gráfico e atalhos em mosaico
 - style(store): KPIs com tendência, seletor de período em vidro e gráfico mais limpo
+- style(life): cartões de KPIs no Carro e na Carreira, destaque do Património e ícones coloridos na navegação

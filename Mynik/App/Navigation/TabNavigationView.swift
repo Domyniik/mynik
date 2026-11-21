@@ -37,7 +37,11 @@ struct MoreSectionsView: View {
     var body: some View {
         List(AppSection.moreTabs) { section in
             NavigationLink(value: section) {
-                Label(section.title, systemImage: section.symbolName)
+                Label {
+                    Text(section.title)
+                } icon: {
+                    IconBadge(symbolName: section.symbolName, color: section.tint)
+                }
             }
         }
         .navigationTitle("Mais")

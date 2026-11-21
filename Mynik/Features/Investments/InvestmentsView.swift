@@ -126,23 +126,32 @@ struct WealthHeaderSection: View {
 
     var body: some View {
         Section {
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Património líquido").font(.subheadline).foregroundStyle(.secondary)
-                Text(Currency.format(summary.netWorth))
-                    .font(.largeTitle.bold())
-                    .monospacedDigit()
-                    .contentTransition(.numericText())
-            }
-            .padding(.vertical, 4)
-            LabeledContent("Nas contas") { Text(Currency.format(summary.cash)).monospacedDigit() }
-            LabeledContent("Investimentos") { Text(Currency.format(summary.investmentsValue)).monospacedDigit() }
-            LabeledContent("Total investido") { Text(Currency.format(summary.invested)).monospacedDigit() }
-            if summary.invested > 0 {
-                LabeledContent("Ganho") {
-                    GainText(gain: summary.gain, fraction: summary.gainFraction)
-                }
-            }
+            HeroCard(
+                title: "Património líquido",
+                value: Currency.format(summary.netWorth),
+                figures: figures,
+                colors: [Color(red: 0.08, green: 0.58, blue: 0.62), Color(red: 0.02, green: 0.30, blue: 0.42)]
+            )
+            .padding(.vertical, DS.Spacing.xs)
+            .dsListCardRow()
         }
+    }
+
+    private var figures: [HeroFigureItem] {
+        var items = [
+            HeroFigureItem(title: "Nas contas", value: Currency.format(summary.cash), symbolName: "building.columns"),
+            HeroFigureItem(title: "Investimentos", value: Currency.format(summary.investmentsValue), symbolName: "chart.line.uptrend.xyaxis"),
+        ]
+        if summary.invested > 0 {
+            let sign = summary.gain >= 0 ? "+" : ""
+            let percent = summary.gainFraction.map { " (\(sign)\($0.formatted(.percent.precision(.fractionLength(1)).locale(.app))))" } ?? ""
+            items.append(HeroFigureItem(
+                title: "Ganho sobre \(Currency.format(summary.invested)) investidos",
+                value: "\(sign)\(Currency.format(summary.gain))\(percent)",
+                symbolName: summary.gain >= 0 ? "arrow.up.right" : "arrow.down.right"
+            ))
+        }
+        return items
     }
 }
 
@@ -166,7 +175,7 @@ struct InvestmentRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            SymbolBadge(symbolName: investment.kind.symbolName, color: .mint)
+            IconBadge(symbolName: investment.kind.symbolName, color: AppSection.investments.tint)
             VStack(alignment: .leading, spacing: 2) {
                 Text(investment.name).lineLimit(1)
                 Text(details)

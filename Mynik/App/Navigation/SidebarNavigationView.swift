@@ -8,7 +8,13 @@ struct SidebarNavigationView: View {
         @Bindable var router = router
         NavigationSplitView {
             List(AppSection.allCases, selection: $router.selection) { section in
-                Label(section.title, systemImage: section.symbolName)
+                Label {
+                    Text(section.title)
+                } icon: {
+                    Image(systemName: section.symbolName)
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(section.tint)
+                }
             }
             .navigationTitle("Mynik")
             .navigationSplitViewColumnWidth(min: 180, ideal: 210)

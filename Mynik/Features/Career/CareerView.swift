@@ -130,29 +130,24 @@ struct ApplicationsList: View {
 
 struct CareerSummarySection: View {
     let stats: CareerStats
+    @ScaledMetric(relativeTo: .body) private var minimumWidth: CGFloat = 140
 
     var body: some View {
         Section {
-            HStack {
-                stat("\(stats.active)", "Ativas")
-                Divider()
-                stat("\(stats.interviews)", "Entrevistas")
-                Divider()
-                stat("\(stats.offers)", "Propostas")
-                Divider()
-                stat(stats.responseRate.map { $0.formatted(.percent.precision(.fractionLength(0)).locale(.app)) } ?? "—", "Respostas")
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumWidth), spacing: DS.Spacing.s)], spacing: DS.Spacing.s) {
+                KPICard("Ativas", value: "\(stats.active)", systemImage: "paperplane", comparesPeriods: false)
+                KPICard("Entrevistas", value: "\(stats.interviews)", systemImage: "person.2", comparesPeriods: false)
+                KPICard("Propostas", value: "\(stats.offers)", systemImage: "hand.thumbsup", comparesPeriods: false)
+                KPICard(
+                    "Respostas",
+                    value: stats.responseRate.map { $0.formatted(.percent.precision(.fractionLength(0)).locale(.app)) } ?? "—",
+                    systemImage: "envelope.open",
+                    comparesPeriods: false
+                )
             }
-            .padding(.vertical, 4)
+            .padding(.vertical, DS.Spacing.xs)
+            .dsListCardRow()
         }
-    }
-
-    private func stat(_ value: String, _ label: String) -> some View {
-        VStack(spacing: 2) {
-            Text(value).font(.title3.bold()).monospacedDigit()
-            Text(label).font(.caption).foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .accessibilityElement(children: .combine)
     }
 }
 

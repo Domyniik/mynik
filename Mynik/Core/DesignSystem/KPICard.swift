@@ -9,6 +9,8 @@ struct KPICard<Chart: View>: View {
     var change: Double?
     /// Para custos, subir é mau.
     var higherIsBetter = true
+    /// Mostra a variação face ao período anterior (ou "sem comparação").
+    var comparesPeriods = true
     @ViewBuilder var chart: Chart
     @Environment(\.moduleTint) private var tint
 
@@ -18,6 +20,7 @@ struct KPICard<Chart: View>: View {
         systemImage symbolName: String? = nil,
         change: Double? = nil,
         higherIsBetter: Bool = true,
+        comparesPeriods: Bool = true,
         @ViewBuilder chart: () -> Chart = { EmptyView() }
     ) {
         self.title = title
@@ -25,6 +28,7 @@ struct KPICard<Chart: View>: View {
         self.symbolName = symbolName
         self.change = change
         self.higherIsBetter = higherIsBetter
+        self.comparesPeriods = comparesPeriods
         self.chart = chart()
     }
 
@@ -46,10 +50,14 @@ struct KPICard<Chart: View>: View {
             Text(value)
                 .numberStyle(.kpi)
 
-            HStack(alignment: .bottom) {
-                ChangeBadge(change: change, higherIsBetter: higherIsBetter)
-                Spacer(minLength: 0)
-                chart
+            if comparesPeriods || Chart.self != EmptyView.self {
+                HStack(alignment: .bottom) {
+                    if comparesPeriods {
+                        ChangeBadge(change: change, higherIsBetter: higherIsBetter)
+                    }
+                    Spacer(minLength: 0)
+                    chart
+                }
             }
         }
         .dsCard(padding: DS.Spacing.m + 2)
