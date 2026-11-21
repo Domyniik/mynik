@@ -68,3 +68,4 @@
 - style(store): KPIs com tendência, seletor de período em vidro e gráfico mais limpo
 - style(life): cartões de KPIs no Carro e na Carreira, destaque do Património e ícones coloridos na navegação
 - style(app): resumo em KPIs nos Projetos, cofre dos Documentos e cabeçalhos com ícones nas Definições
+- feat(design): ícone da app gerado com CoreGraphics (scripts/make-icon.swift)
