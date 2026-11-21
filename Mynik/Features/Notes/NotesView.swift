@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// Páginas de notas em árvore (com subpáginas) e pesquisa.
 struct NotesView: View {
@@ -12,6 +13,9 @@ struct NotesView: View {
     @State private var searchText = ""
     @State private var openedNote: Note?
     @State private var noteToDelete: Note?
+    @State private var isImportingNotion = false
+    @State private var isRunningImport = false
+    @State private var importMessage: String?
 
     var body: some View {
         List {
@@ -74,6 +78,10 @@ struct NotesView: View {
                     .keyboardShortcut("n", modifiers: [.command, .option])
             }
             ToolbarItem(placement: .secondaryAction) {
+                Button("Importar do Notion…", systemImage: "square.and.arrow.down") { isImportingNotion = true }
+                    .disabled(isRunningImport)
+            }
+            ToolbarItem(placement: .secondaryAction) {
                 Menu("Nova a partir de template", systemImage: "doc.on.doc") {
                     ForEach(NoteTemplates.builtIn) { template in
                         Button("\(template.icon) \(NoteTemplates.fill(template.title))") {
@@ -91,6 +99,21 @@ struct NotesView: View {
                     }
                 }
             }
+        }
+        .fileImporter(isPresented: $isImportingNotion, allowedContentTypes: [.zip]) { result in
+            if case .success(let url) = result { importNotion(from: url) }
+        }
+        .overlay {
+            if isRunningImport {
+                ProgressView("A importar…")
+                    .padding()
+                    .background(.regularMaterial, in: .rect(cornerRadius: 12))
+            }
+        }
+        .alert("Importar do Notion", isPresented: Binding(get: { importMessage != nil }, set: { if !$0 { importMessage = nil } })) {
+            Button("OK") {}
+        } message: {
+            Text(importMessage ?? "")
         }
         .confirmationDialog(
             "Apagar \"\(noteToDelete?.displayTitle ?? "")\" e as subpáginas?",
@@ -143,6 +166,30 @@ struct NotesView: View {
             openedNote = NoteEditing.makeNote(parent: parent, in: modelContext)
         }
         try? modelContext.save()
+    }
+
+    /// Lê o ZIP fora da thread principal e cria as páginas numa página "Importado do Notion".
+    private func importNotion(from url: URL) {
+        isRunningImport = true
+        Task {
+            defer { isRunningImport = false }
+            do {
+                let files = try await Task.detached(priority: .userInitiated) {
+                    let access = url.startAccessingSecurityScopedResource()
+                    defer { if access { url.stopAccessingSecurityScopedResource() } }
+                    return try NotionImporter.readFiles(fromZip: Data(contentsOf: url, options: .mappedIfSafe))
+                }.value
+                let container = NoteEditing.makeNote(title: "Importado do Notion", in: modelContext)
+                container.icon = "📥"
+                container.sortOrder = (roots.map(\.sortOrder).max() ?? -1) + 1
+                let summary = try NotionImporter.importFiles(files, into: modelContext, parent: container)
+                try? modelContext.save()
+                importMessage = "\(summary.pages) páginas, \(summary.databases) bases de dados (\(summary.rows) linhas) e \(summary.images) imagens importadas."
+                openedNote = container
+            } catch {
+                importMessage = error.localizedDescription
+            }
+        }
     }
 
     /// Abre uma página criada a partir de um template (no fim da lista).

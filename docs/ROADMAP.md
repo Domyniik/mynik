@@ -79,4 +79,4 @@ Funcionalidades recriadas de raiz em SwiftUI + SwiftData a partir do comportamen
 - [x] Bases de dados: propriedades (texto, número, seleção, data, caixa) e vistas Tabela, Quadro (arrastar entre colunas) e Calendário
 - [x] Menções @ (páginas, projetos, movimentos e datas) com backlinks; links das menções abrem o destino
 - [x] Templates de página: 5 da app (Reunião, Diário, Projeto, Leituras, Semana) e "Guardar como template"
-- [ ] Importar um export do Notion (ZIP com Markdown/CSV)
+- [x] Importar um export do Notion (ZIP com Markdown/CSV): páginas, subpáginas, imagens, bases de dados com tipos inferidos e ZIPs partidos; leitor de ZIP próprio (deflate pelo framework Compression)
