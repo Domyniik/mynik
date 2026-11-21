@@ -171,3 +171,36 @@ struct NoteBlockTests {
         #expect(notes.first?.sortedBlocks.first?.emoji == "💡")
     }
 }
+
+@MainActor
+struct NoteBlockReorderTests {
+    let container: ModelContainer
+    let context: ModelContext
+
+    init() throws {
+        container = try ModelContainerFactory.make(inMemory: true)
+        context = container.mainContext
+    }
+
+    @Test func movesDuplicatesAndKeepsOrderContiguous() throws {
+        let note = NoteEditing.makeNote(title: "P", in: context)
+        let first = try #require(note.sortedBlocks.first)
+        first.text = "A"
+        let second = NoteEditing.insertBlock(.code, text: "B", in: note, context: context)
+        second.language = "swift"
+        NoteEditing.insertBlock(.text, text: "C", in: note, context: context)
+
+        NoteEditing.moveBlock(second, by: -1, in: note)
+        #expect(note.sortedBlocks.map(\.text) == ["B", "A", "C"])
+        NoteEditing.moveBlock(second, by: -1, in: note)  // já está no topo
+        #expect(note.sortedBlocks.map(\.text) == ["B", "A", "C"])
+
+        let copy = NoteEditing.duplicateBlock(second, in: note, context: context)
+        #expect(note.sortedBlocks.map(\.text) == ["B", "B", "A", "C"])
+        #expect(copy.kind == .code && copy.language == "swift" && copy !== second)
+
+        NoteEditing.moveBlocks(in: note, from: [3], to: 0)
+        #expect(note.sortedBlocks.map(\.text) == ["C", "B", "B", "A"])
+        #expect(note.sortedBlocks.map(\.sortOrder) == [0, 1, 2, 3])
+    }
+}

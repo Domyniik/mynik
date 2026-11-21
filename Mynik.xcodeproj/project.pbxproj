@@ -61,6 +61,7 @@
 		28BDFB4727CC79F9E71144B4 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D63435078C65C2497E0DC8B /* Goal.swift */; };
 		29011A216993DAF39AE05F1D /* CSVImportPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427961AA580333A55407714 /* CSVImportPreview.swift */; };
 		2935DE3B1651CA1EA079E226 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DD828F85617ABB06637420 /* SyncEngine.swift */; };
+		2C21A92EDFF310740B6D5BE6 /* NoteBlockCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F843F6CA87E0C1B5CEF7887 /* NoteBlockCommands.swift */; };
 		2C6DEC6216965DB83A144059 /* DuplicateDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B8D8FE44E760DDE0B21E5A /* DuplicateDetector.swift */; };
 		2C87DF88E6F1E3C6BAF60BC3 /* BillRecurrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC6AD7FD4DEC857E1FD439 /* BillRecurrence.swift */; };
 		2C986EA154A4716126156AD7 /* GoalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DB289C2C3AE80F52E32E21 /* GoalRow.swift */; };
@@ -589,6 +590,7 @@
 		97EC6E8A1E5C2E22C04A7AD1 /* NoteSpecialBlocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSpecialBlocks.swift; sourceTree = "<group>"; };
 		99715C493BACDB095EB3B642 /* BalanceHeroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHeroCard.swift; sourceTree = "<group>"; };
 		9E520C6AC8E0D5A79FDC5440 /* TodayGoalsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalsSection.swift; sourceTree = "<group>"; };
+		9F843F6CA87E0C1B5CEF7887 /* NoteBlockCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBlockCommands.swift; sourceTree = "<group>"; };
 		A0324A941BD780F70892ACB1 /* BackupRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecords.swift; sourceTree = "<group>"; };
 		A11448131C950A903ADAD76D /* TaskFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormView.swift; sourceTree = "<group>"; };
 		A1CA666DBA2C13C497684A85 /* AISettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettingsSection.swift; sourceTree = "<group>"; };
@@ -880,6 +882,7 @@
 			isa = PBXGroup;
 			children = (
 				BF5E700B7A508BA4F2EF9595 /* MarkdownTextField.swift */,
+				9F843F6CA87E0C1B5CEF7887 /* NoteBlockCommands.swift */,
 				1380D5981852412E05E80782 /* NoteBlockView.swift */,
 				25BDBEECC4A56C09C49934AF /* NoteEditorView.swift */,
 				0E2E75D85AC00279113CEBEF /* NoteLinksSection.swift */,
@@ -1970,6 +1973,7 @@
 				4E75700114951882DF8C2C37 /* MynikTools.swift in Sources */,
 				94568DF5BE2E767142D28A71 /* Note.swift in Sources */,
 				5D567DB9CCF36018EDB232B6 /* NoteBlock.swift in Sources */,
+				2C21A92EDFF310740B6D5BE6 /* NoteBlockCommands.swift in Sources */,
 				8C46CABAF878CF29CD1ACC5C /* NoteBlockView.swift in Sources */,
 				AA4527F01A2262AE043033A3 /* NoteEditing.swift in Sources */,
 				139058F95BE04059D68AECEC /* NoteEditorView.swift in Sources */,

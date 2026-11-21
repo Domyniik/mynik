@@ -74,7 +74,7 @@ Substitui o sync por CloudKit (que exige o plano pago). **Local-first:** o Swift
 ## Fase 10 — Notas ao estilo wiki (v1.4)
 Funcionalidades recriadas de raiz em SwiftUI + SwiftData a partir do comportamento público de editores por blocos (sem código nem assets de terceiros). Novos campos no esquema V7 (migração automática a partir do V6), todos incluídos na cópia JSON e, por isso, no sync do Supabase.
 - [x] Menu "/" de blocos: títulos 1–3, listas com marcas e numerada, citação, destaque com emoji, alternar, divisor, código e tabela simples (e atalhos Markdown ao escrever)
-- [ ] Reordenar blocos por arrastar e por teclado (atalhos no Mac)
+- [x] Reordenar blocos por arrastar e por teclado: ⇧⌘↑/↓ mover, ⌘D duplicar, ⇧⌘⌫ apagar, ⌥⌘0–8 transformar
 - [ ] Ícone e capa por página, breadcrumbs e favoritos
 - [ ] Bases de dados: propriedades (texto, número, seleção, data, caixa) e vistas Tabela, Quadro e Calendário
 - [ ] Menções @ (páginas, projetos, gastos e datas) com backlinks

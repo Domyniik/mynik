@@ -118,6 +118,21 @@ struct NoteEditorView: View {
                 }
             }
             #endif
+            ToolbarItem(placement: .secondaryAction) {
+                NoteBlockCommands(
+                    block: focusedBlockModel,
+                    onMove: { offset in focusedBlockModel.map { moveKeepingFocus($0, by: offset) } },
+                    onDuplicate: {
+                        guard let block = focusedBlockModel else { return }
+                        focus(NoteEditing.duplicateBlock(block, in: note, context: modelContext))
+                    },
+                    onDelete: {
+                        guard let block = focusedBlockModel else { return }
+                        withAnimation { NoteEditing.deleteBlock(block, from: note, context: modelContext) }
+                    },
+                    onConvert: { kind in focusedBlockModel.map { NoteEditing.convert($0, to: kind) } }
+                )
+            }
             ToolbarItem(placement: .primaryAction) {
                 ShareLink(
                     item: NoteMarkdown.export(title: note.displayTitle, blocks: note.sortedBlocks),
@@ -176,12 +191,27 @@ struct NoteEditorView: View {
                 }
             }
         }
-        Button("Mover para cima", systemImage: "arrow.up") { NoteEditing.moveBlock(block, by: -1, in: note) }
-        Button("Mover para baixo", systemImage: "arrow.down") { NoteEditing.moveBlock(block, by: 1, in: note) }
+        Button("Mover para cima", systemImage: "arrow.up") { moveKeepingFocus(block, by: -1) }
+        Button("Mover para baixo", systemImage: "arrow.down") { moveKeepingFocus(block, by: 1) }
+        Button("Duplicar", systemImage: "plus.square.on.square") {
+            NoteEditing.duplicateBlock(block, in: note, context: modelContext)
+        }
         Divider()
         Button("Apagar bloco", systemImage: "trash", role: .destructive) {
             withAnimation { NoteEditing.deleteBlock(block, from: note, context: modelContext) }
         }
+    }
+
+    private var focusedBlockModel: NoteBlock? {
+        guard let focusedBlock else { return nil }
+        return note.sortedBlocks.first { $0.uid == focusedBlock }
+    }
+
+    /// Move um bloco e devolve-lhe o foco (a lista recria a linha ao mudar a ordem).
+    private func moveKeepingFocus(_ block: NoteBlock, by offset: Int) {
+        let hadFocus = focusedBlock == block.uid
+        withAnimation(.snappy) { NoteEditing.moveBlock(block, by: offset, in: note) }
+        if hadFocus { focus(block) }
     }
 
     private func addBlock(_ kind: NoteBlockKind) {

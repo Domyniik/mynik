@@ -60,6 +60,18 @@ enum NoteEditing {
         touch(note)
     }
 
+    /// Cópia de um bloco logo a seguir ao original.
+    @discardableResult
+    static func duplicateBlock(_ block: NoteBlock, in note: Note, context: ModelContext) -> NoteBlock {
+        let copy = insertBlock(block.kind, text: block.text, imageData: block.imageData, after: block, in: note, context: context)
+        copy.isChecked = block.isChecked
+        copy.emoji = block.emoji
+        copy.language = block.language
+        copy.detail = block.detail
+        copy.isExpanded = block.isExpanded
+        return copy
+    }
+
     static func deleteBlock(_ block: NoteBlock, from note: Note, context: ModelContext) {
         let remaining = note.sortedBlocks.filter { $0 !== block }
         // Tira já da relação: o `delete` só a atualiza ao guardar.

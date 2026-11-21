@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- feat(notes): reordena blocos por arrastar e por teclado (⇧⌘↑/↓), duplica (⌘D), apaga (⇧⌘⌫) e transforma (⌥⌘0–8) o bloco com o foco
 - feat(notes): menu "/" com títulos 1–3, listas com marcas e numerada, citação, destaque, alternar, divisor, código e tabela; esquema V7 com migração
 - fix(sync): cliente PostgREST sem inicializador obsoleto
 - fix(settings): Conta fala de link de entrada em vez de código
