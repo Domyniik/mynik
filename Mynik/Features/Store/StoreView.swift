@@ -37,24 +37,22 @@ struct StoreView: View {
         let kpis = metrics.kpis(for: period)
 
         List {
+            Section {
+                VStack(alignment: .leading, spacing: DS.Spacing.m) {
+                    ChipPicker(title: "Período", options: StorePeriod.allCases, selection: $period) { $0.title }
+                    StoreKPIGrid(kpis: kpis, points: metrics.dailyPoints(days: 14))
+                    Text("Variação \(period.comparisonTitle).")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal, DS.Spacing.xs)
+                }
+                .padding(.vertical, DS.Spacing.xs)
+                .dsListCardRow()
+            }
+
             StoreSyncBanner()
 
             StoreAlertsSection(products: products, orders: orders)
-
-            Section {
-                Picker("Período", selection: $period) {
-                    ForEach(StorePeriod.allCases) { Text($0.title).tag($0) }
-                }
-                .pickerStyle(.segmented)
-                .listRowSeparator(.hidden)
-
-                StoreKPIGrid(kpis: kpis)
-                    .listRowInsets(EdgeInsets(top: 4, leading: 12, bottom: 12, trailing: 12))
-            } header: {
-                Text("Resumo")
-            } footer: {
-                Text("Variação \(period.comparisonTitle).")
-            }
 
             StoreOperationsSection(orders: orders, checkouts: checkouts)
 

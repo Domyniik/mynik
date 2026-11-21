@@ -67,10 +67,10 @@ struct ChangeBadge: View {
             let isUp = change >= 0
             let isGood = isUp == higherIsBetter
             let color: Color = change == 0 ? .secondary : (isGood ? .green : .red)
-            Label(
-                change.formatted(.percent.precision(.fractionLength(0)).sign(strategy: .always()).locale(.app)),
-                systemImage: isUp ? "arrow.up.right" : "arrow.down.right"
-            )
+            HStack(spacing: DS.Spacing.xxs) {
+                Image(systemName: isUp ? "arrow.up.right" : "arrow.down.right")
+                Text(change.formatted(.percent.precision(.fractionLength(0)).sign(strategy: .always()).locale(.app)))
+            }
             .font(.caption.weight(.semibold))
             .foregroundStyle(color)
             .padding(.horizontal, 6)

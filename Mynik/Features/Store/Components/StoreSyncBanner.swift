@@ -7,16 +7,12 @@ struct StoreSyncBanner: View {
     var body: some View {
         Section {
             if storeSync.isDemo {
-                Label {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Dados de exemplo").font(.headline)
-                        Text("Liga a tua loja em Definições › Loja Shopify para ver os dados reais.")
-                            .font(.callout)
-                            .foregroundStyle(.secondary)
-                    }
-                } icon: {
-                    Image(systemName: "sparkles").foregroundStyle(.purple)
-                }
+                DSRow(
+                    "Dados de exemplo",
+                    subtitle: "Liga a tua loja em Definições › Loja Shopify para ver os dados reais.",
+                    systemImage: "sparkles",
+                    color: .purple
+                )
             }
 
             if let error = storeSync.lastError {

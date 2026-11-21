@@ -20,7 +20,7 @@ struct StoreDailyChart: View {
                     y: .value("Valor", point.sales)
                 )
                 .foregroundStyle(by: .value("Série", "Vendas"))
-                .cornerRadius(2)
+                .cornerRadius(3)
             }
             ForEach(points) { point in
                 LineMark(
@@ -29,21 +29,21 @@ struct StoreDailyChart: View {
                 )
                 .foregroundStyle(by: .value("Série", "Lucro"))
                 .interpolationMethod(.monotone)
+                .lineStyle(StrokeStyle(lineWidth: 2.5, lineCap: .round))
             }
             RuleMark(y: .value("Zero", 0))
                 .foregroundStyle(.secondary.opacity(0.4))
         }
-        .chartForegroundStyleScale(["Vendas": Color.accentColor.opacity(0.7), "Lucro": Color.green])
+        .chartForegroundStyleScale(["Vendas": AnyShapeStyle(AppSection.store.tint.gradient.opacity(0.75)), "Lucro": AnyShapeStyle(Color.green)])
         .chartYScale(domain: yDomain)
         .chartXAxis {
             AxisMarks(values: .stride(by: .day, count: 7)) { _ in
-                AxisGridLine()
                 AxisValueLabel(format: .dateTime.day().month(.abbreviated).locale(.app))
             }
         }
         .chartYAxis {
             AxisMarks { value in
-                AxisGridLine()
+                AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [3, 3]))
                 AxisValueLabel {
                     if let amount = value.as(Double.self) {
                         Text(amount.formatted(.currency(code: Currency.defaultCode).precision(.fractionLength(0)).locale(.app)))
