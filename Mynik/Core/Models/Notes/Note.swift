@@ -71,6 +71,8 @@ final class Note {
 
     /// Subpáginas, ou `nil` sem nenhuma (para `List(_:children:)`).
     var childrenOrNil: [Note]? {
+        // As linhas de uma base de dados aparecem nas vistas dela, não na árvore.
+        guard !isDatabase else { return nil }
         let children = sortedChildren
         return children.isEmpty ? nil : children
     }

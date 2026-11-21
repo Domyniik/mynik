@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- feat(notes): bases de dados com propriedades (texto, número, seleção, data, caixa) e vistas Tabela, Quadro e Calendário
 - feat(notes): capa com gradientes, qualquer emoji como ícone, breadcrumbs clicáveis e favoritos (⇧⌘F) com secção própria
 - fix(notes): o menu "/" aparece por baixo do editor e já não tira o foco ao bloco; funciona em qualquer bloco de texto
 - fix(app): no iPhone, as páginas abertas a partir do separador Mais (ex.: notas) voltam a navegar

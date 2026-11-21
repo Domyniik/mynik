@@ -94,6 +94,25 @@ struct SampleData: PreviewModifier {
         let supplier = NoteEditing.makeNote(title: "Fornecedores", parent: ideas, in: context)
         supplier.icon = "🗂️"
         NoteLinks.toggle(app, in: ideas)
+        ideas.cover = .sunset
+        ideas.isFavorite = true
+        let callout = NoteEditing.insertBlock(.callout, text: "Lançar antes do Black Friday.", in: ideas, context: context)
+        callout.emoji = "📣"
+
+        // Base de dados com linhas (tabela, quadro e calendário).
+        let launches = NoteDatabase.makeDatabase(title: "Lançamentos", in: context)
+        launches.icon = "🚀"
+        launches.sortOrder = 1
+        if let status = NoteDatabase.boardProperty(of: launches), let date = NoteDatabase.dateProperty(of: launches) {
+            let rows: [(String, String, Int)] = [
+                ("Casaco de lã", "Feito", -6), ("Gorro tricotado", "Em curso", 2), ("Cachecol", "A fazer", 9),
+            ]
+            for (title, state, offset) in rows {
+                NoteDatabase.addRow(to: launches, title: title,
+                                    values: [status.id: state, date.id: NoteDatabase.dateValue(daysAgo(-offset))],
+                                    in: context)
+            }
+        }
 
         // Carro com abastecimentos (para o consumo), uma manutenção e prazos.
         let car = Vehicle(name: "Golf", plate: "1234 LMN", fuelType: .gasoline95, initialOdometer: 84_200)

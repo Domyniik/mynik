@@ -61,6 +61,10 @@ struct NotesView: View {
                 Button("Nova página", systemImage: "square.and.pencil") { createNote() }
                     .keyboardShortcut("n", modifiers: .command)
             }
+            ToolbarItem(placement: .secondaryAction) {
+                Button("Nova base de dados", systemImage: "tablecells.badge.ellipsis") { createDatabase() }
+                    .keyboardShortcut("n", modifiers: [.command, .option])
+            }
         }
         .confirmationDialog(
             "Apagar \"\(noteToDelete?.displayTitle ?? "")\" e as subpáginas?",
@@ -112,6 +116,13 @@ struct NotesView: View {
         } else {
             openedNote = NoteEditing.makeNote(parent: parent, in: modelContext)
         }
+        try? modelContext.save()
+    }
+
+    private func createDatabase() {
+        let database = NoteDatabase.makeDatabase(title: "Base de dados", in: modelContext)
+        database.sortOrder = (roots.map(\.sortOrder).max() ?? -1) + 1
+        openedNote = database
         try? modelContext.save()
     }
 

@@ -20,6 +20,9 @@ struct NoteEditorView: View {
         List {
             Section {
                 NoteHeaderView(note: note, focus: $focusedBlock) { openedNote = $0 }
+                if let database = note.database {
+                    NoteRowPropertiesView(row: note, database: database)
+                }
             }
             .listRowSeparator(.hidden)
 
@@ -60,18 +63,10 @@ struct NoteEditorView: View {
                 .listRowSeparator(.hidden)
             }
 
-            Section("Subpáginas") {
-                ForEach(note.sortedChildren) { child in
-                    Button { openedNote = child } label: {
-                        Label { Text(child.displayTitle) } icon: { Text(child.icon) }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .contentShape(.rect)
-                    }
-                    .buttonStyle(.plain)
-                }
-                Button("Nova subpágina", systemImage: "plus") {
-                    openedNote = NoteEditing.makeNote(parent: note, in: modelContext)
-                }
+            if note.isDatabase {
+                NoteDatabaseView(database: note) { openedNote = $0 }
+            } else {
+                subpagesSection
             }
 
             NoteLinksSection(
@@ -157,6 +152,25 @@ struct NoteEditorView: View {
         }
         .onDisappear { try? modelContext.save() }
         .alert("Não foi possível abrir a imagem", isPresented: $isShowingImageError) { }
+    }
+
+    private var subpagesSection: some View {
+        Section("Subpáginas") {
+            ForEach(note.sortedChildren) { child in
+                Button { openedNote = child } label: {
+                    Label { Text(child.displayTitle) } icon: { Text(child.icon) }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+            }
+            Button("Nova subpágina", systemImage: "plus") {
+                openedNote = NoteEditing.makeNote(parent: note, in: modelContext)
+            }
+            Button("Nova base de dados", systemImage: "tablecells.badge.ellipsis") {
+                openedNote = NoteDatabase.makeDatabase(title: "Base de dados", parent: note, in: modelContext)
+            }
+        }
     }
 
     private var addBlockMenu: some View {
