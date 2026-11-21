@@ -38,6 +38,8 @@ nonisolated struct BackupArchive: Codable, Equatable, Sendable {
     var wealthSnapshots: [WealthSnapshotRecord] = []
     var habits: [HabitRecord] = []
     var habitChecks: [HabitCheckRecord] = []
+    /// Definições partilhadas (custos da loja, taxa BRL…). Opcional: cópias antigas não as têm.
+    var settings: [SettingRecord]?
 
     init() {}
 
@@ -49,6 +51,7 @@ nonisolated struct BackupArchive: Codable, Equatable, Sendable {
             + vehicles.count + fuelEntries.count + maintenanceRecords.count + carDeadlines.count
             + documents.count + documentPhotos.count + jobApplications.count + courses.count
             + investments.count + wealthSnapshots.count + habits.count + habitChecks.count
+            + (settings?.count ?? 0)
     }
 
     // MARK: - JSON
@@ -120,6 +123,8 @@ nonisolated struct BackupArchive: Codable, Equatable, Sendable {
         // Cópias anteriores à v0.7 não têm hábitos.
         habits = try c.decodeIfPresent([HabitRecord].self, forKey: .habits) ?? []
         habitChecks = try c.decodeIfPresent([HabitCheckRecord].self, forKey: .habitChecks) ?? []
+        // Cópias anteriores à Fase 11 não têm definições.
+        settings = try c.decodeIfPresent([SettingRecord].self, forKey: .settings)
     }
 }
 

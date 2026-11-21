@@ -3,8 +3,9 @@ import SwiftData
 
 /// Tipos de dados sincronizados com o Supabase.
 ///
-/// Cada registo vai para a tabela `records` com `entity` igual ao `rawValue`
-/// (estável: não mudar) e o registo da cópia de segurança como `payload`.
+/// Cada tipo tem a sua tabela no Supabase (`supabase/schema/entities.mjs`); o
+/// `rawValue` (estável: não mudar) identifica-o em `sync_push` / `sync_pull` e
+/// o registo da cópia de segurança vai como `payload`.
 /// As fotos dos documentos ficam de fora: nunca saem do dispositivo.
 nonisolated enum SyncEntity: String, CaseIterable, Codable, Sendable {
     case category, account, transaction, bill
@@ -14,6 +15,7 @@ nonisolated enum SyncEntity: String, CaseIterable, Codable, Sendable {
     case document, jobApplication, course
     case investment, wealthSnapshot
     case habit, habitCheck
+    case setting
 
     // MARK: - Registo ⇄ JSON
 
@@ -44,6 +46,7 @@ nonisolated enum SyncEntity: String, CaseIterable, Codable, Sendable {
         case .wealthSnapshot: try Self.encode(archive.wealthSnapshots, key: { $0.day.backupKey })
         case .habit: try Self.encode(archive.habits, key: \.uid)
         case .habitCheck: try Self.encode(archive.habitChecks, key: \.uid)
+        case .setting: try Self.encode(archive.settings ?? [], key: \.key)
         }
     }
 
@@ -76,6 +79,7 @@ nonisolated enum SyncEntity: String, CaseIterable, Codable, Sendable {
         case .wealthSnapshot: try Self.decode(payload, into: &archive.wealthSnapshots)
         case .habit: try Self.decode(payload, into: &archive.habits)
         case .habitCheck: try Self.decode(payload, into: &archive.habitChecks)
+        case .setting: try Self.decode(payload, into: &archive.settings)
         }
     }
 
@@ -84,7 +88,7 @@ nonisolated enum SyncEntity: String, CaseIterable, Codable, Sendable {
     /// Apaga do SwiftData os modelos deste tipo com as chaves dadas (tombstones vindos do servidor).
     @MainActor
     @discardableResult
-    func deleteModels(withKeys keys: Set<String>, in context: ModelContext) throws -> Int {
+    func deleteModels(withKeys keys: Set<String>, in context: ModelContext, settings: UserDefaults? = nil) throws -> Int {
         guard !keys.isEmpty else { return 0 }
         return switch self {
         case .category: try Self.delete(Category.self, keys, { $0.uid }, context)
@@ -111,6 +115,7 @@ nonisolated enum SyncEntity: String, CaseIterable, Codable, Sendable {
         case .wealthSnapshot: try Self.delete(WealthSnapshot.self, keys, { $0.day.backupKey }, context)
         case .habit: try Self.delete(Habit.self, keys, { $0.uid }, context)
         case .habitCheck: try Self.delete(HabitCheck.self, keys, { $0.uid }, context)
+        case .setting: settings.map { SharedSettings.remove(keys: keys, from: $0) } ?? 0
         }
     }
 
@@ -130,6 +135,12 @@ nonisolated enum SyncEntity: String, CaseIterable, Codable, Sendable {
             result[key(record)] = try canonicalJSON(record)
         }
         return result
+    }
+
+    private static func decode<R: Codable>(_ payload: Data, into list: inout [R]?) throws -> Data {
+        var items = list ?? []
+        defer { list = items }
+        return try decode(payload, into: &items)
     }
 
     private static func decode<R: Codable>(_ payload: Data, into list: inout [R]) throws -> Data {

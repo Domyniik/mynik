@@ -25,9 +25,12 @@ final class SyncEngine {
 
     private let remote: any SyncRemote
     private let store: SyncStateStore
+    /// Onde vivem as definições partilhadas deste dispositivo.
+    private let settings: UserDefaults
 
-    init(remote: any SyncRemote, store: SyncStateStore) {
+    init(remote: any SyncRemote, store: SyncStateStore, settings: UserDefaults = AppEnvironment.defaults) {
         self.remote = remote
+        self.settings = settings
         self.store = store
     }
 
@@ -42,7 +45,7 @@ final class SyncEngine {
         var report = SyncReport()
 
         // 1. Alterações locais desde o último sync.
-        var local = try Self.snapshot(context)
+        var local = try Self.snapshot(context, settings: settings)
         Self.markLocalChanges(local, in: &state, at: localTime)
 
         // 2. Pull: aplica o que veio do servidor, exceto onde a alteração local é mais recente.
@@ -83,16 +86,16 @@ final class SyncEngine {
 
         if !applied.isEmpty || !deletions.isEmpty {
             if !applied.isEmpty {
-                try BackupService.importArchive(incoming, into: context)
+                try BackupService.importArchive(incoming, into: context, settings: settings)
             }
             for (entity, keys) in deletions {
-                try entity.deleteModels(withKeys: keys, in: context)
+                try entity.deleteModels(withKeys: keys, in: context, settings: settings)
             }
             try context.save()
 
             // O registo aplicado pode diferir do recebido (uma relação para algo que
             // não existe aqui, por exemplo): guarda o hash local para não o reenviar.
-            local = try Self.snapshot(context)
+            local = try Self.snapshot(context, settings: settings)
             for stateKey in applied {
                 if let hash = local[stateKey]?.hash { state.entries[stateKey]?.hash = hash }
             }
@@ -130,8 +133,8 @@ final class SyncEngine {
     }
 
     /// Todos os registos sincronizáveis, indexados por `SyncState.key`.
-    static func snapshot(_ context: ModelContext) throws -> [String: LocalRecord] {
-        let archive = try BackupService.makeArchive(from: context, includingDocumentPhotos: false)
+    static func snapshot(_ context: ModelContext, settings: UserDefaults? = nil) throws -> [String: LocalRecord] {
+        let archive = try BackupService.makeArchive(from: context, includingDocumentPhotos: false, settings: settings)
         var result: [String: LocalRecord] = [:]
         for entity in SyncEntity.allCases {
             for (key, data) in try entity.payloads(in: archive) {

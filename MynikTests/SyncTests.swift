@@ -3,7 +3,7 @@ import SwiftData
 import Testing
 @testable import Mynik
 
-/// Servidor em memória com as mesmas regras da tabela `records`:
+/// Servidor em memória com as mesmas regras das tabelas do Supabase:
 /// uma linha por (entity, key), last-write-wins por `modifiedAt` e `updatedAt` do servidor.
 actor FakeSyncRemote: SyncRemote {
     private(set) var rows: [String: SyncRow] = [:]
@@ -35,13 +35,16 @@ actor FakeSyncRemote: SyncRemote {
 final class FakeDevice {
     let container: ModelContainer
     let engine: SyncEngine
+    /// Preferências próprias do dispositivo (definições partilhadas).
+    let defaults: UserDefaults
     var context: ModelContext { container.mainContext }
 
     init(remote: FakeSyncRemote) throws {
         container = try ModelContainerFactory.make(inMemory: true)
         try DefaultDataSeeder.seedIfNeeded(in: container.mainContext)
         let url = URL.temporaryDirectory.appending(path: "sync-\(UUID().uuidString).json")
-        engine = SyncEngine(remote: remote, store: SyncStateStore(url: url))
+        defaults = UserDefaults(suiteName: "sync-device-\(UUID().uuidString)") ?? .standard
+        engine = SyncEngine(remote: remote, store: SyncStateStore(url: url), settings: defaults)
     }
 
     @discardableResult
@@ -299,5 +302,43 @@ struct SyncTests {
         #expect(canonical == data)
         #expect(archive.transactions.first?.amount == Decimal(string: "0.3"))
         #expect(try RawJSON(data: Data("[true,1,null]".utf8)) == .array([.bool(true), .number(1), .null]))
+    }
+
+    @Test("Definições partilhadas (custos da loja, taxa BRL) passam para o outro dispositivo")
+    func sharedSettingsSync() async throws {
+        let remote = FakeSyncRemote()
+        let mac = try FakeDevice(remote: remote)
+        let iPhone = try FakeDevice(remote: remote)
+        mac.defaults.set(3.5, forKey: SettingsKey.storeFeePercent)
+        mac.defaults.set(6.25, forKey: SettingsKey.brlPerEUR)
+        mac.defaults.set(true, forKey: SettingsKey.appLockEnabled) // do dispositivo: não vai
+        try await mac.sync(at: t0)
+        #expect(await remote.row(.setting, SettingsKey.storeFeePercent) != nil)
+        #expect(await remote.row(.setting, SettingsKey.appLockEnabled) == nil)
+
+        try await iPhone.sync(at: t0.addingTimeInterval(60))
+        #expect(iPhone.defaults.double(forKey: SettingsKey.storeFeePercent) == 3.5)
+        #expect(iPhone.defaults.double(forKey: SettingsKey.brlPerEUR) == 6.25)
+        #expect(iPhone.defaults.object(forKey: SettingsKey.appLockEnabled) == nil)
+
+        // Mudar no iPhone chega ao Mac.
+        iPhone.defaults.set(4.0, forKey: SettingsKey.storeShippingCost)
+        try await iPhone.sync(at: t0.addingTimeInterval(120))
+        try await mac.sync(at: t0.addingTimeInterval(180))
+        #expect(mac.defaults.double(forKey: SettingsKey.storeShippingCost) == 4)
+    }
+
+    @Test("A cópia de segurança leva as definições só quando pedido e lê cópias sem elas")
+    func backupSettings() throws {
+        let device = try FakeDevice(remote: FakeSyncRemote())
+        device.defaults.set(250.0, forKey: SettingsKey.savingsMonthlyTarget)
+        #expect(try BackupService.makeArchive(from: device.context).settings == nil)
+        let archive = try BackupService.makeArchive(from: device.context, settings: device.defaults)
+        #expect(archive.settings == [SettingRecord(key: SettingsKey.savingsMonthlyTarget, value: .number(250))])
+
+        let other = try FakeDevice(remote: FakeSyncRemote())
+        let copy = try BackupArchive.decode(archive.encoded())
+        try BackupService.importArchive(copy, into: other.context, settings: other.defaults)
+        #expect(other.defaults.double(forKey: SettingsKey.savingsMonthlyTarget) == 250)
     }
 }

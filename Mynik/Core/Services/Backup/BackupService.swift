@@ -15,12 +15,15 @@ import UIKit
 enum BackupService {
     // MARK: - Exportar
 
-    /// - Parameter includingDocumentPhotos: `false` deixa de fora as fotos dos documentos
-    ///   (o sync com o Supabase nunca as envia).
+    /// - Parameters:
+    ///   - includingDocumentPhotos: `false` deixa de fora as fotos dos documentos
+    ///     (o sync com o Supabase nunca as envia).
+    ///   - settings: preferências de onde ler as definições partilhadas (`nil` = sem definições).
     static func makeArchive(
         from context: ModelContext,
         now: Date = .now,
-        includingDocumentPhotos: Bool = true
+        includingDocumentPhotos: Bool = true,
+        settings: UserDefaults? = nil
     ) throws -> BackupArchive {
         var archive = BackupArchive()
         archive.exportedAt = now
@@ -58,6 +61,9 @@ enum BackupService {
         archive.wealthSnapshots = try all(WealthSnapshot.self).map(WealthSnapshotRecord.init).sorted { $0.day < $1.day }
         archive.habits = try all(Habit.self).map(HabitRecord.init).sorted { $0.uid < $1.uid }
         archive.habitChecks = try all(HabitCheck.self).map(HabitCheckRecord.init).sorted { $0.uid < $1.uid }
+        if let settings {
+            archive.settings = SharedSettings.records(from: settings)
+        }
         return archive
     }
 
@@ -73,7 +79,12 @@ enum BackupService {
     // MARK: - Importar
 
     @discardableResult
-    static func importArchive(_ archive: BackupArchive, into context: ModelContext) throws -> BackupImportSummary {
+    /// - Parameter settings: onde gravar as definições partilhadas da cópia (`nil` = ignorá-las).
+    static func importArchive(
+        _ archive: BackupArchive,
+        into context: ModelContext,
+        settings: UserDefaults? = nil
+    ) throws -> BackupImportSummary {
         var merger = Merger(context: context)
 
         let categories = try merger.merge(
@@ -253,6 +264,10 @@ enum BackupService {
         )
         for record in archive.habitChecks {
             checks[record.uid]?.habit = record.habitUID.flatMap { habits[$0] }
+        }
+
+        if let settings, let records = archive.settings {
+            SharedSettings.apply(records, to: settings)
         }
 
         try context.save()

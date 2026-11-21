@@ -39,6 +39,10 @@ struct RootView: View {
                     .environment(\.currencyConverter, CurrencyConverter(storedRate: brlPerEUR))
             }
             // Lembretes de vencimento sempre alinhados com os dados.
+            // Definições partilhadas (custos da loja, taxa BRL…) também vão para a conta.
+            .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
+                accountSync.scheduleSync(context: modelContext)
+            }
             .onReceive(NotificationCenter.default.publisher(for: ModelContext.didSave)) { _ in
                 accountSync.scheduleSync(context: modelContext)
                 rescheduleReminders()

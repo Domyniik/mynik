@@ -217,6 +217,7 @@
 		96D7240733DB6550AC256365 /* IconBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D3E7BD5C7338470991A928 /* IconBadge.swift */; };
 		96EBF0EC9FEEC78FA47B6641 /* BackupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C483ACAA674EC1D10D9BC575 /* BackupTests.swift */; };
 		98BC0581E608AEEE0CFC546E /* SupabaseSyncRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A0DF456CE31F17F0D05F74 /* SupabaseSyncRemote.swift */; };
+		99A386BBCA85182CCADDBC23 /* SharedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFEB834B6FBFE2AC663665C /* SharedSettings.swift */; };
 		99C7ADEFFF02CE655DCCE319 /* AppLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BB56D6E41C11CA4269EAA0 /* AppLock.swift */; };
 		9AD092A6854E6B36F7CBC210 /* NoteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA845208A5A9E58F22ECCF /* NoteDatabase.swift */; };
 		9C0443D2E2632541319D9FAB /* StoreNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF0EBDBBB75275564E54C7 /* StoreNotifier.swift */; };
@@ -499,6 +500,7 @@
 		4AE7411356CDC3ADDD1E81C6 /* StoreCheckout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCheckout.swift; sourceTree = "<group>"; };
 		4AE8E9B374B1EE543997F89E /* InvestmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsView.swift; sourceTree = "<group>"; };
 		4B5E663C0AC71F767236299A /* PropertyValueEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyValueEditor.swift; sourceTree = "<group>"; };
+		4BFEB834B6FBFE2AC663665C /* SharedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSettings.swift; sourceTree = "<group>"; };
 		4D63435078C65C2497E0DC8B /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		4EB109851053DAB8A74A22C4 /* MynikApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MynikApp.swift; sourceTree = "<group>"; };
 		4EDF0EBDBBB75275564E54C7 /* StoreNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreNotifier.swift; sourceTree = "<group>"; };
@@ -1699,6 +1701,7 @@
 				7173C5F390CCCE3845B733DD /* AccountSync.swift */,
 				099656FFE831E722AA9F4E26 /* KeychainAuthStorage.swift */,
 				80464BCCE4E0799B6C50974C /* RawJSON.swift */,
+				4BFEB834B6FBFE2AC663665C /* SharedSettings.swift */,
 				7089EB489D949B6F0184EF5F /* SupabaseConfig.swift */,
 				F8A0DF456CE31F17F0D05F74 /* SupabaseSyncRemote.swift */,
 				61DD828F85617ABB06637420 /* SyncEngine.swift */,
@@ -2072,6 +2075,7 @@
 				E62CC7F2293C1B4C0555CA31 /* SettingsKey.swift in Sources */,
 				E0FE8A7738C86DB4A7BA5886 /* SettingsView.swift in Sources */,
 				474B0E585DEF6D65A040F428 /* SharedModelContainer.swift in Sources */,
+				99A386BBCA85182CCADDBC23 /* SharedSettings.swift in Sources */,
 				A1FDA39DF827AD1829EE3099 /* ShopifyClient.swift in Sources */,
 				7365ED14FC02252DC8AEEBEE /* ShopifyCredentials.swift in Sources */,
 				E09769F41959DC0402B72DC3 /* ShopifyError.swift in Sources */,
