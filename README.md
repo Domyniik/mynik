@@ -1,16 +1,18 @@
+<p align="center"><img src="docs/screenshots/app-icon.png" width="128" alt="Ícone do Mynik"></p>
+
 # Mynik
 
 > *A tua vida, num só lugar.*
 
 **Dashboard pessoal nativa para iPhone e Mac**: finanças, contas a pagar, analytics da loja Shopify, projetos, notas, hábitos, carro, documentos, carreira e património numa só app SwiftUI, com IA no dispositivo e sem servidores.
 
-![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026%20%7C%20macOS%2026-blue) ![SwiftData](https://img.shields.io/badge/SwiftData-local-green) ![Foundation Models](https://img.shields.io/badge/IA-on--device-purple) ![Tests](https://img.shields.io/badge/testes-223-brightgreen)
+![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026%20%7C%20macOS%2026-blue) ![SwiftData](https://img.shields.io/badge/SwiftData-local-green) ![Foundation Models](https://img.shields.io/badge/IA-on--device-purple) ![Tests](https://img.shields.io/badge/testes-225-brightgreen)
 
 <p align="center">
   <img src="docs/screenshots/iphone-hoje.png" width="200" alt="Tela Hoje no iPhone">
-  <img src="docs/screenshots/iphone-pergunte-ia.png" width="200" alt="Pergunte ao Mynik com Apple Intelligence">
-  <img src="docs/screenshots/iphone-loja.png" width="200" alt="Loja Shopify com ranking e gráfico">
-  <img src="docs/screenshots/iphone-habitos.png" width="200" alt="Hábitos com sequência">
+  <img src="docs/screenshots/iphone-financas.png" width="200" alt="Finanças com saldo do mês e atalhos">
+  <img src="docs/screenshots/iphone-loja.png" width="200" alt="Loja Shopify com KPIs e tendências">
+  <img src="docs/screenshots/iphone-patrimonio-escuro.png" width="200" alt="Património em modo escuro">
 </p>
 
 <p align="center">
@@ -25,7 +27,8 @@
 - 🛍️ **Shopify Analytics**: lucro real (sem IVA, custos, envios, taxas e anúncios), ranking de produtos 0–100 com ação sugerida e diagnóstico do funil.
 - 🔥 **Hábitos, revisão semanal ao domingo**, projetos em Kanban, notas estilo Notion com Markdown, carro, documentos com Face ID, carreira e património.
 - 🧩 Widgets, Siri/Atalhos, barra de menus no Mac, Calendário e Lembretes na tela Hoje.
-- ♿️ Liquid Glass, modo escuro, Dynamic Type, VoiceOver e Reduzir movimento.
+- 🎨 **Sistema visual próprio** (`Core/DesignSystem`): cor da marca, uma cor por módulo, números arredondados, cartões de KPI com mini gráficos e um ícone gerado com CoreGraphics ([scripts/make-icon.swift](scripts/make-icon.swift)).
+- ♿️ Liquid Glass nos controlos, modo escuro, Dynamic Type, VoiceOver, contraste AA e Reduzir movimento.
 
 <details>
 <summary><b>Mais screenshots</b></summary>
@@ -36,6 +39,10 @@
 | Fatura digitalizada → gasto | Conta de hoje na Dynamic Island | Modo escuro |
 | <img src="docs/screenshots/iphone-financas.png" width="220" alt="Finanças"> | <img src="docs/screenshots/iphone-pergunte-sem-ia.png" width="220" alt="Pergunte ao Mynik sem IA"> | <img src="docs/screenshots/mac-pergunte.png" width="220" alt="Pergunte ao Mynik no Mac"> |
 | Finanças | Modo sem IA (resumos) | Chat no Mac |
+| <img src="docs/screenshots/iphone-carro.png" width="220" alt="Carro com KPIs e consumo"> | <img src="docs/screenshots/iphone-pergunte-ia.png" width="220" alt="Pergunte ao Mynik com Apple Intelligence"> | <img src="docs/screenshots/iphone-habitos.png" width="220" alt="Hábitos com sequência"> |
+| Carro | Pergunte ao Mynik | Hábitos |
+
+<img src="docs/screenshots/mac-financas.png" width="820" alt="Finanças no Mac">
 
 <img src="docs/screenshots/mac-loja.png" width="820" alt="Loja no Mac">
 </details>
@@ -67,7 +74,7 @@ MynikTests/       Swift Testing, com a app como anfitrião e base de dados em me
 - **APIs grátis e sem chaves**: câmbio do BCE ([Frankfurter](https://frankfurter.dev)), preços de combustível do Ministerio para la Transición Ecológica, cotações do Yahoo Finance. A Shopify usa só *scopes* de leitura e o token fica no **Keychain**, nunca no código.
 - **Privacidade**: Face ID opcional para abrir a app, números e fotos dos documentos atrás de autenticação própria (e fora da busca global), nenhum dado sai do dispositivo.
 
-## Estado — v1.0
+## Estado — v1.1
 ✅ **Fase 1 (MVP) concluída**: projeto multiplataforma, modelos SwiftData, navegação adaptativa (barra lateral no Mac/iPad, separadores no iPhone), Finanças (lista, adicionar e editar gastos/receitas) e tela Hoje (saldo do mês, últimos gastos, contas a vencer).
 
 ✅ **Fase 2 (Finanças completas) concluída**: contas a pagar com recorrência e botão "paguei", notificações de vencimento, orçamento mensal por categoria, relatórios com Swift Charts, assinaturas (total mensal/anual), importação de extratos CSV (com deteção de duplicados; exemplo em [docs/exemplo-extrato.csv](docs/exemplo-extrato.csv)) e multi-moeda EUR/BRL com taxa do BCE.
@@ -83,6 +90,8 @@ MynikTests/       Swift Testing, com a app como anfitrião e base de dados em me
 ✅ **Fase 7 (IA e extras) concluída**: **categorização automática** dos movimentos com a Apple Intelligence (Foundation Models no dispositivo, só entre as categorias existentes) e, sem ela, pelo histórico e por comerciantes conhecidos; **"Pergunte ao Mynik"**, um chat sobre finanças, contas, loja, carro, documentos, carreira, metas e património com *tool calling* que lê o SwiftData (e modo sem IA com resumos por tema); **scanner de faturas** (câmara de documentos do VisionKit ou foto/ficheiro, OCR do Vision que extrai comerciante, total e data); **Live Activity e Dynamic Island** da conta que vence hoje (atualizações locais); **revisão semanal** ao domingo, **hábitos** com sequência e objetivo semanal e **busca global ⌘K**.
 
 ✅ **Fase 8 (Polimento e lançamento) concluída — v1.0**: Liquid Glass (botões de vidro, barra de separadores que encolhe), cor de destaque com variantes para modo escuro e alto contraste, Dynamic Type com layouts verticais nos tamanhos de acessibilidade, Reduzir movimento, rótulos únicos para VoiceOver e Controlo por Voz; **Face ID opcional** para abrir a app; cópia de segurança completa com os hábitos; **223 testes** com Swift Testing; screenshots reais e este README. O TestFlight ficou de fora por exigir o plano pago (ver [Instalar](#instalar)).
+
+✅ **v1.1 — Redesign visual**: design system em `Core/DesignSystem` (tokens de espaçamento e raio, cor da marca violeta com variantes, cor de destaque por módulo, tipografia dos números com `.rounded` e algarismos fixos, cartões, KPIs com variação e mini gráficos em Swift Charts, estados vazios); tela **Hoje** em painel de cartões com o saldo sobre o gradiente da marca, ações rápidas em Liquid Glass e duas colunas no Mac; **Finanças** e **Loja** com KPIs e gráficos mais limpos, seletor de período em vidro com `matchedGeometryEffect`; Carro, Carreira, Património, Projetos, Documentos e Definições com o mesmo sistema; haptics no iPhone; **ícone da app** gerado por código. Contraste verificado (≥ 4,5:1) e layouts próprios para os tamanhos de acessibilidade.
 
 Detalhe de cada fase em [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
 
