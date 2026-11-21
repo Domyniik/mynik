@@ -1,0 +1,45 @@
+{
+  "name": "mynik-web",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/prepare-demo.mjs",
+    "dev": "next dev --port 3000",
+    "prebuild": "node scripts/prepare-demo.mjs",
+    "build": "next build",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "types": "node scripts/generate-types.mjs"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "6.3.1",
+    "@dnd-kit/sortable": "10.0.0",
+    "@electric-sql/pglite": "0.5.15",
+    "@supabase/supabase-js": "2.119.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "cmdk": "1.1.1",
+    "jszip": "3.10.2",
+    "lucide-react": "1.70.0",
+    "next": "16.4.5",
+    "next-themes": "0.4.6",
+    "radix-ui": "1.8.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "recharts": "3.10.1",
+    "sonner": "2.0.8",
+    "tailwind-merge": "3.3.1",
+    "tesseract.js": "7.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "24.10.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "tailwindcss": "4.3.5",
+    "tw-animate-css": "1.4.0",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}
