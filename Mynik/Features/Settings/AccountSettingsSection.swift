@@ -75,15 +75,15 @@ struct AccountSettingsSection: View {
             .textInputAutocapitalization(.never)
             #endif
             .onSubmit(sendCode)
-        Button("Enviar código", systemImage: "envelope", action: sendCode)
+        Button("Enviar link de entrada", systemImage: "envelope", action: sendCode)
             .disabled(!isValidEmail || isWorking)
     }
 
     @ViewBuilder
     private func codeEntry(for address: String) -> some View {
-        Text("Enviámos um email para \(address). Abre o link neste dispositivo, ou cola aqui o código de 6 dígitos ou o link.")
+        Text("Enviámos um email para \(address). Toca em \"Sign in\" neste dispositivo para entrar, ou copia esse link (ou o código, se vier) e cola-o aqui.")
             .foregroundStyle(.secondary)
-        TextField("Código ou link", text: $code, prompt: Text("123456"))
+        TextField("Link ou código", text: $code, prompt: Text("Cola o link do email"))
             .textContentType(.oneTimeCode)
             .autocorrectionDisabled()
             #if os(iOS)
