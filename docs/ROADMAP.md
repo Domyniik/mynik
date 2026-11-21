@@ -64,7 +64,7 @@
 
 ## Fase 9 — Login e sync (Supabase)
 Substitui o sync por CloudKit (que exige o plano pago). **Local-first:** o SwiftData continua a ser a fonte da app e o Supabase guarda só uma cópia. Sem conta e sem rede, a app funciona igual.
-- [ ] Motor de sync: registos do backup como payload, deteção de alterações por hash, last-write-wins e tombstones (testes Swift Testing)
+- [x] Motor de sync: registos do backup como payload, deteção de alterações por hash, last-write-wins e tombstones (testes Swift Testing)
 - [ ] Base de dados Supabase: tabela `records` com RLS (`user_id = auth.uid()`) e gatilho last-write-wins (`supabase/migrations`)
 - [ ] Cliente Supabase (SPM `supabase-swift`): configuração fora do git, sessão no Keychain, push/pull incremental
 - [ ] Login por email com código de 6 dígitos em Definições → Conta

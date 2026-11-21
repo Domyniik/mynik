@@ -17,7 +17,13 @@ import UIKit
 enum BackupService {
     // MARK: - Exportar
 
-    static func makeArchive(from context: ModelContext, now: Date = .now) throws -> BackupArchive {
+    /// - Parameter includingDocumentPhotos: `false` deixa de fora as fotos dos documentos
+    ///   (o sync com o Supabase nunca as envia).
+    static func makeArchive(
+        from context: ModelContext,
+        now: Date = .now,
+        includingDocumentPhotos: Bool = true
+    ) throws -> BackupArchive {
         var archive = BackupArchive()
         archive.exportedAt = now
         archive.appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
@@ -45,7 +51,9 @@ enum BackupService {
         archive.maintenanceRecords = try all(MaintenanceRecord.self).map(MaintenanceRecordRecord.init).sorted { $0.uid < $1.uid }
         archive.carDeadlines = try all(CarDeadline.self).map(CarDeadlineRecord.init).sorted { $0.uid < $1.uid }
         archive.documents = try all(PersonalDocument.self).map(PersonalDocumentRecord.init).sorted { $0.uid < $1.uid }
-        archive.documentPhotos = try all(DocumentPhoto.self).map(DocumentPhotoRecord.init).sorted { $0.uid < $1.uid }
+        if includingDocumentPhotos {
+            archive.documentPhotos = try all(DocumentPhoto.self).map(DocumentPhotoRecord.init).sorted { $0.uid < $1.uid }
+        }
         archive.jobApplications = try all(JobApplication.self).map(JobApplicationRecord.init).sorted { $0.uid < $1.uid }
         archive.courses = try all(Course.self).map(CourseRecord.init).sorted { $0.uid < $1.uid }
         archive.investments = try all(Investment.self).map(InvestmentRecord.init).sorted { $0.uid < $1.uid }
@@ -313,6 +321,7 @@ private extension String {
     }
 }
 
-private extension Date {
+extension Date {
+    /// Chave estável de um registo identificado por data (resumos diários, património).
     nonisolated var backupKey: String { String(timeIntervalSince1970) }
 }
