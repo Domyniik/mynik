@@ -95,7 +95,7 @@ struct NoteBlockView: View {
         case .quote: "Citação"
         case .callout: "Escreve algo…"
         case .code: "Código"
-        default: "Escreve algo, ou \"/\" para blocos… ([[ligações]], @menções)"
+        default: "Escreve, \"/\" para blocos ou @ para mencionar"
         }
     }
 

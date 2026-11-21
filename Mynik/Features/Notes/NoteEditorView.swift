@@ -15,6 +15,7 @@ struct NoteEditorView: View {
     @State private var isImportingImage = false
     @State private var isShowingImageError = false
     @State private var slashSelection = 0
+    @State private var openedDay: String?
 
     var body: some View {
         List {
@@ -77,6 +78,14 @@ struct NoteEditorView: View {
             )
         }
         .safeAreaInset(edge: .bottom) { slashMenu }
+        .environment(\.openURL, OpenURLAction { url in
+            guard let target = NoteMention.target(from: url) else { return .systemAction }
+            open(target)
+            return .handled
+        })
+        .sheet(item: Binding(get: { openedDay.map(DayID.init) }, set: { openedDay = $0?.id })) { day in
+            DateMentionsView(day: day.id) { openedNote = $0 }
+        }
         .onChange(of: slashQuery) { slashSelection = 0 }
         .navigationTitle(note.displayTitle)
         #if os(iOS)
@@ -211,6 +220,8 @@ struct NoteEditorView: View {
         focusedBlockModel.flatMap(NoteBlockView.slashQuery(for:))
     }
 
+    /// Menu "/" ou sugestões "@", por baixo do editor (fora da lista, para o
+    /// bloco não perder o foco).
     @ViewBuilder
     private var slashMenu: some View {
         if let block = focusedBlockModel, let query = slashQuery {
@@ -220,7 +231,64 @@ struct NoteEditorView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)
             .padding(.bottom, 8)
+        } else if let block = focusedBlockModel, block.kind.isTextual, block.kind != .code,
+                  let query = NoteMention.activeQuery(in: block.text) {
+            MentionPicker(query: query, current: note) { label, target in
+                insertMention(label: label, target: target, in: block)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
+            .padding(.bottom, 8)
         }
+    }
+
+    /// Escreve a menção no bloco e liga o item à página (aparece nas ligações
+    /// dos dois lados).
+    private func insertMention(label: String, target: NoteMention.Target, in block: NoteBlock) {
+        block.text = NoteMention.replacingActiveQuery(in: block.text, with: NoteMention.token(label: label, target: target))
+        switch target {
+        case .note(let uid):
+            if let other = fetch(Note.self, uid: uid), !NoteLinks.isLinked(other, to: note) { NoteLinks.toggle(other, in: note) }
+        case .project(let uid):
+            if let project = fetch(Project.self, uid: uid), !NoteLinks.isLinked(project, to: note) { NoteLinks.toggle(project, in: note) }
+        case .transaction(let uid):
+            if let transaction = fetch(FinanceTransaction.self, uid: uid), !NoteLinks.isLinked(transaction, to: note) {
+                NoteLinks.toggle(transaction, in: note)
+            }
+        case .date, .title:
+            break
+        }
+        focus(block)
+    }
+
+    /// Abre o destino de uma menção tocada.
+    private func open(_ target: NoteMention.Target) {
+        switch target {
+        case .note(let uid): openedNote = fetch(Note.self, uid: uid)
+        case .project(let uid): openedProject = fetch(Project.self, uid: uid)
+        case .transaction(let uid): editingTransaction = fetch(FinanceTransaction.self, uid: uid)
+        case .date(let day): openedDay = day
+        case .title(let title):
+            let notes = (try? modelContext.fetch(FetchDescriptor<Note>())) ?? []
+            if let match = notes.first(where: { $0.title.trimmingCharacters(in: .whitespaces).caseInsensitiveCompare(title) == .orderedSame }) {
+                openedNote = match
+            } else {
+                let projects = (try? modelContext.fetch(FetchDescriptor<Project>())) ?? []
+                openedProject = projects.first { $0.name.caseInsensitiveCompare(title) == .orderedSame }
+            }
+        }
+    }
+
+    private func fetch(_: Note.Type, uid: String) -> Note? {
+        try? modelContext.fetch(FetchDescriptor<Note>(predicate: #Predicate { $0.uid == uid })).first
+    }
+
+    private func fetch(_: Project.Type, uid: String) -> Project? {
+        try? modelContext.fetch(FetchDescriptor<Project>(predicate: #Predicate { $0.uid == uid })).first
+    }
+
+    private func fetch(_: FinanceTransaction.Type, uid: String) -> FinanceTransaction? {
+        try? modelContext.fetch(FetchDescriptor<FinanceTransaction>(predicate: #Predicate { $0.uid == uid })).first
     }
 
     private var focusedBlockModel: NoteBlock? {
@@ -331,4 +399,9 @@ struct NoteEditorView: View {
             NoteEditorView(note: note)
         }
     }
+}
+
+/// Dia aberto a partir de uma menção de data (para `.sheet(item:)`).
+private struct DayID: Identifiable {
+    let id: String
 }

@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- feat(notes): menções @ a páginas, projetos, movimentos e datas, com ligação automática, backlinks "Menciona esta" e links que abrem o destino
 - feat(notes): bases de dados com propriedades (texto, número, seleção, data, caixa) e vistas Tabela, Quadro e Calendário
 - feat(notes): capa com gradientes, qualquer emoji como ícone, breadcrumbs clicáveis e favoritos (⇧⌘F) com secção própria
 - fix(notes): o menu "/" aparece por baixo do editor e já não tira o foco ao bloco; funciona em qualquer bloco de texto

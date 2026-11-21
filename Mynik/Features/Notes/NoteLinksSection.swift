@@ -70,6 +70,12 @@ struct NoteLinksSection: View {
             ForEach(note.backlinks ?? []) { other in
                 noteButton(other, caption: "Aponta para esta")
             }
+            // Menções no texto de outras páginas que ainda não estão ligadas.
+            ForEach(NoteMention.backlinks(to: note, among: notes).filter { other in
+                !(note.backlinks ?? []).contains { $0 === other }
+            }) { other in
+                noteButton(other, caption: "Menciona esta")
+            }
 
             Menu {
                 ForEach(NoteLinkKind.allCases) { kind in
@@ -83,7 +89,7 @@ struct NoteLinksSection: View {
         } header: {
             Text("Ligações")
         } footer: {
-            Text("Escreve [[Título]] no texto para mencionar outra nota ou um projeto.")
+            Text("Escreve @ no texto para mencionar uma página, um projeto, um movimento ou uma data ([[Título]] também funciona).")
         }
         .sheet(item: $pickingKind) { kind in
             NoteLinkPicker(note: note, kind: kind)

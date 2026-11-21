@@ -11,6 +11,7 @@
 		006FC7DFDF2282C296A5223D /* StoreAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450505867629A3FB8921D31 /* StoreAlerts.swift */; };
 		00D3DF4C37594119ACC978FA /* NoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F72A031D4270F21FDBF146A /* NoteTests.swift */; };
 		01C0F383360CE9E34A6813F5 /* PropertyValueEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E663C0AC71F767236299A /* PropertyValueEditor.swift */; };
+		02169A2079609A78E9D4AB37 /* NoteMentionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D2BB3AAEE884DB63325984 /* NoteMentionTests.swift */; };
 		025C3013D3E7683C19590830 /* CarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117B5DFB8D00ACA458A24A1F /* CarTests.swift */; };
 		03F24CC5501AA831CD103BB5 /* DSRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E312499532419DC15E4080 /* DSRow.swift */; };
 		040911C82255CE9C1CC51EDE /* BackupSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF18C32CBA456F25A62DDA06 /* BackupSettingsSection.swift */; };
@@ -46,6 +47,7 @@
 		1ECF5AE34BB67975DF94DA78 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F5B0A2E2A92D7F5376131B /* AppEnvironment.swift */; };
 		1F0C8BE72C9A9AA06793AD44 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60BADB4B789DA1B9240CB2C /* StoreView.swift */; };
 		1F0DF375DF717B9536667699 /* BillDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23131C2B98D904CEE7B61397 /* BillDraft.swift */; };
+		1F4D4BD69FE41B39B77D3481 /* MentionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1021FF0C970381309CB67C /* MentionPicker.swift */; };
 		201587147B0BDBDCCBC4D374 /* ModelContainerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F66C2DB870302CFE7B8D4AD /* ModelContainerFactory.swift */; };
 		20DF03D3DBD27497514537BF /* StoreRankingSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BFA3764DB7C8216F08D45D /* StoreRankingSummary.swift */; };
 		2103BD616235476A6B820D1B /* GoalContributionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5694D5C38AD02139B2DD3E6A /* GoalContributionService.swift */; };
@@ -302,6 +304,7 @@
 		DF7E1D249549A499E91EBF56 /* CategorizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E807422DDDAC9EA6450912 /* CategorizationTests.swift */; };
 		E080DADE13A4F30F0769281B /* DocumentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7821EB438D4AC29EB5164E0 /* DocumentFormView.swift */; };
 		E083E291BD6FA9B8A6A1C770 /* StoreAlertSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94B2D694983D7BB872C245D /* StoreAlertSettingsSection.swift */; };
+		E088885133D100A7F9A77BBF /* NoteMention.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF0A9856B2D806E3DA56354 /* NoteMention.swift */; };
 		E09769F41959DC0402B72DC3 /* ShopifyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FE029CEDB379283062350 /* ShopifyError.swift */; };
 		E0FE8A7738C86DB4A7BA5886 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5F4084CF8D80CBA029082 /* SettingsView.swift */; };
 		E1DE591D39F99226EEC85AD9 /* WidgetSnapshotWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B00C9D32A583725912E6BCF /* WidgetSnapshotWriter.swift */; };
@@ -564,6 +567,7 @@
 		76BCBE8DD61E6A15AA42078C /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		7751CD4B80BF9C2695EDAF41 /* Mynik.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mynik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		775AFDC1C14C65FC021054CC /* StoreSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSettingsSection.swift; sourceTree = "<group>"; };
+		78D2BB3AAEE884DB63325984 /* NoteMentionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteMentionTests.swift; sourceTree = "<group>"; };
 		7AB9F7C0AFDB7558831F050F /* SubscriptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTests.swift; sourceTree = "<group>"; };
 		7AD68662C393205C62F44627 /* DocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTests.swift; sourceTree = "<group>"; };
 		7B43A795AEC4736DF1BB655C /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -715,8 +719,10 @@
 		F94D9A09783788BD2BAF8D0F /* SubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsView.swift; sourceTree = "<group>"; };
 		FA96EBEF8A18AB83BD4AE8DE /* InvestmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentTests.swift; sourceTree = "<group>"; };
 		FAD8884441352D74C7D8FBC4 /* ReceiptParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptParser.swift; sourceTree = "<group>"; };
+		FB1021FF0C970381309CB67C /* MentionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionPicker.swift; sourceTree = "<group>"; };
 		FB1312CBAAEE13E768F12E7C /* NoteLinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLinkTests.swift; sourceTree = "<group>"; };
 		FBDB8B9821C82E4BF5D1737C /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		FBF0A9856B2D806E3DA56354 /* NoteMention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteMention.swift; sourceTree = "<group>"; };
 		FC8073DE80648B57AC063286 /* BudgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTests.swift; sourceTree = "<group>"; };
 		FC8E4C19584D7D7B7ED888CC /* MynikTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MynikTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE23BFB4FB470490698B5831 /* AppLockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockTests.swift; sourceTree = "<group>"; };
@@ -843,6 +849,7 @@
 				6A797F9587C3DEA5B9935674 /* NoteBlockTests.swift */,
 				C287E28BF3724B292D35D774 /* NoteDatabaseTests.swift */,
 				FB1312CBAAEE13E768F12E7C /* NoteLinkTests.swift */,
+				78D2BB3AAEE884DB63325984 /* NoteMentionTests.swift */,
 				3F72A031D4270F21FDBF146A /* NoteTests.swift */,
 				25E88AC39536468607949428 /* ProductLifecycleTests.swift */,
 				61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */,
@@ -895,6 +902,7 @@
 			isa = PBXGroup;
 			children = (
 				BF5E700B7A508BA4F2EF9595 /* MarkdownTextField.swift */,
+				FB1021FF0C970381309CB67C /* MentionPicker.swift */,
 				9F843F6CA87E0C1B5CEF7887 /* NoteBlockCommands.swift */,
 				1380D5981852412E05E80782 /* NoteBlockView.swift */,
 				25BDBEECC4A56C09C49934AF /* NoteEditorView.swift */,
@@ -1437,6 +1445,7 @@
 				F90768F684CA2691C82BC330 /* NoteEditing.swift */,
 				5861C98CD85CF0495A9DCD60 /* NoteLinks.swift */,
 				6DE226DC18FE1A8C2A2F6D24 /* NoteMarkdown.swift */,
+				FBF0A9856B2D806E3DA56354 /* NoteMention.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -1977,6 +1986,7 @@
 				14859DF0D469C51086F79542 /* MaintenanceFormView.swift in Sources */,
 				C1D8577487D4B8AFD843504C /* MaintenanceRecord.swift in Sources */,
 				5A8DC8D05B2995ABFFDEA4B2 /* MarkdownTextField.swift in Sources */,
+				1F4D4BD69FE41B39B77D3481 /* MentionPicker.swift in Sources */,
 				2E5665D1E863DEA8842C6705 /* MenuBarContentView.swift in Sources */,
 				49CE2953C3200A10B28A0E35 /* MenuBarSettingsSection.swift in Sources */,
 				35DB32E6EF0A769EA8BB9F1E /* MerchantCategoryRules.swift in Sources */,
@@ -2010,6 +2020,7 @@
 				7F269991A0BD0F6C3B8548CB /* NoteLinks.swift in Sources */,
 				5ADCFD770ADE0834B4D95D38 /* NoteLinksSection.swift in Sources */,
 				8D40C3AA1803D8A2D9D22875 /* NoteMarkdown.swift in Sources */,
+				E088885133D100A7F9A77BBF /* NoteMention.swift in Sources */,
 				15D3F025B123931A866C33D9 /* NoteSpecialBlocks.swift in Sources */,
 				51AE339D8771A2136A95E5AB /* NotesView.swift in Sources */,
 				856A66E5D2A80399016D5822 /* NotificationService.swift in Sources */,
@@ -2151,6 +2162,7 @@
 				BC54E010E00977997C3E485E /* NoteBlockTests.swift in Sources */,
 				B8C8A9164A18294B5C349106 /* NoteDatabaseTests.swift in Sources */,
 				1B1629964F2D70F88D04D75A /* NoteLinkTests.swift in Sources */,
+				02169A2079609A78E9D4AB37 /* NoteMentionTests.swift in Sources */,
 				00D3DF4C37594119ACC978FA /* NoteTests.swift in Sources */,
 				FE62F256C8AA4E24D982B264 /* ProductLifecycleTests.swift in Sources */,
 				CE2C99033249EC1A76B4847B /* ProductScorerTests.swift in Sources */,

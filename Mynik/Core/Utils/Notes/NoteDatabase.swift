@@ -178,12 +178,12 @@ enum NoteDatabase {
         database.databaseProperties.first { $0.type == .date }
     }
 
-    static func dateValue(_ date: Date, calendar: Calendar = .current) -> String {
+    nonisolated static func dateValue(_ date: Date, calendar: Calendar = .current) -> String {
         let parts = calendar.dateComponents([.year, .month, .day], from: date)
         return String(format: "%04d-%02d-%02d", parts.year ?? 0, parts.month ?? 0, parts.day ?? 0)
     }
 
-    static func date(from value: String, calendar: Calendar = .current) -> Date? {
+    nonisolated static func date(from value: String, calendar: Calendar = .current) -> Date? {
         let parts = value.split(separator: "-").compactMap { Int($0) }
         guard parts.count == 3 else { return nil }
         return calendar.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2]))
