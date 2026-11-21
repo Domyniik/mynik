@@ -14,34 +14,12 @@ struct NoteEditorView: View {
     @State private var photoItem: PhotosPickerItem?
     @State private var isImportingImage = false
     @State private var isShowingImageError = false
-
-    static let icons = ["📄", "📝", "💡", "📚", "🗂️", "✅", "🎯", "💼", "🏠", "🚗", "✈️", "💰", "🛍️", "❤️", "🧠", "📅"]
+    @State private var slashSelection = 0
 
     var body: some View {
         List {
             Section {
-                if !note.ancestors.isEmpty {
-                    Text(note.ancestors.map(\.displayTitle).joined(separator: " › "))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                HStack(alignment: .firstTextBaseline, spacing: 8) {
-                    Menu {
-                        ForEach(Self.icons, id: \.self) { icon in
-                            Button(icon) { note.icon = icon }
-                        }
-                    } label: {
-                        Text(note.icon).font(.largeTitle)
-                    }
-                    .menuStyle(.button)
-                    .buttonStyle(.borderless)
-                    .fixedSize()
-                    .accessibilityLabel("Ícone da página")
-
-                    TextField("Sem título", text: $note.title, axis: .vertical)
-                        .font(.largeTitle.bold())
-                        .focused($focusedBlock, equals: "title")
-                }
+                NoteHeaderView(note: note, focus: $focusedBlock) { openedNote = $0 }
             }
             .listRowSeparator(.hidden)
 
@@ -55,7 +33,8 @@ struct NoteEditorView: View {
                         listNumber: numbers[block.uid] ?? 1,
                         onReturn: { handleReturn(in: block) },
                         onSlashCommand: { applySlashCommand($0, to: block) },
-                        onDeleteEmpty: { deleteEmpty(block) }
+                        onDeleteEmpty: { deleteEmpty(block) },
+                        slashSelection: $slashSelection
                     )
                     .listRowSeparator(.hidden)
                     .contextMenu { blockMenu(block) }
@@ -102,6 +81,8 @@ struct NoteEditorView: View {
                 onOpenTransaction: { editingTransaction = $0 }
             )
         }
+        .safeAreaInset(edge: .bottom) { slashMenu }
+        .onChange(of: slashQuery) { slashSelection = 0 }
         .navigationTitle(note.displayTitle)
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
@@ -132,6 +113,15 @@ struct NoteEditorView: View {
                     },
                     onConvert: { kind in focusedBlockModel.map { NoteEditing.convert($0, to: kind) } }
                 )
+            }
+            ToolbarItem(placement: .primaryAction) {
+                Button(
+                    note.isFavorite ? "Tirar dos favoritos" : "Adicionar aos favoritos",
+                    systemImage: note.isFavorite ? "star.fill" : "star"
+                ) {
+                    note.isFavorite.toggle()
+                }
+                .keyboardShortcut("f", modifiers: [.command, .shift])
             }
             ToolbarItem(placement: .primaryAction) {
                 ShareLink(
@@ -199,6 +189,23 @@ struct NoteEditorView: View {
         Divider()
         Button("Apagar bloco", systemImage: "trash", role: .destructive) {
             withAnimation { NoteEditing.deleteBlock(block, from: note, context: modelContext) }
+        }
+    }
+
+    /// Pesquisa do menu "/" no bloco com o foco.
+    private var slashQuery: String? {
+        focusedBlockModel.flatMap(NoteBlockView.slashQuery(for:))
+    }
+
+    @ViewBuilder
+    private var slashMenu: some View {
+        if let block = focusedBlockModel, let query = slashQuery {
+            SlashCommandMenu(kinds: NoteBlockKind.matching(query), selection: slashSelection) { kind in
+                applySlashCommand(kind, to: block)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
+            .padding(.bottom, 8)
         }
     }
 

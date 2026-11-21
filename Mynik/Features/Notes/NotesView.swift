@@ -6,6 +6,7 @@ struct NotesView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(filter: #Predicate<Note> { $0.parent == nil }, sort: \Note.sortOrder) private var roots: [Note]
     @Query(sort: \Note.updatedAt, order: .reverse) private var allNotes: [Note]
+    @Query(filter: #Predicate<Note> { $0.isFavorite }, sort: \Note.title) private var favorites: [Note]
 
     @State private var searchText = ""
     @State private var openedNote: Note?
@@ -33,6 +34,13 @@ struct NotesView: View {
                         .buttonStyle(.glassProminent)
                 }
             } else {
+                if !favorites.isEmpty {
+                    Section("Favoritos") {
+                        ForEach(favorites) { note in
+                            row(note, showsPath: true)
+                        }
+                    }
+                }
                 Section("Páginas") {
                     OutlineGroup(roots, children: \.childrenOrNil) { note in
                         row(note, showsPath: false)
@@ -84,6 +92,10 @@ struct NotesView: View {
         }
         .contextMenu {
             Button("Nova subpágina", systemImage: "plus") { createNote(parent: note) }
+            Button(
+                note.isFavorite ? "Tirar dos favoritos" : "Adicionar aos favoritos",
+                systemImage: note.isFavorite ? "star.slash" : "star"
+            ) { note.isFavorite.toggle() }
             Button("Apagar", systemImage: "trash", role: .destructive) { requestDelete(note) }
         }
         .swipeActions {

@@ -12,18 +12,12 @@ struct NoteBlockView: View {
     let onSlashCommand: (NoteBlockKind) -> Void
     /// Apagar (⌫) num bloco vazio.
     var onDeleteEmpty: () -> Void = {}
-
-    @State private var slashSelection = 0
+    /// Opção realçada no menu "/" (o menu é mostrado pelo editor, fora da lista,
+    /// para a linha não mudar de altura e o campo não perder o foco).
+    @Binding var slashSelection: Int
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            content
-            if let query = slashQuery {
-                SlashCommandMenu(kinds: NoteBlockKind.matching(query), selection: slashSelection) { kind in
-                    onSlashCommand(kind)
-                }
-            }
-        }
+        content
         .onChange(of: block.text) {
             handleTextChange()
             if let note = block.note { NoteEditing.touch(note) }
@@ -33,9 +27,13 @@ struct NoteBlockView: View {
 
     // MARK: Menu "/"
 
-    /// Texto depois de "/" quando o bloco é um parágrafo a começar por "/".
     private var slashQuery: String? {
-        guard block.kind == .text, focus.wrappedValue == block.uid, block.text.hasPrefix("/") else { return nil }
+        focus.wrappedValue == block.uid ? NoteBlockView.slashQuery(for: block) : nil
+    }
+
+    /// Texto depois de "/" quando um bloco de texto (exceto código) começa por "/".
+    static func slashQuery(for block: NoteBlock) -> String? {
+        guard block.kind.isTextual, block.kind != .code, block.text.hasPrefix("/") else { return nil }
         let query = String(block.text.dropFirst())
         guard !query.contains("\n"), query.count <= 20 else { return nil }
         return query
@@ -66,7 +64,7 @@ struct NoteBlockView: View {
     /// de uma só linha conta como Return.
     private func handleTextChange() {
         let kind = block.kind
-        if kind == .text, block.text.hasPrefix("/"), block.text.contains("\n") {
+        if slashQuery != nil, block.text.contains("\n") {
             block.text = block.text.replacingOccurrences(of: "\n", with: "")
             chooseSlashSelection()
             return

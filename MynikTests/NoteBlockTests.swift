@@ -204,3 +204,21 @@ struct NoteBlockReorderTests {
         #expect(note.sortedBlocks.map(\.sortOrder) == [0, 1, 2, 3])
     }
 }
+
+@MainActor
+struct NotePageTests {
+    @Test func coverAndFavoritesRoundTrip() throws {
+        let container = try ModelContainerFactory.make(inMemory: true)
+        let note = NoteEditing.makeNote(title: "Viagem", in: container.mainContext)
+        #expect(note.cover == nil)
+        note.cover = .ocean
+        note.isFavorite = true
+        #expect(note.coverRaw == "ocean")
+        let copy = Note()
+        NoteRecord(note).apply(to: copy)
+        #expect(copy.cover == .ocean && copy.isFavorite)
+        note.cover = nil
+        #expect(note.coverRaw.isEmpty)
+        #expect(NoteCover.allCases.allSatisfy { $0.colors.count >= 2 })
+    }
+}

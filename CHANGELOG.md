@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Não lançado]
+- feat(notes): capa com gradientes, qualquer emoji como ícone, breadcrumbs clicáveis e favoritos (⇧⌘F) com secção própria
+- fix(notes): o menu "/" aparece por baixo do editor e já não tira o foco ao bloco; funciona em qualquer bloco de texto
 - fix(app): no iPhone, as páginas abertas a partir do separador Mais (ex.: notas) voltam a navegar
 - feat(notes): reordena blocos por arrastar e por teclado (⇧⌘↑/↓), duplica (⌘D), apaga (⇧⌘⌫) e transforma (⌥⌘0–8) o bloco com o foco
 - feat(notes): menu "/" com títulos 1–3, listas com marcas e numerada, citação, destaque, alternar, divisor, código e tabela; esquema V7 com migração
