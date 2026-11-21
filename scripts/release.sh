@@ -34,6 +34,12 @@ echo "▸ Mynik $VERSION a partir de ${COMMIT:0:7}"
 # Compila numa worktree limpa, para não depender do estado da pasta de trabalho.
 git -C "$ROOT" worktree add --detach -q "$SRC" "$COMMIT"
 cd "$SRC"
+# Configuração do Supabase (fora do git): sem ela, a versão publicada não tem login nem sync.
+if [[ -f "$ROOT/Config/Supabase.xcconfig" ]]; then
+    cp "$ROOT/Config/Supabase.xcconfig" "$SRC/Config/Supabase.xcconfig"
+else
+    echo "⚠︎ Sem Config/Supabase.xcconfig: esta versão sai sem login nem sync."
+fi
 xcodegen generate --quiet
 
 # Assinatura: certificado "Apple Development" (Personal Team, grátis), definido

@@ -8,6 +8,7 @@ struct MynikApp: App {
     private let modelContainer = SharedModelContainer.shared
     @State private var storeSync = StoreSyncCoordinator(defaults: AppEnvironment.defaults)
     @State private var router = AppRouter()
+    @State private var accountSync = AccountSync()
     #if os(macOS)
     @AppStorage(SettingsKey.showMenuBarExtra) private var showMenuBarExtra = true
     #endif
@@ -18,6 +19,7 @@ struct MynikApp: App {
                 .environment(\.locale, .app)
                 .environment(storeSync)
                 .environment(router)
+                .environment(accountSync)
         }
         .modelContainer(modelContainer)
         #if os(macOS)

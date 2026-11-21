@@ -10,6 +10,7 @@ struct RootView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(StoreSyncCoordinator.self) private var storeSync
     @Environment(AppRouter.self) private var router
+    @Environment(AccountSync.self) private var accountSync
     @State private var appLock = AppLock.shared
 
     @AppStorage(SettingsKey.brlPerEUR) private var brlPerEUR = CurrencyConverter.defaultBRLPerEUR
@@ -41,6 +42,7 @@ struct RootView: View {
             }
             // Lembretes de vencimento sempre alinhados com os dados.
             .onReceive(NotificationCenter.default.publisher(for: ModelContext.didSave)) { _ in
+                accountSync.scheduleSync(context: modelContext)
                 rescheduleReminders()
                 updateWidgets()
                 updateLiveActivity()
@@ -55,6 +57,8 @@ struct RootView: View {
                     recordWealthSnapshot()
                     refreshExchangeRateIfStale()
                     Task { await storeSync.refreshIfStale(in: modelContext) }
+                    accountSync.start()
+                    Task { await accountSync.sync(context: modelContext) }
                 } else if scenePhase == .background {
                     StoreBackgroundRefresh.schedule()
                     // Os documentos voltam a ficar escondidos.
@@ -137,4 +141,5 @@ struct RootView: View {
 #Preview(traits: .sampleData) {
     RootView()
         .environment(AppRouter())
+        .environment(AccountSync(config: nil))
 }

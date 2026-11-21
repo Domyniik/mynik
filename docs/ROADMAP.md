@@ -67,6 +67,6 @@ Substitui o sync por CloudKit (que exige o plano pago). **Local-first:** o Swift
 - [x] Motor de sync: registos do backup como payload, deteção de alterações por hash, last-write-wins e tombstones (testes Swift Testing)
 - [x] Base de dados Supabase: tabela `records` com RLS (`user_id = auth.uid()`) e gatilho last-write-wins (`supabase/migrations`)
 - [x] Cliente Supabase (SPM `supabase-swift`): configuração fora do git, sessão no Keychain, push/pull incremental
-- [ ] Login por email com código de 6 dígitos em Definições → Conta
-- [ ] Sync automático: ao abrir, ao voltar ao primeiro plano e depois de gravar (com debounce)
-- [ ] Fora do sync: fotos dos documentos e segredos (token da Shopify, etc.)
+- [x] Login por email com código de 6 dígitos em Definições → Conta
+- [x] Sync automático: ao abrir, ao voltar ao primeiro plano e depois de gravar (com debounce)
+- [x] Fora do sync: fotos dos documentos e segredos (token da Shopify, etc.)

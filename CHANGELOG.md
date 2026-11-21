@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- feat(settings): conta opcional com login por código de 6 dígitos e sync automático
 - feat(sync): cliente Supabase com tabela records, RLS e sessão no Keychain
 - feat(sync): motor de sincronização local-first com last-write-wins e tombstones
 - docs: plano do projeto, CLAUDE.md e roadmap

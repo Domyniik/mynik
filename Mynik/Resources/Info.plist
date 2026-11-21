@@ -49,6 +49,10 @@
 	<string>O Mynik mostra os lembretes de hoje na tela Hoje e deixa marcá-los como feitos. Os dados não saem do dispositivo.</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
+	<key>SupabaseAnonKey</key>
+	<string>$(SUPABASE_ANON_KEY)</string>
+	<key>SupabaseProjectRef</key>
+	<string>$(SUPABASE_PROJECT_REF)</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

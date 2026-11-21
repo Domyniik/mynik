@@ -5,6 +5,7 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         Form {
+            AccountSettingsSection()
             AppLockSettingsSection()
             AISettingsSection()
             StoreSettingsSection()
@@ -27,4 +28,5 @@ struct SettingsView: View {
     NavigationStack {
         SettingsView()
     }
+    .environment(AccountSync(config: nil))
 }
