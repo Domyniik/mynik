@@ -275,4 +275,29 @@ struct SyncTests {
         #expect(entity == .storeProduct)
         #expect(id == "gid://shopify/Product/1")
     }
+
+    @Test("Timestamps do Postgres com microssegundos e fuso")
+    func postgresTimestamps() throws {
+        let date = try #require(PostgresTimestamp.date(from: "2026-11-21T15:07:38.123456+00:00"))
+        #expect(abs(date.timeIntervalSince1970 - 1_795_273_658.123456) < 0.000_01)
+        #expect(PostgresTimestamp.date(from: "2026-11-21T15:07:38+00:00")?.timeIntervalSince1970 == 1_795_273_658)
+        let roundTrip = try #require(PostgresTimestamp.date(from: PostgresTimestamp.string(from: date)))
+        #expect(abs(roundTrip.timeIntervalSince(date)) < 0.001)
+    }
+
+    @Test("O payload passa pelo jsonb sem arredondar valores em euros")
+    func rawJSONKeepsDecimals() throws {
+        let record = TransactionRecord(
+            uid: "a", title: "Café", amount: Decimal(string: "0.1")! + Decimal(string: "0.2")!,
+            kindRaw: "expense", currencyCode: "EUR", date: t0, notes: "", createdAt: t0,
+            externalID: "", categoryUID: nil, accountUID: "b"
+        )
+        let data = try SyncEntity.canonicalJSON(record)
+        let back = try RawJSON(data: data).data()
+        var archive = BackupArchive()
+        let canonical = try SyncEntity.transaction.append(back, to: &archive)
+        #expect(canonical == data)
+        #expect(archive.transactions.first?.amount == Decimal(string: "0.3"))
+        #expect(try RawJSON(data: Data("[true,1,null]".utf8)) == .array([.bool(true), .number(1), .null]))
+    }
 }

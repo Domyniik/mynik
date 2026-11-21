@@ -72,6 +72,7 @@
 		2E4B93457BAAB8ADBE178502 /* ShopifyClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AD0F0FC25045569073F143 /* ShopifyClientTests.swift */; };
 		2E5665D1E863DEA8842C6705 /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE547B6BA0122D1367ABDBD2 /* MenuBarContentView.swift */; };
 		2EB94B947D8B76D8BC732FB2 /* GoogleAdsSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F679B546E5128AA505B933BD /* GoogleAdsSettingsSection.swift */; };
+		323C9F789AAABB8A7B21ECE7 /* RawJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80464BCCE4E0799B6C50974C /* RawJSON.swift */; };
 		338A72F592CC1B5B567D4F8E /* FuelEconomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46069615B7A5E9DFAB3485B0 /* FuelEconomy.swift */; };
 		341215EB1060B4F43C6B4A9E /* Locale+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3BE24BA192DEE39D53829 /* Locale+App.swift */; };
 		35CCC16908432B05778A87F5 /* DSCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9098C29DC502AEE66F2DDD09 /* DSCard.swift */; };
@@ -205,6 +206,7 @@
 		95C250D94D30EFC7C0FCC3EE /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B904DEB519C1C7C27C534F /* Vehicle.swift */; };
 		96D7240733DB6550AC256365 /* IconBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D3E7BD5C7338470991A928 /* IconBadge.swift */; };
 		96EBF0EC9FEEC78FA47B6641 /* BackupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C483ACAA674EC1D10D9BC575 /* BackupTests.swift */; };
+		98BC0581E608AEEE0CFC546E /* SupabaseSyncRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A0DF456CE31F17F0D05F74 /* SupabaseSyncRemote.swift */; };
 		99C7ADEFFF02CE655DCCE319 /* AppLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BB56D6E41C11CA4269EAA0 /* AppLock.swift */; };
 		9C0443D2E2632541319D9FAB /* StoreNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF0EBDBBB75275564E54C7 /* StoreNotifier.swift */; };
 		9C14878526B602FEEAF7B208 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ED9BE1283A3780FB192E37 /* CalendarService.swift */; };
@@ -213,12 +215,14 @@
 		9F219A61E6A42AE4B42D0D89 /* QuickEntryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03132061B06F0429C6072463 /* QuickEntryService.swift */; };
 		A052648F56EC05911DD25B07 /* BillDueLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE83388B24B657186797DCF /* BillDueLiveActivity.swift */; };
 		A0D960E6190542D4ACC23BBE /* SpendingTrendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91215B08FDF154C91634561C /* SpendingTrendTests.swift */; };
+		A1053121A692747DDF8D05D6 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = C3CD52E583D1B14A448D1280 /* PostgREST */; };
 		A1487CC94A15369BAD79D4B1 /* ServiceCoverageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F57BA14F460D6A10771C1C /* ServiceCoverageTests.swift */; };
 		A1C39B2CD620C53ECAA96812 /* ProductLifecycleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E0B4984905797F86A63E2F /* ProductLifecycleSection.swift */; };
 		A1FDA39DF827AD1829EE3099 /* ShopifyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B3896EAAF903C435BCBB52 /* ShopifyClient.swift */; };
 		A22C5B4D282D42926C638E47 /* SubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94D9A09783788BD2BAF8D0F /* SubscriptionsView.swift */; };
 		A3C6FA62B866EE4FD183633B /* ReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA298141F281075E5144703 /* ReportTests.swift */; };
 		A3E1860AA0FA76A4B0D70600 /* ReceiptScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F305B07082F2C392E466CF /* ReceiptScanner.swift */; };
+		A4BFD361F3140B0605162689 /* AccountSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C17CC00D855EBA3A9380D4 /* AccountSettingsSection.swift */; };
 		A5AC9696DB5110E76BAB9779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D3A94471BDA2CAC0454107 /* Assets.xcassets */; };
 		A6C057A812B3445AC7574A98 /* StoreOrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F055AE41F45612E46CAC336 /* StoreOrderRow.swift */; };
 		A7FC25B178DBA36BEA94E530 /* CarExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E25F9AB860CC1FA7C3F707 /* CarExpenseService.swift */; };
@@ -239,6 +243,7 @@
 		B3896CA93C8637C77212037F /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D87A813CE0472A5F404FFB /* Bill.swift */; };
 		B4DF570C11EC52D89818EEC6 /* NotificationSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D21D97BEC77F19EB705AD /* NotificationSettingsSection.swift */; };
 		B4EDBF8F7FDB34EA0233BB05 /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880D9DFF7C7060F69D3BB8E /* SyncTests.swift */; };
+		B530E458D2C4BCEA4896E7C7 /* AccountSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173C5F390CCCE3845B733DD /* AccountSync.swift */; };
 		B5A125B32A7F24C072CBF8F2 /* GlobalSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582309E46CA49C7AC56A6D04 /* GlobalSearch.swift */; };
 		B6B70213872ED072964FB6EC /* KPITile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB96D784A9A3245EEA9637 /* KPITile.swift */; };
 		B7003DAA69D49D1D9E0972AC /* ReceiptParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8884441352D74C7D8FBC4 /* ReceiptParser.swift */; };
@@ -258,6 +263,7 @@
 		C29539691765F254A08C2BC2 /* KanbanColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620525AAE73EBD99337D7AA2 /* KanbanColumnView.swift */; };
 		C2B0C1B3EAB4EFD7146FE5A7 /* MonthlyBarsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC920F1FC328B369193CB4C4 /* MonthlyBarsChart.swift */; };
 		C2BD8998263036E64D40333D /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACE3C1E62CECCC47D0B2C1 /* ModelTests.swift */; };
+		C349654A6BD4AF809FAD9D77 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 6540F81D6FB021E7481DDFEF /* Auth */; };
 		C34E7CFBE547244FFAF8B55A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB43DE6DC5EA0DCF3A015A2 /* Typography.swift */; };
 		C371814E4B498D53E0DE526C /* ProjectDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C2EC8DB2CC4FCDF5155A3 /* ProjectDraft.swift */; };
 		C396DE2724706C5683B249C8 /* ProjectTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ACC0A1E0B2677F211BCB0 /* ProjectTask.swift */; };
@@ -267,6 +273,7 @@
 		C8CE32E113F00F515C96755A /* CategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94784D1C520D2ABFE81B5EFC /* CategoryIcon.swift */; };
 		C9DA5EA41913039144D07CB7 /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E3B12C6504328EDA133F /* SidebarNavigationView.swift */; };
 		CCED81CE16D1BD9196A3EEED /* BillDueActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC00B505DA3F9FCEB15E4FC1 /* BillDueActivityAttributes.swift */; };
+		CD4CF02C3CD9AE623483FA3A /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089EB489D949B6F0184EF5F /* SupabaseConfig.swift */; };
 		CE2C99033249EC1A76B4847B /* ProductScorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */; };
 		CE4E8D373E3549F1F377D61C /* SnapshotProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E035CF940518CA5F827D149 /* SnapshotProvider.swift */; };
 		CE74B088ED2E864A90779C83 /* FunnelDiagnosisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7102CEE8E4BF5902B1990F56 /* FunnelDiagnosisTests.swift */; };
@@ -318,6 +325,7 @@
 		F47D3D70804E4BA1F53DBEB2 /* FinanceReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439BD3C71CFD8FAEECC813EA /* FinanceReport.swift */; };
 		F750B364DC41D65C29D7B43B /* ShopifyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01226C15381A8C5B564F1F41 /* ShopifyJSON.swift */; };
 		F7D111308DDB1FC249697E56 /* BankCSVImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62955238A85D2D99F9CAEDEA /* BankCSVImporter.swift */; };
+		F95B36CED7F5DC24D8117F8C /* KeychainAuthStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099656FFE831E722AA9F4E26 /* KeychainAuthStorage.swift */; };
 		FB93C36766648F939158E5F7 /* MynikWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 73B3E95E75B81557D6ADA746 /* MynikWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FC0D9A753F15BEA06655EA59 /* InvestmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482FAE412B89E13BAD141D8 /* InvestmentService.swift */; };
 		FD6234AD3A4912622011BBA8 /* ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA5DCE0626F37FD4E8BCCA /* ProjectTests.swift */; };
@@ -377,6 +385,7 @@
 		06B52D2EB4E4076D41C0AA2A /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		0939F2752F7BF369E875DF6C /* DemoStoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoStoreDataSource.swift; sourceTree = "<group>"; };
 		096F65ECD4DAF0211F0C0983 /* BillReminderPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillReminderPlannerTests.swift; sourceTree = "<group>"; };
+		099656FFE831E722AA9F4E26 /* KeychainAuthStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAuthStorage.swift; sourceTree = "<group>"; };
 		0A43E3B12C6504328EDA133F /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
 		0B00C9D32A583725912E6BCF /* WidgetSnapshotWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshotWriter.swift; sourceTree = "<group>"; };
 		0B3E89F70BCDF78F88BC4B19 /* ShopifyCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyCredentials.swift; sourceTree = "<group>"; };
@@ -442,6 +451,7 @@
 		3569B172A24176A6F35EB091 /* QuestionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRouter.swift; sourceTree = "<group>"; };
 		37599A6082F4973CE19E0BCB /* CalendarSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSettingsSection.swift; sourceTree = "<group>"; };
 		380236C932101A6D8EACE4B3 /* StoreMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMetrics.swift; sourceTree = "<group>"; };
+		3861476635AAD711BF7CBD55 /* Mynik.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Mynik.xcconfig; sourceTree = "<group>"; };
 		38BFB19DC52E89C997B96D8F /* CareerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerTests.swift; sourceTree = "<group>"; };
 		399AD5252256625A2C157A0B /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
 		3B084DC5CAC2A423CCC6BF40 /* GlobalSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchTests.swift; sourceTree = "<group>"; };
@@ -523,8 +533,10 @@
 		6E0A98893E61637B50D72F20 /* ProductRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRankingView.swift; sourceTree = "<group>"; };
 		6E4B19E6E8B72F772151E381 /* StoreKPIGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKPIGrid.swift; sourceTree = "<group>"; };
 		6E8BB64F6F457E04E9C10207 /* CategoryDonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDonutChart.swift; sourceTree = "<group>"; };
+		7089EB489D949B6F0184EF5F /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
 		7102CEE8E4BF5902B1990F56 /* FunnelDiagnosisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnelDiagnosisTests.swift; sourceTree = "<group>"; };
 		716E94ACE3A7A9E667EBC395 /* BillTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillTests.swift; sourceTree = "<group>"; };
+		7173C5F390CCCE3845B733DD /* AccountSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSync.swift; sourceTree = "<group>"; };
 		72473202FD63FB6F45ACE2BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		72BA05055A6C9362779EA5D6 /* TodayTasksSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTasksSection.swift; sourceTree = "<group>"; };
 		7388643FB679BAB48077E314 /* TodayCalendarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCalendarSection.swift; sourceTree = "<group>"; };
@@ -545,6 +557,7 @@
 		8002B6686D4276EF694176E7 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
 		8012CB9D4CE4C32AE00F1F6B /* SettingsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKey.swift; sourceTree = "<group>"; };
 		8038CDDA99A47FD9BBA7FD25 /* LinkedTransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedTransactionService.swift; sourceTree = "<group>"; };
+		80464BCCE4E0799B6C50974C /* RawJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawJSON.swift; sourceTree = "<group>"; };
 		8296BAACD3688D633ED2A902 /* CarHistorySections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarHistorySections.swift; sourceTree = "<group>"; };
 		831F78A3351310EC73AF2A89 /* FuelPriceRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelPriceRanking.swift; sourceTree = "<group>"; };
 		850EB22485ECCC583D623999 /* QuickEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickEntryTests.swift; sourceTree = "<group>"; };
@@ -613,6 +626,7 @@
 		BEEA5DCE0626F37FD4E8BCCA /* ProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTests.swift; sourceTree = "<group>"; };
 		BF5E700B7A508BA4F2EF9595 /* MarkdownTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTextField.swift; sourceTree = "<group>"; };
 		BF74023653BCE76F3B808A91 /* MynikSchemaV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MynikSchemaV3.swift; sourceTree = "<group>"; };
+		C0C17CC00D855EBA3A9380D4 /* AccountSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsSection.swift; sourceTree = "<group>"; };
 		C21034B43860A1AEAD01D151 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		C28FCD1CC47C9D1C7F0D69BB /* ImageDownsampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownsampler.swift; sourceTree = "<group>"; };
 		C2ED9BE1283A3780FB192E37 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
@@ -674,6 +688,7 @@
 		F679B546E5128AA505B933BD /* GoogleAdsSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdsSettingsSection.swift; sourceTree = "<group>"; };
 		F7821EB438D4AC29EB5164E0 /* DocumentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFormView.swift; sourceTree = "<group>"; };
 		F7F69BEC6E4F3B08743B2DF0 /* ledger-anchors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ledger-anchors.json"; sourceTree = "<group>"; };
+		F8A0DF456CE31F17F0D05F74 /* SupabaseSyncRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSyncRemote.swift; sourceTree = "<group>"; };
 		F90768F684CA2691C82BC330 /* NoteEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditing.swift; sourceTree = "<group>"; };
 		F94D9A09783788BD2BAF8D0F /* SubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsView.swift; sourceTree = "<group>"; };
 		FA96EBEF8A18AB83BD4AE8DE /* InvestmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentTests.swift; sourceTree = "<group>"; };
@@ -685,6 +700,18 @@
 		FE23BFB4FB470490698B5831 /* AppLockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockTests.swift; sourceTree = "<group>"; };
 		FE419CFF28C48863FAE8810F /* GoogleAdsSpendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdsSpendTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8D634A5EE49B53CF5DF4E1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C349654A6BD4AF809FAD9D77 /* Auth in Frameworks */,
+				A1053121A692747DDF8D05D6 /* PostgREST in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		095A67C3E53F37CB5D6540DD /* Projects */ = {
@@ -1144,6 +1171,7 @@
 		80B2ABC926E4BB5E8C934C3C = {
 			isa = PBXGroup;
 			children = (
+				CA919D70F73B2349F4D9229E /* Config */,
 				2E188B7E9FC2797B8A779DE2 /* Mynik */,
 				251848C6E6CC16202E74AD78 /* MynikTests */,
 				EC006560AC7740E232A97E7F /* Products */,
@@ -1345,6 +1373,7 @@
 		ACFF39956A9F545D0D701051 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				C0C17CC00D855EBA3A9380D4 /* AccountSettingsSection.swift */,
 				A1CA666DBA2C13C497684A85 /* AISettingsSection.swift */,
 				A96367C2B8A61652E6D40953 /* AppLockView.swift */,
 				AF18C32CBA456F25A62DDA06 /* BackupSettingsSection.swift */,
@@ -1400,6 +1429,14 @@
 				29F45A649ED418ECA9A905D5 /* Subscriptions */,
 			);
 			path = Finance;
+			sourceTree = "<group>";
+		};
+		CA919D70F73B2349F4D9229E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				3861476635AAD711BF7CBD55 /* Mynik.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		CDF20F2E167C5239811BD9BA /* Search */ = {
@@ -1605,6 +1642,11 @@
 		FC7A245E2F00FD221591B1BB /* Sync */ = {
 			isa = PBXGroup;
 			children = (
+				7173C5F390CCCE3845B733DD /* AccountSync.swift */,
+				099656FFE831E722AA9F4E26 /* KeychainAuthStorage.swift */,
+				80464BCCE4E0799B6C50974C /* RawJSON.swift */,
+				7089EB489D949B6F0184EF5F /* SupabaseConfig.swift */,
+				F8A0DF456CE31F17F0D05F74 /* SupabaseSyncRemote.swift */,
 				61DD828F85617ABB06637420 /* SyncEngine.swift */,
 				D35F0BCD6A0867781725F0EB /* SyncEntity.swift */,
 				401523BA73DF50D7611D7790 /* SyncState.swift */,
@@ -1675,6 +1717,7 @@
 			buildPhases = (
 				35906A80AAA617BA0121104E /* Sources */,
 				3D9EC078C1F3EA303797B2BC /* Resources */,
+				E8D634A5EE49B53CF5DF4E1E /* Frameworks */,
 				73FF4E48C5D6DFB1F339AE4E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -1684,6 +1727,8 @@
 			);
 			name = Mynik;
 			packageProductDependencies = (
+				6540F81D6FB021E7481DDFEF /* Auth */,
+				C3CD52E583D1B14A448D1280 /* PostgREST */,
 			);
 			productName = Mynik;
 			productReference = 7751CD4B80BF9C2695EDAF41 /* Mynik.app */;
@@ -1721,6 +1766,9 @@
 			);
 			mainGroup = 80B2ABC926E4BB5E8C934C3C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5C156FFE60C87B700168FFB6 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EC006560AC7740E232A97E7F /* Products */;
 			projectDirPath = "";
@@ -1754,6 +1802,8 @@
 				3AEF24BB4F248010DE0A16AE /* AISettingsSection.swift in Sources */,
 				798FE91064B449D108CEE940 /* AbandonedCheckoutsView.swift in Sources */,
 				DCA76909B10D560A7D001B00 /* Account.swift in Sources */,
+				A4BFD361F3140B0605162689 /* AccountSettingsSection.swift in Sources */,
+				B530E458D2C4BCEA4896E7C7 /* AccountSync.swift in Sources */,
 				48FF7A460878957CD3BA418A /* AccountType.swift in Sources */,
 				A9380F2DFC02E3533A2A9FAD /* AddExpenseIntent.swift in Sources */,
 				54B81FBBB4E47F764D36B613 /* AgendaItem.swift in Sources */,
@@ -1876,6 +1926,7 @@
 				86486611A589FF779CE70441 /* KPICard.swift in Sources */,
 				B6B70213872ED072964FB6EC /* KPITile.swift in Sources */,
 				C29539691765F254A08C2BC2 /* KanbanColumnView.swift in Sources */,
+				F95B36CED7F5DC24D8117F8C /* KeychainAuthStorage.swift in Sources */,
 				5852D68AFE6487DA9A890BA2 /* KeychainService.swift in Sources */,
 				7A407C1403461338CBD451CE /* LifeAgenda.swift in Sources */,
 				2CC105F75E8A9134A4BCA032 /* LinkedTransactionService.swift in Sources */,
@@ -1936,6 +1987,7 @@
 				519614BC15ED1B6EC376F035 /* QuestionRouter.swift in Sources */,
 				9F219A61E6A42AE4B42D0D89 /* QuickEntryService.swift in Sources */,
 				51E373F1AD765E7364F09740 /* QuoteService.swift in Sources */,
+				323C9F789AAABB8A7B21ECE7 /* RawJSON.swift in Sources */,
 				B7003DAA69D49D1D9E0972AC /* ReceiptParser.swift in Sources */,
 				EAFFC0F9AA627467311A6641 /* ReceiptScanButton.swift in Sources */,
 				A3E1860AA0FA76A4B0D70600 /* ReceiptScanner.swift in Sources */,
@@ -1984,6 +2036,8 @@
 				1F0C8BE72C9A9AA06793AD44 /* StoreView.swift in Sources */,
 				04E582C35E0E28C675DC4FC3 /* SubscriptionSummary.swift in Sources */,
 				A22C5B4D282D42926C638E47 /* SubscriptionsView.swift in Sources */,
+				CD4CF02C3CD9AE623483FA3A /* SupabaseConfig.swift in Sources */,
+				98BC0581E608AEEE0CFC546E /* SupabaseSyncRemote.swift in Sources */,
 				2935DE3B1651CA1EA079E226 /* SyncEngine.swift in Sources */,
 				1AF9B42A28306F36118FEF18 /* SyncEntity.swift in Sources */,
 				3974C493BCECCA23F312388C /* SyncState.swift in Sources */,
@@ -2210,6 +2264,7 @@
 		};
 		8C0A9A8D9D70F2B499922212 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3861476635AAD711BF7CBD55 /* Mynik.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2340,6 +2395,7 @@
 		};
 		E66E2A6AE80D171A0DC284CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3861476635AAD711BF7CBD55 /* Mynik.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2455,6 +2511,30 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5C156FFE60C87B700168FFB6 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.55.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6540F81D6FB021E7481DDFEF /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C156FFE60C87B700168FFB6 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		C3CD52E583D1B14A448D1280 /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C156FFE60C87B700168FFB6 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EC5D5C8CDB490A59B1F77CC6 /* Project object */;
 }

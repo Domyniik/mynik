@@ -31,3 +31,6 @@ Secrets.xcconfig
 .claude/settings.local.json
 .claude-flow/
 .swarm/
+
+# Configuração do Supabase (URL do projeto e chave pública)
+Config/Supabase.xcconfig

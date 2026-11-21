@@ -1,0 +1,9 @@
+// Definições partilhadas por todas as configurações (Debug e Release).
+//
+// O Supabase (login e sync) lê-se de Config/Supabase.xcconfig, que fica fora do git.
+// Copia Config/Supabase.xcconfig.example para Config/Supabase.xcconfig e preenche.
+// Sem esse ficheiro a app compila e funciona; só não mostra o login.
+SUPABASE_PROJECT_REF =
+SUPABASE_ANON_KEY =
+
+#include? "Supabase.xcconfig"

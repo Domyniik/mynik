@@ -1,0 +1,7 @@
+// Copia para Config/Supabase.xcconfig (ignorado pelo git) e preenche com os
+// valores de Project Settings → API do teu projeto Supabase.
+// Só a chave pública (anon / publishable). NUNCA a service_role.
+
+// O "Reference ID" do projeto: https://<ref>.supabase.co
+SUPABASE_PROJECT_REF = abcdefghijklmnopqrst
+SUPABASE_ANON_KEY = eyJhbGciOi...
