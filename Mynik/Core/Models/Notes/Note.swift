@@ -12,6 +12,20 @@ final class Note {
     var createdAt: Date = Date.now
     var updatedAt: Date = Date.now
     var sortOrder: Int = 0
+    /// Aparece na secção Favoritos da barra das notas.
+    var isFavorite: Bool = false
+    /// Capa da página (`NoteCover`); vazio = sem capa.
+    var coverRaw: String = ""
+    /// Página guardada como template (não aparece na árvore de páginas).
+    var isTemplate: Bool = false
+    /// A página é uma base de dados: as subpáginas são as linhas.
+    var isDatabase: Bool = false
+    /// Propriedades da base de dados (`[NoteProperty]` em JSON).
+    var databaseSchemaJSON: String = ""
+    /// Vista escolhida da base de dados (`DatabaseViewKind`).
+    var databaseViewRaw: String = "table"
+    /// Valores das propriedades desta linha (`[id da propriedade: valor]` em JSON).
+    var propertyValuesJSON: String = ""
 
     var parent: Note?
 

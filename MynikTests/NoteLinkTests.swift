@@ -21,7 +21,11 @@ struct NoteMarkdownTests {
 
     @Test(arguments: [
         ("# Plano", NoteBlockKind.heading, "Plano", false),
-        ("## Plano", .heading, "Plano", false),
+        ("## Plano", .heading2, "Plano", false),
+        ("### Plano", .heading3, "Plano", false),
+        ("- Pão", .bulleted, "Pão", false),
+        ("> Frase", .quote, "Frase", false),
+        ("1. Primeiro", .numbered, "Primeiro", false),
         ("- [ ] Pão", .checklist, "Pão", false),
         ("- [x] Leite", .checklist, "Leite", true),
         ("[] Ovos", .checklist, "Ovos", false),
@@ -32,7 +36,8 @@ struct NoteMarkdownTests {
 
     @Test func plainTextIsNotAShortcut() {
         #expect(NoteMarkdown.shortcut(for: "#hashtag") == nil)
-        #expect(NoteMarkdown.shortcut(for: "- lista normal") == nil)
+        #expect(NoteMarkdown.shortcut(for: "-sem espaço") == nil)
+        #expect(NoteMarkdown.shortcut(for: "2026 foi bom") == nil)
     }
 
     @Test func parsesMarkdownIntoBlocks() {
@@ -68,7 +73,7 @@ struct NoteMarkdownTests {
 
         Olá
 
-        ## Tarefas
+        # Tarefas
 
         - [ ] A
         - [x] B

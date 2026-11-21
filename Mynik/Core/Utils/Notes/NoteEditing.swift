@@ -77,6 +77,60 @@ enum NoteEditing {
         if let note = block.note { touch(note) }
     }
 
+    /// Aplica uma escolha do menu "/" ao bloco onde se escreveu "/…".
+    ///
+    /// Tipos de texto transformam o bloco; divisor e tabela também, e o divisor
+    /// ganha logo um parágrafo a seguir. Devolve o bloco que deve ficar com o foco
+    /// (`nil` na imagem, que é escolhida à parte).
+    @discardableResult
+    static func applySlashCommand(_ kind: NoteBlockKind, to block: NoteBlock, in note: Note, context: ModelContext) -> NoteBlock? {
+        block.text = ""
+        block.isChecked = false
+        switch kind {
+        case .image:
+            return nil
+        case .divider:
+            block.kind = .divider
+            touch(note)
+            return insertBlock(.text, after: block, in: note, context: context)
+        case .table:
+            block.kind = .table
+            block.text = NoteTable(text: "").text
+            touch(note)
+            return block
+        default:
+            block.kind = kind
+            touch(note)
+            return block
+        }
+    }
+
+    /// Acrescenta blocos lidos de Markdown no fim da página.
+    static func append(_ parsed: [NoteMarkdown.ParsedBlock], to note: Note, context: ModelContext) {
+        var blocks = note.sortedBlocks
+        for item in parsed {
+            let block = NoteBlock(kind: item.kind, text: item.text, isChecked: item.isChecked)
+            if !item.language.isEmpty { block.language = item.language }
+            if !item.emoji.isEmpty { block.emoji = item.emoji }
+            context.insert(block)
+            block.note = note
+            blocks.append(block)
+        }
+        renumber(blocks)
+        touch(note)
+    }
+
+    /// Número de cada item de lista numerada (conta a partir de 1 em cada lista seguida).
+    static func listNumbers(for blocks: [NoteBlock]) -> [String: Int] {
+        var numbers: [String: Int] = [:]
+        var current = 0
+        for block in blocks {
+            current = block.kind == .numbered ? current + 1 : 0
+            if current > 0 { numbers[block.uid] = current }
+        }
+        return numbers
+    }
+
     static func touch(_ note: Note, now: Date = .now) {
         note.updatedAt = now
     }

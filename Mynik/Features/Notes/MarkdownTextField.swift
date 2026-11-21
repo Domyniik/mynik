@@ -10,6 +10,8 @@ struct MarkdownTextField: View {
     var axis: Axis = .horizontal
     var focus: FocusState<String?>.Binding
     let id: String
+    /// `false` mostra o texto tal como está (código).
+    var rendersMarkdown = true
     var onSubmit: (() -> Void)?
 
     private var isEditing: Bool {
@@ -26,7 +28,7 @@ struct MarkdownTextField: View {
             if !isEditing {
                 // Um campo transparente não recebe toques: o texto formatado
                 // passa-lhe o foco (o campo continua na hierarquia, por isso é imediato).
-                Text(NoteMarkdown.attributed(text))
+                Text(rendersMarkdown ? NoteMarkdown.attributed(text) : AttributedString(text))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(.rect)
                     .onTapGesture { focus.wrappedValue = id }

@@ -70,3 +70,13 @@ Substitui o sync por CloudKit (que exige o plano pago). **Local-first:** o Swift
 - [x] Login por email com código de 6 dígitos em Definições → Conta
 - [x] Sync automático: ao abrir, ao voltar ao primeiro plano e depois de gravar (com debounce)
 - [x] Fora do sync: fotos dos documentos e segredos (token da Shopify, etc.)
+
+## Fase 10 — Notas ao estilo wiki (v1.4)
+Funcionalidades recriadas de raiz em SwiftUI + SwiftData a partir do comportamento público de editores por blocos (sem código nem assets de terceiros). Novos campos no esquema V7 (migração automática a partir do V6), todos incluídos na cópia JSON e, por isso, no sync do Supabase.
+- [x] Menu "/" de blocos: títulos 1–3, listas com marcas e numerada, citação, destaque com emoji, alternar, divisor, código e tabela simples (e atalhos Markdown ao escrever)
+- [ ] Reordenar blocos por arrastar e por teclado (atalhos no Mac)
+- [ ] Ícone e capa por página, breadcrumbs e favoritos
+- [ ] Bases de dados: propriedades (texto, número, seleção, data, caixa) e vistas Tabela, Quadro e Calendário
+- [ ] Menções @ (páginas, projetos, gastos e datas) com backlinks
+- [ ] Templates de página
+- [ ] Importar um export do Notion (ZIP com Markdown/CSV)

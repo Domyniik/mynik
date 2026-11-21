@@ -46,10 +46,17 @@ struct NoteEditorView: View {
             .listRowSeparator(.hidden)
 
             Section {
-                ForEach(note.sortedBlocks) { block in
-                    NoteBlockView(block: block, focus: $focusedBlock) {
-                        handleReturn(in: block)
-                    }
+                let blocks = note.sortedBlocks
+                let numbers = NoteEditing.listNumbers(for: blocks)
+                ForEach(blocks) { block in
+                    NoteBlockView(
+                        block: block,
+                        focus: $focusedBlock,
+                        listNumber: numbers[block.uid] ?? 1,
+                        onReturn: { handleReturn(in: block) },
+                        onSlashCommand: { applySlashCommand($0, to: block) },
+                        onDeleteEmpty: { deleteEmpty(block) }
+                    )
                     .listRowSeparator(.hidden)
                     .contextMenu { blockMenu(block) }
                 }
@@ -183,20 +190,49 @@ struct NoteEditorView: View {
             return
         }
         let block = NoteEditing.insertBlock(kind, in: note, context: modelContext)
-        focus(block)
+        if kind == .table { block.text = NoteTable(text: "").text }
+        if kind == .divider {
+            focus(NoteEditing.insertBlock(.text, after: block, in: note, context: modelContext))
+        } else {
+            focus(block)
+        }
     }
 
     /// Return cria o bloco seguinte: outro item numa checklist (ou, se o item
     /// estiver vazio, volta a ser texto, como no Notion) e um parágrafo nos outros.
     private func handleReturn(in block: NoteBlock) {
-        if block.kind == .checklist, block.text.trimmingCharacters(in: .whitespaces).isEmpty {
+        if block.kind.continuesOnReturn, block.text.trimmingCharacters(in: .whitespaces).isEmpty {
             NoteEditing.convert(block, to: .text)
             focusedBlock = block.uid
             return
         }
-        let next: NoteBlockKind = block.kind == .checklist ? .checklist : .text
+        let next: NoteBlockKind = block.kind.continuesOnReturn ? block.kind : .text
         let created = NoteEditing.insertBlock(next, after: block, in: note, context: modelContext)
         focus(created)
+    }
+
+    private func applySlashCommand(_ kind: NoteBlockKind, to block: NoteBlock) {
+        if kind == .image {
+            block.text = ""
+            isImportingImage = true
+            return
+        }
+        if let target = NoteEditing.applySlashCommand(kind, to: block, in: note, context: modelContext) {
+            focus(target)
+        }
+    }
+
+    /// ⌫ num bloco vazio: apaga-o e passa o foco ao bloco de cima.
+    private func deleteEmpty(_ block: NoteBlock) {
+        let blocks = note.sortedBlocks
+        guard blocks.count > 1, let index = blocks.firstIndex(where: { $0 === block }) else { return }
+        if block.kind != .text {
+            NoteEditing.convert(block, to: .text)
+            return
+        }
+        let previous = index > 0 ? blocks[index - 1] : nil
+        NoteEditing.deleteBlock(block, from: note, context: modelContext)
+        if let previous { focusedBlock = previous.uid }
     }
 
     /// Dá o foco a um bloco acabado de criar, depois de ele aparecer na lista
@@ -217,9 +253,7 @@ struct NoteEditorView: View {
         if existing.count == 1, let only = existing.first, only.kind == .text, only.text.isEmpty {
             NoteEditing.deleteBlock(only, from: note, context: modelContext)
         }
-        for item in parsed {
-            NoteEditing.insertBlock(item.kind, text: item.text, in: note, context: modelContext).isChecked = item.isChecked
-        }
+        NoteEditing.append(parsed.filter { $0.kind != .image }, to: note, context: modelContext)
         try? modelContext.save()
     }
 

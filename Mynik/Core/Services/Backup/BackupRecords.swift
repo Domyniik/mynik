@@ -504,6 +504,14 @@ nonisolated struct NoteRecord: Codable, Equatable, Sendable {
     var linkedProjectUIDs: [String] = []
     var linkedTransactionUIDs: [String] = []
     var linkedNoteUIDs: [String] = []
+    // v1.4 (opcionais: cópias e registos antigos não os têm).
+    var isFavorite: Bool?
+    var coverRaw: String?
+    var isTemplate: Bool?
+    var isDatabase: Bool?
+    var databaseSchemaJSON: String?
+    var databaseViewRaw: String?
+    var propertyValuesJSON: String?
 }
 
 extension NoteRecord {
@@ -518,6 +526,13 @@ extension NoteRecord {
         linkedProjectUIDs = (model.linkedProjects ?? []).map(\.uid).sorted()
         linkedTransactionUIDs = (model.linkedTransactions ?? []).map(\.uid).sorted()
         linkedNoteUIDs = (model.linkedNotes ?? []).map(\.uid).sorted()
+        isFavorite = model.isFavorite
+        coverRaw = model.coverRaw
+        isTemplate = model.isTemplate
+        isDatabase = model.isDatabase
+        databaseSchemaJSON = model.databaseSchemaJSON
+        databaseViewRaw = model.databaseViewRaw
+        propertyValuesJSON = model.propertyValuesJSON
     }
 
     /// Copia os valores (sem as relações) para o modelo.
@@ -528,6 +543,13 @@ extension NoteRecord {
         model.createdAt = createdAt
         model.updatedAt = updatedAt
         model.sortOrder = sortOrder
+        model.isFavorite = isFavorite ?? false
+        model.coverRaw = coverRaw ?? ""
+        model.isTemplate = isTemplate ?? false
+        model.isDatabase = isDatabase ?? false
+        model.databaseSchemaJSON = databaseSchemaJSON ?? ""
+        model.databaseViewRaw = databaseViewRaw ?? "table"
+        model.propertyValuesJSON = propertyValuesJSON ?? ""
     }
 }
 
@@ -541,6 +563,11 @@ nonisolated struct NoteBlockRecord: Codable, Equatable, Sendable {
     var sortOrder: Int
     var createdAt: Date
     var noteUID: String?
+    // v1.4 (opcionais: cópias e registos antigos não os têm).
+    var emoji: String?
+    var language: String?
+    var detail: String?
+    var isExpanded: Bool?
 }
 
 extension NoteBlockRecord {
@@ -553,6 +580,10 @@ extension NoteBlockRecord {
         sortOrder = model.sortOrder
         createdAt = model.createdAt
         noteUID = model.note?.uid
+        emoji = model.emoji
+        language = model.language
+        detail = model.detail
+        isExpanded = model.isExpanded
     }
 
     /// Copia os valores (sem as relações) para o modelo.
@@ -564,6 +595,10 @@ extension NoteBlockRecord {
         model.imageData = imageData
         model.sortOrder = sortOrder
         model.createdAt = createdAt
+        model.emoji = emoji ?? "💡"
+        model.language = language ?? ""
+        model.detail = detail ?? ""
+        model.isExpanded = isExpanded ?? false
     }
 }
 

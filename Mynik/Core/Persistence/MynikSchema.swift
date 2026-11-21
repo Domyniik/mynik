@@ -1,11 +1,12 @@
 import SwiftData
 
-/// Versão 6 do esquema (v0.7): hábitos (`Habit` e `HabitCheck`).
+/// Versão 7 do esquema (v1.4): notas ao estilo de um wiki/base de dados —
+/// novos tipos de bloco, capa, favoritos, templates e bases de dados com propriedades.
 ///
 /// Usa os modelos atuais da app. Ao publicar uma versão, congela-se uma cópia
-/// (como `MynikSchemaV5`) antes de mudar os modelos de novo.
-nonisolated enum MynikSchemaV6: VersionedSchema {
-    static let versionIdentifier = Schema.Version(6, 0, 0)
+/// (como `MynikSchemaV6`) antes de mudar os modelos de novo.
+nonisolated enum MynikSchemaV7: VersionedSchema {
+    static let versionIdentifier = Schema.Version(7, 0, 0)
 
     static var models: [any PersistentModel.Type] {
         [
@@ -20,11 +21,14 @@ nonisolated enum MynikSchemaV6: VersionedSchema {
 }
 
 /// Esquema em uso pela app.
-typealias MynikSchemaCurrent = MynikSchemaV6
+typealias MynikSchemaCurrent = MynikSchemaV7
 
 nonisolated enum MynikMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [MynikSchemaV1.self, MynikSchemaV2.self, MynikSchemaV3.self, MynikSchemaV4.self, MynikSchemaV5.self, MynikSchemaV6.self]
+        [
+            MynikSchemaV1.self, MynikSchemaV2.self, MynikSchemaV3.self, MynikSchemaV4.self,
+            MynikSchemaV5.self, MynikSchemaV6.self, MynikSchemaV7.self,
+        ]
     }
 
     static var stages: [MigrationStage] {
@@ -36,6 +40,7 @@ nonisolated enum MynikMigrationPlan: SchemaMigrationPlan {
             .lightweight(fromVersion: MynikSchemaV3.self, toVersion: MynikSchemaV4.self),
             .lightweight(fromVersion: MynikSchemaV4.self, toVersion: MynikSchemaV5.self),
             .lightweight(fromVersion: MynikSchemaV5.self, toVersion: MynikSchemaV6.self),
+            .lightweight(fromVersion: MynikSchemaV6.self, toVersion: MynikSchemaV7.self),
         ]
     }
 }

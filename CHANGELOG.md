@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- feat(notes): menu "/" com títulos 1–3, listas com marcas e numerada, citação, destaque, alternar, divisor, código e tabela; esquema V7 com migração
 - fix(sync): cliente PostgREST sem inicializador obsoleto
 - fix(settings): Conta fala de link de entrada em vez de código
 - docs: README e estado da Fase 9 (v1.3)
