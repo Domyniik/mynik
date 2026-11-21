@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- docs: README e estado da Fase 10 — notas ao estilo wiki (v1.4)
 - test(notes): o payload do sync leva os campos novos das notas (base de dados, capa, favoritos, blocos) e outro dispositivo recebe-os
 - feat(notes): importa um export do Notion (ZIP com Markdown e CSV) com páginas, subpáginas, imagens e bases de dados
 - feat(notes): templates de página (Reunião, Diário, Projeto, Leituras, Semana) e templates próprios com "Guardar como template"

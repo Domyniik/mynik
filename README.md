@@ -6,7 +6,7 @@
 
 **Dashboard pessoal nativa para iPhone e Mac**: finanças, contas a pagar, analytics da loja Shopify, projetos, notas, hábitos, carro, documentos, carreira e património numa só app SwiftUI, com IA no dispositivo e sem servidores.
 
-![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026%20%7C%20macOS%2026-blue) ![SwiftData](https://img.shields.io/badge/SwiftData-local-green) ![Foundation Models](https://img.shields.io/badge/IA-on--device-purple) ![Tests](https://img.shields.io/badge/testes-225-brightgreen)
+![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026%20%7C%20macOS%2026-blue) ![SwiftData](https://img.shields.io/badge/SwiftData-local-green) ![Foundation Models](https://img.shields.io/badge/IA-on--device-purple) ![Tests](https://img.shields.io/badge/testes-273-brightgreen)
 
 <p align="center">
   <img src="docs/screenshots/iphone-hoje.png" width="200" alt="Tela Hoje no iPhone">
@@ -25,7 +25,8 @@
 - 🧾 **Scanner de faturas**: câmara de documentos do VisionKit e OCR do Vision extraem comerciante, total e data, e o gasto aparece já categorizado.
 - 💶 **Finanças completas**: orçamento, contas a pagar com alertas e **Live Activity / Dynamic Island**, assinaturas, multi-moeda EUR/BRL, importação de CSV e gastos automáticos via **Apple Pay**.
 - 🛍️ **Shopify Analytics**: lucro real (sem IVA, custos, envios, taxas e anúncios), ranking de produtos 0–100 com ação sugerida e diagnóstico do funil.
-- 🔥 **Hábitos, revisão semanal ao domingo**, projetos em Kanban, notas estilo Notion com Markdown, carro, documentos com Face ID, carreira e património.
+- 📝 **Notas ao estilo wiki**, feitas de raiz em SwiftUI: menu "/" com 14 tipos de bloco (títulos, listas, alternar, destaque, código, tabela…), **bases de dados** com vistas Tabela, Quadro e Calendário, menções **@** a páginas, projetos, movimentos e datas com backlinks, capas, favoritos, templates e **importação de um export do Notion** (ZIP com Markdown e CSV, leitor de ZIP próprio).
+- 🔥 **Hábitos, revisão semanal ao domingo**, projetos em Kanban, carro, documentos com Face ID, carreira e património.
 - 🔄 **Sync Mac ⇄ iPhone pelo Supabase**, *local-first*: login opcional por email, last-write-wins e tombstones, a app funciona sem conta e sem rede.
 - 🧩 Widgets, Siri/Atalhos, barra de menus no Mac, Calendário e Lembretes na tela Hoje.
 - 🎨 **Sistema visual próprio** (`Core/DesignSystem`): cor da marca, uma cor por módulo, números arredondados, cartões de KPI com mini gráficos e um ícone gerado com CoreGraphics ([scripts/make-icon.swift](scripts/make-icon.swift)).
@@ -54,7 +55,7 @@ Mynik/
   App/            MynikApp, RootView, navegação (AppRouter partilhado, barra lateral / separadores)
   Core/
     Models/       modelos SwiftData (compatíveis com CloudKit: defaults, relações opcionais, sem @Attribute(.unique))
-    Persistence/  esquema versionado V1→V6 com migrações lightweight testadas, dados de exemplo
+    Persistence/  esquema versionado V1→V7 com migrações lightweight testadas, dados de exemplo
     Services/     sync (Supabase), IA (Foundation Models), backup JSON, Shopify, notificações, Live Activity, Keychain, câmbio...
     Utils/        lógica pura e testável: métricas da loja, scorer de produtos, regras de categorias, parser de faturas
     Shared/       código partilhado com a extensão de widgets (resumo por App Group, Live Activity)
@@ -65,7 +66,7 @@ MynikTests/       Swift Testing, com a app como anfitrião e base de dados em me
 ```
 - **Swift 6 com isolamento `MainActor` por omissão** e concorrência estrita; o que corre fora (ferramentas do modelo, OCR) é `nonisolated`/`@concurrent` e só leva tipos `Sendable`.
 - **Lógica fora das views**: serviços e utilitários puros (`ProductScorer`, `MerchantCategoryRules`, `ReceiptParser`, `WeeklyReview`...) com testes; as views só desenham.
-- **Esquema versionado**: cada versão publicada é congelada (`MynikSchemaV1`…`V5`) e há um teste de migração a partir de uma base antiga gravada em disco.
+- **Esquema versionado**: cada versão publicada é congelada (`MynikSchemaV1`…`V6`) e há um teste de migração a partir de uma base antiga gravada em disco.
 - **Modo de demonstração** (`-MynikDemo`): dados de exemplo em memória, sem tocar nos dados reais nem nos widgets — é o que gera as screenshots.
 
 ## Decisões técnicas
@@ -75,7 +76,7 @@ MynikTests/       Swift Testing, com a app como anfitrião e base de dados em me
 - **APIs grátis e sem chaves**: câmbio do BCE ([Frankfurter](https://frankfurter.dev)), preços de combustível do Ministerio para la Transición Ecológica, cotações do Yahoo Finance. A Shopify usa só *scopes* de leitura e o token fica no **Keychain**, nunca no código.
 - **Privacidade**: Face ID opcional para abrir a app, números e fotos dos documentos atrás de autenticação própria (e fora da busca global). Sem conta, nenhum dado sai do dispositivo; com conta, só para o teu projeto Supabase (protegido por RLS), e nunca as fotos dos documentos nem os segredos.
 
-## Estado — v1.3
+## Estado — v1.4
 ✅ **Fase 1 (MVP) concluída**: projeto multiplataforma, modelos SwiftData, navegação adaptativa (barra lateral no Mac/iPad, separadores no iPhone), Finanças (lista, adicionar e editar gastos/receitas) e tela Hoje (saldo do mês, últimos gastos, contas a vencer).
 
 ✅ **Fase 2 (Finanças completas) concluída**: contas a pagar com recorrência e botão "paguei", notificações de vencimento, orçamento mensal por categoria, relatórios com Swift Charts, assinaturas (total mensal/anual), importação de extratos CSV (com deteção de duplicados; exemplo em [docs/exemplo-extrato.csv](docs/exemplo-extrato.csv)) e multi-moeda EUR/BRL com taxa do BCE.
@@ -97,6 +98,8 @@ MynikTests/       Swift Testing, com a app como anfitrião e base de dados em me
 ✅ **v1.2 — Google Ads**: o gasto diário do Google Ads entra no lucro real da loja, importado de uma folha do Google Sheets (sem API paga nem developer token).
 
 ✅ **Fase 9 (Login e sync) concluída — v1.3**: **sync entre o Mac e o iPhone pelo Supabase**, no lugar do CloudKit. *Local-first*: o SwiftData continua a ser a fonte e a app funciona sem conta e sem rede; com sessão iniciada (Definições → Conta, por email com link ou código, sessão no Keychain), cada registo vai para uma tabela `records` com RLS, com **last-write-wins** por registo e **tombstones** para o que se apaga. Sincroniza ao abrir, ao voltar ao primeiro plano e 3 s depois de gravar. As fotos dos documentos e os segredos nunca saem do dispositivo. **243 testes** (Swift Testing), incluindo merge, conflitos e tombstones com dois dispositivos simulados.
+
+✅ **Fase 10 (Notas ao estilo wiki) concluída — v1.4**: funcionalidades estudadas a partir do comportamento público de editores por blocos e recriadas de raiz (sem código nem assets de terceiros). **Menu "/"** com títulos 1–3, listas com marcas e numerada, tarefas, alternar, citação, destaque com emoji, código com linguagem, tabela simples, divisor e imagem, mais atalhos Markdown ao escrever; **blocos reordenáveis** por arrastar e pelo teclado (⇧⌘↑/↓, ⌘D, ⌥⌘0–8); **capa, ícone e favoritos** com caminho clicável; **bases de dados** (propriedades de texto, número, seleção, data e caixa) com vistas **Tabela, Quadro** (arrastar entre colunas) e **Calendário**; **menções @** a páginas, projetos, movimentos e datas, com backlinks; **templates** (5 da app e os teus); e **importação de exports do Notion** (páginas, subpáginas, imagens e bases de dados com tipos inferidos). Esquema **V7** com migração automática; os campos novos entram na cópia JSON e, por isso, no sync com o Supabase. **273 testes** no Mac (271 no iOS).
 
 Detalhe de cada fase em [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
 
