@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Não lançado]
+- fix(settings): Conta fala de link de entrada em vez de código
+- docs: README e estado da Fase 9 (v1.3)
 - feat(settings): entrada pelo link do email (mynik://login) ou colando o link, além do código
 - feat(settings): conta opcional com login por código de 6 dígitos e sync automático
 - feat(sync): cliente Supabase com tabela records, RLS e sessão no Keychain

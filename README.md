@@ -26,6 +26,7 @@
 - 💶 **Finanças completas**: orçamento, contas a pagar com alertas e **Live Activity / Dynamic Island**, assinaturas, multi-moeda EUR/BRL, importação de CSV e gastos automáticos via **Apple Pay**.
 - 🛍️ **Shopify Analytics**: lucro real (sem IVA, custos, envios, taxas e anúncios), ranking de produtos 0–100 com ação sugerida e diagnóstico do funil.
 - 🔥 **Hábitos, revisão semanal ao domingo**, projetos em Kanban, notas estilo Notion com Markdown, carro, documentos com Face ID, carreira e património.
+- 🔄 **Sync Mac ⇄ iPhone pelo Supabase**, *local-first*: login opcional por email, last-write-wins e tombstones, a app funciona sem conta e sem rede.
 - 🧩 Widgets, Siri/Atalhos, barra de menus no Mac, Calendário e Lembretes na tela Hoje.
 - 🎨 **Sistema visual próprio** (`Core/DesignSystem`): cor da marca, uma cor por módulo, números arredondados, cartões de KPI com mini gráficos e um ícone gerado com CoreGraphics ([scripts/make-icon.swift](scripts/make-icon.swift)).
 - ♿️ Liquid Glass nos controlos, modo escuro, Dynamic Type, VoiceOver, contraste AA e Reduzir movimento.
@@ -54,7 +55,7 @@ Mynik/
   Core/
     Models/       modelos SwiftData (compatíveis com CloudKit: defaults, relações opcionais, sem @Attribute(.unique))
     Persistence/  esquema versionado V1→V6 com migrações lightweight testadas, dados de exemplo
-    Services/     IA (Foundation Models), backup JSON, Shopify, notificações, Live Activity, Keychain, câmbio...
+    Services/     sync (Supabase), IA (Foundation Models), backup JSON, Shopify, notificações, Live Activity, Keychain, câmbio...
     Utils/        lógica pura e testável: métricas da loja, scorer de produtos, regras de categorias, parser de faturas
     Shared/       código partilhado com a extensão de widgets (resumo por App Group, Live Activity)
   Features/       um módulo por secção (Today, Finance, Store, Assistant, Habits, Search, ...) com views pequenas
@@ -68,13 +69,13 @@ MynikTests/       Swift Testing, com a app como anfitrião e base de dados em me
 - **Modo de demonstração** (`-MynikDemo`): dados de exemplo em memória, sem tocar nos dados reais nem nos widgets — é o que gera as screenshots.
 
 ## Decisões técnicas
-- **SwiftData local + cópia de segurança JSON em vez de CloudKit.** O sync por iCloud exige o Apple Developer Program. Os modelos continuam compatíveis com CloudKit, mas os dados passam entre dispositivos por um ficheiro JSON completo (AirDrop, iCloud Drive ou Ficheiros) com fusão por `uid`, sem duplicados.
+- **Sync local-first com Supabase em vez de CloudKit.** O sync por iCloud exige o Apple Developer Program. O SwiftData continua a ser a fonte; o Supabase guarda uma cópia numa **tabela genérica** `records(user_id, entity, key, payload jsonb, deleted, modified_at, updated_at)` ([SQL](supabase/migrations/20261121000000_records.sql)), em que o `payload` é o mesmo registo JSON da cópia de segurança — mudar os modelos não obriga a mudar a base de dados. Como os modelos não têm data de alteração, o `SyncEngine` descobre o que mudou por hash desde o último sync; os conflitos resolvem-se por **last-write-wins** (também no servidor, com um gatilho) e apagar envia um **tombstone**. RLS com `auth.uid()` em tudo; a app só tem a chave pública. A cópia JSON (AirDrop, iCloud Drive ou Ficheiros) continua disponível.
 - **Sem plano pago da Apple.** Nada de notarização, TestFlight nem push remoto: a app do Mac é distribuída por uma cask do Homebrew e assinada com o certificado grátis da Personal Team (o que permite o App Group dos widgets). As Live Activities são atualizadas localmente pela app e as notificações são todas locais.
 - **IA só no dispositivo.** Foundation Models com verificação de disponibilidade em runtime; a categorização limita a resposta às categorias existentes (`DynamicGenerationSchema`) e o chat junta os dados do tema à pergunta, porque o modelo pequeno nem sempre chama as ferramentas. Sem Apple Intelligence há sempre um caminho com regras.
 - **APIs grátis e sem chaves**: câmbio do BCE ([Frankfurter](https://frankfurter.dev)), preços de combustível do Ministerio para la Transición Ecológica, cotações do Yahoo Finance. A Shopify usa só *scopes* de leitura e o token fica no **Keychain**, nunca no código.
-- **Privacidade**: Face ID opcional para abrir a app, números e fotos dos documentos atrás de autenticação própria (e fora da busca global), nenhum dado sai do dispositivo.
+- **Privacidade**: Face ID opcional para abrir a app, números e fotos dos documentos atrás de autenticação própria (e fora da busca global). Sem conta, nenhum dado sai do dispositivo; com conta, só para o teu projeto Supabase (protegido por RLS), e nunca as fotos dos documentos nem os segredos.
 
-## Estado — v1.1
+## Estado — v1.3
 ✅ **Fase 1 (MVP) concluída**: projeto multiplataforma, modelos SwiftData, navegação adaptativa (barra lateral no Mac/iPad, separadores no iPhone), Finanças (lista, adicionar e editar gastos/receitas) e tela Hoje (saldo do mês, últimos gastos, contas a vencer).
 
 ✅ **Fase 2 (Finanças completas) concluída**: contas a pagar com recorrência e botão "paguei", notificações de vencimento, orçamento mensal por categoria, relatórios com Swift Charts, assinaturas (total mensal/anual), importação de extratos CSV (com deteção de duplicados; exemplo em [docs/exemplo-extrato.csv](docs/exemplo-extrato.csv)) e multi-moeda EUR/BRL com taxa do BCE.
@@ -92,6 +93,10 @@ MynikTests/       Swift Testing, com a app como anfitrião e base de dados em me
 ✅ **Fase 8 (Polimento e lançamento) concluída — v1.0**: Liquid Glass (botões de vidro, barra de separadores que encolhe), cor de destaque com variantes para modo escuro e alto contraste, Dynamic Type com layouts verticais nos tamanhos de acessibilidade, Reduzir movimento, rótulos únicos para VoiceOver e Controlo por Voz; **Face ID opcional** para abrir a app; cópia de segurança completa com os hábitos; **223 testes** com Swift Testing; screenshots reais e este README. O TestFlight ficou de fora por exigir o plano pago (ver [Instalar](#instalar)).
 
 ✅ **v1.1 — Redesign visual**: design system em `Core/DesignSystem` (tokens de espaçamento e raio, cor da marca violeta com variantes, cor de destaque por módulo, tipografia dos números com `.rounded` e algarismos fixos, cartões, KPIs com variação e mini gráficos em Swift Charts, estados vazios); tela **Hoje** em painel de cartões com o saldo sobre o gradiente da marca, ações rápidas em Liquid Glass e duas colunas no Mac; **Finanças** e **Loja** com KPIs e gráficos mais limpos, seletor de período em vidro com `matchedGeometryEffect`; Carro, Carreira, Património, Projetos, Documentos e Definições com o mesmo sistema; haptics no iPhone; **ícone da app** gerado por código. Contraste verificado (≥ 4,5:1) e layouts próprios para os tamanhos de acessibilidade.
+
+✅ **v1.2 — Google Ads**: o gasto diário do Google Ads entra no lucro real da loja, importado de uma folha do Google Sheets (sem API paga nem developer token).
+
+✅ **Fase 9 (Login e sync) concluída — v1.3**: **sync entre o Mac e o iPhone pelo Supabase**, no lugar do CloudKit. *Local-first*: o SwiftData continua a ser a fonte e a app funciona sem conta e sem rede; com sessão iniciada (Definições → Conta, por email com link ou código, sessão no Keychain), cada registo vai para uma tabela `records` com RLS, com **last-write-wins** por registo e **tombstones** para o que se apaga. Sincroniza ao abrir, ao voltar ao primeiro plano e 3 s depois de gravar. As fotos dos documentos e os segredos nunca saem do dispositivo. **243 testes** (Swift Testing), incluindo merge, conflitos e tombstones com dois dispositivos simulados.
 
 Detalhe de cada fase em [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
 
@@ -114,6 +119,8 @@ brew install xcodegen
 xcodegen generate
 open Mynik.xcodeproj
 ```
+
+Login e sync (opcional): copia `Config/Supabase.xcconfig.example` para `Config/Supabase.xcconfig` (fora do git) e preenche o *Reference ID* e a chave pública (*publishable/anon*) do teu projeto Supabase; aplica [supabase/migrations](supabase/migrations) no SQL Editor e acrescenta `mynik://login` às *Redirect URLs* (Authentication → URL Configuration). Sem esse ficheiro a app compila e funciona sem login.
 
 Testes (Swift Testing):
 ```bash
