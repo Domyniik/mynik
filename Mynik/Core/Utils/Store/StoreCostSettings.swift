@@ -13,6 +13,8 @@ nonisolated struct StoreCostSettings: Equatable, Sendable {
     var shippingCostPerOrder: Double = Self.defaultShippingCost
     /// Anúncios gerais por mês, não atribuídos a um produto.
     var monthlyAdSpend: Double = 0
+    /// Gasto do Google Ads sem produto nos últimos 30 dias (importado da folha).
+    var googleAdsUnattributed: Double = 0
 
     static let defaultFeePercent = 2.1
     static let defaultFeeFixed = 0.25
@@ -22,12 +24,14 @@ nonisolated struct StoreCostSettings: Equatable, Sendable {
         paymentFeePercent: Double = Self.defaultFeePercent,
         paymentFeeFixed: Double = Self.defaultFeeFixed,
         shippingCostPerOrder: Double = Self.defaultShippingCost,
-        monthlyAdSpend: Double = 0
+        monthlyAdSpend: Double = 0,
+        googleAdsUnattributed: Double = 0
     ) {
         self.paymentFeePercent = paymentFeePercent
         self.paymentFeeFixed = paymentFeeFixed
         self.shippingCostPerOrder = shippingCostPerOrder
         self.monthlyAdSpend = monthlyAdSpend
+        self.googleAdsUnattributed = googleAdsUnattributed
     }
 
     init(defaults: UserDefaults) {
@@ -38,7 +42,8 @@ nonisolated struct StoreCostSettings: Equatable, Sendable {
             paymentFeePercent: value(SettingsKey.storeFeePercent, Self.defaultFeePercent),
             paymentFeeFixed: value(SettingsKey.storeFeeFixed, Self.defaultFeeFixed),
             shippingCostPerOrder: value(SettingsKey.storeShippingCost, Self.defaultShippingCost),
-            monthlyAdSpend: value(SettingsKey.storeMonthlyAds, 0)
+            monthlyAdSpend: value(SettingsKey.storeMonthlyAds, 0),
+            googleAdsUnattributed: value(SettingsKey.googleAdsUnattributed30d, 0)
         )
     }
 
@@ -49,7 +54,8 @@ nonisolated struct StoreCostSettings: Equatable, Sendable {
     }
 
     var shippingCost: Decimal { Decimal.from(shippingCostPerOrder) }
-    var monthlyAds: Decimal { Decimal.from(monthlyAdSpend) }
+    /// Anúncios gerais por mês: os manuais (Meta, TikTok...) mais o Google Ads sem produto.
+    var monthlyAds: Decimal { Decimal.from(monthlyAdSpend) + Decimal.from(googleAdsUnattributed) }
 }
 
 extension Decimal {

@@ -13,13 +13,15 @@ struct StoreCostSettingsSection: View {
             amountField("Taxa de pagamento (%)", value: $feePercent, format: .number.precision(.fractionLength(0...2)).locale(.app))
             amountField("Taxa fixa por pedido", value: $feeFixed, format: .currency(code: Currency.defaultCode).locale(.app))
             amountField("Envio por pedido", value: $shippingCost, format: .currency(code: Currency.defaultCode).locale(.app))
-            amountField("Anúncios gerais / mês", value: $monthlyAds, format: .currency(code: Currency.defaultCode).locale(.app))
+            amountField("Outros anúncios / mês", value: $monthlyAds, format: .currency(code: Currency.defaultCode).locale(.app))
             Toggle("Lançar o lucro mensal nas Finanças", isOn: $profitToFinance)
         } header: {
             ListSectionHeader("Custos da loja", systemImage: "creditcard", color: .pink)
         } footer: {
-            Text("Entram no lucro real junto com o custo de cada produto. O gasto em anúncios de um produto define-se na ficha do produto. O lucro de cada mês entra nas Finanças como receita da categoria Loja (só com a loja real ligada).")
+            Text("Entram no lucro real junto com o custo de cada produto. “Outros anúncios” é o que não vem do Google Ads (Meta, TikTok...). O lucro de cada mês entra nas Finanças como receita da categoria Loja (só com a loja real ligada).")
         }
+
+        GoogleAdsSettingsSection()
     }
 
     private func amountField<F: ParseableFormatStyle>(

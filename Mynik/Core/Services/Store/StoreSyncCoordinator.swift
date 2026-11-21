@@ -17,6 +17,8 @@ final class StoreSyncCoordinator {
     private(set) var isSyncing = false
     private(set) var lastError: String?
     private(set) var trafficWarning: String?
+    /// Erro da última leitura do Google Ads (não impede a sincronização da loja).
+    private(set) var adsWarning: String?
     private(set) var lastSyncedAt: Date?
     private(set) var shopName: String
     /// `true` enquanto a cache tem os dados de exemplo.
@@ -85,8 +87,9 @@ final class StoreSyncCoordinator {
             trafficWarning = snapshot.trafficUnavailableReason
             lastError = nil
 
-            // Notificações e lucro nas Finanças só para a loja real.
+            // Notificações, Google Ads e lucro nas Finanças só para a loja real.
             if credentials != nil {
+                await importGoogleAdsSpend(in: context, now: now)
                 if StoreProfitPoster.isEnabled {
                     try StoreProfitPoster.post(in: context, costs: StoreCostSettings(defaults: defaults), since: since, now: now, calendar: calendar)
                 }
@@ -98,6 +101,32 @@ final class StoreSyncCoordinator {
         } catch {
             lastError = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
             return nil
+        }
+    }
+
+    /// Lê o gasto do Google Ads da folha configurada nas Definições, se houver.
+    func importGoogleAdsSpend(in context: ModelContext, now: Date = .now) async {
+        let input = defaults.string(forKey: SettingsKey.googleAdsSheet) ?? ""
+        guard !input.isEmpty else {
+            adsWarning = nil
+            return
+        }
+        guard let sheetID = GoogleAdsSpendImporter.sheetID(from: input) else {
+            adsWarning = GoogleAdsSpendImporter.ImportError.invalidSheet.errorDescription
+            return
+        }
+        do {
+            let rows = try await GoogleAdsSpendImporter.fetch(sheetID: sheetID)
+            let rate = defaults.object(forKey: SettingsKey.brlPerEUR) as? Double ?? CurrencyConverter.defaultBRLPerEUR
+            let summary = GoogleAdsSpendImporter.summarize(
+                rows, now: now, calendar: calendar, converter: CurrencyConverter(storedRate: rate)
+            )
+            try GoogleAdsSpendImporter.apply(summary, to: context, defaults: defaults, now: now)
+            adsWarning = nil
+        } catch is CancellationError {
+            return
+        } catch {
+            adsWarning = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
         }
     }
 

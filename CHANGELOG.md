@@ -72,3 +72,4 @@
 - fix(a11y): contraste dos cartões de destaque e ações rápidas em grelha com texto grande
 - fix(design): KPIs com a mesma altura na grelha e seletor de período com largura máxima no Mac
 - docs: screenshots e README do redesign visual (v1.1)
+- feat(store): importa o gasto do Google Ads de uma folha do Google Sheets

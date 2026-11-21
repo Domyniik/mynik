@@ -22,6 +22,13 @@ nonisolated enum SettingsKey {
     /// IDs dos últimos pedidos já notificados.
     static let storeNotifiedOrders = "storeNotifiedOrders"
     static let storeProfitToFinance = "storeProfitToFinance"
+    /// URL (ou ID) da folha do Google Sheets com o gasto do Google Ads.
+    static let googleAdsSheet = "googleAdsSheet"
+    /// Gasto do Google Ads sem produto, últimos 30 dias (EUR).
+    static let googleAdsUnattributed30d = "googleAdsUnattributed30d"
+    /// Gasto total do Google Ads, últimos 30 dias (EUR).
+    static let googleAdsTotal30d = "googleAdsTotal30d"
+    static let googleAdsLastImport = "googleAdsLastImport"
     /// Vista das tarefas: "board" (Kanban) ou "list".
     static let taskLayout = "taskLayout"
     /// Lembretes dos prazos da agenda (carro, documentos, follow-ups).
