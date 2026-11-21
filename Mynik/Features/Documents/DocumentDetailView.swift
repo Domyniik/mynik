@@ -187,17 +187,12 @@ struct DocumentPhotoViewer: View {
                 }
             }
             .navigationTitle(title)
-            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
-            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Fechar") { dismiss() }
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 600, minHeight: 500)
-        #endif
     }
 }

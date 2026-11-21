@@ -65,9 +65,6 @@ struct CarDeadlineFormView: View {
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 420, minHeight: 440)
-        #endif
     }
 
     private var footer: String {
@@ -136,9 +133,6 @@ struct CompleteDeadlineSheet: View {
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 380, minHeight: 240)
-        #endif
     }
 
     private var footer: String {

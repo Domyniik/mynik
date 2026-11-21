@@ -32,9 +32,7 @@ struct VehicleFormView: View {
                 Section {
                     TextField("Nome (ex.: Golf)", text: $name)
                     TextField("Matrícula", text: $plate)
-                        #if os(iOS)
                         .textInputAutocapitalization(.characters)
-                        #endif
                     Picker("Combustível", selection: $fuelType) {
                         ForEach(FuelType.allCases) { Text($0.title).tag($0) }
                     }
@@ -67,9 +65,6 @@ struct VehicleFormView: View {
                 Button("Apagar", role: .destructive, action: delete)
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 420, minHeight: 420)
-        #endif
     }
 
     private func save() {

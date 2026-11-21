@@ -43,8 +43,6 @@ nonisolated enum SettingsKey {
     static let savingsMonthlyTarget = "savingsMonthlyTarget"
     /// Os `uid` dos registos anteriores à v0.6 já foram tornados únicos.
     static let stableIDsRepaired = "stableIDsRepaired"
-    /// Mac: ícone do Mynik na barra de menus.
-    static let showMenuBarExtra = "showMenuBarExtra"
     /// Eventos do Calendário e lembretes na tela Hoje.
     static let showCalendarOnToday = "showCalendarOnToday"
     /// Sugerir a categoria dos movimentos novos (IA no dispositivo ou regras).

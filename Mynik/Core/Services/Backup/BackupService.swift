@@ -1,8 +1,6 @@
 import Foundation
 import SwiftData
-#if canImport(UIKit)
 import UIKit
-#endif
 
 /// Exporta todos os dados para uma `BackupArchive` e importa-a de volta,
 /// juntando ao que já existe sem criar duplicados.
@@ -69,11 +67,7 @@ enum BackupService {
     }
 
     private static var deviceName: String {
-        #if os(macOS)
-        Host.current().localizedName ?? "Mac"
-        #else
         UIDevice.current.model
-        #endif
     }
 
     // MARK: - Importar

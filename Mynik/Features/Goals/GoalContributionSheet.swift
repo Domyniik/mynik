@@ -19,9 +19,7 @@ struct GoalContributionSheet: View {
             Form {
                 Section {
                     TextField("Valor", value: $amount, format: .currency(code: goal.currencyCode))
-                        #if os(iOS)
                         .keyboardType(.decimalPad)
-                        #endif
                     if goal.source == .category {
                         DatePicker("Data", selection: $date, displayedComponents: .date)
                         Picker("Conta", selection: $account) {
@@ -51,9 +49,6 @@ struct GoalContributionSheet: View {
             .onAppear { account = account ?? accounts.first }
             .alert("Não foi possível guardar", isPresented: $isShowingSaveError) { }
         }
-        #if os(macOS)
-        .frame(minWidth: 380, minHeight: 260)
-        #endif
     }
 
     private func save() {

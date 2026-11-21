@@ -77,10 +77,8 @@ struct StoreSettingsSection: View {
         TextField("Endereço da loja", text: $domainInput, prompt: Text("neloce.myshopify.com"))
             .textContentType(.URL)
             .autocorrectionDisabled()
-            #if os(iOS)
             .textInputAutocapitalization(.never)
             .keyboardType(.URL)
-            #endif
 
         Picker("Tipo de app", selection: $authMode) {
             ForEach(AuthMode.allCases) { Text($0.title).tag($0) }
@@ -91,9 +89,7 @@ struct StoreSettingsSection: View {
         case .devDashboard:
             TextField("Client ID", text: $clientID)
                 .autocorrectionDisabled()
-                #if os(iOS)
                 .textInputAutocapitalization(.never)
-                #endif
             SecureField("Client secret", text: $clientSecret)
         case .legacyToken:
             SecureField("Token Admin API (shpat_…)", text: $accessToken)

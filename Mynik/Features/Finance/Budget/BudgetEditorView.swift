@@ -21,9 +21,7 @@ struct BudgetEditorView: View {
                     LabeledContent {
                         TextField("Orçamento", value: $amount, format: .currency(code: Currency.defaultCode))
                             .multilineTextAlignment(.trailing)
-                            #if os(iOS)
                             .keyboardType(.decimalPad)
-                            #endif
                     } label: {
                         Label(category.name, systemImage: category.symbolName)
                     }
@@ -52,9 +50,6 @@ struct BudgetEditorView: View {
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 360, minHeight: 220)
-        #endif
         .presentationDetents([.medium])
     }
 

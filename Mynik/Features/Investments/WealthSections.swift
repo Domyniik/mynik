@@ -123,8 +123,5 @@ struct SavingsTargetSheet: View {
             }
             .onAppear { amount = Decimal(string: String(target)) ?? 0 }
         }
-        #if os(macOS)
-        .frame(minWidth: 360, minHeight: 200)
-        #endif
     }
 }

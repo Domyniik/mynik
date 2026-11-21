@@ -1,9 +1,7 @@
 import PhotosUI
 import SwiftUI
 import UniformTypeIdentifiers
-#if os(iOS)
 import VisionKit
-#endif
 
 /// Botão "Digitalizar fatura": câmara (iPhone), foto ou ficheiro → OCR → gasto pré-preenchido.
 struct ReceiptScanButton: View {
@@ -17,11 +15,9 @@ struct ReceiptScanButton: View {
 
     var body: some View {
         Menu {
-            #if os(iOS)
             if VNDocumentCameraViewController.isSupported {
                 Button("Câmara", systemImage: "camera") { isShowingCamera = true }
             }
-            #endif
             Button("Escolher foto", systemImage: "photo") { isShowingPhotos = true }
             Button("Abrir ficheiro", systemImage: "folder") { isImportingFile = true }
         } label: {
@@ -54,7 +50,6 @@ struct ReceiptScanButton: View {
             }
             Task { await scan(data) }
         }
-        #if os(iOS)
         .fullScreenCover(isPresented: $isShowingCamera) {
             DocumentCameraView { data in
                 isShowingCamera = false
@@ -62,7 +57,6 @@ struct ReceiptScanButton: View {
             }
             .ignoresSafeArea()
         }
-        #endif
         .sheet(item: $draft) { scanned in
             TransactionFormView(prefill: scanned.draft)
         }
@@ -103,7 +97,6 @@ extension TransactionDraft {
     }
 }
 
-#if os(iOS)
 /// Câmara de documentos do VisionKit (recorta e endireita a fatura).
 private struct DocumentCameraView: UIViewControllerRepresentable {
     let onFinish: (Data?) -> Void
@@ -136,4 +129,3 @@ private struct DocumentCameraView: UIViewControllerRepresentable {
         }
     }
 }
-#endif

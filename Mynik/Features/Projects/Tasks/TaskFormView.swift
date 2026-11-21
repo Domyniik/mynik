@@ -65,9 +65,6 @@ struct TaskFormView: View {
             }
             .alert("Não foi possível guardar", isPresented: $isShowingSaveError) { }
         }
-        #if os(macOS)
-        .frame(minWidth: 420, minHeight: 420)
-        #endif
     }
 
     private func save() {

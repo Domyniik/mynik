@@ -23,7 +23,7 @@ nonisolated enum DS {
         static let badge: CGFloat = 9
     }
 
-    /// Largura máxima do conteúdo dos painéis em ecrãs largos (Mac/iPad).
+    /// Largura máxima do conteúdo dos painéis em ecrãs largos (iPad).
     static let readableWidth: CGFloat = 980
 }
 
@@ -33,20 +33,12 @@ extension Color {
 
     /// Fundo das páginas em estilo painel (agrupado).
     static var dsBackground: Color {
-        #if os(iOS)
         Color(uiColor: .systemGroupedBackground)
-        #else
-        Color(nsColor: .windowBackgroundColor)
-        #endif
     }
 
     /// Superfície dos cartões, por cima do fundo.
     static var dsSurface: Color {
-        #if os(iOS)
         Color(uiColor: .secondarySystemGroupedBackground)
-        #else
-        Color(nsColor: .controlBackgroundColor)
-        #endif
     }
 
     /// Cores fixas do gradiente da marca (o cartão principal usa texto branco por cima).

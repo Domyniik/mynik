@@ -9,9 +9,6 @@ struct MynikApp: App {
     @State private var storeSync = StoreSyncCoordinator(defaults: AppEnvironment.defaults)
     @State private var router = AppRouter()
     @State private var accountSync = AccountSync()
-    #if os(macOS)
-    @AppStorage(SettingsKey.showMenuBarExtra) private var showMenuBarExtra = true
-    #endif
 
     var body: some Scene {
         WindowGroup(id: Self.mainWindowID) {
@@ -22,9 +19,6 @@ struct MynikApp: App {
                 .environment(accountSync)
         }
         .modelContainer(modelContainer)
-        #if os(macOS)
-        .defaultSize(width: 1280, height: 820)
-        #endif
         .commands {
             CommandGroup(after: .textEditing) {
                 Button("Pesquisar no Mynik…", systemImage: "magnifyingglass") {
@@ -33,18 +27,9 @@ struct MynikApp: App {
                 .keyboardShortcut("k", modifiers: .command)
             }
         }
-        #if os(iOS)
         .backgroundTask(.appRefresh(StoreBackgroundRefresh.taskIdentifier)) { [modelContainer, storeSync] in
             await StoreBackgroundRefresh.run(container: modelContainer, coordinator: storeSync)
         }
-        #endif
 
-        #if os(macOS)
-        MenuBarExtra("Mynik", systemImage: "eurosign.circle", isInserted: $showMenuBarExtra) {
-            MenuBarContentView()
-                .modelContainer(modelContainer)
-        }
-        .menuBarExtraStyle(.window)
-        #endif
     }
 }

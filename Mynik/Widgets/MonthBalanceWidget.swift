@@ -15,11 +15,7 @@ struct MonthBalanceWidget: Widget {
     }
 
     private var families: [WidgetFamily] {
-        #if os(iOS)
         [.systemSmall, .systemMedium, .accessoryRectangular, .accessoryInline, .accessoryCircular]
-        #else
-        [.systemSmall, .systemMedium]
-        #endif
     }
 }
 

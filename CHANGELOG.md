@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Não lançado]
+- refactor: remove versão macOS em Swift (o Mac passa para a app desktop em Tauri); o app Swift fica só para iPhone e iPad
+- docs: checklist de paridade iOS ↔ desktop (docs/FEATURES.md)
 - docs: README e estado da Fase 10 — notas ao estilo wiki (v1.4)
 - test(notes): o payload do sync leva os campos novos das notas (base de dados, capa, favoritos, blocos) e outro dispositivo recebe-os
 - feat(notes): importa um export do Notion (ZIP com Markdown e CSV) com páginas, subpáginas, imagens e bases de dados

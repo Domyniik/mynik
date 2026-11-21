@@ -1,4 +1,3 @@
-#if os(iOS)
 import ActivityKit
 import SwiftUI
 import WidgetKit
@@ -83,4 +82,3 @@ private enum BillDueText {
             : "\(base) · abre o Mynik para marcar como paga"
     }
 }
-#endif

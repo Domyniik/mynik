@@ -63,10 +63,8 @@ struct ApplicationFormView: View {
                     TextField("Local (cidade, remoto…)", text: $location)
                     TextField("Link do anúncio", text: $link)
                         .autocorrectionDisabled()
-                        #if os(iOS)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.URL)
-                        #endif
                     TextField("Salário", text: $salary)
                     TextField("Contacto (recrutador)", text: $contact)
                     TextField("Notas", text: $notes, axis: .vertical).lineLimit(2...6)
@@ -84,9 +82,6 @@ struct ApplicationFormView: View {
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 440, minHeight: 560)
-        #endif
     }
 
     private func save() {
@@ -159,10 +154,8 @@ struct CourseFormView: View {
                 Section {
                     TextField("Link", text: $link)
                         .autocorrectionDisabled()
-                        #if os(iOS)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.URL)
-                        #endif
                     TextField("ID da credencial", text: $credentialID)
                     Toggle("O certificado expira", isOn: $hasExpiry.animation())
                     if hasExpiry {
@@ -191,9 +184,6 @@ struct CourseFormView: View {
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 440, minHeight: 500)
-        #endif
     }
 
     private func save() {

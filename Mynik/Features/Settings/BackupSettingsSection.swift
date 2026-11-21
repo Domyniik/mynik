@@ -2,7 +2,7 @@ import SwiftData
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// Cópia de segurança em JSON: substitui o sync por iCloud entre o Mac e o iPhone.
+/// Cópia de segurança em JSON: substitui o sync por iCloud entre dispositivos.
 struct BackupSettingsSection: View {
     @Environment(\.modelContext) private var modelContext
 

@@ -23,9 +23,7 @@ struct PropertyValueEditor: View {
             TextField("0", text: value)
                 .textFieldStyle(.plain)
                 .monospacedDigit()
-                #if os(iOS)
                 .keyboardType(.decimalPad)
-                #endif
         case .checkbox:
             Toggle(property.name, isOn: Binding {
                 value.wrappedValue == "true"
@@ -122,7 +120,6 @@ struct SelectTag: View {
     }
 }
 
-#if os(iOS)
 /// No iOS não há estilo de caixa: usa-se um botão com o símbolo.
 private struct CheckboxToggleStyle: ToggleStyle {
     func makeBody(configuration: Configuration) -> some View {
@@ -138,7 +135,6 @@ private struct CheckboxToggleStyle: ToggleStyle {
 extension ToggleStyle where Self == CheckboxToggleStyle {
     static var checkbox: CheckboxToggleStyle { CheckboxToggleStyle() }
 }
-#endif
 
 /// Propriedades de uma linha, mostradas no topo da página dela.
 struct NoteRowPropertiesView: View {

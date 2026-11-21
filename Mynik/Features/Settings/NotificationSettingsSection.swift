@@ -32,12 +32,10 @@ struct NotificationSettingsSection: View {
                     Task { await NotificationService.shared.scheduleWeeklyReview() }
                 }
 
-            #if os(iOS)
             Toggle("Conta de hoje no ecrã bloqueado e na Dynamic Island", isOn: $isLiveActivityEnabled)
                 .onChange(of: isLiveActivityEnabled) {
                     BillLiveActivityService.sync(in: modelContext, converter: CurrencyConverter())
                 }
-            #endif
 
             if isEnabled || isAgendaEnabled {
                 if status == .denied {
@@ -85,14 +83,8 @@ struct NotificationSettingsSection: View {
     }
 
     private func openSystemSettings() {
-        #if os(iOS)
         if let url = URL(string: UIApplication.openNotificationSettingsURLString) {
             openURL(url)
         }
-        #else
-        if let url = URL(string: "x-apple.systempreferences:com.apple.Notifications-Settings.extension") {
-            openURL(url)
-        }
-        #endif
     }
 }

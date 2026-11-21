@@ -71,9 +71,6 @@ struct GoalFormView: View {
             }
             .alert("Não foi possível guardar", isPresented: $isShowingSaveError) { }
         }
-        #if os(macOS)
-        .frame(minWidth: 440, minHeight: 600)
-        #endif
     }
 
     @ViewBuilder
@@ -104,9 +101,7 @@ struct GoalFormView: View {
     private func amountField(_ title: String, value: Binding<Decimal>) -> some View {
         TextField(title, value: value, format: .currency(code: draft.currencyCode))
             .multilineTextAlignment(.trailing)
-            #if os(iOS)
             .keyboardType(.decimalPad)
-            #endif
     }
 
     private func save() {

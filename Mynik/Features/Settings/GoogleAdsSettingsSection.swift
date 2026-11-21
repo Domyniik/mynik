@@ -18,10 +18,8 @@ struct GoogleAdsSettingsSection: View {
         Section {
             TextField("Folha do Google Sheets", text: $sheet, prompt: Text("https://docs.google.com/spreadsheets/d/…"))
                 .autocorrectionDisabled()
-                #if os(iOS)
                 .textInputAutocapitalization(.never)
                 .keyboardType(.URL)
-                #endif
 
             if lastImport > 0 {
                 LabeledContent("Gasto nos últimos 30 dias") {
