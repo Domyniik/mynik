@@ -173,7 +173,9 @@ struct NoteBlockView: View {
             }
             .fixedSize(horizontal: false, vertical: true)
         default:
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
+            // Topo e não linha de base: um campo vazio não tem linha de base
+            // e o texto de exemplo descia uma linha.
+            HStack(alignment: .top, spacing: 8) {
                 marker
                 textField
             }
@@ -192,6 +194,7 @@ struct NoteBlockView: View {
                     .foregroundStyle(block.isChecked ? Color.accentColor : .secondary)
             }
             .buttonStyle(.borderless)
+            .padding(.top, 2)
             .accessibilityLabel(block.isChecked ? "Desmarcar" : "Marcar")
         case .bulleted:
             Text("•").fontWeight(.bold).accessibilityHidden(true)

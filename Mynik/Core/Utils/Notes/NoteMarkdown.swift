@@ -120,6 +120,8 @@ nonisolated enum NoteMarkdown {
 
     // MARK: Importar
 
+    private static let emptyItems: Set<String> = ["-", "*", "- [ ]", "- [x]", "[]", "[ ]"]
+
     /// Lê Markdown em blocos. Percebe títulos, listas, tarefas, citações,
     /// código entre ` ``` `, tabelas `| a | b |`, `<aside>` (destaques), divisores
     /// e imagens; linhas seguidas juntam-se num parágrafo.
@@ -188,7 +190,8 @@ nonisolated enum NoteMarkdown {
                 flushParagraph()
                 blocks.append(ParsedBlock(kind: .image, text: String(image.output.1),
                                           imagePath: String(image.output.2).removingPercentEncoding ?? String(image.output.2)))
-            } else if let block = shortcut(for: line) {
+            } else if let block = shortcut(for: emptyItems.contains(line) || line.wholeMatch(of: /\d{1,3}\./) != nil ? line + " " : line) {
+                // Itens vazios ("-", "1.", "- [ ]") também contam.
                 flushParagraph()
                 blocks.append(block)
             } else {

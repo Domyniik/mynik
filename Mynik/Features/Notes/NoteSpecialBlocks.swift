@@ -8,7 +8,7 @@ struct NoteCalloutBlockView<Field: View>: View {
     static var emojis: [String] { ["💡", "⚠️", "📌", "✅", "❗️", "🔥", "💰", "📣", "🧠", "ℹ️"] }
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 10) {
+        HStack(alignment: .top, spacing: 10) {
             Menu {
                 ForEach(Self.emojis, id: \.self) { emoji in
                     Button(emoji) { block.emoji = emoji }
@@ -35,7 +35,7 @@ struct NoteToggleBlockView<Field: View>: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            HStack(alignment: .firstTextBaseline, spacing: 6) {
+            HStack(alignment: .top, spacing: 6) {
                 Button {
                     withAnimation(.snappy) { block.isExpanded.toggle() }
                 } label: {

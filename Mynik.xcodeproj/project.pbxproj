@@ -16,6 +16,7 @@
 		03F24CC5501AA831CD103BB5 /* DSRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E312499532419DC15E4080 /* DSRow.swift */; };
 		040911C82255CE9C1CC51EDE /* BackupSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF18C32CBA456F25A62DDA06 /* BackupSettingsSection.swift */; };
 		04E582C35E0E28C675DC4FC3 /* SubscriptionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ECA72E07A88F503F4EBA6B /* SubscriptionSummary.swift */; };
+		04EB3289E153AC5BA0978D11 /* NoteTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B76DE95BB6D2C7B7DE06 /* NoteTemplates.swift */; };
 		06A4E6BFC1C1F42C13C7AE32 /* StoreOperationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B7D63F1BAB07C14608D8B /* StoreOperationsSection.swift */; };
 		07093EEDDF9B510902B98E89 /* VehicleFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC99CA866177F1A9725D61DB /* VehicleFormView.swift */; };
 		08C092C5517656C74E514777 /* BillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA02C15A95151DFB6279136 /* BillsView.swift */; };
@@ -155,6 +156,7 @@
 		62BD52D30AD0682673B771CE /* TransactionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD15C2B08326AB35697CFE2 /* TransactionRow.swift */; };
 		6337E228FBDE9FCC019523AB /* FuelPriceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160B72D81375C7433F69229 /* FuelPriceService.swift */; };
 		6346D37603A469F1891B716C /* GoalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8177B8DCEB1DB4729312A4B /* GoalTests.swift */; };
+		642668EC49B0A4B1D46F8A31 /* NoteTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15F4BD217F8028298D36B3F /* NoteTemplateTests.swift */; };
 		64BF6FC898E1312E41571BBD /* GoogleAdsSpendImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E4718A6383459AAFF1D8CC /* GoogleAdsSpendImporter.swift */; };
 		6675CC986C2817B206D79C98 /* ledger-anchors.json in Resources */ = {isa = PBXBuildFile; fileRef = F7F69BEC6E4F3B08743B2DF0 /* ledger-anchors.json */; };
 		67D0210735EB4229D75A61AD /* StoreSyncBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D7A2EC2BA1F03493411F5 /* StoreSyncBanner.swift */; };
@@ -419,6 +421,7 @@
 		117B5DFB8D00ACA458A24A1F /* CarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTests.swift; sourceTree = "<group>"; };
 		11D3A94471BDA2CAC0454107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11E4718A6383459AAFF1D8CC /* GoogleAdsSpendImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdsSpendImporter.swift; sourceTree = "<group>"; };
+		1222B76DE95BB6D2C7B7DE06 /* NoteTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTemplates.swift; sourceTree = "<group>"; };
 		12532BD863D7C55F47E611DB /* BackupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupService.swift; sourceTree = "<group>"; };
 		12A6ACD2EA7B6310B5B2ADB1 /* FinanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTests.swift; sourceTree = "<group>"; };
 		12CD504154831A0C55327F5C /* MynikDataDigest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MynikDataDigest.swift; sourceTree = "<group>"; };
@@ -606,6 +609,7 @@
 		9F843F6CA87E0C1B5CEF7887 /* NoteBlockCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBlockCommands.swift; sourceTree = "<group>"; };
 		A0324A941BD780F70892ACB1 /* BackupRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecords.swift; sourceTree = "<group>"; };
 		A11448131C950A903ADAD76D /* TaskFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormView.swift; sourceTree = "<group>"; };
+		A15F4BD217F8028298D36B3F /* NoteTemplateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTemplateTests.swift; sourceTree = "<group>"; };
 		A1CA666DBA2C13C497684A85 /* AISettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettingsSection.swift; sourceTree = "<group>"; };
 		A1CC6AD7FD4DEC857E1FD439 /* BillRecurrence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillRecurrence.swift; sourceTree = "<group>"; };
 		A2BD2200C46C0AC16E7F29C3 /* GoalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailView.swift; sourceTree = "<group>"; };
@@ -850,6 +854,7 @@
 				C287E28BF3724B292D35D774 /* NoteDatabaseTests.swift */,
 				FB1312CBAAEE13E768F12E7C /* NoteLinkTests.swift */,
 				78D2BB3AAEE884DB63325984 /* NoteMentionTests.swift */,
+				A15F4BD217F8028298D36B3F /* NoteTemplateTests.swift */,
 				3F72A031D4270F21FDBF146A /* NoteTests.swift */,
 				25E88AC39536468607949428 /* ProductLifecycleTests.swift */,
 				61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */,
@@ -1446,6 +1451,7 @@
 				5861C98CD85CF0495A9DCD60 /* NoteLinks.swift */,
 				6DE226DC18FE1A8C2A2F6D24 /* NoteMarkdown.swift */,
 				FBF0A9856B2D806E3DA56354 /* NoteMention.swift */,
+				1222B76DE95BB6D2C7B7DE06 /* NoteTemplates.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -2022,6 +2028,7 @@
 				8D40C3AA1803D8A2D9D22875 /* NoteMarkdown.swift in Sources */,
 				E088885133D100A7F9A77BBF /* NoteMention.swift in Sources */,
 				15D3F025B123931A866C33D9 /* NoteSpecialBlocks.swift in Sources */,
+				04EB3289E153AC5BA0978D11 /* NoteTemplates.swift in Sources */,
 				51AE339D8771A2136A95E5AB /* NotesView.swift in Sources */,
 				856A66E5D2A80399016D5822 /* NotificationService.swift in Sources */,
 				B4DF570C11EC52D89818EEC6 /* NotificationSettingsSection.swift in Sources */,
@@ -2163,6 +2170,7 @@
 				B8C8A9164A18294B5C349106 /* NoteDatabaseTests.swift in Sources */,
 				1B1629964F2D70F88D04D75A /* NoteLinkTests.swift in Sources */,
 				02169A2079609A78E9D4AB37 /* NoteMentionTests.swift in Sources */,
+				642668EC49B0A4B1D46F8A31 /* NoteTemplateTests.swift in Sources */,
 				00D3DF4C37594119ACC978FA /* NoteTests.swift in Sources */,
 				FE62F256C8AA4E24D982B264 /* ProductLifecycleTests.swift in Sources */,
 				CE2C99033249EC1A76B4847B /* ProductScorerTests.swift in Sources */,

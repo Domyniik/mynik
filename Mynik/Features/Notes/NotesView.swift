@@ -4,7 +4,8 @@ import SwiftUI
 /// Páginas de notas em árvore (com subpáginas) e pesquisa.
 struct NotesView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(filter: #Predicate<Note> { $0.parent == nil }, sort: \Note.sortOrder) private var roots: [Note]
+    @Query(filter: #Predicate<Note> { $0.parent == nil && !$0.isTemplate }, sort: \Note.sortOrder) private var roots: [Note]
+    @Query(filter: #Predicate<Note> { $0.isTemplate }, sort: \Note.title) private var templates: [Note]
     @Query(sort: \Note.updatedAt, order: .reverse) private var allNotes: [Note]
     @Query(filter: #Predicate<Note> { $0.isFavorite }, sort: \Note.title) private var favorites: [Note]
 
@@ -16,7 +17,7 @@ struct NotesView: View {
         List {
             if !searchText.isEmpty {
                 Section("Resultados") {
-                    let results = NoteSearch.filter(allNotes, matching: searchText)
+                    let results = NoteSearch.filter(allNotes.filter { !$0.isTemplate }, matching: searchText)
                     if results.isEmpty {
                         ContentUnavailableView.search(text: searchText)
                     }
@@ -46,6 +47,13 @@ struct NotesView: View {
                         row(note, showsPath: false)
                     }
                 }
+                if !templates.isEmpty {
+                    Section("Templates") {
+                        ForEach(templates) { template in
+                            row(template, showsPath: false)
+                        }
+                    }
+                }
             }
         }
         .navigationTitle("Notas")
@@ -64,6 +72,24 @@ struct NotesView: View {
             ToolbarItem(placement: .secondaryAction) {
                 Button("Nova base de dados", systemImage: "tablecells.badge.ellipsis") { createDatabase() }
                     .keyboardShortcut("n", modifiers: [.command, .option])
+            }
+            ToolbarItem(placement: .secondaryAction) {
+                Menu("Nova a partir de template", systemImage: "doc.on.doc") {
+                    ForEach(NoteTemplates.builtIn) { template in
+                        Button("\(template.icon) \(NoteTemplates.fill(template.title))") {
+                            open(NoteTemplates.instantiate(template, in: modelContext))
+                        }
+                    }
+                    if !templates.isEmpty {
+                        Section("Os meus templates") {
+                            ForEach(templates) { template in
+                                Button("\(template.icon) \(template.displayTitle)") {
+                                    open(NoteTemplates.instantiate(template: template, in: modelContext))
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         .confirmationDialog(
@@ -116,6 +142,13 @@ struct NotesView: View {
         } else {
             openedNote = NoteEditing.makeNote(parent: parent, in: modelContext)
         }
+        try? modelContext.save()
+    }
+
+    /// Abre uma página criada a partir de um template (no fim da lista).
+    private func open(_ note: Note) {
+        note.sortOrder = (roots.map(\.sortOrder).max() ?? -1) + 1
+        openedNote = note
         try? modelContext.save()
     }
 

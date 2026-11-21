@@ -127,6 +127,18 @@ struct NoteEditorView: View {
                 }
                 .keyboardShortcut("f", modifiers: [.command, .shift])
             }
+            ToolbarItem(placement: .secondaryAction) {
+                if note.isTemplate {
+                    Button("Nova página a partir deste template", systemImage: "doc.on.doc") {
+                        openedNote = NoteTemplates.instantiate(template: note, in: modelContext)
+                    }
+                } else {
+                    Button("Guardar como template", systemImage: "square.on.square.dashed") {
+                        NoteTemplates.saveAsTemplate(note, in: modelContext)
+                        try? modelContext.save()
+                    }
+                }
+            }
             ToolbarItem(placement: .primaryAction) {
                 ShareLink(
                     item: NoteMarkdown.export(title: note.displayTitle, blocks: note.sortedBlocks),

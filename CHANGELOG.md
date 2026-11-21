@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- feat(notes): templates de página (Reunião, Diário, Projeto, Leituras, Semana) e templates próprios com "Guardar como template"
 - feat(notes): menções @ a páginas, projetos, movimentos e datas, com ligação automática, backlinks "Menciona esta" e links que abrem o destino
 - feat(notes): bases de dados com propriedades (texto, número, seleção, data, caixa) e vistas Tabela, Quadro e Calendário
 - feat(notes): capa com gradientes, qualquer emoji como ícone, breadcrumbs clicáveis e favoritos (⇧⌘F) com secção própria
