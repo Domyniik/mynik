@@ -1,85 +1,85 @@
 #!/usr/bin/env bash
-# Publica uma versão do Mynik para macOS:
-#   1. compila a app (Release, universal) a partir de um commit limpo
-#   2. cria a release no GitHub com Mynik-<versão>.zip
-#   3. atualiza a cask em Domyniik/homebrew-tap
+# Publica uma versão da app desktop do Mynik (Tauri, Mac + Windows):
+#   1. põe a versão em web/, desktop/ e no tauri.conf.json, faz commit e tag vX.Y.Z
+#   2. o push da tag corre o workflow .github/workflows/desktop.yml, que compila
+#      os .dmg (Apple Silicon e Intel) e o .exe e os publica na GitHub Release
+#   3. espera pelo workflow e atualiza a cask em Domyniik/homebrew-tap
 #
-# Uso: scripts/release.sh <versão> [commit]
-#   scripts/release.sh 0.2.0            # usa origin/main
-#   scripts/release.sh 0.1.0 0ee1452    # usa um commit específico
-#
-# Instalação depois de publicar:
-#   brew install --cask domyniik/tap/mynik
+# Uso: scripts/release.sh <versão>        (ex.: scripts/release.sh 2.0.0)
+# Instalar no Mac depois de publicar: brew install --cask domyniik/tap/mynik
 set -euo pipefail
 
-VERSION="${1:?Uso: scripts/release.sh <versão> [commit]}"
-REF="${2:-origin/main}"
+VERSION="${1:?Uso: scripts/release.sh <versão>}"
 TAG="v$VERSION"
 APP_REPO="Domyniik/mynik"
 TAP_REPO="Domyniik/homebrew-tap"
-
 ROOT="$(git -C "$(dirname "$0")" rev-parse --show-toplevel)"
 WORK="$(mktemp -d)"
-SRC="$WORK/src"
+cd "$ROOT"
 
-cleanup() {
-    git -C "$ROOT" worktree remove --force "$SRC" 2>/dev/null || true
-}
-trap cleanup EXIT
-
-git -C "$ROOT" fetch -q origin
-COMMIT="$(git -C "$ROOT" rev-parse "$REF^{commit}")"
-echo "▸ Mynik $VERSION a partir de ${COMMIT:0:7}"
-
-# Compila numa worktree limpa, para não depender do estado da pasta de trabalho.
-git -C "$ROOT" worktree add --detach -q "$SRC" "$COMMIT"
-cd "$SRC"
-# Configuração do Supabase (fora do git): sem ela, a versão publicada não tem login nem sync.
-if [[ -f "$ROOT/Config/Supabase.xcconfig" ]]; then
-    cp "$ROOT/Config/Supabase.xcconfig" "$SRC/Config/Supabase.xcconfig"
-else
-    echo "⚠︎ Sem Config/Supabase.xcconfig: esta versão sai sem login nem sync."
+if [[ -n "$(git status --porcelain)" ]]; then
+    echo "✗ Há alterações por gravar. Faz commit primeiro." >&2
+    exit 1
 fi
-xcodegen generate --quiet
 
-# Assinatura: certificado "Apple Development" (Personal Team, grátis), definido
-# no project.yml. É o que permite o App Group partilhado com os widgets; a app
-# continua sem notarização (a cask remove a quarentena).
-echo "▸ A compilar (Release, arm64 + x86_64)…"
-xcodebuild \
-    -project Mynik.xcodeproj \
-    -scheme Mynik \
-    -configuration Release \
-    -destination 'generic/platform=macOS' \
-    -derivedDataPath "$WORK/build" \
-    MARKETING_VERSION="$VERSION" \
-    build -quiet
+echo "▸ Versão $VERSION"
+sed -i '' -E "s/^version = \".*\"/version = \"$VERSION\"/" desktop/src-tauri/Cargo.toml
+for f in desktop/src-tauri/tauri.conf.json desktop/package.json web/package.json; do
+    sed -i '' -E "1,10s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" "$f"
+done
+(cd desktop/src-tauri && cargo update -p mynik --offline -q 2>/dev/null || true)
+if [[ -n "$(git status --porcelain)" ]]; then
+    git commit -qam "chore: versão $VERSION"
+fi
+git tag "$TAG"
+git push -q origin HEAD "$TAG"
 
-APP="$WORK/build/Build/Products/Release/Mynik.app"
-codesign --verify --deep --strict "$APP"
-test -d "$APP/Contents/PlugIns/MynikWidgets.appex"
-ZIP="$WORK/Mynik-$VERSION.zip"
-ditto -c -k --keepParent "$APP" "$ZIP"
-SHA256="$(shasum -a 256 "$ZIP" | awk '{print $1}')"
-echo "▸ $(basename "$ZIP") · sha256 $SHA256"
-
-echo "▸ A publicar a release $TAG…"
-gh release create "$TAG" "$ZIP" \
-    --repo "$APP_REPO" \
-    --target "$COMMIT" \
-    --title "Mynik $VERSION" \
-    --notes "Instalar no Mac: \`brew install --cask domyniik/tap/mynik\`
-
-Ver o [CHANGELOG](https://github.com/$APP_REPO/blob/$TAG/CHANGELOG.md)."
+echo "▸ A compilar no GitHub Actions (Mac e Windows)…"
+sleep 10
+RUN_ID="$(gh run list --repo "$APP_REPO" --workflow desktop.yml --branch "$TAG" --limit 1 --json databaseId --jq '.[0].databaseId')"
+gh run watch "$RUN_ID" --repo "$APP_REPO" --exit-status
 
 echo "▸ A atualizar a cask em $TAP_REPO…"
+gh release download "$TAG" --repo "$APP_REPO" --pattern "*.dmg" --dir "$WORK"
+ARM_SHA="$(shasum -a 256 "$WORK/Mynik_${VERSION}_aarch64.dmg" | awk '{print $1}')"
+INTEL_SHA="$(shasum -a 256 "$WORK/Mynik_${VERSION}_x64.dmg" | awk '{print $1}')"
+
 gh repo clone "$TAP_REPO" "$WORK/tap" -- -q
-CASK="$WORK/tap/Casks/mynik.rb"
-sed -i '' \
-    -e "s/^  version \".*\"/  version \"$VERSION\"/" \
-    -e "s/^  sha256 \".*\"/  sha256 \"$SHA256\"/" \
-    "$CASK"
-git -C "$WORK/tap" commit -q -am "mynik $VERSION"
+cat > "$WORK/tap/Casks/mynik.rb" <<CASK
+cask "mynik" do
+  arch arm: "aarch64", intel: "x64"
+
+  version "$VERSION"
+  sha256 arm:   "$ARM_SHA",
+         intel: "$INTEL_SHA"
+
+  url "https://github.com/$APP_REPO/releases/download/v#{version}/Mynik_#{version}_#{arch}.dmg"
+  name "Mynik"
+  desc "Dashboard pessoal: finanças, contas a pagar, loja, projetos e notas"
+  homepage "https://github.com/$APP_REPO"
+
+  depends_on macos: ">= :big_sur"
+
+  app "Mynik.app"
+
+  # A app não é notarizada pela Apple: retira a quarentena para abrir sem bloqueio.
+  postflight_steps do
+    if_path_exists "{{appdir}}/Mynik.app" do
+      run "/usr/bin/xattr",
+          args: ["-dr", "com.apple.quarantine", "{{appdir}}/Mynik.app"]
+    end
+  end
+
+  uninstall quit: "com.domynik.mynik.desktop"
+
+  zap trash: [
+    "~/Library/Application Support/com.domynik.mynik.desktop",
+    "~/Library/Caches/com.domynik.mynik.desktop",
+    "~/Library/WebKit/com.domynik.mynik.desktop",
+  ]
+end
+CASK
+git -C "$WORK/tap" commit -q -am "mynik $VERSION (app desktop Tauri)"
 git -C "$WORK/tap" push -q
 
 echo "✓ Publicado. Para atualizar: brew update && brew upgrade --cask mynik"
