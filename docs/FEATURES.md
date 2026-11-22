@@ -136,15 +136,15 @@ iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a venc
 - [x] Notas ligadas ao projeto
 
 ### 3.5 Metas
-- [ ] Ativas e arquivadas, total juntado vs alvo total
-- [ ] Meta: nome, valor-alvo, moeda, prazo, ícone, cor, origem do progresso (manual / saldo de uma conta / movimentos de uma categoria desde uma data)
-- [ ] Detalhe: progresso, falta, juntar por mês, prazo passado, movimentos que contam
-- [ ] "Juntar dinheiro": soma ao manual ou cria o movimento na categoria (ver 4.9)
+- [x] Ativas e arquivadas, total juntado vs alvo total
+- [x] Meta: nome, valor-alvo, moeda, prazo, ícone, cor, origem do progresso (manual / saldo de uma conta / movimentos de uma categoria desde uma data)
+- [x] Detalhe: progresso, falta, juntar por mês, prazo passado, movimentos que contam
+- [x] "Juntar dinheiro": soma ao manual ou cria o movimento na categoria (ver 4.9)
 
 ### 3.6 Hábitos
-- [ ] Lista com marcação do dia, sequência, semana atual vs objetivo e últimos 7 dias
-- [ ] Criar/editar/arquivar (nome, ícone, cor, objetivo semanal 1–7)
-- [ ] Resumo "N de M feitos hoje"
+- [x] Lista com marcação do dia, sequência, semana atual vs objetivo e últimos 7 dias
+- [x] Criar/editar/arquivar (nome, ícone, cor, objetivo semanal 1–7)
+- [x] Resumo "N de M feitos hoje"
 
 ### 3.7 Património (investimentos)
 - [ ] Resumo: dinheiro nas contas, investido, valor atual, ganho e %, património líquido
