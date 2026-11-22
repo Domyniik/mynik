@@ -124,3 +124,14 @@ test("o ranking cobre todos os ramos da classificação", async () => {
   for (const c of ["winner", "promising", "testing", "loser"]) assert.ok(classes.has(c), `falta ${c}`);
   assert.ok(!expected.products.some((p) => p.productID.endsWith("/6")), "produto inativo não entra");
 });
+
+test("pontos diários: a soma dos 30 dias dá as vendas e o lucro de 30 dias", async () => {
+  const db = await freshDatabase();
+  await asUser(db, USER_A, async (tx) => {
+    await load(tx);
+    const points = (await tx.query("select sum(sales)::float8 s, count(*)::int n from public.store_daily_points(30, $1, $2)", [now, tz])).rows[0];
+    const kpi = (await tx.query("select gross_sales::float8 s from public.store_kpis(30, $1, $2) where period = 'current'", [now, tz])).rows[0];
+    assert.equal(points.n, 30);
+    assert.ok(Math.abs(points.s - kpi.s) < 1e-6);
+  });
+});

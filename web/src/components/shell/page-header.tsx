@@ -34,7 +34,7 @@ export function Kpi({ label, value, note, tone = "muted" }: { label: string; val
   return (
     <div className="flex min-w-0 flex-col gap-2 rounded-[14px] border border-border bg-card p-[18px]">
       <span className="text-[13px] text-muted-foreground">{label}</span>
-      <span className="tabular truncate text-[28px] font-bold tracking-tight">{value}</span>
+      <span className="tabular text-[22px] leading-tight font-bold tracking-tight break-words xl:text-[28px]">{value}</span>
       {note && <span className={`text-xs ${toneClass}`}>{note}</span>}
     </div>
   );

@@ -108,23 +108,23 @@ iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a venc
 - [x] **Scanner de faturas**: imagem ou PDF → comerciante, total e data (desktop: OCR com tesseract.js no dispositivo, mesmo parser)
 
 ### 3.3 Loja (Shopify — Neloce)
-- [ ] Cabeçalho com nome da loja, estado do sync e "Atualizar"; dados de exemplo enquanto a loja não está ligada
-- [ ] Período Hoje / 7 dias / 30 dias, comparado com o período anterior igual
-- [ ] KPIs: vendas, pedidos, ticket médio, lucro real, conversão, com variação
-- [ ] Decomposição do lucro real: vendas brutas − IVA − artigos − envio − taxas − anúncios, com margem
-- [ ] Aviso de produtos vendidos sem custo definido
-- [ ] Gráfico diário de vendas e lucro dos últimos 30 dias
-- [ ] **Ranking de produtos** (tabela ordenável, filtros Todos/Vencedores/Promissores/Em teste/Perdedores), score 0–100 com barra, estado, unidades, receita, margem (ver 4.1)
-- [ ] **Painel de diagnóstico** ao lado do ranking (mockup): funil do produto, "onde o funil quebra", ação sugerida, "Registar decisão"
-- [ ] Detalhe do produto: últimos 30 dias (unidades, devolvidas, receita, preço, margem, stock, dias de stock), fatores do score com pontos, custo por unidade e anúncios editáveis, "voltar ao custo da Shopify"
-- [ ] **Ciclo de vida**: produtos por fase (decisão pendente, em teste, a escalar, mantido, descontinuado), decidir, nota, desfazer, avisos de revisão (ver 4.4)
-- [ ] **Funil da loja**: visitas → carrinho → checkout → compra, período 7/30 dias, diagnóstico e sugestões (ver 4.3)
-- [ ] **Pedidos por enviar**, com dias à espera e atrasados (> 3 dias)
-- [ ] **Carrinhos abandonados** (30 dias): valor total, link de recuperação (copiar)
-- [ ] **Alertas**: dias sem venda, pedidos atrasados, produto parado, stock baixo (ver 4.5)
-- [ ] Últimos pedidos (com reembolsos)
-- [ ] Lucro de cada mês lançado nas Finanças (ver 4.7)
-- [ ] Gasto do Google Ads importado de uma Google Sheet pública (por produto pelo URL final, o resto como anúncios gerais)
+- [x] Cabeçalho com nome da loja, estado do sync e "Atualizar"; dados de exemplo enquanto a loja não está ligada
+- [x] Período Hoje / 7 dias / 30 dias, comparado com o período anterior igual
+- [x] KPIs: vendas, pedidos, ticket médio, lucro real, conversão, com variação
+- [x] Decomposição do lucro real: vendas brutas − IVA − artigos − envio − taxas − anúncios, com margem
+- [x] Aviso de produtos vendidos sem custo definido
+- [x] Gráfico diário de vendas e lucro dos últimos 30 dias
+- [x] **Ranking de produtos** (tabela ordenável, filtros Todos/Vencedores/Promissores/Em teste/Perdedores), score 0–100 com barra, estado, unidades, receita, margem (ver 4.1)
+- [x] **Painel de diagnóstico** ao lado do ranking (mockup): funil do produto, "onde o funil quebra", ação sugerida, "Registar decisão"
+- [x] Detalhe do produto: últimos 30 dias (unidades, devolvidas, receita, preço, margem, stock, dias de stock), fatores do score com pontos, custo por unidade e anúncios editáveis, "voltar ao custo da Shopify"
+- [x] **Ciclo de vida**: produtos por fase (decisão pendente, em teste, a escalar, mantido, descontinuado), decidir, nota, desfazer, avisos de revisão (ver 4.4)
+- [x] **Funil da loja**: visitas → carrinho → checkout → compra, período 7/30 dias, diagnóstico e sugestões (ver 4.3)
+- [x] **Pedidos por enviar**, com dias à espera e atrasados (> 3 dias)
+- [x] **Carrinhos abandonados** (30 dias): valor total, link de recuperação (copiar)
+- [x] **Alertas**: dias sem venda, pedidos atrasados, produto parado, stock baixo (ver 4.5)
+- [x] Últimos pedidos (com reembolsos)
+- [x] Lucro de cada mês lançado nas Finanças (ver 4.7)
+- [x] Gasto do Google Ads importado de uma Google Sheet pública (por produto pelo URL final, o resto como anúncios gerais)
 
 ### 3.4 Projetos e tarefas
 - [ ] Projetos por estado (em curso, em pausa, concluídos) com progresso e tarefas abertas
@@ -334,9 +334,9 @@ Começa por = 0, uma palavra começa por = 1, contém = 2; campos secundários +
 | 5.11 | Backup JSON por AirDrop/Ficheiros | Exportar/importar o mesmo JSON |
 | 5.12 | MenuBarExtra no Mac (saldo, contas a 7 dias, gasto rápido) | Tray do Tauri |
 
-- [ ] 5.1 Shopify no servidor
+- [x] 5.1 Shopify no servidor
 - [ ] 5.2 Login e dados no Supabase
-- [ ] 5.3 APIs grátis
+- [x] 5.3 APIs grátis
 - [ ] 5.4 Notificações nativas
 - [ ] 5.5 Bloqueio da app e dos documentos
 - [ ] 5.6 Calendário por iCal
