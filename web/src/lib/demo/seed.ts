@@ -209,7 +209,7 @@ function lifeRows(): Row[] {
     note(`NOTE-BOOK-${i}`, title, "📖", {
       parentUID: "NOTE-BOOKS",
       sortOrder: i,
-      propertyValuesJSON: JSON.stringify({ author, status, ...(rating != null ? { rating } : {}) }),
+      propertyValuesJSON: JSON.stringify({ author, status, ...(rating != null ? { rating: String(rating) } : {}) }),
     });
   }
   return rows;

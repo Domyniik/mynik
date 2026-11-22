@@ -127,13 +127,13 @@ iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a venc
 - [x] Gasto do Google Ads importado de uma Google Sheet pública (por produto pelo URL final, o resto como anúncios gerais)
 
 ### 3.4 Projetos e tarefas
-- [ ] Projetos por estado (em curso, em pausa, concluídos) com progresso e tarefas abertas
-- [ ] Criar/editar/apagar projeto (nome, descrição, ícone, cor, estado, prazo)
-- [ ] Tarefas avulsas (sem projeto)
-- [ ] Vista **Kanban** com **arrastar e largar** entre colunas (extra desktop) e vista **lista**; preferência guardada
-- [ ] Tarefa: título, notas, estado, prioridade (baixa/normal/alta), prazo, projeto; mover entre estados; atrasadas marcadas
-- [ ] Ordenação das colunas (ver 4.11)
-- [ ] Notas ligadas ao projeto
+- [x] Projetos por estado (em curso, em pausa, concluídos) com progresso e tarefas abertas
+- [x] Criar/editar/apagar projeto (nome, descrição, ícone, cor, estado, prazo)
+- [x] Tarefas avulsas (sem projeto)
+- [x] Vista **Kanban** com **arrastar e largar** entre colunas (extra desktop) e vista **lista**; preferência guardada
+- [x] Tarefa: título, notas, estado, prioridade (baixa/normal/alta), prazo, projeto; mover entre estados; atrasadas marcadas
+- [x] Ordenação das colunas (ver 4.11)
+- [x] Notas ligadas ao projeto
 
 ### 3.5 Metas
 - [ ] Ativas e arquivadas, total juntado vs alvo total
