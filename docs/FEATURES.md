@@ -156,12 +156,12 @@ iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a venc
 - [x] Meta de poupança mensal: poupado este mês, taxa de poupança, progresso (ver 4.10)
 
 ### 3.8 Carro
-- [ ] Vários veículos, escolha do atual; criar/editar/apagar (nome, matrícula, combustível, km iniciais, notas)
-- [ ] Resumo: consumo médio e último (L/100 km ou kWh/100 km), custo por km, km atuais, gráfico do consumo por abastecimento
-- [ ] Abastecimentos: data, km, quantidade, total, preço/L calculado, depósito atestado, posto; lançar nas Finanças (categoria "Carro")
-- [ ] Manutenções: tipo (revisão, óleo, pneus, travões, bateria, reparação, outra), data, km, custo, oficina, próxima por data ou por km; lançar nas Finanças
-- [ ] Prazos ITV / seguro / imposto / outro com valor e repetição; "Feito" lança o valor e passa ao próximo vencimento (ver 4.13)
-- [ ] Preços de combustível em Espanha por província (API do Ministerio): mais baratos, média, perto de mim (10 km), abrir no mapa
+- [x] Vários veículos, escolha do atual; criar/editar/apagar (nome, matrícula, combustível, km iniciais, notas)
+- [x] Resumo: consumo médio e último (L/100 km ou kWh/100 km), custo por km, km atuais, gráfico do consumo por abastecimento
+- [x] Abastecimentos: data, km, quantidade, total, preço/L calculado, depósito atestado, posto; lançar nas Finanças (categoria "Carro")
+- [x] Manutenções: tipo (revisão, óleo, pneus, travões, bateria, reparação, outra), data, km, custo, oficina, próxima por data ou por km; lançar nas Finanças
+- [x] Prazos ITV / seguro / imposto / outro com valor e repetição; "Feito" lança o valor e passa ao próximo vencimento (ver 4.13)
+- [x] Preços de combustível em Espanha por província (API do Ministerio): mais baratos, média, perto de mim (10 km), abrir no mapa
 
 ### 3.9 Documentos
 - [ ] Lista por estado (expirados, a expirar, válidos, sem validade) com "Expira em N dias"
