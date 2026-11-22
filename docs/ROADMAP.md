@@ -91,3 +91,5 @@ Arquitetura: iPhone → Swift · Mac e Windows → Tauri (Next.js) · dados → 
 - [x] Web (/web): Next.js + Tailwind + shadcn/ui com todos os itens do FEATURES.md
 - [x] App desktop (/desktop): Tauri v2, tray, atalho global, notificações, iniciar com o sistema
 - [x] Instaladores .dmg e .exe por GitHub Actions; cask do Homebrew aponta para o .dmg
+- [x] Docs: CLAUDE.md (nova arquitetura e regras de release), README (stack 100% grátis, instalar sem conta paga), CHANGELOG
+- [x] Release v2.0.0 (GitHub Release com .dmg e .exe, cask do Homebrew)
