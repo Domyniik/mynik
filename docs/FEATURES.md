@@ -92,20 +92,20 @@ iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a venc
 - [ ] Revisão semanal (ver 4.12), em destaque ao domingo
 
 ### 3.2 Finanças
-- [ ] Lista de movimentos agrupada por mês, com navegação mês anterior/seguinte e resumo (receitas, gastos, saldo)
-- [ ] Tabela ordenável por data, descrição, categoria, conta, valor (extra desktop)
-- [ ] Criar/editar/apagar movimento: tipo, descrição, valor, moeda (EUR/BRL), data, categoria, conta, notas; mostra páginas de notas ligadas
-- [ ] Valor convertido para EUR quando o movimento é em BRL ("≈ 12,30 €")
-- [ ] Marca "atualizado automaticamente" nos movimentos com `externalID` (loja, carro, investimentos, Apple Pay)
-- [ ] Sugestão automática de categoria ao escrever a descrição (ver 4.14)
-- [ ] Contas (Account): criar, editar, arquivar, saldo atual
-- [ ] Categorias: criar, editar (nome, ícone, cor, tipo, ordem)
-- [ ] **Contas a pagar**: por pagar / pagas; criar/editar (descrição, valor, moeda, vencimento, repetição, categoria, conta, assinatura, notas); "Paguei" (ver 4.6)
-- [ ] **Orçamento**: por categoria de gasto; com orçamento (mais apertadas primeiro) e sem orçamento (mais gasto primeiro); editor do limite mensal (0 = sem)
-- [ ] **Assinaturas**: lista das contas marcadas como assinatura, custo mensal de cada, total por mês e por ano
-- [ ] **Relatórios**: donut de gastos por categoria do mês; barras de receitas e gastos dos últimos 6 meses
-- [ ] **Importar CSV**: escolher ficheiro **ou arrastar para a janela** (extra desktop), conta, moeda; pré-visualização com novos / já existentes / linhas ignoradas; categoria sugerida; sem duplicados (ver 4.15)
-- [ ] **Scanner de faturas**: imagem ou PDF → comerciante, total e data (desktop: OCR com tesseract.js no dispositivo, mesmo parser)
+- [x] Lista de movimentos agrupada por mês, com navegação mês anterior/seguinte e resumo (receitas, gastos, saldo)
+- [x] Tabela ordenável por data, descrição, categoria, conta, valor (extra desktop)
+- [x] Criar/editar/apagar movimento: tipo, descrição, valor, moeda (EUR/BRL), data, categoria, conta, notas; mostra páginas de notas ligadas
+- [x] Valor convertido para EUR quando o movimento é em BRL ("≈ 12,30 €")
+- [x] Marca "atualizado automaticamente" nos movimentos com `externalID` (loja, carro, investimentos, Apple Pay)
+- [x] Sugestão automática de categoria ao escrever a descrição (ver 4.14)
+- [x] Contas (Account): criar, editar, arquivar, saldo atual
+- [x] Categorias: criar, editar (nome, ícone, cor, tipo, ordem)
+- [x] **Contas a pagar**: por pagar / pagas; criar/editar (descrição, valor, moeda, vencimento, repetição, categoria, conta, assinatura, notas); "Paguei" (ver 4.6)
+- [x] **Orçamento**: por categoria de gasto; com orçamento (mais apertadas primeiro) e sem orçamento (mais gasto primeiro); editor do limite mensal (0 = sem)
+- [x] **Assinaturas**: lista das contas marcadas como assinatura, custo mensal de cada, total por mês e por ano
+- [x] **Relatórios**: donut de gastos por categoria do mês; barras de receitas e gastos dos últimos 6 meses
+- [x] **Importar CSV**: escolher ficheiro **ou arrastar para a janela** (extra desktop), conta, moeda; pré-visualização com novos / já existentes / linhas ignoradas; categoria sugerida; sem duplicados (ver 4.15)
+- [x] **Scanner de faturas**: imagem ou PDF → comerciante, total e data (desktop: OCR com tesseract.js no dispositivo, mesmo parser)
 
 ### 3.3 Loja (Shopify — Neloce)
 - [ ] Cabeçalho com nome da loja, estado do sync e "Atualizar"; dados de exemplo enquanto a loja não está ligada
