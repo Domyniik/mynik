@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Não lançado]
+- feat(supabase): sync agendado da loja de 30 em 30 min (pg_cron + pg_net → Edge Function, segredos no Vault)
 - ci(desktop): instaladores .dmg (Apple Silicon e Intel) e .exe no GitHub Actions; scripts/release.sh publica a release e atualiza a cask
 - feat(desktop): app Tauri v2 com tray (vendas de hoje, gasto rápido), atalho global ⇧⌘K, notificações do sistema, iniciar com o sistema e login por deep link
 - feat(web): Definições partilhadas, cópia de segurança JSON (formato do iPhone), PIN e bloqueio, Pergunte ao Mynik e categorias iniciais

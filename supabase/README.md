@@ -19,6 +19,9 @@ supabase/
 | `20261122000000_typed_tables.sql` | 25 tabelas tipadas com RLS, last-write-wins e as funções `sync_push` / `sync_pull` do iPhone |
 | `20261122000100_calculations.sql` | Funções de cálculo: `store_product_scores`, `store_profit`, `store_kpis`, `budget_overview`, `month_summary` |
 | `20261122000200_migrate_records.sql` | Copia os dados de `records` para as tabelas tipadas (pode correr-se várias vezes) |
+| `20261122000300_realtime.sql` | Realtime nas tabelas tipadas (o desktop vê logo o que muda no iPhone) |
+| `20261122000400_store_daily_points.sql` | Pontos diários da loja para o gráfico de 30 dias |
+| `20261122000500_store_cron.sql` | Sync agendado da loja de 30 em 30 min (pg_cron + pg_net → Edge Function) |
 
 ### Aplicar no projeto existente (SQL Editor)
 
@@ -39,6 +42,27 @@ order by e.entity;
 ```
 
 A tabela `records` só se apaga depois de o iPhone e o desktop estarem a usar as tabelas novas (uma migração própria, mais tarde).
+
+## Edge Function `mynik-api`
+
+Tudo o que precisa de servidor: Shopify (o segredo nunca sai daqui), cotações, câmbio, preços de combustível, folha do Google Ads e calendário iCal. Plano grátis (500 000 invocações/mês).
+
+```bash
+npx supabase login
+npx supabase link --project-ref <ref do projeto>
+npx supabase secrets set --env-file supabase/functions/.env   # copiado de supabase/.env.example
+npx supabase functions deploy mynik-api --no-verify-jwt       # a função confere a sessão ela própria
+```
+
+### Sync agendado da loja
+
+1. Nos segredos da função: `CRON_SECRET` (valor aleatório) e `MYNIK_OWNER_EMAIL` (a tua conta).
+2. No SQL Editor, guarda no Vault o endereço e o mesmo segredo:
+   ```sql
+   select vault.create_secret('https://<ref>.supabase.co/functions/v1/mynik-api', 'mynik_api_url');
+   select vault.create_secret('<CRON_SECRET>', 'mynik_cron_secret');
+   ```
+3. Aplica `20261122000500_store_cron.sql`. Confere em `select * from cron.job_run_details order by start_time desc limit 5;`.
 
 ## Testes
 

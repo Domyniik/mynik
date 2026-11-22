@@ -2,7 +2,8 @@
 //   shopify-status  ligação à loja (nome)          shopify-sync  produtos, pedidos, checkouts, tráfego → tabelas
 //   google-ads      gasto da folha (Google Sheets)   quote        cotação (Yahoo) + câmbio (BCE)
 //   fuel            postos de uma província (ES)     rate         EUR→BRL do dia (BCE)
-// Só com sessão iniciada: as escritas usam o JWT do utilizador (RLS).
+// Só com sessão iniciada: as escritas usam o JWT do utilizador (RLS). A exceção é
+// o sync agendado (cabeçalho x-cron-secret), que entra como o dono da loja.
 import { createClient, type SupabaseClient } from "npm:@supabase/supabase-js@2.119.0";
 import { credentials, ShopifyError, shopInfo, syncStore } from "./shopify.ts";
 import { addDays, localDayKey } from "./time.ts";
@@ -140,8 +141,44 @@ function parseCSV(text: string) {
   return rows;
 }
 
+/**
+ * Sync agendado da loja (pg_cron → pg_net, ver migrations/…_store_cron.sql):
+ * sem utilizador no pedido, entra como o dono (MYNIK_OWNER_EMAIL) com um link
+ * mágico gerado e verificado aqui mesmo (não envia email), para as escritas
+ * continuarem a passar pela RLS como as da app.
+ */
+async function cronSync(request: Request) {
+  const secret = Deno.env.get("CRON_SECRET");
+  if (!secret || request.headers.get("x-cron-secret") !== secret) return json({ error: "Proibido" }, 403);
+  const email = Deno.env.get("MYNIK_OWNER_EMAIL");
+  const c = credentials();
+  if (!email || !c) return json({ skipped: "Faltam MYNIK_OWNER_EMAIL ou os segredos SHOPIFY_*" });
+
+  const url = Deno.env.get("SUPABASE_URL")!;
+  const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+  const admin = createClient(url, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false } });
+  const { data: link, error: linkError } = await admin.auth.admin.generateLink({ type: "magiclink", email });
+  if (linkError) throw linkError;
+  const anon = createClient(url, anonKey, { auth: { persistSession: false } });
+  const { data: login, error: loginError } = await anon.auth.verifyOtp({ token_hash: link.properties.hashed_token, type: "magiclink" });
+  if (loginError || !login.session) throw loginError ?? new Error("Sem sessão do dono");
+  const db = createClient(url, anonKey, {
+    global: { headers: { Authorization: `Bearer ${login.session.access_token}` } },
+    auth: { persistSession: false },
+  });
+  const result = await syncStore(c, db);
+  return json({ products: result.products, orders: result.orders, newOrders: result.newOrders.length });
+}
+
 Deno.serve(async (request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: cors });
+  if (request.headers.has("x-cron-secret")) {
+    try {
+      return await cronSync(request);
+    } catch (error) {
+      return json({ error: error instanceof Error ? error.message : String(error) }, 500);
+    }
+  }
   const authorization = request.headers.get("Authorization") ?? "";
   const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_ANON_KEY")!, {
     global: { headers: { Authorization: authorization } },
