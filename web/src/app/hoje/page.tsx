@@ -1,5 +1,1 @@
-import { Placeholder } from "@/components/shell/placeholder";
-
-export default function Page() {
-  return <Placeholder title="Hoje" />;
-}
+export { default } from "@/components/today/today-page";

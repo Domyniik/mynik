@@ -27,12 +27,12 @@ Levantamento feito a partir do código da v1.4 (288 ficheiros Swift, ~28 700 lin
 | Notas | note.text | Mais |
 | Definições | gearshape | Mais |
 
-- [ ] Sidebar com as 13 secções, pela ordem acima (desenho do mockup: tema escuro, logótipo "M", utilizador e estado do sync no fundo)
-- [ ] ⌘1–⌘9 abrem as 9 primeiras secções; ⌘, abre Definições
-- [ ] ⌘K: busca global e ações (ver 3.13)
-- [ ] ⌘N: novo item no contexto (movimento em Finanças/Hoje, tarefa em Projetos, página em Notas…)
-- [ ] Modo de demonstração (dados de exemplo, como o `-MynikDemo` do iOS)
-- [ ] Interface em pt-PT, moeda EUR com BRL, fuso Europe/Madrid, semana a começar à segunda
+- [x] Sidebar com as 13 secções (desenho e ordem do mockup: Hoje, Finanças, Loja, Projetos, Notas, Carro, Documentos, Carreira, Património; depois Metas, Hábitos, Pergunte ao Mynik e Definições), utilizador e estado do sync no fundo
+- [x] ⌘1–⌘9 abrem as 9 primeiras secções; ⌘, abre Definições
+- [x] ⌘K: busca global e ações (ver 3.13)
+- [x] ⌘N: novo item no contexto (movimento em Finanças/Hoje, tarefa em Projetos, página em Notas…)
+- [x] Modo de demonstração (dados de exemplo, como o `-MynikDemo` do iOS)
+- [x] Interface em pt-PT, moeda EUR com BRL, fuso Europe/Madrid, semana a começar à segunda
 
 ---
 
@@ -78,18 +78,18 @@ Todos os registos têm `uid` (texto, UUID) como chave estável, exceto os da loj
 
 ### 3.1 Hoje
 iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a vencer (7 dias), calendário e lembretes do dia, tarefas de hoje, hábitos, loja hoje, agenda da vida, metas, revisão semanal ao domingo.
-- [ ] Saudação e data; busca ⌘K e botão "+ Novo gasto" no topo (mockup)
-- [ ] KPIs em grelha: saldo do mês (vs mês anterior), gastos do mês (% do orçamento), vendas da loja hoje (pedidos, por enviar), a pagar em 7 dias
-- [ ] Mini-gráfico de gastos acumulados do mês (SpendingTrend)
-- [ ] Contas a vencer nos próximos 7 dias (com atrasadas) e botão "paguei"
-- [ ] Gastos por categoria com barra do orçamento (mockup)
-- [ ] Vendas da loja nos últimos 7 dias, em barras, com variação (mockup)
-- [ ] Tarefas de hoje (em curso, atrasadas ou com prazo até hoje; até 6 + "mais N")
-- [ ] Hábitos do dia, a marcar
-- [ ] Agenda: prazos do carro, documentos a expirar, follow-ups e certificados (LifeAgenda)
-- [ ] Metas ativas com progresso
-- [ ] Eventos e lembretes do dia (desktop: calendário por URL iCal, ver 5.6)
-- [ ] Revisão semanal (ver 4.12), em destaque ao domingo
+- [x] Saudação e data; busca ⌘K e botão "+ Novo gasto" no topo (mockup)
+- [x] KPIs em grelha: saldo do mês (vs mês anterior), gastos do mês (% do orçamento), vendas da loja hoje (pedidos, por enviar), a pagar em 7 dias
+- [x] Mini-gráfico de gastos acumulados do mês (SpendingTrend)
+- [x] Contas a vencer nos próximos 7 dias (com atrasadas) e botão "paguei"
+- [x] Gastos por categoria com barra do orçamento (mockup)
+- [x] Vendas da loja nos últimos 7 dias, em barras, com variação (mockup)
+- [x] Tarefas de hoje (em curso, atrasadas ou com prazo até hoje; até 6 + "mais N")
+- [x] Hábitos do dia, a marcar
+- [x] Agenda: prazos do carro, documentos a expirar, follow-ups e certificados (LifeAgenda)
+- [x] Metas ativas com progresso
+- [x] Eventos e lembretes do dia (desktop: calendário por URL iCal, ver 5.6)
+- [x] Revisão semanal (ver 4.12), em destaque ao domingo
 
 ### 3.2 Finanças
 - [x] Lista de movimentos agrupada por mês, com navegação mês anterior/seguinte e resumo (receitas, gastos, saldo)
@@ -339,7 +339,7 @@ Começa por = 0, uma palavra começa por = 1, contém = 2; campos secundários +
 - [x] 5.3 APIs grátis
 - [ ] 5.4 Notificações nativas
 - [ ] 5.5 Bloqueio da app e dos documentos
-- [ ] 5.6 Calendário por iCal
+- [x] 5.6 Calendário por iCal
 - [ ] 5.7 Tray com vendas de hoje
 - [ ] 5.8 Atalho global para o ⌘K
 - [ ] 5.9 IA sem Apple (regras e resumos)

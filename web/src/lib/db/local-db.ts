@@ -23,6 +23,7 @@ insert into auth.users (id) values ('${DEMO_USER}');
 const IDENTIFIER = /^[a-z_][a-z0-9_]*$/;
 const NUMERIC_OIDS = new Set([20, 21, 23, 700, 701, 1700]);
 const TIMESTAMP_OIDS = new Set([1114, 1184]);
+const DATE_OID = 1082;
 
 function assertIdentifier(name: string) {
   if (!IDENTIFIER.test(name)) throw new Error(`Nome inválido: ${name}`);
@@ -36,12 +37,21 @@ function assertTable(table: string): asserts table is TableName {
 function normalize<R>(result: Results<Record<string, unknown>>): R[] {
   const numeric = result.fields.filter((f) => NUMERIC_OIDS.has(f.dataTypeID)).map((f) => f.name);
   const dates = result.fields.filter((f) => TIMESTAMP_OIDS.has(f.dataTypeID)).map((f) => f.name);
+  const days = result.fields.filter((f) => f.dataTypeID === DATE_OID).map((f) => f.name);
   return result.rows.map((row) => {
     const copy: Record<string, unknown> = { ...row };
     for (const name of numeric) if (copy[name] != null) copy[name] = Number(copy[name]);
     for (const name of dates) {
       const value = copy[name];
       if (value instanceof Date) copy[name] = value.toISOString();
+    }
+    // Colunas `date`: "AAAA-MM-DD", como o PostgREST.
+    for (const name of days) {
+      const value = copy[name];
+      if (value instanceof Date) {
+        const pad = (n: number) => String(n).padStart(2, "0");
+        copy[name] = `${value.getUTCFullYear()}-${pad(value.getUTCMonth() + 1)}-${pad(value.getUTCDate())}`;
+      }
     }
     return copy as R;
   });

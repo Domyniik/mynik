@@ -169,6 +169,14 @@ Deno.serve(async (request) => {
         return json({ quote: await quote(String(body.symbol ?? ""), String(body.currency ?? "EUR")) });
       case "fuel":
         return json(await fuel(String(body.province ?? "28")));
+      case "ical": {
+        // Calendário do utilizador (só leitura, sem guardar): os servidores de iCal não têm CORS.
+        const url = String(body.url ?? "").replace(/^webcal:/, "https:");
+        if (!/^https:\/\//.test(url)) return json({ error: "Endereço iCal inválido" }, 400);
+        const response = await fetch(url);
+        if (!response.ok) return json({ error: `O calendário respondeu ${response.status}` }, 502);
+        return json({ text: await response.text() });
+      }
       case "rate":
         return json({ rate: await rate(String(body.from ?? "EUR"), String(body.to ?? "BRL")), date: localDayKey(new Date()) });
       default:

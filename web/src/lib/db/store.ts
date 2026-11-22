@@ -81,6 +81,8 @@ export function setDb(db: Db | null) {
     notify(e);
   }
   unsubscribe = db ? db.subscribe(changed) : null;
+  // Só em desenvolvimento: para inspecionar os dados na consola.
+  if (process.env.NODE_ENV !== "production") (globalThis as Record<string, unknown>).__mynikDb = db;
   version += 1;
   for (const l of versionListeners) l();
 }

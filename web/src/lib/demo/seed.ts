@@ -52,7 +52,13 @@ export async function seedDemo(db: PGlite, user: string, fixture: Fixture) {
   }
 
   // Desloca a loja inventada para hoje (em dias inteiros, mantendo as horas).
-  const shift = Math.round((Date.now() / 1000 - IOS_EPOCH - fixture.now) / DAY) * DAY;
+  const midnight = (ms: number) => {
+    const d = new Date(ms);
+    d.setHours(0, 0, 0, 0);
+    return d.getTime();
+  };
+  const fixtureMs = (fixture.now + IOS_EPOCH) * 1000;
+  const shift = Math.round((midnight(Date.now()) - midnight(fixtureMs)) / 86_400_000) * DAY;
   const shifted = (entity: string, payload: Payload): Payload => {
     const keys = dateKeys.get(entity) ?? new Set();
     return Object.fromEntries(
