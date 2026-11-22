@@ -209,7 +209,7 @@ iOS: chat com Foundation Models e ferramentas que leem os dados; sem Apple Intel
 - [x] Inteligência: sugerir categoria
 - [x] Privacidade: bloqueio da app
 - [x] Cópia de segurança: exportar/importar JSON (mesmo formato do iOS, fusão por `uid`)
-- [ ] Iniciar com o sistema (extra desktop)
+- [x] Iniciar com o sistema (extra desktop)
 
 ---
 
@@ -337,16 +337,16 @@ Começa por = 0, uma palavra começa por = 1, contém = 2; campos secundários +
 - [x] 5.1 Shopify no servidor
 - [x] 5.2 Login e dados no Supabase
 - [x] 5.3 APIs grátis
-- [ ] 5.4 Notificações nativas
+- [x] 5.4 Notificações nativas
 - [x] 5.5 Bloqueio da app e dos documentos
 - [x] 5.6 Calendário por iCal
-- [ ] 5.7 Tray com vendas de hoje
-- [ ] 5.8 Atalho global para o ⌘K
+- [x] 5.7 Tray com vendas de hoje
+- [x] 5.8 Atalho global para o ⌘K
 - [x] 5.9 IA sem Apple (regras e resumos)
 - [x] 5.10 OCR de faturas
 - [x] 5.11 Backup JSON
-- [ ] 5.12 Tray com gasto rápido
-- [ ] Iniciar com o sistema
+- [x] 5.12 Tray com gasto rápido
+- [x] Iniciar com o sistema
 - [ ] Instaladores: .dmg (Apple Silicon e Intel) e .exe (Windows) nas GitHub Releases
 
 ---

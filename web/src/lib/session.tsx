@@ -3,6 +3,7 @@
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { LocalDb } from "./db/local-db";
 import { seedDefaultsIfEmpty } from "./db/defaults";
+import { authRedirectURL } from "./desktop";
 import { setDb } from "./db/store";
 import { SupabaseDb } from "./db/supabase-db";
 import { type Fixture, seedDemo } from "./demo/seed";
@@ -111,7 +112,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       async sendLink(address) {
         const { error } = await supabase().auth.signInWithOtp({
           email: address.trim(),
-          options: { emailRedirectTo: `${window.location.origin}/auth/callback/` },
+          options: { emailRedirectTo: authRedirectURL() },
         });
         if (error) throw error;
       },

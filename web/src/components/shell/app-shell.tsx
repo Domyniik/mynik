@@ -4,7 +4,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { type ReactNode, useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { installDesktopBridge } from "@/lib/desktop";
 import { useSession } from "@/lib/session";
+import { toast } from "sonner";
+import { Background } from "./background";
 import { CommandMenu } from "./command-menu";
 import { LockGate } from "./lock-screen";
 import { sectionFor, sections, settingsSection } from "./nav";
@@ -22,7 +25,7 @@ export function openCommandMenu() {
  * ⌘K procurar · ⌘N novo item da secção · ⌘1–⌘9 secções · ⌘, definições.
  */
 export function AppShell({ children }: { children: ReactNode }) {
-  const { status } = useSession();
+  const { status, signInWithLink } = useSession();
   const pathname = usePathname();
   const router = useRouter();
   const [commandOpen, setCommandOpen] = useState(false);
@@ -31,6 +34,21 @@ export function AppShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (status === "signedOut" && !isPublic) router.replace("/login/");
   }, [status, isPublic, router]);
+
+  // App desktop: tray, atalho global, deep link do login, notificações nativas.
+  useEffect(
+    () =>
+      installDesktopBridge({
+        openCommandMenu,
+        navigate: (path) => router.push(path),
+        signInWithLink: async (link) => {
+          await signInWithLink(link);
+          router.replace("/hoje/");
+        },
+        onLoginError: (message) => toast.error("Não foi possível entrar", { description: message }),
+      }),
+    [router, signInWithLink],
+  );
 
   useEffect(() => {
     const open = () => setCommandOpen(true);
@@ -88,6 +106,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </main>
       </div>
       <CommandMenu open={commandOpen} onOpenChange={setCommandOpen} />
+      <Background />
       <Toaster theme="dark" richColors position="bottom-right" />
     </TooltipProvider>
     </LockGate>

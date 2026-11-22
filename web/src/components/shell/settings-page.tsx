@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { backupFileName, exportBackup, importBackup } from "@/lib/backup";
 import { getDb } from "@/lib/db/store";
+import { autostartEnabled, isDesktop, setAutostart } from "@/lib/desktop";
 import { date, money, number } from "@/lib/format";
 import { appLockEnabled, hasPin, removePin, setAppLock, setPin } from "@/lib/lock";
 import { useSession } from "@/lib/session";
@@ -51,12 +52,16 @@ export default function SettingsPage() {
   const [pin, setPinText] = useState("");
   const [lock, setLock] = useState(false);
   const [pinSet, setPinSet] = useState(false);
+  const [desktop, setDesktop] = useState(false);
+  const [autostart, setAutostartState] = useState(false);
   const importRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setICal(readICalURL());
     setLock(appLockEnabled());
     setPinSet(hasPin());
+    setDesktop(isDesktop());
+    void autostartEnabled().then(setAutostartState);
   }, []);
   useEffect(() => setSheet(settings.googleAdsSheet), [settings.googleAdsSheet]);
   useEffect(() => {
@@ -142,6 +147,21 @@ export default function SettingsPage() {
           <Toggle id="weekly" label="Revisão semanal ao domingo às 19h" checked={settings.weeklyReviewReminder} onChange={(v) => void set("weeklyReviewReminder", v)} />
           <p className="m-0 text-xs text-muted-foreground">Na app desktop chegam como notificações do sistema.</p>
         </Card>
+
+        {desktop && (
+          <Card title="App desktop">
+            <Toggle id="autostart" label="Iniciar com o sistema" checked={autostart} hint="Abre escondido no tray, para os avisos de vendas e contas chegarem mesmo sem abrires a janela."
+              onChange={async (v) => {
+                try {
+                  await setAutostart(v);
+                  setAutostartState(v);
+                } catch (e) {
+                  toast.error("Não foi possível alterar", { description: String(e) });
+                }
+              }} />
+            <p className="m-0 text-xs text-muted-foreground">Atalho global para procurar: ⇧⌘K (Ctrl+Shift+K no Windows). Fechar a janela deixa o Mynik no tray.</p>
+          </Card>
+        )}
 
         <Card title="Calendário">
           <Field label="Endereço iCal (só leitura)" hint="Google Calendar: Definições → Endereço secreto em formato iCal. iCloud: partilhar calendário → Calendário público. Fica só neste computador.">

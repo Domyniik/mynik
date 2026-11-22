@@ -89,5 +89,5 @@ Arquitetura: iPhone → Swift · Mac e Windows → Tauri (Next.js) · dados → 
 - [x] iOS lê e escreve as tabelas (SwiftData como cache offline) e partilha as definições
 - [ ] Servidor: Edge Functions (Shopify, cotações, combustível, Google Ads) e sync agendado da loja
 - [x] Web (/web): Next.js + Tailwind + shadcn/ui com todos os itens do FEATURES.md
-- [ ] App desktop (/desktop): Tauri v2, tray, atalho global, notificações, iniciar com o sistema
+- [x] App desktop (/desktop): Tauri v2, tray, atalho global, notificações, iniciar com o sistema
 - [ ] Instaladores .dmg e .exe por GitHub Actions; cask do Homebrew aponta para o .dmg
