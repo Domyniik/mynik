@@ -147,13 +147,13 @@ iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a venc
 - [x] Resumo "N de M feitos hoje"
 
 ### 3.7 Património (investimentos)
-- [ ] Resumo: dinheiro nas contas, investido, valor atual, ganho e %, património líquido
-- [ ] Investimentos ativos e arquivados: nome, tipo (ETF, ações, cripto, fundo, depósito, PPR, outro), ticker, moeda, unidades, investido, valor
-- [ ] Atualizar cotações (Yahoo Finance + câmbio Frankfurter); ao abrir se tiverem mais de 6 h; lista dos tickers que falharam
-- [ ] "Verificar" o ticker no formulário
-- [ ] Aportar: soma ao investido e às unidades; opcionalmente lança a saída na categoria "Investimentos" de uma conta
-- [ ] Evolução do património (gráfico das fotografias diárias)
-- [ ] Meta de poupança mensal: poupado este mês, taxa de poupança, progresso (ver 4.10)
+- [x] Resumo: dinheiro nas contas, investido, valor atual, ganho e %, património líquido
+- [x] Investimentos ativos e arquivados: nome, tipo (ETF, ações, cripto, fundo, depósito, PPR, outro), ticker, moeda, unidades, investido, valor
+- [x] Atualizar cotações (Yahoo Finance + câmbio Frankfurter); ao abrir se tiverem mais de 6 h; lista dos tickers que falharam
+- [x] "Verificar" o ticker no formulário
+- [x] Aportar: soma ao investido e às unidades; opcionalmente lança a saída na categoria "Investimentos" de uma conta
+- [x] Evolução do património (gráfico das fotografias diárias)
+- [x] Meta de poupança mensal: poupado este mês, taxa de poupança, progresso (ver 4.10)
 
 ### 3.8 Carro
 - [ ] Vários veículos, escolha do atual; criar/editar/apagar (nome, matrícula, combustível, km iniciais, notas)
