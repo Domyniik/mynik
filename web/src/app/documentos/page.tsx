@@ -1,5 +1,1 @@
-import { Placeholder } from "@/components/shell/placeholder";
-
-export default function Page() {
-  return <Placeholder title="Documentos" />;
-}
+export { default } from "@/components/life/documents-page";

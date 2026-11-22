@@ -1,5 +1,1 @@
-import { Placeholder } from "@/components/shell/placeholder";
-
-export default function Page() {
-  return <Placeholder title="Carreira" />;
-}
+export { default } from "@/components/life/career-page";

@@ -164,16 +164,16 @@ iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a venc
 - [x] Preços de combustível em Espanha por província (API do Ministerio): mais baratos, média, perto de mim (10 km), abrir no mapa
 
 ### 3.9 Documentos
-- [ ] Lista por estado (expirados, a expirar, válidos, sem validade) com "Expira em N dias"
-- [ ] Documento: tipo (CC/RG, passaporte, TIE/NIE, carta, saúde, seguro, outro), nome, número, emissor, validade, aviso (1/2/3/6 meses antes), notas
-- [ ] Número escondido (•••• 45Z) e fotos só depois de desbloquear (desktop: PIN/palavra-passe local, ver 5.5)
-- [ ] Fotos: adicionar (ficheiro ou arrastar), ver, apagar — **só no dispositivo**, nunca no Supabase
+- [x] Lista por estado (expirados, a expirar, válidos, sem validade) com "Expira em N dias"
+- [x] Documento: tipo (CC/RG, passaporte, TIE/NIE, carta, saúde, seguro, outro), nome, número, emissor, validade, aviso (1/2/3/6 meses antes), notas
+- [x] Número escondido (•••• 45Z) e fotos só depois de desbloquear (desktop: PIN/palavra-passe local, ver 5.5)
+- [x] Fotos: adicionar (ficheiro ou arrastar), ver, apagar — **só no dispositivo**, nunca no Supabase
 
 ### 3.10 Carreira
-- [ ] Candidaturas: empresa, cargo, data, estado (enviada, entrevistas, proposta, aceite, recusada, sem resposta), follow-up, local, link, salário, contacto, notas
-- [ ] Filtro por estado; estatísticas (ativas, entrevistas, propostas, taxa de resposta)
-- [ ] "Follow-up feito" (o próximo daqui a 7 dias); abrir anúncio
-- [ ] Cursos e certificações: plataforma, estado, progresso, concluído, link, ID da credencial, validade (aviso 60 dias antes)
+- [x] Candidaturas: empresa, cargo, data, estado (enviada, entrevistas, proposta, aceite, recusada, sem resposta), follow-up, local, link, salário, contacto, notas
+- [x] Filtro por estado; estatísticas (ativas, entrevistas, propostas, taxa de resposta)
+- [x] "Follow-up feito" (o próximo daqui a 7 dias); abrir anúncio
+- [x] Cursos e certificações: plataforma, estado, progresso, concluído, link, ID da credencial, validade (aviso 60 dias antes)
 
 ### 3.11 Notas (estilo wiki)
 - [ ] Árvore de páginas aninhadas, favoritos, pesquisa, templates
