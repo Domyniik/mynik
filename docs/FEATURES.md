@@ -176,17 +176,17 @@ iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a venc
 - [x] Cursos e certificações: plataforma, estado, progresso, concluído, link, ID da credencial, validade (aviso 60 dias antes)
 
 ### 3.11 Notas (estilo wiki)
-- [ ] Árvore de páginas aninhadas, favoritos, pesquisa, templates
-- [ ] Página: ícone (emoji), capa (8 gradientes), título, caminho (breadcrumbs clicáveis), subpáginas
-- [ ] 14 tipos de bloco: texto, título 1–3, lista com marcas, numerada, tarefas, alternar, citação, destaque com emoji, código (linguagem, copiar), tabela simples, divisor, imagem com legenda
-- [ ] Menu "/" para inserir/transformar blocos; atalhos Markdown ao escrever (`# `, `- `, `1. `, `[] `, `> `, três crases, `---`)
-- [ ] Teclado: ⇧⌘↑/↓ mover, ⌘D duplicar, ⇧⌘⌫ apagar, ⌥⌘0–8 transformar, ⇧⌘F favorito; reordenar por arrastar
-- [ ] Bases de dados: propriedades texto, número, seleção, data, caixa; vistas Tabela, Quadro (arrastar entre colunas) e Calendário; linhas = subpáginas
-- [ ] Menções `@` a páginas, projetos, movimentos e datas; backlinks; `[[Título]]` antigo continua a funcionar
-- [ ] Ligações a projetos e movimentos (secção "Ligações")
-- [ ] Templates: Reunião, Diário, Projeto, Leituras, Semana (`{{data}}`) e "Guardar como template"
-- [ ] Exportar página em Markdown
-- [ ] Importar export do Notion (ZIP com Markdown e CSV, ZIPs partidos, imagens, bases com tipos inferidos)
+- [x] Árvore de páginas aninhadas, favoritos, pesquisa, templates
+- [x] Página: ícone (emoji), capa (8 gradientes), título, caminho (breadcrumbs clicáveis), subpáginas
+- [x] 14 tipos de bloco: texto, título 1–3, lista com marcas, numerada, tarefas, alternar, citação, destaque com emoji, código (linguagem, copiar), tabela simples, divisor, imagem com legenda
+- [x] Menu "/" para inserir/transformar blocos; atalhos Markdown ao escrever (`# `, `- `, `1. `, `[] `, `> `, três crases, `---`)
+- [x] Teclado: ⇧⌘↑/↓ mover, ⌘D duplicar, ⇧⌘⌫ apagar, ⌥⌘0–8 transformar, ⇧⌘F favorito; reordenar por arrastar
+- [x] Bases de dados: propriedades texto, número, seleção, data, caixa; vistas Tabela, Quadro (arrastar entre colunas) e Calendário; linhas = subpáginas
+- [x] Menções `@` a páginas, projetos, movimentos e datas; backlinks; `[[Título]]` antigo continua a funcionar
+- [x] Ligações a projetos e movimentos (secção "Ligações")
+- [x] Templates: Reunião, Diário, Projeto, Leituras, Semana (`{{data}}`) e "Guardar como template"
+- [x] Exportar página em Markdown
+- [x] Importar export do Notion (ZIP com Markdown e CSV, ZIPs partidos, imagens, bases com tipos inferidos)
 
 ### 3.12 Pergunte ao Mynik
 iOS: chat com Foundation Models e ferramentas que leem os dados; sem Apple Intelligence responde com resumos.

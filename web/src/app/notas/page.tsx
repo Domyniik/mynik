@@ -1,5 +1,1 @@
-import { Placeholder } from "@/components/shell/placeholder";
-
-export default function Page() {
-  return <Placeholder title="Notas" />;
-}
+export { default } from "@/components/notes/notes-page";
