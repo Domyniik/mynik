@@ -4,9 +4,15 @@
 
 > *A tua vida, num só lugar.*
 
-**Dashboard pessoal nativa para iPhone e Mac**: finanças, contas a pagar, analytics da loja Shopify, projetos, notas, hábitos, carro, documentos, carreira e património numa só app SwiftUI, com IA no dispositivo e sem servidores.
+**Dashboard pessoal para iPhone, Mac e Windows**: finanças, contas a pagar, analytics da loja Shopify, projetos, notas, hábitos, carro, documentos, carreira e património. App nativa em SwiftUI no iPhone, app desktop em Tauri + Next.js no Mac e no Windows, e os mesmos dados no Supabase — tudo com **ferramentas 100% grátis**.
 
-![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026%20%7C%20macOS%2026-blue) ![SwiftData](https://img.shields.io/badge/SwiftData-local-green) ![Foundation Models](https://img.shields.io/badge/IA-on--device-purple) ![Tests](https://img.shields.io/badge/testes-273-brightgreen)
+![Swift](https://img.shields.io/badge/Swift-6-F05138) ![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2026-blue) ![Tauri](https://img.shields.io/badge/Tauri-2-24C8DB) ![Next.js](https://img.shields.io/badge/Next.js-16-black) ![Supabase](https://img.shields.io/badge/Supabase-Postgres%20%2B%20RLS-3ECF8E) ![Tests](https://img.shields.io/badge/testes-321-brightgreen)
+
+```
+📱 iPhone / iPad   → Swift (SwiftUI + SwiftData offline)
+💻 Mac + Windows   → Tauri v2 com a web Next.js lá dentro
+☁️ Dados           → Supabase: Postgres com RLS, magic link, Edge Function e pg_cron
+```
 
 <p align="center">
   <img src="docs/screenshots/iphone-hoje.png" width="200" alt="Tela Hoje no iPhone">
@@ -15,20 +21,17 @@
   <img src="docs/screenshots/iphone-patrimonio-escuro.png" width="200" alt="Património em modo escuro">
 </p>
 
-<p align="center">
-  <img src="docs/screenshots/mac-hoje.png" width="820" alt="Mynik no Mac">
-</p>
 
 ## Destaques
-- 📱💻 **Um só código** para iPhone e Mac (SwiftUI multiplataforma): barra lateral no Mac/iPad, separadores no iPhone, ⌘K para pesquisar tudo.
+- 💻 **App desktop para Mac e Windows** (Tauri v2, ~9 MB): ícone no tray com as vendas de hoje e gasto rápido, atalho global ⇧⌘K para pesquisar tudo, notificações do sistema (vendas, contas a pagar, prazos), arranque com o sistema e login pelo link do email (`mynik://`).
+- ☁️ **Os mesmos dados em todo o lado**: 25 tabelas tipadas no Supabase com Row Level Security e last-write-wins; o iPhone guarda uma cópia offline e o desktop vê as alterações em tempo real. Os cálculos da loja e das finanças são **funções SQL** com testes de paridade iPhone ↔ SQL.
 - 🤖 **IA no dispositivo** (Foundation Models): categoriza os gastos sozinha e responde a perguntas sobre os teus dados ("Pergunte ao Mynik") com *tool calling* que lê o SwiftData. Sem Apple Intelligence, tudo continua a funcionar com regras e resumos.
 - 🧾 **Scanner de faturas**: câmara de documentos do VisionKit e OCR do Vision extraem comerciante, total e data, e o gasto aparece já categorizado.
 - 💶 **Finanças completas**: orçamento, contas a pagar com alertas e **Live Activity / Dynamic Island**, assinaturas, multi-moeda EUR/BRL, importação de CSV e gastos automáticos via **Apple Pay**.
 - 🛍️ **Shopify Analytics**: lucro real (sem IVA, custos, envios, taxas e anúncios), ranking de produtos 0–100 com ação sugerida e diagnóstico do funil.
 - 📝 **Notas ao estilo wiki**, feitas de raiz em SwiftUI: menu "/" com 14 tipos de bloco (títulos, listas, alternar, destaque, código, tabela…), **bases de dados** com vistas Tabela, Quadro e Calendário, menções **@** a páginas, projetos, movimentos e datas com backlinks, capas, favoritos, templates e **importação de um export do Notion** (ZIP com Markdown e CSV, leitor de ZIP próprio).
 - 🔥 **Hábitos, revisão semanal ao domingo**, projetos em Kanban, carro, documentos com Face ID, carreira e património.
-- 🔄 **Sync Mac ⇄ iPhone pelo Supabase**, *local-first*: login opcional por email, last-write-wins e tombstones, a app funciona sem conta e sem rede.
-- 🧩 Widgets, Siri/Atalhos, barra de menus no Mac, Calendário e Lembretes na tela Hoje.
+- 🧩 No iPhone: widgets, Siri/Atalhos, Live Activity, Calendário e Lembretes na tela Hoje.
 - 🎨 **Sistema visual próprio** (`Core/DesignSystem`): cor da marca, uma cor por módulo, números arredondados, cartões de KPI com mini gráficos e um ícone gerado com CoreGraphics ([scripts/make-icon.swift](scripts/make-icon.swift)).
 - ♿️ Liquid Glass nos controlos, modo escuro, Dynamic Type, VoiceOver, contraste AA e Reduzir movimento.
 
@@ -39,44 +42,45 @@
 |:-:|:-:|:-:|
 | <img src="docs/screenshots/iphone-scanner.png" width="220" alt="Scanner de faturas"> | <img src="docs/screenshots/iphone-dynamic-island.png" width="220" alt="Conta a vencer na Dynamic Island"> | <img src="docs/screenshots/iphone-hoje-escuro.png" width="220" alt="Tela Hoje em modo escuro"> |
 | Fatura digitalizada → gasto | Conta de hoje na Dynamic Island | Modo escuro |
-| <img src="docs/screenshots/iphone-financas.png" width="220" alt="Finanças"> | <img src="docs/screenshots/iphone-pergunte-sem-ia.png" width="220" alt="Pergunte ao Mynik sem IA"> | <img src="docs/screenshots/mac-pergunte.png" width="220" alt="Pergunte ao Mynik no Mac"> |
-| Finanças | Modo sem IA (resumos) | Chat no Mac |
+| <img src="docs/screenshots/iphone-financas.png" width="220" alt="Finanças"> | <img src="docs/screenshots/iphone-pergunte-sem-ia.png" width="220" alt="Pergunte ao Mynik sem IA"> | |
+| Finanças | Modo sem IA (resumos) | |
 | <img src="docs/screenshots/iphone-carro.png" width="220" alt="Carro com KPIs e consumo"> | <img src="docs/screenshots/iphone-pergunte-ia.png" width="220" alt="Pergunte ao Mynik com Apple Intelligence"> | <img src="docs/screenshots/iphone-habitos.png" width="220" alt="Hábitos com sequência"> |
 | Carro | Pergunte ao Mynik | Hábitos |
 
-<img src="docs/screenshots/mac-financas.png" width="820" alt="Finanças no Mac">
-
-<img src="docs/screenshots/mac-loja.png" width="820" alt="Loja no Mac">
 </details>
 
 ## Arquitetura
 ```
-Mynik/
-  App/            MynikApp, RootView, navegação (AppRouter partilhado, barra lateral / separadores)
-  Core/
-    Models/       modelos SwiftData (compatíveis com CloudKit: defaults, relações opcionais, sem @Attribute(.unique))
-    Persistence/  esquema versionado V1→V7 com migrações lightweight testadas, dados de exemplo
-    Services/     sync (Supabase), IA (Foundation Models), backup JSON, Shopify, notificações, Live Activity, Keychain, câmbio...
-    Utils/        lógica pura e testável: métricas da loja, scorer de produtos, regras de categorias, parser de faturas
-    Shared/       código partilhado com a extensão de widgets (resumo por App Group, Live Activity)
-  Features/       um módulo por secção (Today, Finance, Store, Assistant, Habits, Search, ...) com views pequenas
-  Widgets/        WidgetKit + Live Activity / Dynamic Island
-  Intents/        App Intents (Siri, Atalhos, Apple Pay)
-MynikTests/       Swift Testing, com a app como anfitrião e base de dados em memória
+Mynik/            app iPhone (SwiftUI)
+  App/  Core/ (Models, Persistence, Services, Utils, DesignSystem)  Features/  Widgets/  Intents/
+MynikTests/       Swift Testing (277 testes), incluindo paridade com o SQL
+web/              Next.js 16 + React 19 + Tailwind 4 + shadcn/ui (exportação estática)
+  src/app/        uma rota por secção (hoje, financas, loja, projetos, notas, carro, …)
+  src/components/ um módulo por secção, componentes pequenos
+  src/lib/        acesso aos dados (Supabase ou PGlite no modo demo), cálculos, ponte para o Tauri
+desktop/          Tauri v2 (Rust): janela, tray, atalho global, notificações, autostart, deep link
+supabase/
+  schema/         modelo de dados (fonte única) → gera as migrações
+  migrations/     tabelas com RLS, funções de sync e de cálculo, Realtime, pg_cron
+  functions/      Edge Function mynik-api (Shopify, cotações, câmbio, combustível, Google Ads, iCal)
+  tests/          SQL testado em Postgres local (PGlite)
+.github/workflows/desktop.yml   .dmg (Apple Silicon e Intel) e .exe em cada versão
 ```
-- **Swift 6 com isolamento `MainActor` por omissão** e concorrência estrita; o que corre fora (ferramentas do modelo, OCR) é `nonisolated`/`@concurrent` e só leva tipos `Sendable`.
-- **Lógica fora das views**: serviços e utilitários puros (`ProductScorer`, `MerchantCategoryRules`, `ReceiptParser`, `WeeklyReview`...) com testes; as views só desenham.
-- **Esquema versionado**: cada versão publicada é congelada (`MynikSchemaV1`…`V6`) e há um teste de migração a partir de uma base antiga gravada em disco.
-- **Modo de demonstração** (`-MynikDemo`): dados de exemplo em memória, sem tocar nos dados reais nem nos widgets — é o que gera as screenshots.
+- **Uma base de dados, dois clientes.** O iPhone usa o SwiftData como cache offline e sincroniza por `sync_pull` / `sync_push`; o desktop lê e escreve direto pelo PostgREST e subscreve o Realtime.
+- **Cálculos no Postgres.** Score dos produtos, lucro real, KPIs, orçamento e resumo do mês são funções SQL; o iPhone e o SQL conferem os mesmos números a partir de uma fixture partilhada.
+- **Paridade escrita.** [docs/FEATURES.md](docs/FEATURES.md) lista cada funcionalidade do iPhone e onde está no desktop.
+- **Swift 6 com isolamento `MainActor` por omissão** e concorrência estrita no iPhone; esquema SwiftData versionado (V1→V7) com testes de migração.
+- **Modo de demonstração** nas duas apps: `-MynikDemo` no iPhone e "Experimentar com dados de exemplo" no desktop (PGlite com as mesmas migrações, sem tocar nos dados reais).
 
 ## Decisões técnicas
-- **Sync local-first com Supabase em vez de CloudKit.** O sync por iCloud exige o Apple Developer Program. O SwiftData continua a ser a fonte; o Supabase guarda uma cópia numa **tabela genérica** `records(user_id, entity, key, payload jsonb, deleted, modified_at, updated_at)` ([SQL](supabase/migrations/20261121000000_records.sql)), em que o `payload` é o mesmo registo JSON da cópia de segurança — mudar os modelos não obriga a mudar a base de dados. Como os modelos não têm data de alteração, o `SyncEngine` descobre o que mudou por hash desde o último sync; os conflitos resolvem-se por **last-write-wins** (também no servidor, com um gatilho) e apagar envia um **tombstone**. RLS com `auth.uid()` em tudo; a app só tem a chave pública. A cópia JSON (AirDrop, iCloud Drive ou Ficheiros) continua disponível.
-- **Sem plano pago da Apple.** Nada de notarização, TestFlight nem push remoto: a app do Mac é distribuída por uma cask do Homebrew e assinada com o certificado grátis da Personal Team (o que permite o App Group dos widgets). As Live Activities são atualizadas localmente pela app e as notificações são todas locais.
-- **IA só no dispositivo.** Foundation Models com verificação de disponibilidade em runtime; a categorização limita a resposta às categorias existentes (`DynamicGenerationSchema`) e o chat junta os dados do tema à pergunta, porque o modelo pequeno nem sempre chama as ferramentas. Sem Apple Intelligence há sempre um caminho com regras.
-- **APIs grátis e sem chaves**: câmbio do BCE ([Frankfurter](https://frankfurter.dev)), preços de combustível do Ministerio para la Transición Ecológica, cotações do Yahoo Finance. A Shopify usa só *scopes* de leitura e o token fica no **Keychain**, nunca no código.
-- **Privacidade**: Face ID opcional para abrir a app, números e fotos dos documentos atrás de autenticação própria (e fora da busca global). Sem conta, nenhum dado sai do dispositivo; com conta, só para o teu projeto Supabase (protegido por RLS), e nunca as fotos dos documentos nem os segredos.
+- **Stack 100% grátis.** Supabase no plano grátis (Postgres, Auth, Edge Functions, pg_cron), GitHub Actions para compilar os instaladores, Homebrew para distribuir no Mac, APIs públicas sem chave ([Frankfurter](https://frankfurter.dev), Ministerio para la Transición Ecológica, Yahoo Finance, Google Sheets públicas). Nenhum serviço pago.
+- **Tauri em vez de Swift no Mac.** Uma só app desktop para Mac e Windows, com ~9 MB (usa o WebView do sistema), feita da mesma web que corre no browser. O Swift fica no iPhone, onde dá widgets, Live Activities, Siri e Apple Pay.
+- **Sem plano pago da Apple.** Nada de notarização, TestFlight, CloudKit nem push remoto: o desktop é assinado ad hoc e distribuído pela GitHub Release e por uma cask do Homebrew; o iPhone instala-se pelo Xcode ou pelo Sideloadly; as notificações são locais.
+- **Segredos só no servidor.** A Shopify (scopes só de leitura) fala apenas com a Edge Function, que tem o segredo nos *secrets*; as apps só têm a chave pública do Supabase e cada linha está protegida por RLS (`auth.uid() = user_id`).
+- **IA sem custo.** No iPhone, Foundation Models no dispositivo; no desktop, regras e resumos (e um modelo local via Ollama, se estiver instalado). OCR das faturas no dispositivo (Vision no iPhone, tesseract.js no desktop).
+- **Privacidade**: Face ID (iPhone) ou PIN (desktop) para abrir a app e ver os números e fotos dos documentos; as fotos dos documentos nunca saem do dispositivo.
 
-## Estado — v1.4
+## Estado — v2.0
 ✅ **Fase 1 (MVP) concluída**: projeto multiplataforma, modelos SwiftData, navegação adaptativa (barra lateral no Mac/iPad, separadores no iPhone), Finanças (lista, adicionar e editar gastos/receitas) e tela Hoje (saldo do mês, últimos gastos, contas a vencer).
 
 ✅ **Fase 2 (Finanças completas) concluída**: contas a pagar com recorrência e botão "paguei", notificações de vencimento, orçamento mensal por categoria, relatórios com Swift Charts, assinaturas (total mensal/anual), importação de extratos CSV (com deteção de duplicados; exemplo em [docs/exemplo-extrato.csv](docs/exemplo-extrato.csv)) e multi-moeda EUR/BRL com taxa do BCE.
@@ -101,36 +105,47 @@ MynikTests/       Swift Testing, com a app como anfitrião e base de dados em me
 
 ✅ **Fase 10 (Notas ao estilo wiki) concluída — v1.4**: funcionalidades estudadas a partir do comportamento público de editores por blocos e recriadas de raiz (sem código nem assets de terceiros). **Menu "/"** com títulos 1–3, listas com marcas e numerada, tarefas, alternar, citação, destaque com emoji, código com linguagem, tabela simples, divisor e imagem, mais atalhos Markdown ao escrever; **blocos reordenáveis** por arrastar e pelo teclado (⇧⌘↑/↓, ⌘D, ⌥⌘0–8); **capa, ícone e favoritos** com caminho clicável; **bases de dados** (propriedades de texto, número, seleção, data e caixa) com vistas **Tabela, Quadro** (arrastar entre colunas) e **Calendário**; **menções @** a páginas, projetos, movimentos e datas, com backlinks; **templates** (5 da app e os teus); e **importação de exports do Notion** (páginas, subpáginas, imagens e bases de dados com tipos inferidos). Esquema **V7** com migração automática; os campos novos entram na cópia JSON e, por isso, no sync com o Supabase. **273 testes** no Mac (271 no iOS).
 
+✅ **Fase 11 (Desktop e dados partilhados) concluída — v2.0**: o Mac passa a usar uma **app desktop em Tauri v2 + Next.js**, que também corre no **Windows**; o app Swift fica só para iPhone e iPad. Os dados mudam da tabela genérica `records` para **25 tabelas tipadas no Supabase** com RLS e last-write-wins, e os cálculos da loja e das finanças passam a **funções SQL** com testes de paridade. O desktop tem todas as funcionalidades do iPhone ([FEATURES](docs/FEATURES.md)) e ainda tray com vendas de hoje e gasto rápido, atalho global ⇧⌘K, notificações do sistema, arranque com o sistema, tabelas ordenáveis e arrastar e largar. A Shopify passa para uma **Edge Function**, com sync agendado por **pg_cron**. Os instaladores `.dmg` (Apple Silicon e Intel) e `.exe` são compilados no **GitHub Actions**. **321 testes** (277 Swift Testing, 31 vitest, 13 SQL).
+
 Detalhe de cada fase em [ROADMAP](docs/ROADMAP.md) e [CHANGELOG](CHANGELOG.md).
 
 ## Instalar
-**Mac**
+**Mac** (Apple Silicon ou Intel, macOS 11+)
 ```bash
 brew install --cask domyniik/tap/mynik
 ```
-Requer macOS 26 (Tahoe). Para atualizar: `brew update && brew upgrade --cask mynik`. A app é assinada com o certificado gratuito *Apple Development* (Personal Team) e não é notarizada; a cask retira a quarentena. Na primeira abertura depois de atualizar, o macOS pode pedir uma vez acesso aos dados ou ao Keychain (token da Shopify): escolhe **Permitir sempre**.
+Para atualizar: `brew update && brew upgrade --cask mynik`. A cask retira a quarentena, por isso abre logo.
 
-**iPhone** — sem TestFlight (exige o plano pago): compila e instala a partir do Xcode com o teu Apple ID, ou instala o `.ipa` com o [Sideloadly](https://sideloadly.io). Com um Apple ID grátis a assinatura dura 7 dias e tem de ser renovada. Os widgets leem o App Group `group.com.domynik.mynik`; se o Sideloadly mudar o identificador do grupo, ficam em "Abre o Mynik".
+Sem Homebrew: descarrega o `.dmg` da [última versão](https://github.com/Domyniik/mynik/releases/latest) (`aarch64` para Apple Silicon, `x64` para Intel) e arrasta o Mynik para Aplicações. Como a app não é notarizada (isso exige o plano pago da Apple), da primeira vez o macOS diz que não a pode verificar:
+1. Em Aplicações, **clica com o botão direito** (ou Control + clique) no Mynik → **Abrir** → **Abrir**. Só é preciso uma vez.
+2. Se o macOS não mostrar o botão "Abrir": **Definições do Sistema → Privacidade e Segurança** → "O Mynik foi bloqueado…" → **Abrir mesmo assim**.
+3. Alternativa no Terminal: `xattr -dr com.apple.quarantine /Applications/Mynik.app`
 
-Para publicar uma versão: `scripts/release.sh <versão>` (compila, cria a release no GitHub e atualiza a [tap](https://github.com/Domyniik/homebrew-tap)).
+**Windows** (10 e 11): descarrega o `Mynik_x.y.z_x64-setup.exe` da [última versão](https://github.com/Domyniik/mynik/releases/latest) e corre-o (instala só para o teu utilizador, sem administrador). O instalador não tem assinatura paga, por isso o **SmartScreen** mostra "O Windows protegeu o computador": clica em **Mais informações → Executar mesmo assim**.
+
+**iPhone** — sem TestFlight (exige o plano pago): compila e instala a partir do Xcode com o teu Apple ID, ou instala o `.ipa` com o [Sideloadly](https://sideloadly.io). Com um Apple ID grátis a assinatura dura 7 dias e tem de ser renovada.
+
+Para publicar uma versão do desktop: `scripts/release.sh <versão>` (tag → GitHub Actions compila os instaladores → GitHub Release → atualiza a [tap](https://github.com/Domyniik/homebrew-tap)).
 
 ## Como correr
-Requer Xcode 27+. O projeto é gerado com [XcodeGen](https://github.com/yonaskolb/XcodeGen) a partir de `project.yml`:
+**Supabase** (uma vez): cria um projeto grátis em [supabase.com](https://supabase.com), aplica [supabase/migrations](supabase/migrations) no SQL Editor e, em Authentication → URL Configuration → Redirect URLs, acrescenta `mynik://login` (iPhone), `mynik://auth/callback` (desktop) e `http://localhost:3000/auth/callback/` (web). A Edge Function e o sync agendado estão em [supabase/README.md](supabase/README.md).
 
+**Web e desktop** (Node 22, Rust):
+```bash
+cp web/.env.example web/.env.local     # URL e chave pública do Supabase
+cd web && npm install && npm run dev    # http://localhost:3000 (sem Supabase: "Experimentar com dados de exemplo")
+cd desktop && npm install && npm run dev   # a mesma web numa janela Tauri
+cd desktop && npm run build             # .app e .dmg (ou .exe no Windows)
+```
+Testes: `cd web && npm test` · `cd supabase && npm test`.
+
+**iPhone** (Xcode 27+, [XcodeGen](https://github.com/yonaskolb/XcodeGen)):
 ```bash
 brew install xcodegen
 xcodegen generate
 open Mynik.xcodeproj
 ```
-
-Login e sync (opcional): copia `Config/Supabase.xcconfig.example` para `Config/Supabase.xcconfig` (fora do git) e preenche o *Reference ID* e a chave pública (*publishable/anon*) do teu projeto Supabase; aplica [supabase/migrations](supabase/migrations) no SQL Editor e acrescenta `mynik://login` às *Redirect URLs* (Authentication → URL Configuration). Sem esse ficheiro a app compila e funciona sem login.
-
-Testes (Swift Testing):
-```bash
-xcodebuild -project Mynik.xcodeproj -scheme Mynik -destination 'platform=macOS' test
-```
-
-Modo de demonstração com dados de exemplo: no esquema do Xcode, acrescenta o argumento `-MynikDemo` (ou `xcrun simctl launch booted com.domynik.mynik -MynikDemo`).
+Copia `Config/Supabase.xcconfig.example` para `Config/Supabase.xcconfig` (fora do git) com o *Reference ID* e a chave pública; sem esse ficheiro a app compila e funciona sem login. Modo de demonstração: argumento `-MynikDemo`.
 
 ## Apple Pay → Mynik (automação dos Atalhos)
 Cada pagamento com o Apple Pay pode entrar sozinho nas Finanças:

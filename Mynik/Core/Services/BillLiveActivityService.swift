@@ -1,9 +1,7 @@
 import Foundation
 import SwiftData
 import OSLog
-#if os(iOS)
 import ActivityKit
-#endif
 
 /// Resumo das contas por pagar hoje (e atrasadas), base da Live Activity.
 struct BillDueSummary: Equatable {
@@ -37,17 +35,14 @@ enum BillLiveActivityService {
     }
 
     static func sync(in context: ModelContext, converter: CurrencyConverter, now: Date = .now) {
-        #if os(iOS)
         guard !AppEnvironment.isRunningTests else { return }
         let bills = (try? context.fetch(FetchDescriptor<Bill>())) ?? []
         let summary = isEnabled ? BillDueSummary(bills: bills, converter: converter, now: now) : nil
         Task { await apply(summary, now: now) }
-        #endif
     }
 
     private static let logger = Logger(subsystem: "com.domynik.mynik", category: "LiveActivity")
 
-    #if os(iOS)
     private static func apply(_ summary: BillDueSummary?, now: Date) async {
         let calendar = Calendar.current
         let day = calendar.startOfDay(for: now)
@@ -88,5 +83,4 @@ enum BillLiveActivityService {
             logger.info("Live Activities desligadas pelo utilizador")
         }
     }
-    #endif
 }

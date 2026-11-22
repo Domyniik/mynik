@@ -1,6 +1,30 @@
 # Changelog
 
-## [Não lançado]
+## [2.0.0] — 2026-11-22
+- docs: CLAUDE.md, README e ROADMAP com a nova arquitetura (iPhone em Swift, Mac e Windows em Tauri, dados no Supabase) e a stack 100% grátis
+- feat(supabase): sync agendado da loja de 30 em 30 min (pg_cron + pg_net → Edge Function, segredos no Vault)
+- ci(desktop): instaladores .dmg (Apple Silicon e Intel) e .exe no GitHub Actions; scripts/release.sh publica a release e atualiza a cask
+- feat(desktop): app Tauri v2 com tray (vendas de hoje, gasto rápido), atalho global ⇧⌘K, notificações do sistema, iniciar com o sistema e login por deep link
+- feat(web): Definições partilhadas, cópia de segurança JSON (formato do iPhone), PIN e bloqueio, Pergunte ao Mynik e categorias iniciais
+- feat(notes): Notas ao estilo wiki no desktop (páginas aninhadas, blocos, bases de dados, templates, importar Notion)
+- feat(web): Documentos e Carreira
+- feat(web): Carro — consumo, abastecimentos, manutenções, prazos e combustível
+- feat(web): Património — investimentos, cotações, aportes e poupança
+- feat(web): Metas e Hábitos
+- feat(web): Projetos com Kanban de arrastar e largar
+- feat(web): Hoje — centro de comando como no mockup
+- feat(store): Loja no desktop (KPIs, ranking 0–100, diagnóstico) e Edge Function da Shopify
+- feat(web): Finanças — movimentos, contas a pagar, orçamento, assinaturas, relatórios e CSV
+- feat(web): base Next.js + Tailwind + shadcn/ui com tema do mockup, ⌘K, ⌘N e ⌘1–9
+- feat(supabase): Realtime nas tabelas tipadas
+- chore: segredos fora do git (.env.*) e modelo supabase/.env.example para os segredos do servidor
+- feat(sync): definições partilhadas entre iPhone e desktop (custos da loja, taxa BRL, meta de poupança, lembretes)
+- feat(sync): o iPhone sincroniza com as tabelas tipadas através de sync_pull / sync_push
+- feat(supabase): migração dos dados de records para as tabelas tipadas (idempotente, mantém as datas)
+- feat(supabase): funções SQL do score dos produtos, lucro real, KPIs, orçamento e resumo do mês, com testes de paridade iPhone ↔ SQL
+- feat(supabase): 25 tabelas tipadas com RLS, last-write-wins e funções de sync, geradas de supabase/schema/entities.mjs
+- refactor: remove versão macOS em Swift (o Mac passa para a app desktop em Tauri); o app Swift fica só para iPhone e iPad
+- docs: checklist de paridade iOS ↔ desktop (docs/FEATURES.md)
 - docs: README e estado da Fase 10 — notas ao estilo wiki (v1.4)
 - test(notes): o payload do sync leva os campos novos das notas (base de dados, capa, favoritos, blocos) e outro dispositivo recebe-os
 - feat(notes): importa um export do Notion (ZIP com Markdown e CSV) com páginas, subpáginas, imagens e bases de dados

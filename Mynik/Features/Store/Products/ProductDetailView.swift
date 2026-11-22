@@ -35,9 +35,7 @@ struct ProductDetailView: View {
         }
         .formStyle(.grouped)
         .navigationTitle(product.title)
-        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
-        #endif
     }
 
     private func summarySection(_ performance: ProductPerformance, _ score: ProductScore) -> some View {
@@ -101,9 +99,7 @@ struct ProductDetailView: View {
                 TextField("Custo", value: $product.unitCost, format: .currency(code: Currency.defaultCode).locale(.app))
                     .multilineTextAlignment(.trailing)
                     .labelsHidden()
-                    #if os(iOS)
                     .keyboardType(.decimalPad)
-                    #endif
                     .onChange(of: product.unitCost) { product.unitCostIsManual = true }
             }
             if product.unitCostIsManual {
@@ -116,9 +112,7 @@ struct ProductDetailView: View {
                 TextField("Anúncios", value: $product.adSpend30d, format: .currency(code: Currency.defaultCode).locale(.app))
                     .multilineTextAlignment(.trailing)
                     .labelsHidden()
-                    #if os(iOS)
                     .keyboardType(.decimalPad)
-                    #endif
             }
         } header: {
             Text("Custos")

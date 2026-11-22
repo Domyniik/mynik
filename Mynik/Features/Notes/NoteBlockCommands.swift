@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Menu "Bloco" da barra do editor, com os atalhos de teclado do Mac (e do iPad
+/// Menu "Bloco" da barra do editor, com os atalhos de teclado (iPad
 /// com teclado): mover, duplicar, apagar e transformar o bloco com o foco.
 struct NoteBlockCommands: View {
     /// Bloco com o foco (`nil` desativa o menu).

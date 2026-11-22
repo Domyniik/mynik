@@ -1,0 +1,545 @@
+{
+  "products": [
+    {
+      "productID": "gid://shopify/Product/1",
+      "score": 100,
+      "classification": "winner",
+      "action": "Escalar: aumentar o orçamento de anúncios.",
+      "ageDays": 120,
+      "units": 17,
+      "orderedUnits": 17,
+      "refundedUnits": 0,
+      "revenue": "423.300000",
+      "daysSinceLastSale": 0,
+      "daysOfStock": 70,
+      "abandonedUnits": 3,
+      "marginRate": 0.751004016,
+      "refundRate": 0,
+      "roas": 14.11,
+      "checkoutConversion": 0.85,
+      "factors": [
+        {
+          "kind": "sales",
+          "points": 20,
+          "hasData": true
+        },
+        {
+          "kind": "revenue",
+          "points": 15,
+          "hasData": true
+        },
+        {
+          "kind": "margin",
+          "points": 20,
+          "hasData": true
+        },
+        {
+          "kind": "funnel",
+          "points": 10,
+          "hasData": true
+        },
+        {
+          "kind": "refunds",
+          "points": 10,
+          "hasData": true
+        },
+        {
+          "kind": "recency",
+          "points": 15,
+          "hasData": true
+        },
+        {
+          "kind": "roas",
+          "points": 10,
+          "hasData": true
+        }
+      ]
+    },
+    {
+      "productID": "gid://shopify/Product/7",
+      "score": 69,
+      "classification": "promising",
+      "action": "Dar mais visibilidade: destaque na loja e anúncios.",
+      "ageDays": 60,
+      "units": 5,
+      "orderedUnits": 5,
+      "refundedUnits": 0,
+      "revenue": "49.500000",
+      "daysSinceLastSale": 8,
+      "daysOfStock": 18,
+      "abandonedUnits": 0,
+      "marginRate": 0.787878788,
+      "refundRate": 0,
+      "roas": null,
+      "checkoutConversion": 1,
+      "factors": [
+        {
+          "kind": "sales",
+          "points": 5.882352941,
+          "hasData": true
+        },
+        {
+          "kind": "revenue",
+          "points": 4.100510838,
+          "hasData": true
+        },
+        {
+          "kind": "margin",
+          "points": 20,
+          "hasData": true
+        },
+        {
+          "kind": "funnel",
+          "points": 10,
+          "hasData": true
+        },
+        {
+          "kind": "refunds",
+          "points": 10,
+          "hasData": true
+        },
+        {
+          "kind": "recency",
+          "points": 12.222222222,
+          "hasData": true
+        },
+        {
+          "kind": "roas",
+          "points": 7,
+          "hasData": false
+        }
+      ]
+    },
+    {
+      "productID": "gid://shopify/Product/3",
+      "score": 66,
+      "classification": "testing",
+      "action": "Manter o teste mais 8 dias antes de decidir.",
+      "ageDays": 6,
+      "units": 2,
+      "orderedUnits": 2,
+      "refundedUnits": 0,
+      "revenue": "69.800000",
+      "daysSinceLastSale": 2,
+      "daysOfStock": 225,
+      "abandonedUnits": 0,
+      "marginRate": 0.684813754,
+      "refundRate": 0,
+      "roas": null,
+      "checkoutConversion": null,
+      "factors": [
+        {
+          "kind": "sales",
+          "points": 2.352941176,
+          "hasData": true
+        },
+        {
+          "kind": "revenue",
+          "points": 5.782134475,
+          "hasData": true
+        },
+        {
+          "kind": "margin",
+          "points": 19.392550143,
+          "hasData": true
+        },
+        {
+          "kind": "funnel",
+          "points": 6,
+          "hasData": false
+        },
+        {
+          "kind": "refunds",
+          "points": 10,
+          "hasData": true
+        },
+        {
+          "kind": "recency",
+          "points": 15,
+          "hasData": true
+        },
+        {
+          "kind": "roas",
+          "points": 7,
+          "hasData": false
+        }
+      ]
+    },
+    {
+      "productID": "gid://shopify/Product/2",
+      "score": 61,
+      "classification": "promising",
+      "action": "Perceber o motivo das devoluções (qualidade, tamanho, descrição).",
+      "ageDays": 90,
+      "units": 7,
+      "orderedUnits": 9,
+      "refundedUnits": 2,
+      "revenue": "139.300000",
+      "daysSinceLastSale": 1,
+      "daysOfStock": 107,
+      "abandonedUnits": 6,
+      "marginRate": 0.522613065,
+      "refundRate": 0.222222222,
+      "roas": null,
+      "checkoutConversion": 0.6,
+      "factors": [
+        {
+          "kind": "sales",
+          "points": 8.235294118,
+          "hasData": true
+        },
+        {
+          "kind": "revenue",
+          "points": 11.539417368,
+          "hasData": true
+        },
+        {
+          "kind": "margin",
+          "points": 12.904522613,
+          "hasData": true
+        },
+        {
+          "kind": "funnel",
+          "points": 6,
+          "hasData": true
+        },
+        {
+          "kind": "refunds",
+          "points": 0,
+          "hasData": true
+        },
+        {
+          "kind": "recency",
+          "points": 15,
+          "hasData": true
+        },
+        {
+          "kind": "roas",
+          "points": 7,
+          "hasData": false
+        }
+      ]
+    },
+    {
+      "productID": "gid://shopify/Product/8",
+      "score": 54,
+      "classification": "testing",
+      "action": "Juntar mais dados (vendas ou anúncios) antes de decidir.",
+      "ageDays": 25,
+      "units": 1,
+      "orderedUnits": 1,
+      "refundedUnits": 0,
+      "revenue": "12.500000",
+      "daysSinceLastSale": 15,
+      "daysOfStock": null,
+      "abandonedUnits": 0,
+      "marginRate": 0.7,
+      "refundRate": 0,
+      "roas": null,
+      "checkoutConversion": null,
+      "factors": [
+        {
+          "kind": "sales",
+          "points": 1.176470588,
+          "hasData": true
+        },
+        {
+          "kind": "revenue",
+          "points": 1.035482535,
+          "hasData": true
+        },
+        {
+          "kind": "margin",
+          "points": 20,
+          "hasData": true
+        },
+        {
+          "kind": "funnel",
+          "points": 6,
+          "hasData": false
+        },
+        {
+          "kind": "refunds",
+          "points": 10,
+          "hasData": true
+        },
+        {
+          "kind": "recency",
+          "points": 8.333333333,
+          "hasData": true
+        },
+        {
+          "kind": "roas",
+          "points": 7,
+          "hasData": false
+        }
+      ]
+    },
+    {
+      "productID": "gid://shopify/Product/5",
+      "score": 43,
+      "classification": "loser",
+      "action": "Arquivar ou escoar o stock com desconto.",
+      "ageDays": 200,
+      "units": 0,
+      "orderedUnits": 0,
+      "refundedUnits": 0,
+      "revenue": "0.000000",
+      "daysSinceLastSale": 45,
+      "daysOfStock": null,
+      "abandonedUnits": 0,
+      "marginRate": 0.748427673,
+      "refundRate": 0,
+      "roas": null,
+      "checkoutConversion": null,
+      "factors": [
+        {
+          "kind": "sales",
+          "points": 0,
+          "hasData": true
+        },
+        {
+          "kind": "revenue",
+          "points": 0,
+          "hasData": true
+        },
+        {
+          "kind": "margin",
+          "points": 20,
+          "hasData": true
+        },
+        {
+          "kind": "funnel",
+          "points": 6,
+          "hasData": false
+        },
+        {
+          "kind": "refunds",
+          "points": 10,
+          "hasData": true
+        },
+        {
+          "kind": "recency",
+          "points": 0,
+          "hasData": true
+        },
+        {
+          "kind": "roas",
+          "points": 7,
+          "hasData": false
+        }
+      ]
+    },
+    {
+      "productID": "gid://shopify/Product/4",
+      "score": 37,
+      "classification": "loser",
+      "action": "Pausar os anúncios e tirar de destaque.",
+      "ageDays": 80,
+      "units": 1,
+      "orderedUnits": 1,
+      "refundedUnits": 0,
+      "revenue": "29.900000",
+      "daysSinceLastSale": 20,
+      "daysOfStock": 900,
+      "abandonedUnits": 2,
+      "marginRate": 1,
+      "refundRate": 0,
+      "roas": 0.7475,
+      "checkoutConversion": null,
+      "factors": [
+        {
+          "kind": "sales",
+          "points": 1.176470588,
+          "hasData": true
+        },
+        {
+          "kind": "revenue",
+          "points": 2.476874223,
+          "hasData": true
+        },
+        {
+          "kind": "margin",
+          "points": 12,
+          "hasData": false
+        },
+        {
+          "kind": "funnel",
+          "points": 6,
+          "hasData": false
+        },
+        {
+          "kind": "refunds",
+          "points": 10,
+          "hasData": true
+        },
+        {
+          "kind": "recency",
+          "points": 5.555555556,
+          "hasData": true
+        },
+        {
+          "kind": "roas",
+          "points": 0,
+          "hasData": true
+        }
+      ]
+    }
+  ],
+  "kpis": {
+    "1": {
+      "current": {
+        "orders": 2,
+        "units": 2,
+        "grossSales": "57.600000",
+        "vat": "10.000000",
+        "productCosts": "12.400000",
+        "shippingCosts": "9.000000",
+        "paymentFees": "2.270400",
+        "adSpend": "4.850000",
+        "profit": "19.079600",
+        "margin": 0.400831933,
+        "averageOrderValue": "28.800000",
+        "sessions": 60,
+        "completedSessions": 1,
+        "hasTraffic": true,
+        "conversionRate": 0.016666667
+      },
+      "previous": {
+        "orders": 2,
+        "units": 2,
+        "grossSales": "47.600000",
+        "vat": "8.260000",
+        "productCosts": "19.000000",
+        "shippingCosts": "9.000000",
+        "paymentFees": "1.980400",
+        "adSpend": "4.850000",
+        "profit": "4.509600",
+        "margin": 0.114631418,
+        "averageOrderValue": "23.800000",
+        "sessions": 97,
+        "completedSessions": 1,
+        "hasTraffic": true,
+        "conversionRate": 0.010309278
+      }
+    },
+    "7": {
+      "current": {
+        "orders": 11,
+        "units": 11,
+        "grossSales": "337.900000",
+        "vat": "58.650000",
+        "productCosts": "90.200000",
+        "shippingCosts": "45.000000",
+        "paymentFees": "13.099100",
+        "adSpend": "33.950000",
+        "profit": "97.000900",
+        "margin": 0.34736222,
+        "averageOrderValue": "30.718182",
+        "sessions": 597,
+        "completedSessions": 7,
+        "hasTraffic": true,
+        "conversionRate": 0.011725293
+      },
+      "previous": {
+        "orders": 7,
+        "units": 11,
+        "grossSales": "201.300000",
+        "vat": "34.940000",
+        "productCosts": "48.100000",
+        "shippingCosts": "31.500000",
+        "paymentFees": "7.937700",
+        "adSpend": "33.950000",
+        "profit": "44.872300",
+        "margin": 0.269730103,
+        "averageOrderValue": "28.757143",
+        "sessions": 610,
+        "completedSessions": 7,
+        "hasTraffic": true,
+        "conversionRate": 0.01147541
+      }
+    },
+    "30": {
+      "current": {
+        "orders": 31,
+        "units": 35,
+        "grossSales": "891.200000",
+        "vat": "154.700000",
+        "productCosts": "220.150000",
+        "shippingCosts": "135.000000",
+        "paymentFees": "35.144800",
+        "adSpend": "145.500000",
+        "profit": "200.705200",
+        "margin": 0.272512152,
+        "averageOrderValue": "28.748387",
+        "sessions": 2545,
+        "completedSessions": 30,
+        "hasTraffic": true,
+        "conversionRate": 0.011787819
+      },
+      "previous": {
+        "orders": 16,
+        "units": 17,
+        "grossSales": "457.700000",
+        "vat": "79.460000",
+        "productCosts": "107.600000",
+        "shippingCosts": "72.000000",
+        "paymentFees": "18.073300",
+        "adSpend": "145.500000",
+        "profit": "35.066700",
+        "margin": 0.092710184,
+        "averageOrderValue": "28.606250",
+        "sessions": 865,
+        "completedSessions": 10,
+        "hasTraffic": true,
+        "conversionRate": 0.011560694
+      }
+    }
+  },
+  "budget": [
+    {
+      "categoryID": "CAT-FOOD",
+      "budget": "250.000000",
+      "spent": "102.020000",
+      "remaining": "147.980000",
+      "overBudget": false,
+      "progress": 0.40808
+    },
+    {
+      "categoryID": "CAT-HOME",
+      "budget": "0.000000",
+      "spent": "750.000000",
+      "remaining": "-750.000000",
+      "overBudget": false,
+      "progress": 0
+    },
+    {
+      "categoryID": "CAT-FUN",
+      "budget": "80.000000",
+      "spent": "134.400000",
+      "remaining": "-54.400000",
+      "overBudget": true,
+      "progress": 1.68
+    },
+    {
+      "categoryID": "CAT-CAR",
+      "budget": "150.000000",
+      "spent": "0.000000",
+      "remaining": "150.000000",
+      "overBudget": false,
+      "progress": 0
+    }
+  ],
+  "months": {
+    "2026-10": {
+      "income": "1850.000000",
+      "expenses": "120.000000",
+      "balance": "1730.000000"
+    },
+    "2026-11": {
+      "income": "1950.000000",
+      "expenses": "999.220000",
+      "balance": "950.780000"
+    }
+  }
+}

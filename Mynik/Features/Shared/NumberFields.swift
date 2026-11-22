@@ -10,9 +10,7 @@ struct AmountField: View {
         LabeledContent(title) {
             TextField(title, value: $value, format: .currency(code: currencyCode).locale(.app))
                 .multilineTextAlignment(.trailing)
-                #if os(iOS)
                 .keyboardType(.decimalPad)
-                #endif
         }
     }
 }
@@ -28,9 +26,7 @@ struct UnitNumberField: View {
             HStack(spacing: 4) {
                 TextField(title, value: $value, format: .number.locale(.app))
                     .multilineTextAlignment(.trailing)
-                    #if os(iOS)
                     .keyboardType(.numberPad)
-                    #endif
                 Text(unit).foregroundStyle(.secondary)
             }
         }
@@ -48,9 +44,7 @@ struct UnitDecimalField: View {
             HStack(spacing: 4) {
                 TextField(title, value: $value, format: .number.precision(.fractionLength(0...3)).locale(.app))
                     .multilineTextAlignment(.trailing)
-                    #if os(iOS)
                     .keyboardType(.decimalPad)
-                    #endif
                 Text(unit).foregroundStyle(.secondary)
             }
         }

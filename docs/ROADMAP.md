@@ -80,3 +80,16 @@ Funcionalidades recriadas de raiz em SwiftUI + SwiftData a partir do comportamen
 - [x] Menções @ (páginas, projetos, movimentos e datas) com backlinks; links das menções abrem o destino
 - [x] Templates de página: 5 da app (Reunião, Diário, Projeto, Leituras, Semana) e "Guardar como template"
 - [x] Importar um export do Notion (ZIP com Markdown/CSV): páginas, subpáginas, imagens, bases de dados com tipos inferidos e ZIPs partidos; leitor de ZIP próprio (deflate pelo framework Compression)
+
+## Fase 11 — Desktop (Next.js + Tauri) e dados partilhados
+Arquitetura: iPhone → Swift · Mac e Windows → Tauri (Next.js) · dados → Supabase. Checklist de paridade em [FEATURES.md](FEATURES.md).
+- [x] Auditoria do app e checklist de paridade (docs/FEATURES.md)
+- [x] App Swift só para iPhone/iPad: sem target macOS, MenuBarExtra nem código `#if os(macOS)`
+- [x] Supabase: tabelas tipadas com RLS, funções SQL (score, lucro, orçamento) e migração a partir de `records`
+- [x] iOS lê e escreve as tabelas (SwiftData como cache offline) e partilha as definições
+- [x] Servidor: Edge Functions (Shopify, cotações, combustível, Google Ads) e sync agendado da loja
+- [x] Web (/web): Next.js + Tailwind + shadcn/ui com todos os itens do FEATURES.md
+- [x] App desktop (/desktop): Tauri v2, tray, atalho global, notificações, iniciar com o sistema
+- [x] Instaladores .dmg e .exe por GitHub Actions; cask do Homebrew aponta para o .dmg
+- [x] Docs: CLAUDE.md (nova arquitetura e regras de release), README (stack 100% grátis, instalar sem conta paga), CHANGELOG
+- [x] Release v2.0.0 (GitHub Release com .dmg e .exe, cask do Homebrew)

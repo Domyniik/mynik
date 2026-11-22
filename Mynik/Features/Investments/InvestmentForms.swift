@@ -51,9 +51,7 @@ struct InvestmentFormView: View {
                         HStack {
                             TextField("Ticker (ex.: VWCE.DE, BTC-EUR)", text: $ticker)
                                 .autocorrectionDisabled()
-                                #if os(iOS)
                                 .textInputAutocapitalization(.characters)
-                                #endif
                             Button("Verificar") { Task { await checkTicker() } }
                                 .disabled(ticker.trimmingCharacters(in: .whitespaces).isEmpty || isChecking)
                         }
@@ -90,9 +88,6 @@ struct InvestmentFormView: View {
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 460, minHeight: 520)
-        #endif
     }
 
     private func checkTicker() async {
@@ -183,8 +178,5 @@ struct ContributionSheet: View {
             }
             .onAppear { account = account ?? accounts.first }
         }
-        #if os(macOS)
-        .frame(minWidth: 420, minHeight: 360)
-        #endif
     }
 }

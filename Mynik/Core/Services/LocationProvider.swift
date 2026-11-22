@@ -16,11 +16,8 @@ final class LocationProvider {
         isLocating = true
         defer { isLocating = false }
 
-        #if os(iOS)
         let session = CLServiceSession(authorization: .whenInUse)
         defer { session.invalidate() }
-        #endif
-        // No Mac, as atualizações pedem a autorização sozinhas.
         do {
             for try await update in CLLocationUpdate.liveUpdates() {
                 if update.authorizationDenied || update.authorizationDeniedGlobally || update.authorizationRestricted {

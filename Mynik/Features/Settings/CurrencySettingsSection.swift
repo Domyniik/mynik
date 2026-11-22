@@ -13,9 +13,7 @@ struct CurrencySettingsSection: View {
             LabeledContent("1 EUR em BRL") {
                 TextField("Taxa", value: $brlPerEUR, format: .number.precision(.fractionLength(2...4)).locale(.app))
                     .multilineTextAlignment(.trailing)
-                    #if os(iOS)
                     .keyboardType(.decimalPad)
-                    #endif
                     .frame(maxWidth: 120)
             }
 

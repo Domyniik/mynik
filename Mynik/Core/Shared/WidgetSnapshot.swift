@@ -1,12 +1,12 @@
 import Foundation
 
-/// Resumo que a app deixa no App Group para os widgets (e o menu do Mac) lerem.
+/// Resumo que a app deixa no App Group para os widgets lerem.
 ///
 /// Os widgets não abrem a base de dados: a app escreve este ficheiro pequeno
 /// sempre que os dados mudam e pede ao WidgetKit para atualizar.
 /// Partilhado entre a app e a extensão `MynikWidgets`.
 nonisolated struct WidgetSnapshot: Codable, Equatable, Sendable {
-    /// Vem do Info.plist: `group.com.domynik.mynik` no iOS, `<TeamID>.com.domynik.mynik` no Mac.
+    /// Vem do Info.plist: `group.com.domynik.mynik`.
     static let appGroupID = Bundle.main.object(forInfoDictionaryKey: "MynikAppGroup") as? String ?? "group.com.domynik.mynik"
 
     struct BillItem: Codable, Equatable, Sendable, Identifiable {

@@ -19,7 +19,7 @@ struct StoreAlertSettingsSection: View {
         } header: {
             ListSectionHeader("Alertas da loja", systemImage: "exclamationmark.triangle", color: .orange)
         } footer: {
-            Text("As vendas são verificadas ao abrir a app e em segundo plano no iPhone (quando o sistema deixa), ou de 15 em 15 minutos com a app aberta no Mac.")
+            Text("As vendas são verificadas ao abrir a app e em segundo plano (quando o sistema deixa).")
         }
     }
 }

@@ -33,9 +33,7 @@ struct StoreCostSettingsSection: View {
             TextField(title, value: value, format: format)
                 .multilineTextAlignment(.trailing)
                 .labelsHidden()
-                #if os(iOS)
                 .keyboardType(.decimalPad)
-                #endif
                 .frame(maxWidth: 120)
         }
     }

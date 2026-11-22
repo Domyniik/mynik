@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Tema do Mynik desktop (mockup "Mynik Desktop — Mockup"): escuro, sidebar,
+ * cartões com borda subtil e acento violeta. Os nomes seguem o shadcn/ui.
+ */
+:root {
+  --radius: 0.625rem;
+
+  --background: #0e0f11;
+  --foreground: #edeef0;
+  --sidebar: #121316;
+  --sidebar-foreground: #a9aeb6;
+  --sidebar-active: #1f2128;
+  --card: #16181c;
+  --card-foreground: #edeef0;
+  --popover: #16181c;
+  --popover-foreground: #edeef0;
+  --surface: #1e2026;
+  --track: #24272d;
+  --primary: #6e5df0;
+  --primary-foreground: #ffffff;
+  --secondary: #1e2026;
+  --secondary-foreground: #edeef0;
+  --muted: #1e2026;
+  --muted-foreground: #9ba1aa;
+  --accent: #1f2128;
+  --accent-foreground: #ffffff;
+  --link: #c9c4ff;
+  --destructive: #ef4444;
+  --border: #22252b;
+  --input: #2a2d35;
+  --ring: #6e5df0;
+
+  /* Estados (texto acessível sobre os cartões) */
+  --positive: #4ade80;
+  --warning: #fdba74;
+  --danger: #fca5a5;
+  --alert: #f97316;
+
+  /* Classificação dos produtos */
+  --winner-fg: #86efac;
+  --winner-bg: #12301f;
+  --promising-fg: #fde68a;
+  --promising-bg: #33290f;
+  --testing-fg: #93c5fd;
+  --testing-bg: #10243d;
+  --loser-fg: #fca5a5;
+  --loser-bg: #3a1616;
+
+  /* Gráficos */
+  --chart-1: #6e5df0;
+  --chart-2: #4ade80;
+  --chart-3: #fdba74;
+  --chart-4: #93c5fd;
+  --chart-5: #f472b6;
+}
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-surface: var(--surface);
+  --color-track: var(--track);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-link: var(--link);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-positive: var(--positive);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-alert: var(--alert);
+  --color-winner-fg: var(--winner-fg);
+  --color-winner-bg: var(--winner-bg);
+  --color-promising-fg: var(--promising-fg);
+  --color-promising-bg: var(--promising-bg);
+  --color-testing-fg: var(--testing-fg);
+  --color-testing-bg: var(--testing-bg);
+  --color-loser-fg: var(--loser-fg);
+  --color-loser-bg: var(--loser-bg);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-size: 14px;
+    font-feature-settings: "cv11", "ss01";
+  }
+  a {
+    color: var(--link);
+  }
+  /* Números alinhados nas tabelas e nos KPIs */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--primary) 45%, transparent);
+  }
+}

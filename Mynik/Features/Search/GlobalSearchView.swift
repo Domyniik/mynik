@@ -36,9 +36,7 @@ struct GlobalSearchView: View {
                 }
             }
             .navigationTitle("Pesquisar")
-            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
-            #endif
             .searchable(text: $query, isPresented: $isSearchPresented, prompt: "Pesquisar no Mynik")
             .onSubmit(of: .search) {
                 if let first = results.first { open(first) }
@@ -64,9 +62,6 @@ struct GlobalSearchView: View {
                 TransactionFormView(transaction: transaction)
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 520, minHeight: 440)
-        #endif
     }
 
     private func open(_ result: SearchResult) {

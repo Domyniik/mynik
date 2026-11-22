@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-/// Definições → Conta: login opcional por email com código e sync entre o Mac e o iPhone.
+/// Definições → Conta: login opcional por email com código e sync entre o iPhone e o computador.
 struct AccountSettingsSection: View {
     @Environment(AccountSync.self) private var account
     @Environment(\.modelContext) private var modelContext
@@ -33,7 +33,7 @@ struct AccountSettingsSection: View {
         } header: {
             ListSectionHeader("Conta", systemImage: "person.crop.circle", color: .blue)
         } footer: {
-            Text("Opcional. Com sessão iniciada, os dados sincronizam entre o Mac e o iPhone pelo Supabase. Sem conta ou sem rede, tudo continua a funcionar aqui. As fotos dos documentos e os segredos (como o token da Shopify) nunca saem do dispositivo.")
+            Text("Opcional. Com sessão iniciada, os dados sincronizam entre o iPhone e o Mynik no computador pelo Supabase. Sem conta ou sem rede, tudo continua a funcionar aqui. As fotos dos documentos e os segredos (como o token da Shopify) nunca saem do dispositivo.")
         }
     }
 
@@ -70,10 +70,8 @@ struct AccountSettingsSection: View {
         TextField("Email", text: $email, prompt: Text("nome@exemplo.com"))
             .textContentType(.emailAddress)
             .autocorrectionDisabled()
-            #if os(iOS)
             .keyboardType(.emailAddress)
             .textInputAutocapitalization(.never)
-            #endif
             .onSubmit(sendCode)
         Button("Enviar link de entrada", systemImage: "envelope", action: sendCode)
             .disabled(!isValidEmail || isWorking)
@@ -86,9 +84,7 @@ struct AccountSettingsSection: View {
         TextField("Link ou código", text: $code, prompt: Text("Cola o link do email"))
             .textContentType(.oneTimeCode)
             .autocorrectionDisabled()
-            #if os(iOS)
             .textInputAutocapitalization(.never)
-            #endif
             .onSubmit(verify)
         Button("Entrar", systemImage: "checkmark.circle", action: verify)
             .disabled(!canVerify || isWorking)

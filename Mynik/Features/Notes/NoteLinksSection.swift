@@ -184,9 +184,6 @@ struct NoteLinkPicker: View {
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 420, minHeight: 480)
-        #endif
     }
 
     private func matches(_ text: String) -> Bool {

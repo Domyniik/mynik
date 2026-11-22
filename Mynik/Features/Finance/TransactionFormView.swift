@@ -46,9 +46,7 @@ struct TransactionFormView: View {
                     TextField("Descrição", text: $draft.title)
 
                     TextField("Valor", value: $draft.amount, format: .currency(code: draft.currencyCode))
-                        #if os(iOS)
                         .keyboardType(.decimalPad)
-                        #endif
 
                     Picker("Moeda", selection: $draft.currencyCode) {
                         ForEach(Currency.supportedCodes, id: \.self) { code in
@@ -128,9 +126,6 @@ struct TransactionFormView: View {
             }
             .alert("Não foi possível guardar", isPresented: $isShowingSaveError) { }
         }
-        #if os(macOS)
-        .frame(minWidth: 420, minHeight: 460)
-        #endif
     }
 
     /// Escolha manual da categoria (desliga as sugestões).

@@ -3,70 +3,89 @@
 > Lê este ficheiro no início de TODAS as sessões. É a fonte de verdade do projeto.
 
 ## Visão
-**Mynik** (de Domynik — e "My" em inglês) é uma dashboard pessoal nativa para **macOS e iOS** que junta toda a vida do Domynik num só app:
+**Mynik** (de Domynik — e "My" em inglês) é uma dashboard pessoal que junta toda a vida do Domynik num só app:
 finanças, contas a pagar, loja Shopify (Neloce), projetos, notas estilo Notion, carro, documentos, carreira e investimentos.
 Também é a **peça principal do portfólio** — código limpo, commits claros e README apresentável importam.
 
-- Idioma da interface: **português**
+- Idioma da interface: **português (pt-PT)**
 - Moeda: **EUR** (com suporte a BRL)
 - Timezone: Europe/Madrid
+- **Stack 100% grátis**: sem Apple Developer Program, sem serviços pagos
+
+## Arquitetura (desde a v2.0)
+```
+📱 iPhone / iPad      → Swift (SwiftUI + SwiftData como cache offline)
+💻 Mac + Windows      → Tauri v2 (/desktop) com a web Next.js (/web) lá dentro
+☁️ Dados e servidor   → Supabase (Postgres + RLS, Auth por magic link, Edge Function, pg_cron)
+```
+- As duas apps leem e escrevem **as mesmas 25 tabelas tipadas** (last-write-wins por `modified_at`).
+  O iPhone usa `sync_pull` / `sync_push`; o desktop lê e escreve direto (PostgREST + Realtime).
+- Os cálculos partilhados (score dos produtos, lucro real, KPIs, orçamento, resumo do mês) são **funções SQL**,
+  com testes de paridade iPhone ↔ SQL (`MynikTests/Fixtures/parity-*.json`).
+- A Shopify só fala com o servidor (Edge Function `mynik-api`); o segredo fica nos *secrets* da função.
+- `docs/FEATURES.md` é o checklist de paridade iOS ↔ desktop: uma funcionalidade nova entra nas duas apps.
 
 ## Stack
-- SwiftUI multiplataforma (um target iOS 26 + macOS 26), Swift 6, `@Observable`
-- SwiftData — **compatível com CloudKit**: todas as propriedades opcionais ou com default, relações opcionais, **sem `@Attribute(.unique)`**
-- Swift Charts · WidgetKit · App Intents · UserNotifications · EventKit
-- VisionKit (scanner) · Foundation Models (IA on-device) · MenuBarExtra (Mac)
-- Segredos (token Shopify, etc.) **só no Keychain**, nunca no código nem no git
+**iPhone (Swift)**
+- SwiftUI, Swift 6, `@Observable`, iOS 26; SwiftData com esquema versionado (propriedades opcionais ou com default, relações opcionais, sem `@Attribute(.unique)`)
+- Swift Charts · WidgetKit · App Intents · ActivityKit · UserNotifications · EventKit · VisionKit · Foundation Models
+- Cliente Supabase (`supabase-swift`); configuração em `Config/Supabase.xcconfig` (fora do git)
+
+**Web e desktop**
+- Next.js 16 (exportação estática) · React 19 · Tailwind 4 · shadcn/ui · Recharts · vitest
+- Tauri v2 (Rust): tray, atalho global, notificações, iniciar com o sistema, deep link `mynik://`
+- Modo de demonstração com PGlite (Postgres no browser) e as mesmas migrações
+
+**Servidor**
+- Supabase: migrações em `supabase/migrations` (geradas de `supabase/schema/entities.mjs`), testes em PGlite
+- Edge Function `mynik-api` (Deno): Shopify, cotações, câmbio, combustível, Google Ads, iCal
+- pg_cron + pg_net: sync da loja de 30 em 30 min
 
 ## Estrutura
 ```
-Mynik/
-  App/            MynikApp.swift, navegação raiz
-  Core/           Models/, Services/ (Keychain, Notifications, Shopify, Currency), Utils/
-  Features/
-    Today/  Finance/  Store/  Projects/  Notes/
-    Car/  Documents/  Career/  Investments/  Settings/
-  Widgets/        extensão WidgetKit
-  Intents/        App Intents (Siri / Atalhos)
-MynikTests/
-docs/ROADMAP.md
+Mynik/            app iPhone (App/, Core/, Features/, Widgets/, Intents/)
+MynikTests/       Swift Testing
+web/              Next.js: src/app/<rota>/page.tsx reexporta src/components/<módulo>/<x>-page.tsx
+                  src/lib/ (db, calc, desktop.ts, format, settings…)
+desktop/          Tauri v2: src-tauri/src/lib.rs, tauri.conf.json, ícones
+supabase/         migrations/, schema/, functions/mynik-api/, tests/
+.github/workflows/desktop.yml   instaladores .dmg (Apple Silicon e Intel) e .exe
+scripts/release.sh              publica uma versão do desktop
+docs/             ROADMAP.md, FEATURES.md, screenshots
 ```
-Navegação: `NavigationSplitView` no Mac/iPad, `TabView` no iPhone.
 
 ## Módulos
-1. **Hoje** — saldo do mês, contas a vencer (7 dias), tarefas, agenda, metas, vendas da loja hoje; revisão semanal ao domingo.
-2. **Finanças** — gastos/receitas por categoria e conta, orçamento por categoria, contas a pagar (recorrência + botão "paguei" que cria a transação), assinaturas (total mensal/anual), relatórios com Charts, importar CSV, multi-moeda EUR/BRL, App Intent "gastei X em Y", entrada automática via automação "Transação" do Atalhos (Apple Pay), scanner de faturas.
-3. **Loja (Shopify — Neloce)** — Admin GraphQL API (app personalizado, scopes só de leitura: `read_products`, `read_orders`, `read_analytics`, `read_inventory`).
-   - KPIs: vendas hoje/7d/30d vs período anterior, pedidos, ticket médio, conversão, **lucro real** (vendas − custo por item − frete − taxas − ads).
-   - **Ranking de produtos** com score 0–100 (vendas, receita, margem, funil vista→carrinho→compra, reembolsos, dias sem venda, ROAS) → 🟢 Vencedor / 🟡 Promissor / 🟠 Em teste (<14 dias ou poucos dados) / 🔴 Perdedor, com ação sugerida.
-   - Diagnóstico do funil (página/preço vs checkout/frete vs tráfego), carrinhos abandonados, pedidos por enviar, alerta "X dias sem venda", ciclo de vida do produto (teste → decisão), notificação de venda, widget.
-   - Respeitar rate limits (custo das queries GraphQL); cache em SwiftData.
-   - Lucro líquido da loja entra nas Finanças.
-4. **Projetos & Metas** — Kanban + lista, tarefas, metas com valor-alvo ligadas às Finanças.
-5. **Notas** — páginas aninhadas, blocos (texto, título, checklist, imagem), Markdown, links entre notas/projetos/gastos.
-6. **Carro** — combustível e consumo (L/100km), manutenções, seguro/ITV/IUC com alertas; gastos vão para categoria "Carro".
-7. **Documentos** — documentos com data de validade e alerta antes de expirar; fotos protegidas por Face ID.
-8. **Carreira** — tracker de candidaturas (empresa, data, estado, follow-up), cursos/certificações.
-9. **Investimentos** — total investido, evolução do património, meta de poupança.
-10. **Extras** — hábitos, busca global ⌘K, Face ID, backup/export JSON, Live Activity para conta que vence hoje, "Pergunte ao Mynik" (chat sobre os próprios dados), Apple Watch (final).
+1. **Hoje** — saldo do mês, contas a vencer (7 dias), tarefas, hábitos, agenda, metas, vendas da loja hoje; revisão semanal ao domingo.
+2. **Finanças** — movimentos por categoria e conta, orçamento, contas a pagar (recorrência + "paguei"), assinaturas, relatórios, importar CSV, EUR/BRL, scanner de faturas; no iPhone também App Intent "gastei X em Y" e Apple Pay pelo Atalhos.
+3. **Loja (Shopify — Neloce)** — scopes só de leitura (`read_products`, `read_orders`, `read_analytics`, `read_inventory`). KPIs com comparação, **lucro real**, **ranking de produtos 0–100** (🟢 Vencedor / 🟡 Promissor / 🟠 Em teste / 🔴 Perdedor) com ação sugerida, diagnóstico do funil, carrinhos abandonados, pedidos por enviar, alertas, ciclo de vida, Google Ads por folha pública. Lucro mensal entra nas Finanças.
+4. **Projetos & Metas** — Kanban + lista, tarefas, metas ligadas às Finanças.
+5. **Notas** — estilo wiki: blocos, menu "/", bases de dados (Tabela/Quadro/Calendário), menções @, templates, importar Notion.
+6. **Carro** — abastecimentos e consumo, manutenções, ITV/seguro/imposto com alertas, preços de combustível.
+7. **Documentos** — validade e avisos; números e fotos protegidos (Face ID no iPhone, PIN no desktop); fotos só no dispositivo.
+8. **Carreira** — candidaturas e follow-ups, cursos e certificações.
+9. **Património** — investimentos com cotações, evolução, meta de poupança.
+10. **Extras** — hábitos, busca global ⌘K, backup JSON, "Pergunte ao Mynik"; iPhone: widgets, Live Activity, Siri; desktop: tray, ⇧⌘K global, iniciar com o sistema.
 
-## Fases (ver docs/ROADMAP.md para o checklist)
-1. MVP: estrutura, modelos base, Finanças básicas, tela Hoje
-2. Contas a pagar, notificações, orçamento, gráficos, assinaturas
-3. Loja Shopify: dashboard + ranking de produtos
-4. Projetos, metas e notas
-5. Carro, documentos, carreira, investimentos
-6. Sync iCloud (CloudKit), widgets, Siri/Atalhos, Apple Pay, MenuBar
-7. IA (categorização, "Pergunte ao Mynik"), scanner, Live Activities
-8. Polimento (Liquid Glass, acessibilidade), testes, TestFlight
+## Fases
+Fases 1–10: app Swift (v0.1 → v1.4). Fase 11: desktop Tauri + Supabase partilhado (v2.0). Checklist em `docs/ROADMAP.md`.
 
 ## Regras de trabalho (OBRIGATÓRIO)
 - **Uma fase por sessão.** No início, lê `docs/ROADMAP.md` e diz qual fase/feature vais fazer.
 - **Um commit por feature**, em Conventional Commits, mensagem em português:
-  `feat(finance): adiciona contas a pagar com recorrência`, `fix(store): ...`, `docs: ...`, `refactor: ...`, `test: ...`
-- Depois de cada feature: o projeto **tem de compilar** em iOS e macOS (`xcodebuild`) antes do commit.
-- Ao fechar uma feature: marca `[x]` em `docs/ROADMAP.md` e acrescenta uma linha em `CHANGELOG.md`.
-- Ao fechar uma fase: atualiza a secção "Estado" do `README.md`, faz `git push` e publica a versão para o Mac com `scripts/release.sh 0.<n.º da fase>.0` (release no GitHub + cask em `Domyniik/homebrew-tap`; instala-se com `brew install --cask domyniik/tap/mynik`).
-- Nunca commitar segredos (tokens, `.env`, chaves). Usa Keychain.
-- Código pequeno e focado: views em subviews, lógica em services/models, sem APIs depreciadas.
-- Skills a usar quando disponíveis: `swiftui-pro`, `swiftdata-pro`, `swiftui-expert-skill`, `swift-ios-skills`.
+  `feat(finance): adiciona contas a pagar com recorrência`, `fix(store): ...`, `feat(web): ...`, `feat(desktop): ...`, `feat(supabase): ...`, `docs: ...`
+- **Paridade:** uma funcionalidade nova entra no iPhone **e** no desktop, e fica marcada em `docs/FEATURES.md`.
+- Antes de cada commit, compila e testa o que mudou:
+  - iPhone: `xcodebuild -project Mynik.xcodeproj -scheme Mynik -destination 'generic/platform=iOS Simulator' build` (e `test` num simulador)
+  - Web: `cd web && npx tsc --noEmit && npm test && npm run build`
+  - Desktop: `cd desktop/src-tauri && cargo check` (ou `cd desktop && npm run build` para o .app/.dmg)
+  - Supabase: `cd supabase && npm test`; Edge Function: `deno check supabase/functions/mynik-api/index.ts`
+- Mudar o esquema: edita `supabase/schema/entities.mjs`, `npm run generate`, e uma alteração a uma migração já aplicada vai numa **migração nova**.
+- Ao fechar uma feature: marca `[x]` em `docs/ROADMAP.md` (e em `docs/FEATURES.md`) e acrescenta uma linha em `CHANGELOG.md`.
+- Ao fechar uma fase: atualiza a secção "Estado" do `README.md`, faz `git push` e publica com `scripts/release.sh <versão>`:
+  1. põe a versão em `web/`, `desktop/` e `tauri.conf.json`, faz commit e a tag `vX.Y.Z`
+  2. o push da tag corre `.github/workflows/desktop.yml`, que compila os `.dmg` (Apple Silicon e Intel) e o `.exe` e os põe na GitHub Release
+  3. atualiza a cask em `Domyniik/homebrew-tap` para os `.dmg` (`brew install --cask domyniik/tap/mynik`)
+- O iPhone não tem release automática (sem conta paga): instala-se pelo Xcode ou pelo Sideloadly.
+- **Segredos nunca no git** (tokens, `.env`, chaves): no iPhone ficam no Keychain e em `Config/*.xcconfig`; no servidor, nos secrets da Edge Function e no Vault; na web só a chave pública em `web/.env.local`. Há sempre um ficheiro `.example`.
+- Código pequeno e focado: views/componentes pequenos, lógica em services/`lib`/SQL, sem APIs depreciadas.
+- Skills a usar quando disponíveis: `swiftui-pro`, `swiftdata-pro`, `swift-ios-skills` (iPhone); `ecc:react-patterns`, `ecc:nextjs-turbopack`, `ecc:rust-patterns`, `ecc:postgres-patterns` (desktop e servidor).

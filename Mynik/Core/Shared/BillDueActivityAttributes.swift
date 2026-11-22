@@ -1,4 +1,3 @@
-#if os(iOS)
 import ActivityKit
 import Foundation
 
@@ -20,4 +19,3 @@ nonisolated struct BillDueActivityAttributes: ActivityAttributes {
     /// Dia a que a atividade se refere (início do dia).
     var day: Date
 }
-#endif

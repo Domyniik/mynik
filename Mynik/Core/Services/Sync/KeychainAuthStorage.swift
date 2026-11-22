@@ -4,7 +4,7 @@ import Foundation
 /// Guarda a sessão do Supabase no Keychain, com o mesmo serviço dos outros segredos.
 ///
 /// O armazenamento por omissão da biblioteca usa o Keychain de proteção de dados,
-/// que no Mac exige um perfil de provisionamento (plano pago).
+/// que fora do iOS exige um perfil de provisionamento (plano pago).
 nonisolated struct KeychainAuthStorage: AuthLocalStorage {
     private func account(_ key: String) -> String { "supabase.\(key)" }
 

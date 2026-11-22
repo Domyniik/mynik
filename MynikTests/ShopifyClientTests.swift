@@ -146,19 +146,3 @@ struct ShopifyClientTests {
     }
 }
 
-#if os(macOS)
-@Suite(.serialized)
-struct KeychainServiceTests {
-    @Test func storesReadsAndDeletesSecrets() throws {
-        let key = "mynik.tests.\(UUID().uuidString)"
-        defer { try? KeychainService.delete(key) }
-
-        try KeychainService.set("primeiro", for: key)
-        try KeychainService.set("segundo", for: key)
-        #expect(KeychainService.string(for: key) == "segundo")
-
-        try KeychainService.delete(key)
-        #expect(KeychainService.string(for: key) == nil)
-    }
-}
-#endif

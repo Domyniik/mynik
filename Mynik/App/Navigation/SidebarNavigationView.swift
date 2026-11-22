@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Navegação com barra lateral, usada no Mac e no iPad.
+/// Navegação com barra lateral, usada no iPad.
 struct SidebarNavigationView: View {
     @Environment(AppRouter.self) private var router
 

@@ -84,26 +84,6 @@ struct NotionImportTests {
         #expect(throws: ZipReader.ZipError.notAZip) { try ZipReader(data: Data("nada".utf8)) }
     }
 
-    #if os(macOS)
-    @Test func readsDeflatedZipMadeBySystemTool() throws {
-        let folder = FileManager.default.temporaryDirectory.appending(path: "zip-\(UUID().uuidString)")
-        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-        defer { try? FileManager.default.removeItem(at: folder) }
-        let text = String(repeating: "Notas ao estilo wiki. ", count: 500)
-        try Data(text.utf8).write(to: folder.appending(path: "nota.md"))
-        let process = Process()
-        process.executableURL = URL(filePath: "/usr/bin/zip")
-        process.currentDirectoryURL = folder
-        process.arguments = ["-q", "export.zip", "nota.md"]
-        try process.run()
-        process.waitUntilExit()
-
-        let zip = try ZipReader(data: Data(contentsOf: folder.appending(path: "export.zip")))
-        let entry = try #require(zip.entries.first)
-        #expect(entry.method == 8)
-        #expect(String(data: try zip.contents(of: entry), encoding: .utf8) == text)
-    }
-    #endif
 
     @Test func pureHelpers() {
         #expect(NotionImporter.cleanName("Plano \(Self.id1)") == "Plano")

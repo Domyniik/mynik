@@ -54,6 +54,7 @@
 		2103BD616235476A6B820D1B /* GoalContributionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5694D5C38AD02139B2DD3E6A /* GoalContributionService.swift */; };
 		2138E9B9BF9AB64A96211BF8 /* GlobalSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B084DC5CAC2A423CCC6BF40 /* GlobalSearchTests.swift */; };
 		21F18679EAE23F55DBDD0661 /* BillFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C28DFA1A60FC6FDB451AE /* BillFormView.swift */; };
+		2265D9969809D92ABADA68D7 /* ParityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2213E72554F1E8481F20C5 /* ParityTests.swift */; };
 		234C53ACB8C997EADA9E9351 /* CardRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98E0FA5AC0B6BB7B9CB7D0C /* CardRows.swift */; };
 		24CE472973D288AE82749791 /* FunnelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AD378957A6455F639319BD /* FunnelView.swift */; };
 		24DCBF859560D77E04FFC4C6 /* DailyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87E60C0CEF6DB783E698ED7 /* DailyStat.swift */; };
@@ -76,7 +77,6 @@
 		2DC4A551155C6211A1D961E7 /* AskMynikView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0628E9583B123CF772B001CF /* AskMynikView.swift */; };
 		2E22BD54E01C82ADA205EE35 /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8B374A902CF67A543A77EC /* ApplePayTests.swift */; };
 		2E4B93457BAAB8ADBE178502 /* ShopifyClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AD0F0FC25045569073F143 /* ShopifyClientTests.swift */; };
-		2E5665D1E863DEA8842C6705 /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE547B6BA0122D1367ABDBD2 /* MenuBarContentView.swift */; };
 		2EB94B947D8B76D8BC732FB2 /* GoogleAdsSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F679B546E5128AA505B933BD /* GoogleAdsSettingsSection.swift */; };
 		323C9F789AAABB8A7B21ECE7 /* RawJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80464BCCE4E0799B6C50974C /* RawJSON.swift */; };
 		338A72F592CC1B5B567D4F8E /* FuelEconomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46069615B7A5E9DFAB3485B0 /* FuelEconomy.swift */; };
@@ -121,9 +121,10 @@
 		487F1E8CE929569BC9A8C85C /* ImageDownsampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28FCD1CC47C9D1C7F0D69BB /* ImageDownsampler.swift */; };
 		48FF7A460878957CD3BA418A /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B52D2EB4E4076D41C0AA2A /* AccountType.swift */; };
 		49728ECD18174F2079E0A04D /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDFA1BE6DA08AA7D88EB7 /* ProjectDetailView.swift */; };
-		49CE2953C3200A10B28A0E35 /* MenuBarSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6587367237026B75B76E7B7C /* MenuBarSettingsSection.swift */; };
 		4AEED6E12D3EC8EBAE789AB4 /* MynikSchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B727C9A220FFAE5E5A6A98F /* MynikSchemaV2.swift */; };
+		4BBEE20E8F3F1675CA4F2E6D /* parity-fixture.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EBA398725FCEDCCA4BB7EA0 /* parity-fixture.json */; };
 		4CB8FA8FDCDAD04078A31E4F /* GoalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DD7E06FECCEEBC402F00E /* GoalFormView.swift */; };
+		4D1CB15FAECE074BFF5A542C /* parity-expected.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A6F9D812AD7138ABBD2FD4E /* parity-expected.json */; };
 		4E75700114951882DF8C2C37 /* MynikTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D713EBE869BBA52A3D3D6 /* MynikTools.swift */; };
 		4EB949753D8470821D135908 /* CarDeadlineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628DCF77B22432AE158BAC6C /* CarDeadlineFormView.swift */; };
 		4EC8AFFCD2FFB3EE25F9D746 /* InvestmentForms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A159F88C3745C0DBA48951 /* InvestmentForms.swift */; };
@@ -158,7 +159,6 @@
 		6346D37603A469F1891B716C /* GoalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8177B8DCEB1DB4729312A4B /* GoalTests.swift */; };
 		642668EC49B0A4B1D46F8A31 /* NoteTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15F4BD217F8028298D36B3F /* NoteTemplateTests.swift */; };
 		64BF6FC898E1312E41571BBD /* GoogleAdsSpendImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E4718A6383459AAFF1D8CC /* GoogleAdsSpendImporter.swift */; };
-		6675CC986C2817B206D79C98 /* ledger-anchors.json in Resources */ = {isa = PBXBuildFile; fileRef = F7F69BEC6E4F3B08743B2DF0 /* ledger-anchors.json */; };
 		67D0210735EB4229D75A61AD /* StoreSyncBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D7A2EC2BA1F03493411F5 /* StoreSyncBanner.swift */; };
 		6A304D591DD789967EDB89CF /* SubscriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9F7C0AFDB7558831F050F /* SubscriptionTests.swift */; };
 		6AD6D5F6354E31EAFBE6FE6F /* Locale+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3BE24BA192DEE39D53829 /* Locale+App.swift */; };
@@ -217,6 +217,7 @@
 		96D7240733DB6550AC256365 /* IconBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D3E7BD5C7338470991A928 /* IconBadge.swift */; };
 		96EBF0EC9FEEC78FA47B6641 /* BackupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C483ACAA674EC1D10D9BC575 /* BackupTests.swift */; };
 		98BC0581E608AEEE0CFC546E /* SupabaseSyncRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A0DF456CE31F17F0D05F74 /* SupabaseSyncRemote.swift */; };
+		99A386BBCA85182CCADDBC23 /* SharedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFEB834B6FBFE2AC663665C /* SharedSettings.swift */; };
 		99C7ADEFFF02CE655DCCE319 /* AppLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BB56D6E41C11CA4269EAA0 /* AppLock.swift */; };
 		9AD092A6854E6B36F7CBC210 /* NoteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA845208A5A9E58F22ECCF /* NoteDatabase.swift */; };
 		9C0443D2E2632541319D9FAB /* StoreNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF0EBDBBB75275564E54C7 /* StoreNotifier.swift */; };
@@ -304,7 +305,6 @@
 		DA1CE9400FCBBD52CC72CEA3 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AFFC233AC539C6E2AA865E /* WidgetSnapshot.swift */; };
 		DCA76909B10D560A7D001B00 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D76D85611F13CD67C2103F /* Account.swift */; };
 		DD1C806FAC68F77F5EE695A4 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399AD5252256625A2C157A0B /* GoalsView.swift */; };
-		DEC637A664121A8CFAB2449E /* state.json in Resources */ = {isa = PBXBuildFile; fileRef = 542E056A217E269B23DC147C /* state.json */; };
 		DF7E1D249549A499E91EBF56 /* CategorizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E807422DDDAC9EA6450912 /* CategorizationTests.swift */; };
 		E080DADE13A4F30F0769281B /* DocumentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7821EB438D4AC29EB5164E0 /* DocumentFormView.swift */; };
 		E083E291BD6FA9B8A6A1C770 /* StoreAlertSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94B2D694983D7BB872C245D /* StoreAlertSettingsSection.swift */; };
@@ -460,6 +460,7 @@
 		2BF590AECAB1859C0B4C2A93 /* SpanishProvince.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanishProvince.swift; sourceTree = "<group>"; };
 		2D0EB7C634753C96341862A4 /* FuelPricesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelPricesSection.swift; sourceTree = "<group>"; };
 		2D16B174B6DBAB96394D1605 /* ProjectFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFormView.swift; sourceTree = "<group>"; };
+		2EBA398725FCEDCCA4BB7EA0 /* parity-fixture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "parity-fixture.json"; sourceTree = "<group>"; };
 		2EE30570481C4278DE5ABCE5 /* Sparkline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sparkline.swift; sourceTree = "<group>"; };
 		2FD3AE6D8DE50719999B322F /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		30BD8AC079224CB74798C1B8 /* CoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesList.swift; sourceTree = "<group>"; };
@@ -499,6 +500,7 @@
 		4AE7411356CDC3ADDD1E81C6 /* StoreCheckout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCheckout.swift; sourceTree = "<group>"; };
 		4AE8E9B374B1EE543997F89E /* InvestmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsView.swift; sourceTree = "<group>"; };
 		4B5E663C0AC71F767236299A /* PropertyValueEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyValueEditor.swift; sourceTree = "<group>"; };
+		4BFEB834B6FBFE2AC663665C /* SharedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSettings.swift; sourceTree = "<group>"; };
 		4D63435078C65C2497E0DC8B /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		4EB109851053DAB8A74A22C4 /* MynikApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MynikApp.swift; sourceTree = "<group>"; };
 		4EDF0EBDBBB75275564E54C7 /* StoreNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreNotifier.swift; sourceTree = "<group>"; };
@@ -510,7 +512,6 @@
 		5287001FA22ECBD6FA75F7CC /* MynikSchemaV4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MynikSchemaV4.swift; sourceTree = "<group>"; };
 		530B784EC4F316E46A60AFDF /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		540232E4D5B9E601A5875909 /* TodayStoreSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStoreSection.swift; sourceTree = "<group>"; };
-		542E056A217E269B23DC147C /* state.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = state.json; sourceTree = "<group>"; };
 		54D663C6B5485140E95E19D5 /* CurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTests.swift; sourceTree = "<group>"; };
 		54ECA72E07A88F503F4EBA6B /* SubscriptionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSummary.swift; sourceTree = "<group>"; };
 		564A7AEABF7D77DA967AF1C0 /* ProjectStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStatus.swift; sourceTree = "<group>"; };
@@ -530,6 +531,7 @@
 		5D75F69E140FD44A49BE21F6 /* WeeklyReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReviewView.swift; sourceTree = "<group>"; };
 		5E46BB3848FB038847ABF77D /* MaintenanceRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceRecord.swift; sourceTree = "<group>"; };
 		5E8D713EBE869BBA52A3D3D6 /* MynikTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MynikTools.swift; sourceTree = "<group>"; };
+		5F2213E72554F1E8481F20C5 /* ParityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParityTests.swift; sourceTree = "<group>"; };
 		61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductScorerTests.swift; sourceTree = "<group>"; };
 		61DD828F85617ABB06637420 /* SyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
 		620525AAE73EBD99337D7AA2 /* KanbanColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumnView.swift; sourceTree = "<group>"; };
@@ -540,7 +542,6 @@
 		6421E0B266CD86A8D82EC269 /* StoreOperationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreOperationsTests.swift; sourceTree = "<group>"; };
 		64A940C7EB880C8D41BB48D4 /* CurrencyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
 		6508681E81921EB7F3795F24 /* AbandonedCheckoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbandonedCheckoutsView.swift; sourceTree = "<group>"; };
-		6587367237026B75B76E7B7C /* MenuBarSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarSettingsSection.swift; sourceTree = "<group>"; };
 		65B588EDDFF96910AC76712C /* SpendingTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingTrend.swift; sourceTree = "<group>"; };
 		665E674FA1EFBD61A7875CEE /* DocumentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetailView.swift; sourceTree = "<group>"; };
 		6665D4F5B8AF75EAB293D80F /* MynikSchemaV6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MynikSchemaV6.swift; sourceTree = "<group>"; };
@@ -574,6 +575,7 @@
 		7751CD4B80BF9C2695EDAF41 /* Mynik.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mynik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		775AFDC1C14C65FC021054CC /* StoreSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSettingsSection.swift; sourceTree = "<group>"; };
 		78D2BB3AAEE884DB63325984 /* NoteMentionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteMentionTests.swift; sourceTree = "<group>"; };
+		7A6F9D812AD7138ABBD2FD4E /* parity-expected.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "parity-expected.json"; sourceTree = "<group>"; };
 		7AB9F7C0AFDB7558831F050F /* SubscriptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTests.swift; sourceTree = "<group>"; };
 		7AD68662C393205C62F44627 /* DocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTests.swift; sourceTree = "<group>"; };
 		7B43A795AEC4736DF1BB655C /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -699,7 +701,6 @@
 		DBA02C15A95151DFB6279136 /* BillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsView.swift; sourceTree = "<group>"; };
 		DC920F1FC328B369193CB4C4 /* MonthlyBarsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyBarsChart.swift; sourceTree = "<group>"; };
 		DDDB99B112CAB70D6E233F2A /* CarDeadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDeadline.swift; sourceTree = "<group>"; };
-		DE547B6BA0122D1367ABDBD2 /* MenuBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarContentView.swift; sourceTree = "<group>"; };
 		DEE89C5FB671AF487ACA2592 /* BillRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillRow.swift; sourceTree = "<group>"; };
 		E1D87A813CE0472A5F404FFB /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
 		E36FF6E995646D7D3BACCA48 /* StoreDailyChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDailyChart.swift; sourceTree = "<group>"; };
@@ -723,7 +724,6 @@
 		F60BADB4B789DA1B9240CB2C /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		F679B546E5128AA505B933BD /* GoogleAdsSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdsSettingsSection.swift; sourceTree = "<group>"; };
 		F7821EB438D4AC29EB5164E0 /* DocumentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFormView.swift; sourceTree = "<group>"; };
-		F7F69BEC6E4F3B08743B2DF0 /* ledger-anchors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ledger-anchors.json"; sourceTree = "<group>"; };
 		F8A0DF456CE31F17F0D05F74 /* SupabaseSyncRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSyncRemote.swift; sourceTree = "<group>"; };
 		F90768F684CA2691C82BC330 /* NoteEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditing.swift; sourceTree = "<group>"; };
 		F94D9A09783788BD2BAF8D0F /* SubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsView.swift; sourceTree = "<group>"; };
@@ -864,6 +864,7 @@
 				A15F4BD217F8028298D36B3F /* NoteTemplateTests.swift */,
 				3F72A031D4270F21FDBF146A /* NoteTests.swift */,
 				BBEDA3126FD8A8A5E63D9213 /* NotionImportTests.swift */,
+				5F2213E72554F1E8481F20C5 /* ParityTests.swift */,
 				25E88AC39536468607949428 /* ProductLifecycleTests.swift */,
 				61A18A61EE7E2239AC514B7B /* ProductScorerTests.swift */,
 				BEEA5DCE0626F37FD4E8BCCA /* ProjectTests.swift */,
@@ -883,6 +884,7 @@
 				1ADF6F1A1954CEC44AC23347 /* TodayTests.swift */,
 				0B410096C790D8917106C654 /* WeeklyReviewTests.swift */,
 				17665B36EC9A6CA9A36AC2CA /* WidgetSnapshotTests.swift */,
+				982907F5662465F4BEEF83A2 /* Fixtures */,
 			);
 			path = MynikTests;
 			sourceTree = "<group>";
@@ -1057,7 +1059,6 @@
 				C8A4903591E79E467BB2F988 /* CategoryGuesser.swift */,
 				EF50698E2EB81DC3E5E617C4 /* CSVParser.swift */,
 				75B8D8FE44E760DDE0B21E5A /* DuplicateDetector.swift */,
-				E71C3BAB2FEFAA249D65A799 /* .claude-flow */,
 			);
 			path = CSVImport;
 			sourceTree = "<group>";
@@ -1328,13 +1329,13 @@
 			path = Budget;
 			sourceTree = "<group>";
 		};
-		92DEFFFE52C266486AE5F8DA /* policy */ = {
+		982907F5662465F4BEEF83A2 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				F7F69BEC6E4F3B08743B2DF0 /* ledger-anchors.json */,
-				542E056A217E269B23DC147C /* state.json */,
+				7A6F9D812AD7138ABBD2FD4E /* parity-expected.json */,
+				2EBA398725FCEDCCA4BB7EA0 /* parity-fixture.json */,
 			);
-			path = policy;
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		99568DCF575AF2423CFC3951 /* Store */ = {
@@ -1377,7 +1378,6 @@
 				3574A61DAC759019BD93D0FD /* Goals */,
 				67AD3B7D0E47BDCEF4613661 /* Habits */,
 				2DAF1856F0D85B76F3A3E7B5 /* Investments */,
-				EC035A0DB42729754E7C5F9A /* MenuBar */,
 				28E30C9992E700CADFB63015 /* Notes */,
 				79A768FD332A9F7263A6604D /* Projects */,
 				9B3BFCC5E80E3190DA921129 /* Search */,
@@ -1449,7 +1449,6 @@
 				37599A6082F4973CE19E0BCB /* CalendarSettingsSection.swift */,
 				AF16733D8FDADE3D6B802CB8 /* CurrencySettingsSection.swift */,
 				F679B546E5128AA505B933BD /* GoogleAdsSettingsSection.swift */,
-				6587367237026B75B76E7B7C /* MenuBarSettingsSection.swift */,
 				B49D21D97BEC77F19EB705AD /* NotificationSettingsSection.swift */,
 				10E5F4084CF8D80CBA029082 /* SettingsView.swift */,
 				A94B2D694983D7BB872C245D /* StoreAlertSettingsSection.swift */,
@@ -1653,14 +1652,6 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		E71C3BAB2FEFAA249D65A799 /* .claude-flow */ = {
-			isa = PBXGroup;
-			children = (
-				92DEFFFE52C266486AE5F8DA /* policy */,
-			);
-			path = ".claude-flow";
-			sourceTree = "<group>";
-		};
 		E852593A7E5742B898551924 /* Investments */ = {
 			isa = PBXGroup;
 			children = (
@@ -1678,14 +1669,6 @@
 				73B3E95E75B81557D6ADA746 /* MynikWidgets.appex */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		EC035A0DB42729754E7C5F9A /* MenuBar */ = {
-			isa = PBXGroup;
-			children = (
-				DE547B6BA0122D1367ABDBD2 /* MenuBarContentView.swift */,
-			);
-			path = MenuBar;
 			sourceTree = "<group>";
 		};
 		F2AD31B16DAA72528B2D3146 /* Models */ = {
@@ -1718,6 +1701,7 @@
 				7173C5F390CCCE3845B733DD /* AccountSync.swift */,
 				099656FFE831E722AA9F4E26 /* KeychainAuthStorage.swift */,
 				80464BCCE4E0799B6C50974C /* RawJSON.swift */,
+				4BFEB834B6FBFE2AC663665C /* SharedSettings.swift */,
 				7089EB489D949B6F0184EF5F /* SupabaseConfig.swift */,
 				F8A0DF456CE31F17F0D05F74 /* SupabaseSyncRemote.swift */,
 				61DD828F85617ABB06637420 /* SyncEngine.swift */,
@@ -1754,6 +1738,7 @@
 			buildConfigurationList = EC7D1A04BF1E00E9938D8ABC /* Build configuration list for PBXNativeTarget "MynikTests" */;
 			buildPhases = (
 				37D9D7805B31D1241A2D81BE /* Sources */,
+				F4ECA7F1AECCD7378440FAA3 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1860,8 +1845,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5AC9696DB5110E76BAB9779 /* Assets.xcassets in Resources */,
-				6675CC986C2817B206D79C98 /* ledger-anchors.json in Resources */,
-				DEC637A664121A8CFAB2449E /* state.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4ECA7F1AECCD7378440FAA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D1CB15FAECE074BFF5A542C /* parity-expected.json in Resources */,
+				4BBEE20E8F3F1675CA4F2E6D /* parity-fixture.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2010,8 +2002,6 @@
 				C1D8577487D4B8AFD843504C /* MaintenanceRecord.swift in Sources */,
 				5A8DC8D05B2995ABFFDEA4B2 /* MarkdownTextField.swift in Sources */,
 				1F4D4BD69FE41B39B77D3481 /* MentionPicker.swift in Sources */,
-				2E5665D1E863DEA8842C6705 /* MenuBarContentView.swift in Sources */,
-				49CE2953C3200A10B28A0E35 /* MenuBarSettingsSection.swift in Sources */,
 				35DB32E6EF0A769EA8BB9F1E /* MerchantCategoryRules.swift in Sources */,
 				201587147B0BDBDCCBC4D374 /* ModelContainerFactory.swift in Sources */,
 				553BAC3F05A6CC3AFC6A4F42 /* ModuleTint.swift in Sources */,
@@ -2085,6 +2075,7 @@
 				E62CC7F2293C1B4C0555CA31 /* SettingsKey.swift in Sources */,
 				E0FE8A7738C86DB4A7BA5886 /* SettingsView.swift in Sources */,
 				474B0E585DEF6D65A040F428 /* SharedModelContainer.swift in Sources */,
+				99A386BBCA85182CCADDBC23 /* SharedSettings.swift in Sources */,
 				A1FDA39DF827AD1829EE3099 /* ShopifyClient.swift in Sources */,
 				7365ED14FC02252DC8AEEBEE /* ShopifyCredentials.swift in Sources */,
 				E09769F41959DC0402B72DC3 /* ShopifyError.swift in Sources */,
@@ -2192,6 +2183,7 @@
 				642668EC49B0A4B1D46F8A31 /* NoteTemplateTests.swift in Sources */,
 				00D3DF4C37594119ACC978FA /* NoteTests.swift in Sources */,
 				7DF8DC654ED69DEA5E28D9B6 /* NotionImportTests.swift in Sources */,
+				2265D9969809D92ABADA68D7 /* ParityTests.swift in Sources */,
 				FE62F256C8AA4E24D982B264 /* ProductLifecycleTests.swift in Sources */,
 				CE2C99033249EC1A76B4847B /* ProductScorerTests.swift in Sources */,
 				FD6234AD3A4912622011BBA8 /* ProjectTests.swift in Sources */,
@@ -2254,13 +2246,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mynik/Resources/Mynik.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_RESOURCE_ACCESS_CALENDARS = YES;
-				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
-				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mynik/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Mynik;
@@ -2276,9 +2262,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.domynik.mynik;
 				PRODUCT_NAME = Mynik;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2288,7 +2274,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Mynik/Widgets/MynikWidgets.entitlements;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mynik/Widgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2300,9 +2285,9 @@
 				PRODUCT_NAME = MynikWidgets;
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2320,13 +2305,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.domynik.mynik.tests;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mynik.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mynik";
-				"TEST_HOST[sdk=macosx*]" = "$(BUILT_PRODUCTS_DIR)/Mynik.app/Contents/MacOS/Mynik";
 			};
 			name = Release;
 		};
@@ -2334,7 +2318,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Mynik/Widgets/MynikWidgets.entitlements;
-				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mynik/Widgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2346,9 +2329,9 @@
 				PRODUCT_NAME = MynikWidgets;
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2388,10 +2371,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				"CODE_SIGN_STYLE[sdk=macosx*]" = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2409,12 +2389,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 0.1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				MYNIK_APP_GROUP = group.com.domynik.mynik;
-				"MYNIK_APP_GROUP[sdk=macosx*]" = "$(TeamIdentifierPrefix)com.domynik.mynik";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -2438,13 +2416,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.domynik.mynik.tests;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mynik.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mynik";
-				"TEST_HOST[sdk=macosx*]" = "$(BUILT_PRODUCTS_DIR)/Mynik.app/Contents/MacOS/Mynik";
 			};
 			name = Debug;
 		};
@@ -2455,13 +2432,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mynik/Resources/Mynik.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_RESOURCE_ACCESS_CALENDARS = YES;
-				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
-				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mynik/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Mynik;
@@ -2477,9 +2448,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.domynik.mynik;
 				PRODUCT_NAME = Mynik;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2519,9 +2490,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				"CODE_SIGN_STYLE[sdk=macosx*]" = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2545,12 +2514,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 0.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				MYNIK_APP_GROUP = group.com.domynik.mynik;
-				"MYNIK_APP_GROUP[sdk=macosx*]" = "$(TeamIdentifierPrefix)com.domynik.mynik";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

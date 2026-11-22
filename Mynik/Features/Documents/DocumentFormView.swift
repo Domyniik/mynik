@@ -72,9 +72,6 @@ struct DocumentFormView: View {
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 420, minHeight: 480)
-        #endif
     }
 
     private func save() {

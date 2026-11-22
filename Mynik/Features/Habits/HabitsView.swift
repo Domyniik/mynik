@@ -153,9 +153,6 @@ struct HabitFormView: View {
                 targetPerWeek = habit.targetPerWeek
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 380, minHeight: 320)
-        #endif
     }
 
     private func save() {

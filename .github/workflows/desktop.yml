@@ -1,0 +1,82 @@
+# Instaladores da app desktop (Tauri): .dmg para Mac (Apple Silicon e Intel)
+# e .exe para Windows, publicados numa GitHub Release quando entra uma tag v*.
+# Sem conta paga da Apple: a app sai com assinatura ad-hoc (ver README).
+name: Desktop
+
+on:
+  push:
+    tags: ["v*"]
+  pull_request:
+    paths: ["web/**", "desktop/**", ".github/workflows/desktop.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos-latest
+            target: aarch64-apple-darwin
+          - platform: macos-latest
+            target: x86_64-apple-darwin
+          - platform: windows-latest
+            target: x86_64-pc-windows-msvc
+    runs-on: ${{ matrix.platform }}
+    env:
+      # Valores públicos do Supabase (URL e chave publishable), em Settings → Variables.
+      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            web/package-lock.json
+            desktop/package-lock.json
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: desktop/src-tauri -> target
+
+      - name: Dependências
+        run: |
+          npm ci --prefix web
+          npm ci --prefix desktop
+
+      - uses: tauri-apps/tauri-action@v0
+        id: tauri
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: desktop
+          tagName: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
+          releaseName: Mynik __VERSION__
+          releaseBody: |
+            **Mac:** `brew install --cask domyniik/tap/mynik` ou descarrega o .dmg (aarch64 = Apple Silicon, x64 = Intel). Na primeira vez: clique direito na app → Abrir.
+            **Windows:** descarrega o `_x64-setup.exe`.
+
+            Ver o [CHANGELOG](https://github.com/Domyniik/mynik/blob/main/CHANGELOG.md).
+          releaseDraft: false
+          prerelease: false
+          args: --target ${{ matrix.target }}
+
+      # Sem tag (pull request): os instaladores ficam como artefactos do workflow.
+      - if: github.ref_type != 'tag'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mynik-${{ matrix.target }}
+          path: |
+            desktop/src-tauri/target/${{ matrix.target }}/release/bundle/dmg/*.dmg
+            desktop/src-tauri/target/${{ matrix.target }}/release/bundle/nsis/*.exe
+          if-no-files-found: ignore

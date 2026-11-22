@@ -3,7 +3,7 @@ import Foundation
 import Observation
 import SwiftData
 
-/// Conta Supabase opcional e sync automático entre o Mac e o iPhone.
+/// Conta Supabase opcional e sync automático entre o iPhone e o computador.
 ///
 /// Sem configuração, sem conta ou sem rede a app funciona igual: o SwiftData é
 /// a fonte e o Supabase só guarda uma cópia. O sync corre ao abrir a app, ao

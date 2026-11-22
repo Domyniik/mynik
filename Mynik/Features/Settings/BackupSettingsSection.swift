@@ -2,7 +2,7 @@ import SwiftData
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// Cópia de segurança em JSON: substitui o sync por iCloud entre o Mac e o iPhone.
+/// Cópia de segurança em JSON: substitui o sync por iCloud entre dispositivos.
 struct BackupSettingsSection: View {
     @Environment(\.modelContext) private var modelContext
 
@@ -90,7 +90,7 @@ struct BackupSettingsSection: View {
             }
         }
         do {
-            let archive = try BackupService.makeArchive(from: modelContext)
+            let archive = try BackupService.makeArchive(from: modelContext, settings: AppEnvironment.defaults)
             let data = try archive.encoded()
             let url = URL.temporaryDirectory.appending(path: archive.suggestedFileName)
             try data.write(to: url, options: [.atomic, .completeFileProtection])
@@ -116,7 +116,7 @@ struct BackupSettingsSection: View {
 
     private func apply(_ archive: BackupArchive) {
         do {
-            let summary = try BackupService.importArchive(archive, into: modelContext)
+            let summary = try BackupService.importArchive(archive, into: modelContext, settings: AppEnvironment.defaults)
             statusMessage = summary.description
         } catch {
             modelContext.rollback()

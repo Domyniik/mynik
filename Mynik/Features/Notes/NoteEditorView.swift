@@ -88,12 +88,9 @@ struct NoteEditorView: View {
         }
         .onChange(of: slashQuery) { slashSelection = 0 }
         .navigationTitle(note.displayTitle)
-        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         .scrollDismissesKeyboard(.interactively)
-        #endif
         .toolbar {
-            #if os(iOS)
             ToolbarItem(placement: .keyboard) {
                 HStack {
                     Spacer()
@@ -102,7 +99,6 @@ struct NoteEditorView: View {
                         .fontWeight(.semibold)
                 }
             }
-            #endif
             ToolbarItem(placement: .secondaryAction) {
                 NoteBlockCommands(
                     block: focusedBlockModel,

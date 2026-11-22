@@ -4,7 +4,6 @@ options:
   developmentLanguage: pt-PT
   deploymentTarget:
     iOS: "26.0"
-    macOS: "26.0"
   createIntermediateGroups: true
 configFiles:
   Debug: Config/Mynik.xcconfig
@@ -24,23 +23,13 @@ settings:
     CODE_SIGN_STYLE: Automatic
     ENABLE_USER_SCRIPT_SANDBOXING: YES
     LOCALIZATION_PREFERS_STRING_CATALOGS: YES
-    # App Group partilhado com os widgets. No Mac (sem perfil de provisionamento,
-    # fora da App Store) tem de começar pelo Team ID; no iOS usa o formato "group.".
+    # App Group partilhado com os widgets.
     DEVELOPMENT_TEAM: CJ7Y2P3TKF
     MYNIK_APP_GROUP: group.com.domynik.mynik
-    "MYNIK_APP_GROUP[sdk=macosx*]": $(TeamIdentifierPrefix)com.domynik.mynik
-    # Mac: assinado com o certificado Apple Development (Personal Team), sem
-    # perfil, para o App Group ser aceite. iOS: assinatura automática.
-    "CODE_SIGN_STYLE[sdk=macosx*]": Manual
-    "CODE_SIGN_IDENTITY[sdk=macosx*]": Apple Development
-  configs:
-    Release:
-      # Sem get-task-allow na versão publicada (o certificado é de desenvolvimento).
-      CODE_SIGN_INJECT_BASE_ENTITLEMENTS: NO
 targets:
   Mynik:
     type: application
-    supportedDestinations: [iOS, macOS]
+    supportedDestinations: [iOS]
     sources:
       - path: Mynik
         excludes:
@@ -105,16 +94,10 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         TARGETED_DEVICE_FAMILY: "1,2"
-        ENABLE_APP_SANDBOX: YES
-        ENABLE_HARDENED_RUNTIME: YES
-        ENABLE_OUTGOING_NETWORK_CONNECTIONS: YES
-        ENABLE_RESOURCE_ACCESS_LOCATION: YES
-        ENABLE_RESOURCE_ACCESS_CALENDARS: YES
-        ENABLE_USER_SELECTED_FILES: readwrite
         ENABLE_PREVIEWS: YES
   MynikWidgets:
     type: app-extension
-    supportedDestinations: [iOS, macOS]
+    supportedDestinations: [iOS]
     sources:
       - path: Mynik/Widgets
       # Código partilhado com a app (sem SwiftData).
@@ -134,7 +117,6 @@ targets:
     entitlements:
       path: Mynik/Widgets/MynikWidgets.entitlements
       properties:
-        com.apple.security.app-sandbox: true
         com.apple.security.application-groups: [$(MYNIK_APP_GROUP)]
     settings:
       base:
@@ -143,10 +125,9 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         TARGETED_DEVICE_FAMILY: "1,2"
         SKIP_INSTALL: YES
-        ENABLE_HARDENED_RUNTIME: YES
   MynikTests:
     type: bundle.unit-test
-    supportedDestinations: [iOS, macOS]
+    supportedDestinations: [iOS]
     sources:
       - path: MynikTests
     dependencies:
@@ -156,7 +137,6 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.domynik.mynik.tests
         GENERATE_INFOPLIST_FILE: YES
         TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Mynik.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mynik"
-        "TEST_HOST[sdk=macosx*]": "$(BUILT_PRODUCTS_DIR)/Mynik.app/Contents/MacOS/Mynik"
         BUNDLE_LOADER: "$(TEST_HOST)"
 schemes:
   Mynik:

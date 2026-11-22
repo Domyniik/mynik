@@ -92,9 +92,6 @@ struct MaintenanceFormView: View {
                 }
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 440, minHeight: 560)
-        #endif
     }
 
     private func save() {

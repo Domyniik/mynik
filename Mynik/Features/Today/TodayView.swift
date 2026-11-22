@@ -12,7 +12,7 @@ struct TodayView: View {
     @State private var width: CGFloat = 0
     @Environment(AppRouter.self) private var router
 
-    /// Em ecrãs largos (Mac, iPad) os cartões ficam em duas colunas.
+    /// Em ecrãs largos (iPad) os cartões ficam em duas colunas.
     private var usesTwoColumns: Bool { width >= 760 }
 
     var body: some View {
@@ -50,9 +50,7 @@ struct TodayView: View {
         .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
         .background(Color.dsBackground)
         .navigationTitle("Hoje")
-        #if os(iOS)
         .navigationSubtitle(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(.app)))
-        #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Adicionar movimento", systemImage: "plus") {
@@ -75,9 +73,6 @@ struct TodayView: View {
                         }
                     }
             }
-            #if os(macOS)
-            .frame(minWidth: 480, minHeight: 560)
-            #endif
         }
     }
 

@@ -4,8 +4,8 @@ import SwiftData
 enum ModelContainerFactory {
     /// Cria o contentor SwiftData da app.
     ///
-    /// O sync por iCloud (CloudKit) só é ligado na Fase 6; até lá os modelos
-    /// já seguem as regras do CloudKit para que a migração seja trivial.
+    /// Sem CloudKit (exige o plano pago da Apple): o sync é feito com o Supabase
+    /// (`SyncEngine`). Os modelos seguem as regras do CloudKit por herança.
     ///
     /// - Parameter url: ficheiro da base de dados (por omissão, o da app).
     static func make(inMemory: Bool = false, url: URL? = nil) throws -> ModelContainer {

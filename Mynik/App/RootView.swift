@@ -3,7 +3,7 @@ import SwiftData
 import SwiftUI
 
 /// Escolhe a navegação certa para cada dispositivo:
-/// barra lateral no Mac/iPad, separadores no iPhone.
+/// barra lateral no iPad, separadores no iPhone.
 struct RootView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scenePhase
@@ -16,9 +16,7 @@ struct RootView: View {
     @AppStorage(SettingsKey.brlPerEUR) private var brlPerEUR = CurrencyConverter.defaultBRLPerEUR
     @AppStorage(SettingsKey.exchangeRateDate) private var exchangeRateDate = ""
 
-    #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    #endif
 
     var body: some View {
         @Bindable var router = router
@@ -41,13 +39,16 @@ struct RootView: View {
                     .environment(\.currencyConverter, CurrencyConverter(storedRate: brlPerEUR))
             }
             // Lembretes de vencimento sempre alinhados com os dados.
+            // Definições partilhadas (custos da loja, taxa BRL…) também vão para a conta.
+            .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
+                accountSync.scheduleSync(context: modelContext)
+            }
             .onReceive(NotificationCenter.default.publisher(for: ModelContext.didSave)) { _ in
                 accountSync.scheduleSync(context: modelContext)
                 rescheduleReminders()
                 updateWidgets()
                 updateLiveActivity()
             }
-            .task { await refreshStorePeriodically() }
             // Link de entrada do email (mynik://login…).
             .onOpenURL { url in
                 guard AccountSync.isLoginURL(url) else { return }
@@ -76,29 +77,13 @@ struct RootView: View {
             }
     }
 
-    /// No Mac não há atualização em segundo plano: enquanto a app está aberta,
-    /// a loja atualiza de 15 em 15 minutos (para as notificações de venda).
-    private func refreshStorePeriodically() async {
-        #if os(macOS)
-        while !Task.isCancelled {
-            try? await Task.sleep(for: .seconds(StoreSyncCoordinator.minimumInterval))
-            guard !Task.isCancelled else { return }
-            await storeSync.refreshIfStale(in: modelContext)
-        }
-        #endif
-    }
-
     @ViewBuilder
     private var navigation: some View {
-        #if os(iOS)
         if horizontalSizeClass == .compact {
             TabNavigationView()
         } else {
             SidebarNavigationView()
         }
-        #else
-        SidebarNavigationView()
-        #endif
     }
 
     /// Atualiza a taxa EUR/BRL uma vez por dia, em silêncio.

@@ -1,0 +1,12 @@
+{
+  "name": "mynik-supabase",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node schema/generate.mjs",
+    "test": "node --test tests/"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.15"
+  }
+}
