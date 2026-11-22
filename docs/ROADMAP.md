@@ -88,6 +88,6 @@ Arquitetura: iPhone → Swift · Mac e Windows → Tauri (Next.js) · dados → 
 - [x] Supabase: tabelas tipadas com RLS, funções SQL (score, lucro, orçamento) e migração a partir de `records`
 - [x] iOS lê e escreve as tabelas (SwiftData como cache offline) e partilha as definições
 - [ ] Servidor: Edge Functions (Shopify, cotações, combustível, Google Ads) e sync agendado da loja
-- [ ] Web (/web): Next.js + Tailwind + shadcn/ui com todos os itens do FEATURES.md
+- [x] Web (/web): Next.js + Tailwind + shadcn/ui com todos os itens do FEATURES.md
 - [ ] App desktop (/desktop): Tauri v2, tray, atalho global, notificações, iniciar com o sistema
 - [ ] Instaladores .dmg e .exe por GitHub Actions; cask do Homebrew aponta para o .dmg

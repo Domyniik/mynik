@@ -1,6 +1,18 @@
 # Changelog
 
 ## [Não lançado]
+- feat(web): Definições partilhadas, cópia de segurança JSON (formato do iPhone), PIN e bloqueio, Pergunte ao Mynik e categorias iniciais
+- feat(notes): Notas ao estilo wiki no desktop (páginas aninhadas, blocos, bases de dados, templates, importar Notion)
+- feat(web): Documentos e Carreira
+- feat(web): Carro — consumo, abastecimentos, manutenções, prazos e combustível
+- feat(web): Património — investimentos, cotações, aportes e poupança
+- feat(web): Metas e Hábitos
+- feat(web): Projetos com Kanban de arrastar e largar
+- feat(web): Hoje — centro de comando como no mockup
+- feat(store): Loja no desktop (KPIs, ranking 0–100, diagnóstico) e Edge Function da Shopify
+- feat(web): Finanças — movimentos, contas a pagar, orçamento, assinaturas, relatórios e CSV
+- feat(web): base Next.js + Tailwind + shadcn/ui com tema do mockup, ⌘K, ⌘N e ⌘1–9
+- feat(supabase): Realtime nas tabelas tipadas
 - chore: segredos fora do git (.env.*) e modelo supabase/.env.example para os segredos do servidor
 - feat(sync): definições partilhadas entre iPhone e desktop (custos da loja, taxa BRL, meta de poupança, lembretes)
 - feat(sync): o iPhone sincroniza com as tabelas tipadas através de sync_pull / sync_push

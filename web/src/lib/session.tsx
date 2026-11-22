@@ -2,6 +2,7 @@
 
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { LocalDb } from "./db/local-db";
+import { seedDefaultsIfEmpty } from "./db/defaults";
 import { setDb } from "./db/store";
 import { SupabaseDb } from "./db/supabase-db";
 import { type Fixture, seedDemo } from "./demo/seed";
@@ -73,7 +74,9 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     void client.auth.getSession().then(({ data }) => {
       if (!active || readMode() === "demo") return;
       if (data.session) {
-        setDb(new SupabaseDb(client));
+        const db = new SupabaseDb(client);
+        setDb(db);
+        void seedDefaultsIfEmpty(db).catch(() => undefined);
         setEmail(data.session.user.email ?? null);
         setStatus("cloud");
       } else {
@@ -84,7 +87,9 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     const { data } = client.auth.onAuthStateChange((event, session) => {
       if (readMode() === "demo") return;
       if (event === "SIGNED_IN" && session) {
-        setDb(new SupabaseDb(client));
+        const db = new SupabaseDb(client);
+        setDb(db);
+        void seedDefaultsIfEmpty(db).catch(() => undefined);
         setEmail(session.user.email ?? null);
         setStatus("cloud");
       } else if (event === "SIGNED_OUT") {

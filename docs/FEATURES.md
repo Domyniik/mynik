@@ -68,9 +68,9 @@ Todos os registos têm `uid` (texto, UUID) como chave estável, exceto os da loj
 | Investment | name, ticker, kindRaw (7 tipos), currencyCode, units, investedAmount, unitPrice, priceUpdatedAt, manualValue, isArchived, notes, createdAt | — |
 | WealthSnapshot | day, cash, invested, investmentsValue | chave = dia |
 
-- [ ] Todas as 25 entidades existem no desktop, lidas e escritas no Supabase com RLS
-- [ ] Categorias iniciais: Alimentação, Casa, Transporte, Carro, Saúde, Lazer, Compras, Assinaturas, Outros (gasto); Salário, Loja, Outras receitas (receita); conta "Conta principal"
-- [ ] Definições guardadas por utilizador (hoje estão em `UserDefaults`, não sincronizadas): taxa BRL/EUR e data, custos da loja (taxa %, taxa fixa, envio, anúncios mensais), alertas da loja, lucro→Finanças, folha do Google Ads e totais, meta de poupança, lembretes, província e combustível, vista das tarefas, auto-categorizar
+- [x] Todas as 25 entidades existem no desktop, lidas e escritas no Supabase com RLS
+- [x] Categorias iniciais: Alimentação, Casa, Transporte, Carro, Saúde, Lazer, Compras, Assinaturas, Outros (gasto); Salário, Loja, Outras receitas (receita); conta "Conta principal"
+- [x] Definições guardadas por utilizador (hoje estão em `UserDefaults`, não sincronizadas): taxa BRL/EUR e data, custos da loja (taxa %, taxa fixa, envio, anúncios mensais), alertas da loja, lucro→Finanças, folha do Google Ads e totais, meta de poupança, lembretes, província e combustível, vista das tarefas, auto-categorizar
 
 ---
 
@@ -190,25 +190,25 @@ iOS: cartão de saldo do mês com mini-gráfico, ações rápidas, contas a venc
 
 ### 3.12 Pergunte ao Mynik
 iOS: chat com Foundation Models e ferramentas que leem os dados; sem Apple Intelligence responde com resumos.
-- [ ] Chat com sugestões de perguntas e "Nova conversa"
-- [ ] Respostas a partir dos resumos (QuestionRouter + MynikDataDigest): finanças de um mês, gasto numa categoria/comerciante, contas a pagar, loja por período, carro, documentos, carreira, metas, património, agenda
-- [ ] (Opcional, grátis) modelo local via Ollama se estiver instalado; sem ele, o modo de resumos
+- [x] Chat com sugestões de perguntas e "Nova conversa"
+- [x] Respostas a partir dos resumos (QuestionRouter + MynikDataDigest): finanças de um mês, gasto numa categoria/comerciante, contas a pagar, loja por período, carro, documentos, carreira, metas, património, agenda
+- [x] (Opcional, grátis) modelo local via Ollama se estiver instalado; sem ele, o modo de resumos
 
 ### 3.13 Busca global (⌘K)
-- [ ] Procura em secções, movimentos, contas a pagar, notas (título e texto), projetos, tarefas, metas, hábitos, veículos, documentos (sem números), candidaturas, cursos, investimentos, produtos; máx. 40; ranking da secção 4.16
-- [ ] Ações rápidas no ⌘K (novo gasto, nova tarefa, nova página, ir para…)
+- [x] Procura em secções, movimentos, contas a pagar, notas (título e texto), projetos, tarefas, metas, hábitos, veículos, documentos (sem números), candidaturas, cursos, investimentos, produtos; máx. 40; ranking da secção 4.16
+- [x] Ações rápidas no ⌘K (novo gasto, nova tarefa, nova página, ir para…)
 
 ### 3.14 Definições
-- [ ] Conta: entrar por magic link, sessão, último sync, sincronizar agora, terminar sessão
-- [ ] Moedas: taxa EUR↔BRL manual ou "atualizar taxa do dia" (Frankfurter)
-- [ ] Notificações: contas a pagar (N dias antes), prazos da agenda, revisão semanal ao domingo às 19h
-- [ ] Loja Shopify: estado da ligação, testar (no desktop o segredo fica no servidor, ver 5.1)
-- [ ] Custos da loja (taxa %, taxa fixa, envio por pedido, anúncios mensais) e "lançar o lucro mensal nas Finanças"
-- [ ] Alertas da loja: avisar de cada venda, dias sem venda
-- [ ] Google Ads: URL da folha, gasto 30 dias, atualizar
-- [ ] Inteligência: sugerir categoria
-- [ ] Privacidade: bloqueio da app
-- [ ] Cópia de segurança: exportar/importar JSON (mesmo formato do iOS, fusão por `uid`)
+- [x] Conta: entrar por magic link, sessão, último sync, sincronizar agora, terminar sessão (no desktop os dados são lidos e escritos direto no Supabase, em tempo real: não há "sincronizar agora")
+- [x] Moedas: taxa EUR↔BRL manual ou "atualizar taxa do dia" (Frankfurter)
+- [x] Notificações: contas a pagar (N dias antes), prazos da agenda, revisão semanal ao domingo às 19h (as notificações do sistema chegam na etapa 4)
+- [x] Loja Shopify: estado da ligação, testar (no desktop o segredo fica no servidor, ver 5.1)
+- [x] Custos da loja (taxa %, taxa fixa, envio por pedido, anúncios mensais) e "lançar o lucro mensal nas Finanças"
+- [x] Alertas da loja: avisar de cada venda, dias sem venda
+- [x] Google Ads: URL da folha, gasto 30 dias, atualizar
+- [x] Inteligência: sugerir categoria
+- [x] Privacidade: bloqueio da app
+- [x] Cópia de segurança: exportar/importar JSON (mesmo formato do iOS, fusão por `uid`)
 - [ ] Iniciar com o sistema (extra desktop)
 
 ---
@@ -335,16 +335,16 @@ Começa por = 0, uma palavra começa por = 1, contém = 2; campos secundários +
 | 5.12 | MenuBarExtra no Mac (saldo, contas a 7 dias, gasto rápido) | Tray do Tauri |
 
 - [x] 5.1 Shopify no servidor
-- [ ] 5.2 Login e dados no Supabase
+- [x] 5.2 Login e dados no Supabase
 - [x] 5.3 APIs grátis
 - [ ] 5.4 Notificações nativas
-- [ ] 5.5 Bloqueio da app e dos documentos
+- [x] 5.5 Bloqueio da app e dos documentos
 - [x] 5.6 Calendário por iCal
 - [ ] 5.7 Tray com vendas de hoje
 - [ ] 5.8 Atalho global para o ⌘K
-- [ ] 5.9 IA sem Apple (regras e resumos)
-- [ ] 5.10 OCR de faturas
-- [ ] 5.11 Backup JSON
+- [x] 5.9 IA sem Apple (regras e resumos)
+- [x] 5.10 OCR de faturas
+- [x] 5.11 Backup JSON
 - [ ] 5.12 Tray com gasto rápido
 - [ ] Iniciar com o sistema
 - [ ] Instaladores: .dmg (Apple Silicon e Intel) e .exe (Windows) nas GitHub Releases

@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useSession } from "@/lib/session";
 import { CommandMenu } from "./command-menu";
+import { LockGate } from "./lock-screen";
 import { sectionFor, sections, settingsSection } from "./nav";
 import { Sidebar } from "./sidebar";
 
@@ -78,6 +79,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   }
 
   return (
+    <LockGate>
     <TooltipProvider>
       <div className="flex h-dvh overflow-hidden">
         <Sidebar />
@@ -88,5 +90,6 @@ export function AppShell({ children }: { children: ReactNode }) {
       <CommandMenu open={commandOpen} onOpenChange={setCommandOpen} />
       <Toaster theme="dark" richColors position="bottom-right" />
     </TooltipProvider>
+    </LockGate>
   );
 }

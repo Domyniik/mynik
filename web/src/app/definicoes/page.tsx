@@ -1,5 +1,1 @@
-import { Placeholder } from "@/components/shell/placeholder";
-
-export default function Page() {
-  return <Placeholder title="Definições" />;
-}
+export { default } from "@/components/shell/settings-page";

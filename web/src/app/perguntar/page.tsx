@@ -1,5 +1,1 @@
-import { Placeholder } from "@/components/shell/placeholder";
-
-export default function Page() {
-  return <Placeholder title="Pergunte ao Mynik" />;
-}
+export { default } from "@/components/shell/ask-page";
