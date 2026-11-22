@@ -347,7 +347,7 @@ Começa por = 0, uma palavra começa por = 1, contém = 2; campos secundários +
 - [x] 5.11 Backup JSON
 - [x] 5.12 Tray com gasto rápido
 - [x] Iniciar com o sistema
-- [ ] Instaladores: .dmg (Apple Silicon e Intel) e .exe (Windows) nas GitHub Releases
+- [x] Instaladores: .dmg (Apple Silicon e Intel) e .exe (Windows) nas GitHub Releases
 
 ---
 
